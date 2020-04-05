@@ -1,0 +1,29 @@
+{
+  "extends": ["plugin:prettier/recommended"],
+
+  "plugins": ["prettier"],
+
+  "rules": {
+    "prettier/prettier": "error",
+    "require-atomic-updates": 0,
+    "no-unused-vars": 1,
+    "semi": 2
+  },
+
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  }
+}
