@@ -11,22 +11,21 @@ const normalizePort = require("../util/normalizePort");
 const onError = require("../util/onError");
 
 /**
+ * Get port from environment and store in Express.
+ */
+
+const host = process.env.NODE_HOST || "localhost";
+const port = normalizePort(process.env.NODE_PORT || 3000);
+app.set("port", port);
+
+/**
  * Event listener for HTTP server "listening" event.
  */
 
 const onListening = () => {
-  const addr = server.address();
-  const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-  debug("Listening on " + bind);
-  console.log("Listening on " + bind);
+  debug("Server started on: http://" + host + ":" + port);
+  console.info("Server started on: http://" + host + ":" + port);
 };
-
-/**
- * Get port from environment and store in Express.
- */
-
-const port = normalizePort(process.env.NODE_PORT || 3000);
-app.set("port", port);
 
 /**
  * Create HTTP server.
