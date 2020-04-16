@@ -4,11 +4,11 @@
  * Module dependencies.
  */
 
-const app = require("../app");
+const app = require("../src/app");
 const debug = require("debug")("server:server");
 const http = require("http");
-const normalizePort = require("../util/normalizePort");
-const onError = require("../util/onError");
+const normalizePort = require("../src/util/normalizePort");
+const onError = require("../src/util/onError");
 
 /**
  * Get port from environment and store in Express.
