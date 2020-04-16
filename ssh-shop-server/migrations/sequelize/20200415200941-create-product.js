@@ -4,7 +4,7 @@ module.exports = {
     return queryInterface.sequelize.transaction((t) => {
       return Promise.all([
         queryInterface.createTable(
-          "addresses",
+          "products",
           {
             id: {
               allowNull: false,
@@ -16,19 +16,19 @@ module.exports = {
               type: Sequelize.INTEGER,
               allowNull: false,
             },
-            street: {
+            name: {
               type: Sequelize.STRING,
               allowNull: false,
             },
-            postal: {
-              type: Sequelize.STRING,
+            description: {
+              type: Sequelize.TEXT,
             },
-            phone_number: {
-              type: Sequelize.STRING,
-            },
-            city_id: {
+            category_id: {
               type: Sequelize.INTEGER,
               allowNull: false,
+            },
+            discount_pt: {
+              type: Sequelize.FLOAT,
             },
             created_at: {
               allowNull: false,
@@ -42,11 +42,11 @@ module.exports = {
           { transaction: t }
         ),
         queryInterface.addConstraint(
-          "addresses",
+          "products",
           ["user_id"],
           {
             type: "foreign key",
-            name: "user_addresses",
+            name: "user_products",
             references: {
               //Required field
               table: "users",
@@ -58,17 +58,17 @@ module.exports = {
           { transaction: t }
         ),
         queryInterface.addConstraint(
-          "addresses",
-          ["city_id"],
+          "products",
+          ["category_id"],
           {
             type: "foreign key",
-            name: "city_addresses",
+            name: "category_products",
             references: {
               //Required field
-              table: "cities",
+              table: "categories",
               field: "id",
             },
-            onDelete: "restrict",
+            onDelete: "cascade",
             onUpdate: "cascade",
           },
           { transaction: t }
@@ -77,6 +77,6 @@ module.exports = {
     });
   },
   down: (queryInterface) => {
-    return queryInterface.dropTable("addresses");
+    return queryInterface.dropTable("products");
   },
 };

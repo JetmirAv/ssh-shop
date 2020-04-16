@@ -4,7 +4,7 @@ module.exports = {
     return queryInterface.sequelize.transaction((t) => {
       return Promise.all([
         queryInterface.createTable(
-          "addresses",
+          "variant_options",
           {
             id: {
               allowNull: false,
@@ -12,23 +12,16 @@ module.exports = {
               primaryKey: true,
               type: Sequelize.INTEGER,
             },
-            user_id: {
+            variant_id: {
               type: Sequelize.INTEGER,
               allowNull: false,
             },
-            street: {
+            name: {
               type: Sequelize.STRING,
               allowNull: false,
             },
-            postal: {
-              type: Sequelize.STRING,
-            },
-            phone_number: {
-              type: Sequelize.STRING,
-            },
-            city_id: {
-              type: Sequelize.INTEGER,
-              allowNull: false,
+            description: {
+              type: Sequelize.TEXT,
             },
             created_at: {
               allowNull: false,
@@ -42,14 +35,14 @@ module.exports = {
           { transaction: t }
         ),
         queryInterface.addConstraint(
-          "addresses",
-          ["user_id"],
+          "variant_options",
+          ["variant_id"],
           {
             type: "foreign key",
-            name: "user_addresses",
+            name: "variant_options",
             references: {
               //Required field
-              table: "users",
+              table: "variants",
               field: "id",
             },
             onDelete: "cascade",
@@ -57,26 +50,10 @@ module.exports = {
           },
           { transaction: t }
         ),
-        queryInterface.addConstraint(
-          "addresses",
-          ["city_id"],
-          {
-            type: "foreign key",
-            name: "city_addresses",
-            references: {
-              //Required field
-              table: "cities",
-              field: "id",
-            },
-            onDelete: "restrict",
-            onUpdate: "cascade",
-          },
-          { transaction: t }
-        ),
       ]);
     });
   },
-  down: (queryInterface) => {
-    return queryInterface.dropTable("addresses");
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable("variant_options");
   },
 };

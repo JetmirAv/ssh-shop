@@ -4,7 +4,7 @@ module.exports = {
     return queryInterface.sequelize.transaction((t) => {
       return Promise.all([
         queryInterface.createTable(
-          "addresses",
+          "cards",
           {
             id: {
               allowNull: false,
@@ -16,18 +16,20 @@ module.exports = {
               type: Sequelize.INTEGER,
               allowNull: false,
             },
-            street: {
+            number: {
               type: Sequelize.STRING,
               allowNull: false,
             },
-            postal: {
+            exp_month: {
               type: Sequelize.STRING,
+              allowNull: false,
             },
-            phone_number: {
+            exp_year: {
               type: Sequelize.STRING,
+              allowNull: false,
             },
-            city_id: {
-              type: Sequelize.INTEGER,
+            code: {
+              type: Sequelize.STRING,
               allowNull: false,
             },
             created_at: {
@@ -42,11 +44,11 @@ module.exports = {
           { transaction: t }
         ),
         queryInterface.addConstraint(
-          "addresses",
+          "cards",
           ["user_id"],
           {
             type: "foreign key",
-            name: "user_addresses",
+            name: "user_cards",
             references: {
               //Required field
               table: "users",
@@ -57,26 +59,10 @@ module.exports = {
           },
           { transaction: t }
         ),
-        queryInterface.addConstraint(
-          "addresses",
-          ["city_id"],
-          {
-            type: "foreign key",
-            name: "city_addresses",
-            references: {
-              //Required field
-              table: "cities",
-              field: "id",
-            },
-            onDelete: "restrict",
-            onUpdate: "cascade",
-          },
-          { transaction: t }
-        ),
       ]);
     });
   },
-  down: (queryInterface) => {
-    return queryInterface.dropTable("addresses");
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable("cards");
   },
 };

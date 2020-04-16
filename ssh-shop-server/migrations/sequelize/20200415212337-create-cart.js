@@ -4,7 +4,7 @@ module.exports = {
     return queryInterface.sequelize.transaction((t) => {
       return Promise.all([
         queryInterface.createTable(
-          "addresses",
+          "carts",
           {
             id: {
               allowNull: false,
@@ -16,17 +16,11 @@ module.exports = {
               type: Sequelize.INTEGER,
               allowNull: false,
             },
-            street: {
-              type: Sequelize.STRING,
+            variant_id: {
+              type: Sequelize.INTEGER,
               allowNull: false,
             },
-            postal: {
-              type: Sequelize.STRING,
-            },
-            phone_number: {
-              type: Sequelize.STRING,
-            },
-            city_id: {
+            quantity: {
               type: Sequelize.INTEGER,
               allowNull: false,
             },
@@ -42,11 +36,11 @@ module.exports = {
           { transaction: t }
         ),
         queryInterface.addConstraint(
-          "addresses",
+          "carts",
           ["user_id"],
           {
             type: "foreign key",
-            name: "user_addresses",
+            name: "user_carts",
             references: {
               //Required field
               table: "users",
@@ -57,26 +51,10 @@ module.exports = {
           },
           { transaction: t }
         ),
-        queryInterface.addConstraint(
-          "addresses",
-          ["city_id"],
-          {
-            type: "foreign key",
-            name: "city_addresses",
-            references: {
-              //Required field
-              table: "cities",
-              field: "id",
-            },
-            onDelete: "restrict",
-            onUpdate: "cascade",
-          },
-          { transaction: t }
-        ),
       ]);
     });
   },
   down: (queryInterface) => {
-    return queryInterface.dropTable("addresses");
+    return queryInterface.dropTable("carts");
   },
 };

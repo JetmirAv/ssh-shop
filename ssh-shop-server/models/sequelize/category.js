@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Role = sequelize.define(
-    "Role",
+  const Category = sequelize.define(
+    "Category",
     {
       name: {
         type: DataTypes.STRING,
@@ -9,19 +9,19 @@ module.exports = (sequelize, DataTypes) => {
       },
       description: {
         type: DataTypes.TEXT,
-        allowNull: false,
       },
     },
     {
       underscored: true,
-      tableName: "roles",
+      tableName: "categories",
     }
   );
-  Role.associate = function (models) {
-    Role.hasMany(models.User, {
-      foreignKey: "role_id",
-      as: "Users",
+  Category.associate = function (models) {
+    // 1 - n
+    Category.hasMany(models.Product, {
+      foreignKey: "category_id",
+      as: "Products",
     });
   };
-  return Role;
+  return Category;
 };

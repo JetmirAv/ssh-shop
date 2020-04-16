@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   Country.associate = function (models) {
-    // associations can be defined here
+    // 1 - n
+    Country.hasMany(models.City, {
+      foreignKey: "country_id",
+      as: "Cities",
+    });
   };
   return Country;
 };

@@ -1,39 +1,40 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Address = sequelize.define(
-    "Address",
+  const Card = sequelize.define(
+    "Card",
     {
       user_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
       },
-      street: {
+      number: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
-      postal: {
+      exp_month: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
-      phone_number: {
+      exp_year: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
-      city_id: {
-        type: DataTypes.INTEGER,
+      code: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {
       underscored: true,
-      tableName: "addresses",
+      tableName: "cards",
     }
   );
-  Address.associate = function (models) {
+  Card.associate = function (models) {
     // 1 - 1
-    Address.belongsTo(models.User, {
+    Card.belongsTo(models.User, {
       foreignKey: "user_id",
       as: "User",
     });
-    Address.belongsTo(models.City, {
-      foreignKey: "city_id",
-      as: "City",
-    });
   };
-  return Address;
+  return Card;
 };

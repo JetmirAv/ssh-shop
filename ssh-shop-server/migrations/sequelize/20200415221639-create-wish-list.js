@@ -4,7 +4,7 @@ module.exports = {
     return queryInterface.sequelize.transaction((t) => {
       return Promise.all([
         queryInterface.createTable(
-          "addresses",
+          "wish_lists",
           {
             id: {
               allowNull: false,
@@ -16,17 +16,7 @@ module.exports = {
               type: Sequelize.INTEGER,
               allowNull: false,
             },
-            street: {
-              type: Sequelize.STRING,
-              allowNull: false,
-            },
-            postal: {
-              type: Sequelize.STRING,
-            },
-            phone_number: {
-              type: Sequelize.STRING,
-            },
-            city_id: {
+            product_id: {
               type: Sequelize.INTEGER,
               allowNull: false,
             },
@@ -42,11 +32,11 @@ module.exports = {
           { transaction: t }
         ),
         queryInterface.addConstraint(
-          "addresses",
+          "wish_lists",
           ["user_id"],
           {
             type: "foreign key",
-            name: "user_addresses",
+            name: "user_wishlist",
             references: {
               //Required field
               table: "users",
@@ -58,17 +48,17 @@ module.exports = {
           { transaction: t }
         ),
         queryInterface.addConstraint(
-          "addresses",
-          ["city_id"],
+          "wish_lists",
+          ["product_id"],
           {
             type: "foreign key",
-            name: "city_addresses",
+            name: "product_wishlist",
             references: {
               //Required field
-              table: "cities",
+              table: "products",
               field: "id",
             },
-            onDelete: "restrict",
+            onDelete: "cascade",
             onUpdate: "cascade",
           },
           { transaction: t }
@@ -76,7 +66,7 @@ module.exports = {
       ]);
     });
   },
-  down: (queryInterface) => {
-    return queryInterface.dropTable("addresses");
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable("wish_lists");
   },
 };

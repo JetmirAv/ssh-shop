@@ -4,7 +4,7 @@ module.exports = {
     return queryInterface.sequelize.transaction((t) => {
       return Promise.all([
         queryInterface.createTable(
-          "addresses",
+          "channels",
           {
             id: {
               allowNull: false,
@@ -12,23 +12,16 @@ module.exports = {
               primaryKey: true,
               type: Sequelize.INTEGER,
             },
+            product_id: {
+              type: Sequelize.INTEGER,
+              allowNull: false,
+            },
             user_id: {
               type: Sequelize.INTEGER,
               allowNull: false,
             },
-            street: {
+            name: {
               type: Sequelize.STRING,
-              allowNull: false,
-            },
-            postal: {
-              type: Sequelize.STRING,
-            },
-            phone_number: {
-              type: Sequelize.STRING,
-            },
-            city_id: {
-              type: Sequelize.INTEGER,
-              allowNull: false,
             },
             created_at: {
               allowNull: false,
@@ -42,11 +35,11 @@ module.exports = {
           { transaction: t }
         ),
         queryInterface.addConstraint(
-          "addresses",
+          "channels",
           ["user_id"],
           {
             type: "foreign key",
-            name: "user_addresses",
+            name: "user_channels",
             references: {
               //Required field
               table: "users",
@@ -58,17 +51,17 @@ module.exports = {
           { transaction: t }
         ),
         queryInterface.addConstraint(
-          "addresses",
-          ["city_id"],
+          "channels",
+          ["product_id"],
           {
             type: "foreign key",
-            name: "city_addresses",
+            name: "product_channels",
             references: {
               //Required field
-              table: "cities",
+              table: "products",
               field: "id",
             },
-            onDelete: "restrict",
+            onDelete: "cascade",
             onUpdate: "cascade",
           },
           { transaction: t }
@@ -76,7 +69,7 @@ module.exports = {
       ]);
     });
   },
-  down: (queryInterface) => {
-    return queryInterface.dropTable("addresses");
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable("channels");
   },
 };

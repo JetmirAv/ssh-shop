@@ -4,6 +4,8 @@ const logger = require("morgan");
 
 const routes = require("./routes");
 
+const sequelize = require("./models/sequelize");
+
 const app = express();
 
 // view engine setup

@@ -44,7 +44,37 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = function (models) {
-    // associations can be defined here
+    // 1 - 1
+    User.belongsTo(models.Role, {
+      foreignKey: "role_id",
+      as: "Role",
+    });
+
+    // 1 - n
+    User.hasMany(models.Card, {
+      foreignKey: "user_id",
+      as: "Cards",
+    });
+    User.hasMany(models.Address, {
+      foreignKey: "user_id",
+      as: "Addresses",
+    });
+    User.hasMany(models.WishList, {
+      foreignKey: "user_id",
+      as: "WishList",
+    });
+    User.hasMany(models.Cart, {
+      foreignKey: "user_id",
+      as: "Carts",
+    });
+    User.hasMany(models.Product, {
+      foreignKey: "user_id",
+      as: "Products",
+    });
+    User.hasMany(models.Channel, {
+      foreignKey: "user_id",
+      as: "Channels",
+    });
   };
   return User;
 };

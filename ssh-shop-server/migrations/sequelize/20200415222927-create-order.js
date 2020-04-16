@@ -4,7 +4,7 @@ module.exports = {
     return queryInterface.sequelize.transaction((t) => {
       return Promise.all([
         queryInterface.createTable(
-          "addresses",
+          "orders",
           {
             id: {
               allowNull: false,
@@ -16,18 +16,24 @@ module.exports = {
               type: Sequelize.INTEGER,
               allowNull: false,
             },
-            street: {
-              type: Sequelize.STRING,
+            card_id: {
+              type: Sequelize.INTEGER,
               allowNull: false,
             },
-            postal: {
-              type: Sequelize.STRING,
-            },
-            phone_number: {
-              type: Sequelize.STRING,
-            },
-            city_id: {
+            address_id: {
               type: Sequelize.INTEGER,
+              allowNull: false,
+            },
+            variant_id: {
+              type: Sequelize.INTEGER,
+              allowNull: false,
+            },
+            quantity: {
+              type: Sequelize.INTEGER,
+              allowNull: false,
+            },
+            price: {
+              type: Sequelize.FLOAT,
               allowNull: false,
             },
             created_at: {
@@ -42,11 +48,11 @@ module.exports = {
           { transaction: t }
         ),
         queryInterface.addConstraint(
-          "addresses",
+          "orders",
           ["user_id"],
           {
             type: "foreign key",
-            name: "user_addresses",
+            name: "user_orders",
             references: {
               //Required field
               table: "users",
@@ -58,17 +64,33 @@ module.exports = {
           { transaction: t }
         ),
         queryInterface.addConstraint(
-          "addresses",
-          ["city_id"],
+          "orders",
+          ["card_id"],
           {
             type: "foreign key",
-            name: "city_addresses",
+            name: "card_orders",
             references: {
               //Required field
-              table: "cities",
+              table: "cards",
               field: "id",
             },
-            onDelete: "restrict",
+            onDelete: "cascade",
+            onUpdate: "cascade",
+          },
+          { transaction: t }
+        ),
+        queryInterface.addConstraint(
+          "orders",
+          ["address_id"],
+          {
+            type: "foreign key",
+            name: "address_orders",
+            references: {
+              //Required field
+              table: "addresses",
+              field: "id",
+            },
+            onDelete: "cascade",
             onUpdate: "cascade",
           },
           { transaction: t }
@@ -77,6 +99,6 @@ module.exports = {
     });
   },
   down: (queryInterface) => {
-    return queryInterface.dropTable("addresses");
+    return queryInterface.dropTable("orders");
   },
 };
