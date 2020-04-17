@@ -26,11 +26,24 @@ const create = async (req, res, next) => {
  */
 const update = async (req, res, next) => {
   try {
-    console.log({ req });
-
-    const user = await UpdateUser(req.params.id, req.body);
+    const user = await UpdateUser(req.params.user_id, req.body);
 
     return res.status(200).json({ user });
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
+ *
+ * @param {Request} req
+ * @param {Response} res
+ */
+const drop = async (req, res, next) => {
+  try {
+    const response = await DeleteUser(req.params.user_id);
+
+    return res.status(200).json({ response });
   } catch (err) {
     next(err);
   }
@@ -54,5 +67,6 @@ module.exports = {
   get,
   create,
   update,
+  drop,
   func,
 };

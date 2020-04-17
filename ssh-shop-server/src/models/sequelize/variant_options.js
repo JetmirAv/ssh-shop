@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     // 1 - 1
     VariantOptions.belongsTo(models.Variant, {
       foreignKey: "variant_id",
-      as: "Variant",
+      as: "variant",
     });
   };
   return VariantOptions;

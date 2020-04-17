@@ -31,11 +31,11 @@ module.exports = (sequelize, DataTypes) => {
     // 1 - 1
     Product.belongsTo(models.User, {
       foreignKey: "user_id",
-      as: "User",
+      as: "user",
     });
     Product.belongsTo(models.Category, {
       foreignKey: "category_id",
-      as: "Category",
+      as: "category",
     });
   };
   return Product;

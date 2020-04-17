@@ -8,14 +8,14 @@ module.exports = (sequelize, DataTypes) => {
       role_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        set(val) {
+          if (parseInt(val)) this.setDataValue("role_id", parseInt(val));
+        },
       },
       first_name: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isAlphanumeric: {
-            msg: "Please provide a valid name",
-          },
           notEmpty: {
             msg: "Please provide a valid name",
           },
@@ -31,9 +31,6 @@ module.exports = (sequelize, DataTypes) => {
       last_name: {
         type: DataTypes.STRING,
         validate: {
-          isAlphanumeric: {
-            msg: "Please provide a valid last name",
-          },
           notEmpty: {
             msg: "Please provide a valid last name",
           },
@@ -109,27 +106,27 @@ module.exports = (sequelize, DataTypes) => {
     // 1 - n
     User.hasMany(models.Card, {
       foreignKey: "user_id",
-      as: "Cards",
+      as: "cards",
     });
     User.hasMany(models.Address, {
       foreignKey: "user_id",
-      as: "Addresses",
+      as: "addresses",
     });
     User.hasMany(models.WishList, {
       foreignKey: "user_id",
-      as: "WishList",
+      as: "wishlist",
     });
     User.hasMany(models.Cart, {
       foreignKey: "user_id",
-      as: "Carts",
+      as: "carts",
     });
     User.hasMany(models.Product, {
       foreignKey: "user_id",
-      as: "Products",
+      as: "products",
     });
     User.hasMany(models.Channel, {
       foreignKey: "user_id",
-      as: "Channels",
+      as: "channels",
     });
   };
   return User;

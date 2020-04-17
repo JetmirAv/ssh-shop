@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     // 1 - n
     Country.hasMany(models.City, {
       foreignKey: "country_id",
-      as: "Cities",
+      as: "cities",
     });
   };
   return Country;

@@ -54,10 +54,13 @@ const UpdateUser = async (user_id, data) => {
     }
 
     const instance = new User({ ...user.dataValues, ...data });
+
     await instance.validate();
-    await user.update({ ...instance.dataValues });
+    await user.update({ ...instance.dataValues, password: null, role_id: null });
     return user;
   } catch (err) {
+    console.log({ err });
+
     throw err;
   }
 };

@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     // 1 - n
     Variant.hasMany(models.VariantOptions, {
       foreignKey: "variant_id",
-      as: "Options",
+      as: "options",
     });
   };
   return Variant;

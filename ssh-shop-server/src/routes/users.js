@@ -13,8 +13,8 @@ router.get("/:user_id([0-9]+)", controllers.get);
 /* Create user. */
 router.post("/", controllers.create);
 /* Update user. */
-router.patch("/:user_id([0-9]+)", auth, controllers.update);
+router.patch("/:user_id([0-9]+)", controllers.update);
 /* Delete user. */
-router.delete("/:user_id([0-9]+)", auth, controllers.func);
+router.delete("/:user_id([0-9]+)", controllers.drop);
 
 module.exports = router;

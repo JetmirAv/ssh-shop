@@ -37,15 +37,15 @@ module.exports = (sequelize, DataTypes) => {
     // 1 - 1
     Order.belongsTo(models.User, {
       foreignKey: "user_id",
-      as: "User",
+      as: "user",
     });
     Order.belongsTo(models.Card, {
       foreignKey: "card_id",
-      as: "Card",
+      as: "card",
     });
     Order.belongsTo(models.Address, {
       foreignKey: "address_id",
-      as: "Address",
+      as: "address",
     });
   };
   return Order;

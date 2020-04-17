@@ -24,11 +24,11 @@ module.exports = (sequelize, DataTypes) => {
     // 1 - 1
     Channel.belongsTo(models.User, {
       foreignKey: "user_id",
-      as: "User",
+      as: "user",
     });
     Channel.belongsTo(models.Product, {
       foreignKey: "product_id",
-      as: "Product",
+      as: "product",
     });
   };
   return Channel;

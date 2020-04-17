@@ -28,11 +28,11 @@ module.exports = (sequelize, DataTypes) => {
     // 1 - 1
     Address.belongsTo(models.User, {
       foreignKey: "user_id",
-      as: "User",
+      as: "user",
     });
     Address.belongsTo(models.City, {
       foreignKey: "city_id",
-      as: "City",
+      as: "city",
     });
   };
   return Address;

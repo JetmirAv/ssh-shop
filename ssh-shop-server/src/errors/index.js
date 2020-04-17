@@ -11,7 +11,7 @@ const findError = (err) => {
   error = sequelizeErrorHandler(err);
   if (error) return error;
 
-  return new CustomError(err.message, err.name);
+  return err;
 };
 
 /**

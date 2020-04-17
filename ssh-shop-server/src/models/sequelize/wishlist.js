@@ -21,11 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     // 1 - 1
     WishList.belongsTo(models.User, {
       foreignKey: "user_id",
-      as: "User",
+      as: "user",
     });
     WishList.belongsTo(models.Product, {
       foreignKey: "product_id",
-      as: "Product",
+      as: "product",
     });
   };
   return WishList;

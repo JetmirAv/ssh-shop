@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     // 1 - 1
     City.belongsTo(models.Country, {
       foreignKey: "country_id",
-      as: "Country",
+      as: "country",
     });
   };
   return City;

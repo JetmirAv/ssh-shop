@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     // 1 - 1
     Card.belongsTo(models.User, {
       foreignKey: "user_id",
-      as: "User",
+      as: "user",
     });
   };
   return Card;
