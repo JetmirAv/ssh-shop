@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
         set(val) {
-          if (val) this.setDataValue("email", val.trim());
+          if (val) this.setDataValue("first_name", val.trim());
         },
       },
       last_name: {
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
         set(val) {
-          if (val) this.setDataValue("email", val.trim());
+          if (val) this.setDataValue("last_name", val.trim());
         },
       },
       email: {
@@ -63,17 +63,17 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         set(val) {
-          if (val) this.setDataValue("email", bcrypt.hashSync(val, 12));
+          if (val) this.setDataValue("password", bcrypt.hashSync(val, 12));
         },
       },
       forgot_password_token: {
         type: DataTypes.STRING,
         set(val) {
-          if (val) this.setDataValue("email", val.trim());
+          if (val) this.setDataValue("forgot_password_token", val.trim());
         },
       },
       birthdate: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
       },
       gender: {
         type: DataTypes.ENUM("MALE", "FEMALE"),
@@ -84,13 +84,13 @@ module.exports = (sequelize, DataTypes) => {
           return this.getDataValue("avatar") || "default.jpeg";
         },
         set(val) {
-          if (val) this.setDataValue("email", val.trim());
+          if (val) this.setDataValue("avatar", val.trim());
         },
       },
       phone_number: {
         type: DataTypes.STRING,
         set(val) {
-          if (val) this.setDataValue("email", val.trim());
+          if (val) this.setDataValue("phone_number", val.trim());
         },
       },
     },

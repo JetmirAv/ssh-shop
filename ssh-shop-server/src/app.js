@@ -5,6 +5,7 @@ const logger = require("morgan");
 require("./config/mongoose");
 require("./models/sequelize");
 
+const handleError = require("./errors");
 const routes = require("./routes");
 
 const app = express();
@@ -17,14 +18,6 @@ app.use(express.urlencoded({ extended: false }));
 routes(app);
 
 // error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = process.env.NODE_ENV === "DEVELOPMENT" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
-});
+app.use(handleError);
 
 module.exports = app;
