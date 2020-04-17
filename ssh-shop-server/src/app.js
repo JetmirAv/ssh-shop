@@ -2,13 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const logger = require("morgan");
 
+require("./config/mongoose");
+require("./models/sequelize");
+
 const routes = require("./routes");
 
-const sequelize = require("./models/sequelize");
-
 const app = express();
-
-// view engine setup
 
 app.use(logger("dev"));
 app.use(express.json());
