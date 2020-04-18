@@ -1,52 +1,56 @@
 "use strict";
-module.exports = (sequelize, DataTypes) => {
-  const Order = sequelize.define(
-    "Order",
-    {
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+const Sequelize = require("sequelize");
+
+module.exports = class Order extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init(
+      {
+        user_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        card_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        address_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        variant_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        quantity: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        price: {
+          type: Sequelize.FLOAT,
+          allowNull: false,
+        },
       },
-      card_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      address_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      variant_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      quantity: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      price: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
-    },
-    {
-      underscored: true,
-      tableName: "orders",
-    }
-  );
-  Order.associate = function (models) {
+      {
+        underscored: true,
+        tableName: "orders",
+        sequelize,
+      }
+    );
+  }
+
+  static associate(models) {
     // 1 - 1
-    Order.belongsTo(models.User, {
+    this.belongsTo(models.User, {
       foreignKey: "user_id",
       as: "user",
     });
-    Order.belongsTo(models.Card, {
+    this.belongsTo(models.Card, {
       foreignKey: "card_id",
       as: "card",
     });
-    Order.belongsTo(models.Address, {
+    this.belongsTo(models.Address, {
       foreignKey: "address_id",
       as: "address",
     });
-  };
-  return Order;
+  }
 };

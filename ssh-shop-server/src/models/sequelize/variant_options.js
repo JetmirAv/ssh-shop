@@ -1,31 +1,35 @@
 "use strict";
-module.exports = (sequelize, DataTypes) => {
-  const VariantOptions = sequelize.define(
-    "VariantOptions",
-    {
-      variant_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+const Sequelize = require("sequelize");
+
+module.exports = class VariantOptions extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init(
+      {
+        variant_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        name: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        description: {
+          type: Sequelize.TEXT,
+        },
       },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      description: {
-        type: DataTypes.TEXT,
-      },
-    },
-    {
-      underscored: true,
-      tableName: "variant_options",
-    }
-  );
-  VariantOptions.associate = function (models) {
+      {
+        underscored: true,
+        tableName: "variant_options",
+        sequelize,
+      }
+    );
+  }
+
+  static associate(models) {
     // 1 - 1
-    VariantOptions.belongsTo(models.Variant, {
+    this.belongsTo(models.Variant, {
       foreignKey: "variant_id",
       as: "variant",
     });
-  };
-  return VariantOptions;
+  }
 };

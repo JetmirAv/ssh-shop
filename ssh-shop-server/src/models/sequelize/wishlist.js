@@ -1,32 +1,36 @@
 "use strict";
-module.exports = (sequelize, DataTypes) => {
-  const WishList = sequelize.define(
-    "WishList",
-    {
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+const Sequelize = require("sequelize");
+
+module.exports = class WishList extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init(
+      {
+        user_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        product_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
       },
-      product_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-    },
-    {
-      underscored: true,
-      tableName: "wish_lists",
-    }
-  );
-  WishList.associate = function (models) {
+      {
+        underscored: true,
+        tableName: "wish_lists",
+        sequelize,
+      }
+    );
+  }
+
+  static associate(models) {
     // 1 - 1
-    WishList.belongsTo(models.User, {
+    this.belongsTo(models.User, {
       foreignKey: "user_id",
       as: "user",
     });
-    WishList.belongsTo(models.Product, {
+    this.belongsTo(models.Product, {
       foreignKey: "product_id",
       as: "product",
     });
-  };
-  return WishList;
+  }
 };

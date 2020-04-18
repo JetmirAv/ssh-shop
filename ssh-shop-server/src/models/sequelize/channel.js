@@ -1,35 +1,39 @@
 "use strict";
-module.exports = (sequelize, DataTypes) => {
-  const Channel = sequelize.define(
-    "Channel",
-    {
-      product_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+const Sequelize = require("sequelize");
+
+module.exports = class Channel extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init(
+      {
+        product_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        user_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        name: {
+          type: Sequelize.STRING,
+        },
       },
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      name: {
-        type: DataTypes.STRING,
-      },
-    },
-    {
-      underscored: true,
-      tableName: "channels",
-    }
-  );
-  Channel.associate = function (models) {
+      {
+        underscored: true,
+        tableName: "channels",
+        sequelize,
+      }
+    );
+  }
+
+  static associate(models) {
     // 1 - 1
-    Channel.belongsTo(models.User, {
+    this.belongsTo(models.User, {
       foreignKey: "user_id",
       as: "user",
     });
-    Channel.belongsTo(models.Product, {
+    this.belongsTo(models.Product, {
       foreignKey: "product_id",
       as: "product",
     });
-  };
-  return Channel;
+  }
 };

@@ -1,42 +1,46 @@
 "use strict";
-module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define(
-    "Product",
-    {
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+const Sequelize = require("sequelize");
+
+module.exports = class Product extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init(
+      {
+        user_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        name: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        description: {
+          type: Sequelize.TEXT,
+        },
+        category_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        discount_pt: {
+          type: Sequelize.FLOAT,
+        },
       },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      description: {
-        type: DataTypes.TEXT,
-      },
-      category_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      discount_pt: {
-        type: DataTypes.FLOAT,
-      },
-    },
-    {
-      underscored: true,
-      tableName: "products",
-    }
-  );
-  Product.associate = function (models) {
+      {
+        underscored: true,
+        tableName: "products",
+        sequelize,
+      }
+    );
+  }
+
+  static associate(models) {
     // 1 - 1
-    Product.belongsTo(models.User, {
+    this.belongsTo(models.User, {
       foreignKey: "user_id",
       as: "user",
     });
-    Product.belongsTo(models.Category, {
+    this.belongsTo(models.Category, {
       foreignKey: "category_id",
       as: "category",
     });
-  };
-  return Product;
+  }
 };

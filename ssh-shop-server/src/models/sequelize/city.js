@@ -1,28 +1,32 @@
 "use strict";
-module.exports = (sequelize, DataTypes) => {
-  const City = sequelize.define(
-    "City",
-    {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
+const Sequelize = require("sequelize");
+
+module.exports = class City extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init(
+      {
+        name: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        country_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
       },
-      country_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-    },
-    {
-      underscored: true,
-      tableName: "cities",
-    }
-  );
-  City.associate = function (models) {
+      {
+        underscored: true,
+        tableName: "cities",
+        sequelize,
+      }
+    );
+  }
+
+  static associate(models) {
     // 1 - 1
-    City.belongsTo(models.Country, {
+    this.belongsTo(models.Country, {
       foreignKey: "country_id",
       as: "country",
     });
-  };
-  return City;
+  }
 };

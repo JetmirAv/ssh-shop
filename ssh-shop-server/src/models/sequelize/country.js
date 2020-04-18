@@ -1,24 +1,28 @@
 "use strict";
-module.exports = (sequelize, DataTypes) => {
-  const Country = sequelize.define(
-    "Country",
-    {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
+const Sequelize = require("sequelize");
+
+module.exports = class Country extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init(
+      {
+        name: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
       },
-    },
-    {
-      underscored: true,
-      tableName: "countries",
-    }
-  );
-  Country.associate = function (models) {
+      {
+        underscored: true,
+        tableName: "countries",
+        sequelize,
+      }
+    );
+  }
+
+  static associate(models) {
     // 1 - n
-    Country.hasMany(models.City, {
+    this.hasMany(models.City, {
       foreignKey: "country_id",
       as: "cities",
     });
-  };
-  return Country;
+  }
 };

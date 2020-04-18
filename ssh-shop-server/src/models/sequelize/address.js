@@ -1,39 +1,47 @@
 "use strict";
-module.exports = (sequelize, DataTypes) => {
-  const Address = sequelize.define(
-    "Address",
-    {
-      user_id: {
-        type: DataTypes.INTEGER,
+const Sequelize = require("sequelize");
+
+module.exports = class Address extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init(
+      {
+        user_id: {
+          type: Sequelize.INTEGER,
+          references: {
+            model: sequelize.models.User,
+            key: "id",
+          },
+        },
+        street: {
+          type: Sequelize.STRING,
+        },
+        postal: {
+          type: Sequelize.STRING,
+        },
+        phone_number: {
+          type: Sequelize.STRING,
+        },
+        city_id: {
+          type: Sequelize.INTEGER,
+        },
       },
-      street: {
-        type: DataTypes.STRING,
-      },
-      postal: {
-        type: DataTypes.STRING,
-      },
-      phone_number: {
-        type: DataTypes.STRING,
-      },
-      city_id: {
-        type: DataTypes.INTEGER,
-      },
-    },
-    {
-      underscored: true,
-      tableName: "addresses",
-    }
-  );
-  Address.associate = function (models) {
+      {
+        underscored: true,
+        tableName: "addresses",
+        sequelize,
+      }
+    );
+  }
+
+  static associate(models) {
     // 1 - 1
-    Address.belongsTo(models.User, {
+    this.belongsTo(models.User, {
       foreignKey: "user_id",
       as: "user",
     });
-    Address.belongsTo(models.City, {
+    this.belongsTo(models.City, {
       foreignKey: "city_id",
       as: "city",
     });
-  };
-  return Address;
+  }
 };

@@ -1,26 +1,30 @@
 "use strict";
-module.exports = (sequelize, DataTypes) => {
-  const Role = sequelize.define(
-    "Role",
-    {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
+const Sequelize = require("sequelize");
+
+module.exports = class Role extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init(
+      {
+        name: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        description: {
+          type: Sequelize.TEXT,
+        },
       },
-      description: {
-        type: DataTypes.TEXT,
-      },
-    },
-    {
-      underscored: true,
-      tableName: "roles",
-    }
-  );
-  Role.associate = function (models) {
-    Role.hasMany(models.User, {
+      {
+        underscored: true,
+        tableName: "roles",
+        sequelize,
+      }
+    );
+  }
+
+  static associate(models) {
+    this.hasMany(models.User, {
       foreignKey: "role_id",
       as: "users",
     });
-  };
-  return Role;
+  }
 };

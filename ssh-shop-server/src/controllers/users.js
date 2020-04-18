@@ -43,7 +43,7 @@ const drop = async (req, res, next) => {
   try {
     const response = await DeleteUser(req.params.user_id);
 
-    return res.status(200).json({ response });
+    return res.status(200).json(response);
   } catch (err) {
     next(err);
   }

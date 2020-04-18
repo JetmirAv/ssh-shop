@@ -1,40 +1,44 @@
 "use strict";
-module.exports = (sequelize, DataTypes) => {
-  const Card = sequelize.define(
-    "Card",
-    {
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+const Sequelize = require("sequelize");
+
+module.exports = class Card extends Sequelize.Model {
+  static init(sequelize) {
+    return super.init(
+      {
+        user_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        number: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        exp_month: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        exp_year: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        code: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
       },
-      number: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      exp_month: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      exp_year: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      code: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-    },
-    {
-      underscored: true,
-      tableName: "cards",
-    }
-  );
-  Card.associate = function (models) {
+      {
+        underscored: true,
+        tableName: "cards",
+        sequelize,
+      }
+    );
+  }
+
+  static associate(models) {
     // 1 - 1
-    Card.belongsTo(models.User, {
+    this.belongsTo(models.User, {
       foreignKey: "user_id",
       as: "user",
     });
-  };
-  return Card;
+  }
 };
