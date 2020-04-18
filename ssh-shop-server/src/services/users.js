@@ -27,7 +27,9 @@ const CreateUser = async (data) => {
     data.role_id = 2;
     const user = new User({ ...data });
 
-    let userWithEmail = await User.findOne({ where: { email: { [Op.like]: data.email } } });
+    let userWithEmail = await User.findOne({
+      where: { email: { [Op.like]: data.email } },
+    });
     if (userWithEmail) throw new CustomError("Email already in use", {}, 401);
 
     await user.validate();
@@ -49,14 +51,20 @@ const UpdateUser = async (user_id, data) => {
     const user = await GetUser(user_id);
 
     if (user.email !== data.email) {
-      let userWithEmail = await User.findOne({ where: { email: { [Op.like]: data.email } } });
+      let userWithEmail = await User.findOne({
+        where: { email: { [Op.like]: data.email } },
+      });
       if (userWithEmail) throw new CustomError("Email already in use", {}, 401);
     }
 
     const instance = new User({ ...user.dataValues, ...data });
 
     await instance.validate();
-    await user.update({ ...instance.dataValues, password: null, role_id: null });
+    await user.update({
+      ...instance.dataValues,
+      password: null,
+      role_id: null,
+    });
     return user;
   } catch (err) {
     console.log({ err });

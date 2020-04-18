@@ -13,10 +13,6 @@ module.exports = class User extends Sequelize.Model {
           set(val) {
             if (parseInt(val)) this.setDataValue("role_id", parseInt(val));
           },
-          references: {
-            model: sequelize.models.Role,
-            key: "id",
-          },
         },
         first_name: {
           type: Sequelize.STRING,
@@ -115,31 +111,31 @@ module.exports = class User extends Sequelize.Model {
       as: "Role",
     });
 
-    // // 1 - n
-    // this.hasMany(models.Card, {
-    //   foreignKey: "user_id",
-    //   as: "cards",
-    // });
-    // this.hasMany(models.Address, {
-    //   foreignKey: "user_id",
-    //   as: "addresses",
-    // });
-    // this.hasMany(models.WishList, {
-    //   foreignKey: "user_id",
-    //   as: "wishlist",
-    // });
-    // this.hasMany(models.Cart, {
-    //   foreignKey: "user_id",
-    //   as: "carts",
-    // });
-    // this.hasMany(models.Product, {
-    //   foreignKey: "user_id",
-    //   as: "products",
-    // });
-    // this.hasMany(models.Channel, {
-    //   foreignKey: "user_id",
-    //   as: "channels",
-    // });
+    // 1 - n
+    this.hasMany(models.Card, {
+      foreignKey: "user_id",
+      as: "cards",
+    });
+    this.hasMany(models.Address, {
+      foreignKey: "user_id",
+      as: "addresses",
+    });
+    this.hasMany(models.WishList, {
+      foreignKey: "user_id",
+      as: "wishlist",
+    });
+    this.hasMany(models.Cart, {
+      foreignKey: "user_id",
+      as: "carts",
+    });
+    this.hasMany(models.Product, {
+      foreignKey: "user_id",
+      as: "products",
+    });
+    this.hasMany(models.Channel, {
+      foreignKey: "user_id",
+      as: "channels",
+    });
   }
 
   validatePassword(password) {
