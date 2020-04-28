@@ -7,8 +7,10 @@
 const app = require("../src/app");
 const debug = require("debug")("server:server");
 const http = require("http");
+const socketIo = require("socket.io");
 const normalizePort = require("../src/util/normalizePort");
 const onError = require("../src/util/onError");
+const socketRoutes = require("../src/socket");
 
 /**
  * Get port from environment and store in Express.
@@ -32,6 +34,16 @@ const onListening = () => {
  */
 
 const server = http.createServer(app);
+const io = socketIo(server, {
+  path: "socket",
+});
+
+// setting up socket routes
+socketRoutes(io);
+
+io.on("connection", (socket) => {
+  console.log({ socket });
+});
 
 /**
  * Listen on provided port, on all network interfaces.

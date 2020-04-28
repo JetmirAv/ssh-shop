@@ -55,6 +55,8 @@ const register = async (req, res, next) => {
 
     return res.status(200).json({ user: user, token: generateJWT(user.id) });
   } catch (err) {
+    console.log({ err });
+
     next(err);
   }
 };
