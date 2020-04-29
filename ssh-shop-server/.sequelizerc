@@ -1,4 +1,5 @@
 require("babel-register");
+require("regenerator-runtime/runtime");
 
 const path = require('path');
 
