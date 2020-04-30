@@ -1,6 +1,11 @@
-const { CreateUser, UpdateUser, DeleteUser, GetUser } = require("../services/users");
+const {
+  CreateUser,
+  UpdateUser,
+  DeleteUser,
+  GetUser,
+} = require("../services/users");
 
-const func = async (req, res, next) => {
+const func = async (req, res) => {
   await res.send("respond with a resource");
 };
 
