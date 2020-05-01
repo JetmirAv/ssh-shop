@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-
+const address_Routes = require("./address");
 const controllers = require("../controllers/users");
 const auth = require("../middleware/auth");
 
@@ -16,5 +16,7 @@ router.post("/", controllers.create);
 router.patch("/:user_id([0-9]+)", auth, controllers.update);
 /* Delete user. */
 router.delete("/:user_id([0-9]+)", auth, controllers.drop);
+
+router.use("/:user_id([0-9]+)/address", address_Routes);
 
 module.exports = router;
