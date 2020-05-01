@@ -1,7 +1,12 @@
-const { CreateAddress, UpdateAddress } = require("../services/address");
-// const func = async (req, res) => {
-//   await res.send("respond with a resource");
-// };
+const {
+  CreateAddress,
+  UpdateAddress,
+  DeleteAddress,
+  GetAddress,
+} = require("../services/address");
+const func = async (req, res) => {
+  await res.send("respond with a resource");
+};
 
 /**
  *
@@ -36,36 +41,40 @@ const update = async (req, res, next) => {
   }
 };
 
-// /**
-//  *
-//  * @param {Request} req
-//  * @param {Response} res
-//  */
-// const drop = async (req, res, next) => {
-//   try {
-//     const response = await DeleteUser(req.params.user_id);
+/**
+ *
+ * @param {Request} req
+ * @param {Response} res
+ */
+const drop = async (req, res, next) => {
+  try {
+    const response = await DeleteAddress(req.params.address_id);
+    return res.status(200).json(response);
+  } catch (err) {
+    next(err);
+  }
+};
 
-//     return res.status(200).json(response);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
-
-// /**
-//  *
-//  * @param {Request} req
-//  * @param {Response} res
-//  * @param {*} next
-//  */
-// const get = async (req, res, next) => {
-//   try {
-//     return res.status(200).json({ user: await GetUser(req.params.user_id) });
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+/**
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @param {*} next
+ */
+const get = async (req, res, next) => {
+  try {
+    return res
+      .status(200)
+      .json({ user: await GetAddress(req.params.address_id) });
+  } catch (err) {
+    next(err);
+  }
+};
 
 module.exports = {
   create,
   update,
+  drop,
+  get,
+  func,
 };

@@ -72,18 +72,19 @@ const UpdateAddress = async (address_id, user_id, data) => {
 //  * @param {Address} address_id
 //  * @returns Boolean
 //  */
-// const DeleteUser = async (user_id) => {
-//   try {
-//     const user = await GetUser(user_id);
-//     await user.destroy();
-//     return true;
-//   } catch (err) {
-//     throw err;
-//   }
-// };
+const DeleteAddress = async (address_id) => {
+  try {
+    const address = await GetAddress(address_id);
+    await address.destroy();
+    return true;
+  } catch (err) {
+    throw err;
+  }
+};
 
 module.exports = {
   CreateAddress,
   UpdateAddress,
+  DeleteAddress,
   GetAddress,
 };
