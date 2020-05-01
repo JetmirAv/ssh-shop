@@ -67,8 +67,6 @@ const UpdateUser = async (user_id, data) => {
     });
     return user;
   } catch (err) {
-    console.log({ err });
-
     throw err;
   }
 };

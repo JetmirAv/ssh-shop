@@ -10,14 +10,9 @@ const auth = require("../middleware/auth");
 /* GET user by id. */
 //router.get("/:user_id([0-9]+)", controllers.get);
 /* Create user. */
-console.log("Para post it");
 router.post("/", controllers.create);
-console.log("pas postit");
 /* Update address. */
-console.log("para patch");
-router.patch("/:address_id([0-9]+)", auth, controllers.update);
-console.log("pas patch");
+router.patch("/:address_id([0-9]+)", controllers.update);
 /* Delete user. */
 //router.delete("/:user_id([0-9]+)", auth, controllers.drop);
-
 module.exports = router;

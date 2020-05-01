@@ -1,5 +1,4 @@
 const { CreateAddress, UpdateAddress } = require("../services/address");
-console.log("ne controller!");
 // const func = async (req, res) => {
 //   await res.send("respond with a resource");
 // };
@@ -23,10 +22,9 @@ const create = async (req, res, next) => {
  * @param {Request} req
  * @param {Response} res
  */
-console.log("KEQQ!");
+
 const update = async (req, res, next) => {
   try {
-    console.log("MIR !");
     const address = await UpdateAddress(
       req.params.address_id,
       req.params.user_id,
