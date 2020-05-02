@@ -18,14 +18,16 @@ router.get("/channels/:id", async (req, res) => {
   });
   products = products.map((product) => product.id);
   const channels = await Channel.findAll({
-    [Sequelize.Op.or]: [
-      {
-        user_id: req.params.id,
-      },
-      {
-        product_id: { [Sequelize.Op.in]: products },
-      },
-    ],
+    where: {
+      [Sequelize.Op.or]: [
+        {
+          user_id: req.params.id,
+        },
+        {
+          product_id: { [Sequelize.Op.in]: products },
+        },
+      ],
+    },
   });
   console.log({ channels });
 

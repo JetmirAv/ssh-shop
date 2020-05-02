@@ -39,9 +39,9 @@ module.exports = (io) => {
     });
 
     socket.on("disconnect", async () => {
-      UserSocket.findOne({ where: { socket_id: socket.id } }).then((so) =>
-        so.destroy()
-      );
+      UserSocket.findOne({ where: { socket_id: socket.id } }).then((so) => {
+        if (so) so.destroy();
+      });
     });
 
     socket.on("message", async (message) => {
@@ -93,6 +93,7 @@ module.exports = (io) => {
         socket: socket.id,
         answer: data.answer,
         channel: data.channel,
+        offer: data.offer,
       });
     });
   });
