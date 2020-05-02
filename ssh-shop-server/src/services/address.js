@@ -19,17 +19,31 @@ const GetAddress = async (address_id) => {
 
 /**
  *
+//  * @param {Number} user_id
+//  * @returns Address
+ */
+const GetAllAddresses = async (user_id) => {
+  try {
+    const address = await Address.findAll({
+      where: {
+        user_id: user_id,
+      },
+    });
+    if (!address) throw new CustomError("Not found!", {}, 401);
+    return address;
+  } catch (err) {
+    throw err;
+  }
+};
+
+/**
+ *
  * @param {Address} data
  * @returns Address
  */
 const CreateAddress = async (data) => {
   try {
     const address = new Address({ ...data });
-    let user_id = await Address.findOne({
-      where: { user_id: { [Op.like]: data.user_id } },
-    });
-    if (user_id)
-      throw new CustomError("This user has already address", {}, 401);
     await address.validate();
     await address.save();
     return address;
@@ -87,4 +101,5 @@ module.exports = {
   UpdateAddress,
   DeleteAddress,
   GetAddress,
+  GetAllAddresses,
 };
