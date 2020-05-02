@@ -1,10 +1,12 @@
 require("dotenv").config();
 
+console.log(process.env);
 module.exports = {
-  development: {
+  
+  development: { 
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    database: process.env.DATABASE_NAME,
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
     migrationStorage: "sequelize",
@@ -15,7 +17,7 @@ module.exports = {
   test: {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    database: process.env.DATABASE_NAME,
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
     migrationStorage: "sequelize",
@@ -26,7 +28,7 @@ module.exports = {
   production: {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    database: process.env.DATABASE_NAME,
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
     migrationStorage: "sequelize",
