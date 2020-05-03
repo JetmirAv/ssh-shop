@@ -3,11 +3,17 @@ const {
   UpdateCard,
   DeleteCard,
   GetCard,
+  GetAllCards,
 } = require("../services/card");
-const func = async (req, res) => {
-  await res.send("respond with a resource");
-};
 
+const getCards = async (req, res, next) => {
+  try {
+    const card = await GetAllCards(req.params.user_id);
+    return res.status(200).json({ card });
+  } catch (err) {
+    next(err);
+  }
+};
 /**
  *
  * @param {Request} req
@@ -75,5 +81,5 @@ module.exports = {
   update,
   drop,
   get,
-  func,
+  getCards,
 };
