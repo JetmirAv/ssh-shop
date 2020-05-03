@@ -12,7 +12,7 @@ const auth = require("../middleware/auth");
 
 /* GET card listing. */
 
-router.get("/", controllers.func);
+router.get("/", controllers.getCards);
 
 /* GET card by id. */
 
