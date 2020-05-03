@@ -17,6 +17,19 @@ const GetCard = async (card_id) => {
   }
 };
 
+const GetAllCards = async (user_id) => {
+  try {
+    const card = await Card.findAll({
+      where: {
+        user_id: user_id,
+      },
+    });
+    if (!card) throw new CustomError("Not found!", {}, 401);
+    return card;
+  } catch (err) {
+    throw err;
+  }
+};
 /**
  *
  * @param {Card} data
@@ -28,7 +41,6 @@ const CreateCard = async (data) => {
     let user_id = await Card.findOne({
       where: { user_id: { [Op.like]: data.user_id } },
     });
-    if (user_id) throw new CustomError("This user has already card", {}, 401);
     await card.validate();
     await card.save();
     return card;
@@ -86,4 +98,5 @@ module.exports = {
   UpdateCard,
   DeleteCard,
   GetCard,
+  GetAllCards,
 };
