@@ -1,0 +1,67 @@
+.main {
+    -fx-min-width: 960;
+    -fx-min-height: 640;
+    -fx-font-family: Ubuntu sans-serif;
+}
+
+.header {
+    -fx-background-color: #129084;
+    -fx-alignment: center-right;
+    -fx-padding: 2px;
+}
+
+.header HBox {
+    -fx-pref-width: 170px;
+    -fx-padding: 3px 10px;
+    -fx-border-color: #129F84;
+    -fx-border-width: 0 0 0 2px;
+}
+
+.header HBox:hover {
+    -fx-background-color: #129F84;
+}
+
+.header HBox VBox {
+    -fx-pref-width: 120px;
+    -fx-max-width: 120px;
+    -fx-min-width: 120px;
+    -fx-pref-height: inherit;
+    -fx-padding: 4px 10px;
+}
+
+.profile-details {
+    -fx-font-size: 16px;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 3px;
+}
+
+.header Circle {
+    -fx-fill: aliceblue;
+}
+
+.sidebar {
+    -fx-background-color: #E5E5E8;
+    -fx-pref-height: 70px;
+    -fx-hgap: 5px;
+    -fx-padding: 5px 5px;
+}
+
+.menu-pane {
+    -fx-pref-width: 100%;
+}
+
+.menu-button {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #129084;
+}
+
+.menu-button:hover {
+    -fx-background-color: #129F84;
+}
+
+.active {
+    -fx-background-color: #129F84;
+}
+
