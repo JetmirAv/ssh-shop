@@ -28,6 +28,10 @@ const getAddresses = async (req, res, next) => {
  */
 const create = async (req, res, next) => {
   try {
+    //assign user_id to the user_id got by params
+    req.body.user_id = parseInt(req.params.user_id);
+    console.log({ ...req.body });
+
     const address = await CreateAddress(req.body);
     return res.status(200).json({ address });
   } catch (err) {
