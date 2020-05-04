@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.cards.CardsController">
+    <children>
+        <AnchorPane id="anchorPaneSideOneId" layoutX="38.0" layoutY="136.0" prefHeight="459.0" prefWidth="250.0" style="-fx-border-color: #B0B0B9; -fx-background-color: #E5E5E8;">
+            <children>
+                <AnchorPane prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #129084;" AnchorPane.leftAnchor="0.0">
+                    <children>
+                        <Label id="firstCardId" alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" text="123456789" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="1.0" layoutY="189.0" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #129084;">
+                    <children>
+                        <Label id="fourthCardId" alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" text="456890112" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="1.0" layoutY="65.0" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #129084;">
+                    <children>
+                        <Label id="secondCardId" alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" text="827432331" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="1.0" layoutY="127.0" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #129084;">
+                    <children>
+                        <Label id="thirdCardId" alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" text="177821963" textFill="WHITE">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </children>
+            <padding>
+                <Insets right="-1.0" />
+            </padding>
+        </AnchorPane>
+        <AnchorPane id="anchorPaneSideTwoId" layoutX="310.0" layoutY="136.0" prefHeight="459.0" prefWidth="650.0" style="-fx-border-color: #696969; -fx-background-color: #E5E5E8;">
+            <children>
+                <GridPane layoutX="31.0" layoutY="49.0" prefHeight="296.0" prefWidth="295.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <JFXTextField id="numberId" focusColor="#00d087" labelFloat="true" promptText="Number" unFocusColor="#c9c9c9">
+                     <font>
+                        <Font size="20.0" />
+                     </font></JFXTextField>
+                        <JFXTextField id="expDateId" focusColor="#00d087" labelFloat="true" promptText="Exp date" unFocusColor="#c9c9c9" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font></JFXTextField>
+                  <JFXTextField id="csvId" focusColor="#00d087" labelFloat="true" promptText="CSV" unFocusColor="#c9c9c9" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </JFXTextField>
+                    </children>
+                </GridPane>
+                <HBox layoutX="397.0" layoutY="395.0" prefHeight="50.0" prefWidth="239.0">
+                    <children>
+                        <JFXButton id="saveBtnId" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #129084;" text="Save" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXButton>
+                        <JFXButton id="updateBtnId" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #129084;" text="Update" textFill="WHITE">
+                            <padding>
+                                <Insets right="5.0" />
+                            </padding>
+                            <HBox.margin>
+                                <Insets left="20.0" />
+                            </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                        </JFXButton>
+                        <JFXButton id="deleteBtnId" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #129084;" text="Delete" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets left="20.0" />
+                            </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                        </JFXButton>
+                    </children>
+                </HBox>
+            </children></AnchorPane>
+        <HBox layoutX="38.0" layoutY="71.0" prefHeight="49.0" prefWidth="556.0">
+            <children>
+                <JFXButton id="infoBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Info" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></JFXButton>
+                <JFXButton id="passwordBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Password" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></JFXButton>
+                <JFXButton id="addressBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Addresses" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></JFXButton>
+                <JFXButton id="cardsBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Cards" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></JFXButton>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
