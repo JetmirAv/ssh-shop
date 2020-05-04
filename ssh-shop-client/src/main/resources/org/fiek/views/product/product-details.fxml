@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <FlowPane layoutY="58.0" prefHeight="781.0" prefWidth="960.0" vgap="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -86,20 +86,20 @@
             </VBox>
             <VBox prefHeight="307.0" prefWidth="460.0" styleClass="product-detail">
                <children>
-                  <HBox prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: white;">
+                  <HBox prefHeight="42.0" prefWidth="200.0" styleClass="product-title">
                      <children>
-                        <Label prefHeight="41.0" prefWidth="78.0" text="Title">
+                        <Label prefHeight="45.0" prefWidth="97.0" text="Title">
                            <font>
                               <Font size="27.0" />
                            </font>
                            <styleClass>
-                              <String fx:value="product-title" />
+                              <String fx:value="title-pane" />
                               <String fx:value="product-info" />
                            </styleClass>
                         </Label>
                         <JFXButton prefHeight="35.0" prefWidth="114.0" styleClass="product-button" text="Message">
                            <HBox.margin>
-                              <Insets left="205.0" top="3.0" />
+                              <Insets />
                            </HBox.margin>
                         </JFXButton>
                      </children>
@@ -160,7 +160,7 @@
                         </FlowPane>
                      </children>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="69.0" prefHeight="27.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="product-variant">
+                  <HBox layoutX="10.0" layoutY="69.0" prefHeight="27.0" prefWidth="200.0" styleClass="product-variant">
                      <children>
                         <Label styleClass="product-info" text="Variant 2" />
                      </children>
@@ -197,7 +197,7 @@
                         </FlowPane>
                      </children>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="122.0" prefHeight="27.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="product-variant">
+                  <HBox layoutX="10.0" layoutY="122.0" prefHeight="27.0" prefWidth="200.0" styleClass="product-variant">
                      <children>
                         <Label styleClass="product-info" text="Variant 3" />
                      </children>
@@ -234,23 +234,24 @@
                         </FlowPane>
                      </children>
                   </HBox>
+                  <HBox prefHeight="27.0" prefWidth="200.0" styleClass="product-variant">
+                     <children>
+                        <Label styleClass="product-info" text="Stock: 2" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="27.0" prefWidth="200.0" styleClass="product-variant">
+                     <children>
+                        <Label styleClass="product-info" text="Price: 1 Kidney" />
+                     </children>
+                  </HBox>
                   <HBox prefHeight="131.0" prefWidth="400.0" styleClass="product-order-parent">
                      <children>
-                        <VBox styleClass="product-order-detail">
-                           <children>
-                              <Label styleClass="product-info" text="Price: 1 Kidney" VBox.vgrow="ALWAYS" />
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="product-order-detail">
+                        <HBox styleClass="product-quantity">
                            <children>
                               <Label styleClass="product-info" text="Qty: 1" />
                            </children>
-                        </VBox>
-                        <VBox prefHeight="35.0" prefWidth="114.0" styleClass="product-order-button">
-                           <children>
-                              <JFXButton prefHeight="35.0" prefWidth="114.0" styleClass="product-button" text="Add To Cart" />
-                           </children>
-                        </VBox>
+                        </HBox>
+                        <JFXButton prefHeight="35.0" prefWidth="114.0" styleClass="product-button" text="Add To Cart" />
                      </children>
                   </HBox>
                </children>
