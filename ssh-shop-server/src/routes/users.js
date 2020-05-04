@@ -3,6 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const addressRoutes = require("./address");
+const cardRoutes = require("./card");
 const controllers = require("../controllers/users");
 const auth = require("../middleware/auth");
 
@@ -18,5 +19,7 @@ router.patch("/:user_id([0-9]+)", auth, controllers.update);
 router.delete("/:user_id([0-9]+)", auth, controllers.drop);
 
 router.use("/:user_id([0-9]+)/address", addressRoutes);
+
+router.use("/:user_id([0-9]+)/cards", cardRoutes);
 
 module.exports = router;
