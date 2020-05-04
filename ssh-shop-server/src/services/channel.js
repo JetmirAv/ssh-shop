@@ -2,20 +2,6 @@ const CustomError = require("../errors/CustomError");
 const { Channel, Sequelize } = require("../models/sequelize");
 const Op = Sequelize.Op;
 
-/**
- *
-//  * @param {Number} channel_id
-//  * @returns Channel
- */
-const GetChannel = async (channel_id) => {
-  try {
-    const channel = await Channel.findByPk(channel_id);
-    if (!channel) throw new CustomError("Not found!", {}, 401);
-    return channel;
-  } catch (err) {
-    throw err;
-  }
-};
 
 /**
  *
@@ -25,13 +11,12 @@ const GetChannel = async (channel_id) => {
  */
 const CreateChannel = async (data) => {
   try {
+    
+    const existChannel = await GetExistingChannel(data.user_id, data.product_id);
+    if(existChannel)
+    return existChannel;
     const channel = new Channel({ ...data });
-    let user_id = await Channel.findOrCreate({
-      where: { user_id: { [Op.like]: data.user_id }, 
-               product_id: { [Op.like]: data.product_id } },
-    });
-    if (user_id && product_id)
-      throw new CustomError("This user has already been in channel", {}, 401);
+    console.log("pas krijimit te objektit:", channel);
     await channel.validate();
     await channel.save();
     return channel;
@@ -40,18 +25,28 @@ const CreateChannel = async (data) => {
   }
 };
 
+const GetExistingChannel = async (user_id, product_id) => {
+  try {
+    let channel = await Channel.findOne({
+      where: { user_id: { [Op.eq]: user_id }, 
+               product_id: { [Op.eq]: product_id } },
+    });
+    return channel;
+  } catch (err) {
+    throw err;
+  }
+};
 /**
  *
-//  * @param {Number} channel_id
+
 //  * @param {Number} product_id
 //  * @param {Channel} data
 //  * @returns Channel
  */
-const UpdateChannel = async (channel_id, user_id, product_id, data) => {
+const UpdateChannel = async ( user_id, product_id, data) => {
   try {
     const channel = await Channel.findOne({
       where: {
-        id: channel_id,
         user_id: user_id,
         product_id: product_id,
       },
@@ -71,15 +66,11 @@ const UpdateChannel = async (channel_id, user_id, product_id, data) => {
   }
 };
 
-/**
- *
-//  * @param {Channel} channel_id
-//  * @returns Boolean
-//  */
 
 
 module.exports = {
   CreateChannel,
   UpdateChannel,
-  GetChannel,
+  GetExistingChannel,
+  
 };

@@ -1,7 +1,7 @@
 const {
     CreateChannel,
     UpdateChannel,
-    GetChannel,
+    GetExistingChannel,
   } = require("../services/channel");
   const func = async (req, res) => {
     await res.send("respond with a resource");
@@ -31,7 +31,6 @@ const {
     try {
       
       const channel = await UpdateChannel(
-        req.params.channel_id,
         req.params.user_id,
         req.params.product_id,
         req.body
@@ -53,7 +52,7 @@ const {
     try {
       return res
         .status(200)
-        .json({ user: await GetChannel(req.params.channel_id) });
+        .json({ user: await GetExistingChannel(req.params.user_id, req.params.product_id) });
     } catch (err) {
       next(err);
     }
