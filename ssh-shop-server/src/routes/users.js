@@ -20,6 +20,6 @@ router.delete("/:user_id([0-9]+)", auth, controllers.drop);
 
 router.use("/:user_id([0-9]+)/address", address_Routes);
 
-router.use("/:user_id([0-9]+)/card", card_Routes);
+router.use("/:user_id([0-9]+)/cards", card_Routes);
 
 module.exports = router;

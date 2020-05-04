@@ -22,6 +22,8 @@ const getCards = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
+    //set user_id by the user logged in
+    req.body.user_id = parseInt(req.params.user_id);
     const card = await CreateCard(req.body);
     return res.status(200).json({ card });
   } catch (err) {
@@ -37,6 +39,7 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
+    req.body.user_id = parseInt(req.params.user_id);
     const card = await UpdateCard(
       req.params.card_id,
       req.params.user_id,

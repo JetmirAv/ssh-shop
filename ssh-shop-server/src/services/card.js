@@ -38,9 +38,6 @@ const GetAllCards = async (user_id) => {
 const CreateCard = async (data) => {
   try {
     const card = new Card({ ...data });
-    let user_id = await Card.findOne({
-      where: { user_id: { [Op.like]: data.user_id } },
-    });
     await card.validate();
     await card.save();
     return card;
