@@ -1,0 +1,49 @@
+*{
+    -fx-font-family: "Arial Black" , Arial;
+
+
+}
+.base-root {
+    -fx-background-color: #1D9184;
+
+}
+.pane-info{
+    -fx-font-size: 60px;
+    -fx-font-style: italic;
+    -fx-text-fill: white;
+}
+
+.log-in-information-field {
+    -fx-font-size: 20px;
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+}
+.info-getter-button {
+    -fx-font-size: 25px;
+    -fx-background-color: white;
+    -fx-text-fill: #1D9184;
+    -fx-background-radius: 50px;
+}
+.login-register-switch-button {
+    -fx-text-fill: white;
+    -fx-background-radius: 50px;
+    -fx-text-fill: white;
+}
+.detail-field {
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+}
+.sign-up-information-field {
+    -fx-font-size: 15px;
+    -fx-prompt-text-fill: #ffffff66;
+    -jfx-unfocus-color: #00000080;
+
+    -fx-alignment: center;
+    -fx-text-fill: black;
+}
+.profile-image {
+    -fx-border-color: #00000080;
+    -fx-border-size: 2px;
+}
+
+
