@@ -80,13 +80,22 @@
                         <Insets left="5.0" />
                      </padding>
                   </JFXComboBox>
-                  <JFXTextField id="streetId" focusColor="#00d087" labelFloat="true" promptText="Street" unFocusColor="#c9c9c9" />
-                  <JFXTextField id="postalId" focusColor="#00d087" labelFloat="true" promptText="Postal" unFocusColor="#c9c9c9" GridPane.rowIndex="1" />
+                  <JFXTextField id="streetId" focusColor="#00d087" labelFloat="true" promptText="Street" unFocusColor="#c9c9c9">
+                     <font>
+                        <Font size="20.0" />
+                     </font></JFXTextField>
+                  <JFXTextField id="postalId" focusColor="#00d087" labelFloat="true" promptText="Postal" unFocusColor="#c9c9c9" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font></JFXTextField>
                </children>
             </GridPane>
             <HBox layoutX="397.0" layoutY="395.0" prefHeight="50.0" prefWidth="239.0">
                <children>
-                  <JFXButton id="saveBtnId" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #129084;" text="Save" textFill="WHITE" />
+                  <JFXButton id="saveBtnId" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #129084;" text="Save" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXButton>
                   <JFXButton id="updateBtnId" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #129084;" text="Update" textFill="WHITE">
                      <padding>
                         <Insets right="5.0" />
@@ -94,21 +103,39 @@
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </JFXButton>
                   <JFXButton id="deleteBtnId" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #129084;" text="Delete" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </JFXButton>
                </children>
             </HBox>
          </children></AnchorPane>
       <HBox layoutX="38.0" layoutY="71.0" prefHeight="49.0" prefWidth="556.0">
          <children>
-            <JFXButton id="infoBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Info" textFill="WHITE" />
-            <JFXButton id="passwordBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Password" textFill="WHITE" />
-            <JFXButton id="addressBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Addresses" textFill="WHITE" />
-            <JFXButton id="cardsBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Cards" textFill="WHITE" />
+            <JFXButton id="infoBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Info" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font></JFXButton>
+            <JFXButton id="passwordBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Password" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font></JFXButton>
+            <JFXButton id="addressBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Addresses" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font></JFXButton>
+            <JFXButton id="cardsBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Cards" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font></JFXButton>
          </children>
       </HBox>
    </children>
