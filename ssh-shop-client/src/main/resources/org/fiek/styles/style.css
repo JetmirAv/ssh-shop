@@ -1,67 +1,110 @@
 .main {
-    -fx-min-width: 960;
-    -fx-min-height: 640;
-    -fx-font-family: Ubuntu sans-serif;
+  -fx-min-width: 960;
+  -fx-min-height: 640;
+  -fx-font-family: Ubuntu sans-serif;
 }
 
 .header {
-    -fx-background-color: #129084;
-    -fx-alignment: center-right;
-    -fx-padding: 2px;
+  -fx-background-color: #129084;
+  -fx-alignment: center-right;
+  -fx-padding: 2px;
 }
 
 .header HBox {
-    -fx-pref-width: 170px;
-    -fx-padding: 3px 10px;
-    -fx-border-color: #129F84;
-    -fx-border-width: 0 0 0 2px;
+  -fx-pref-width: 170px;
+  -fx-padding: 3px 10px;
+  -fx-border-color: #129f84;
+  -fx-border-width: 0 0 0 2px;
 }
 
 .header HBox:hover {
-    -fx-background-color: #129F84;
+  -fx-background-color: #129f84;
 }
 
 .header HBox VBox {
-    -fx-pref-width: 120px;
-    -fx-max-width: 120px;
-    -fx-min-width: 120px;
-    -fx-pref-height: inherit;
-    -fx-padding: 4px 10px;
+  -fx-pref-width: 120px;
+  -fx-max-width: 120px;
+  -fx-min-width: 120px;
+  -fx-pref-height: inherit;
+  -fx-padding: 4px 10px;
 }
 
 .profile-details {
-    -fx-font-size: 16px;
-    -fx-text-fill: #FFFFFF;
-    -fx-padding: 3px;
+  -fx-font-size: 16px;
+  -fx-text-fill: #ffffff;
+  -fx-padding: 3px;
 }
 
 .header Circle {
-    -fx-fill: aliceblue;
+  -fx-fill: aliceblue;
 }
 
 .sidebar {
-    -fx-background-color: #E5E5E8;
-    -fx-pref-height: 70px;
-    -fx-hgap: 5px;
-    -fx-padding: 5px 5px;
+  -fx-background-color: #e5e5e8;
+  -fx-pref-height: 70px;
+  -fx-hgap: 5px;
+  -fx-padding: 5px 5px;
 }
 
 .menu-pane {
-    -fx-pref-width: 100%;
+  -fx-pref-width: 100%;
 }
 
 .menu-button {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #FFFFFF;
-    -fx-background-color: #129084;
+  -fx-font-size: 24px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #ffffff;
+  -fx-background-color: #129084;
 }
 
 .menu-button:hover {
-    -fx-background-color: #129F84;
+  -fx-background-color: #129f84;
 }
 
 .active {
-    -fx-background-color: #129F84;
+  -fx-background-color: #129f84;
+}
+* {
+  -fx-font-family: "Arial Black", Arial;
+}
+.base-root {
+  -fx-background-color: #1d9184;
+}
+.pane-info {
+  -fx-font-size: 60px;
+  -fx-font-style: italic;
+  -fx-text-fill: white;
 }
 
+.log-in-information-field {
+  -fx-font-size: 20px;
+  -fx-prompt-text-fill: white;
+  -fx-text-fill: white;
+}
+.info-getter-button {
+  -fx-font-size: 25px;
+  -fx-background-color: white;
+  -fx-text-fill: #1d9184;
+  -fx-background-radius: 50px;
+}
+.login-register-switch-button {
+  -fx-text-fill: white;
+  -fx-background-radius: 50px;
+  -fx-text-fill: white;
+}
+.detail-field {
+  -fx-font-size: 15px;
+  -fx-text-fill: white;
+}
+.sign-up-information-field {
+  -fx-font-size: 15px;
+  -fx-prompt-text-fill: #ffffff66;
+  -jfx-unfocus-color: #00000080;
+
+  -fx-alignment: center;
+  -fx-text-fill: black;
+}
+.profile-image {
+  -fx-border-color: #00000080;
+  -fx-border-size: 2px;
+}
