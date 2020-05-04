@@ -1,7 +1,6 @@
 const CustomError = require("../errors/CustomError");
-const { Channel, Sequelize } = require("../models/sequelize");
+const { Channel, Sequelize, Product } = require("../models/sequelize");
 const Op = Sequelize.Op;
-
 
 /**
  *
@@ -11,16 +10,21 @@ const Op = Sequelize.Op;
  */
 const CreateChannel = async (data) => {
   try {
-    
-    const existChannel = await GetExistingChannel(data.user_id, data.product_id);
-    if(existChannel)
-    return existChannel;
-    const channel = new Channel({ ...data });
+    const existChannel = await GetExistingChannel(
+      data.user_id,
+      data.product_id
+    );
+    if (existChannel) return existChannel;
+    const product = await Product.findByPk(data.product_id);
+    if (!product) throw Error("Not found");
+    const channel = new Channel({ ...data, name: product.name });
     console.log("pas krijimit te objektit:", channel);
     await channel.validate();
     await channel.save();
     return channel;
   } catch (err) {
+    console.log({ err });
+
     throw err;
   }
 };
@@ -28,8 +32,7 @@ const CreateChannel = async (data) => {
 const GetExistingChannel = async (user_id, product_id) => {
   try {
     let channel = await Channel.findOne({
-      where: { user_id: { [Op.eq]: user_id }, 
-               product_id: { [Op.eq]: product_id } },
+      where: { user_id, product_id },
     });
     return channel;
   } catch (err) {
@@ -43,7 +46,7 @@ const GetExistingChannel = async (user_id, product_id) => {
 //  * @param {Channel} data
 //  * @returns Channel
  */
-const UpdateChannel = async ( user_id, product_id, data) => {
+const UpdateChannel = async (user_id, product_id, data) => {
   try {
     const channel = await Channel.findOne({
       where: {
@@ -66,11 +69,8 @@ const UpdateChannel = async ( user_id, product_id, data) => {
   }
 };
 
-
-
 module.exports = {
   CreateChannel,
   UpdateChannel,
   GetExistingChannel,
-  
 };
