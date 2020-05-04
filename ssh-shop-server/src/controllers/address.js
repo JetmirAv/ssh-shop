@@ -3,9 +3,22 @@ const {
   UpdateAddress,
   DeleteAddress,
   GetAddress,
+  GetAllAddresses,
 } = require("../services/address");
-const func = async (req, res) => {
-  await res.send("respond with a resource");
+
+/**
+ *
+ * @param {Request} req
+ * @param {Response} res
+ */
+
+const getAddresses = async (req, res, next) => {
+  try {
+    const address = await GetAllAddresses(req.params.user_id);
+    return res.status(200).json({ address });
+  } catch (err) {
+    next(err);
+  }
 };
 
 /**
@@ -15,6 +28,10 @@ const func = async (req, res) => {
  */
 const create = async (req, res, next) => {
   try {
+    //assign user_id to the user_id got by params
+    req.body.user_id = parseInt(req.params.user_id);
+    console.log({ ...req.body });
+
     const address = await CreateAddress(req.body);
     return res.status(200).json({ address });
   } catch (err) {
@@ -65,7 +82,7 @@ const get = async (req, res, next) => {
   try {
     return res
       .status(200)
-      .json({ user: await GetAddress(req.params.address_id) });
+      .json({ address: await GetAddress(req.params.address_id) });
   } catch (err) {
     next(err);
   }
@@ -76,5 +93,5 @@ module.exports = {
   update,
   drop,
   get,
-  func,
+  getAddresses,
 };

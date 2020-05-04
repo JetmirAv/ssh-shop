@@ -1,5 +1,6 @@
 const CustomError = require("./CustomError");
 const sequelizeErrorHandler = require("./SequelizeErrors");
+const jwtErrorHandler = require("./JWTErrors");
 
 /**
  *
@@ -10,7 +11,8 @@ const findError = (err) => {
 
   error = sequelizeErrorHandler(err);
   if (error) return error;
-
+  error = jwtErrorHandler(err);
+  if (error) return error;
   return err;
 };
 
@@ -23,6 +25,7 @@ const findError = (err) => {
  */
 const handleError = (err, _req, res, _next) => {
   err = findError(err);
+  console.log({ errKtu: err });
 
   return res.status(err.statusCode).json(err);
 };
