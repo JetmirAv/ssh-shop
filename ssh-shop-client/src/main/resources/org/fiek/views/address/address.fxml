@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane styleClass="windowSize" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.address.AddressController">
+<AnchorPane styleClass="windowSize" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.address.AddressController">
    <children>
       <AnchorPane layoutX="38.0" layoutY="136.0" prefHeight="459.0" prefWidth="250.0" styleClass="anchorPaneSideOne">
          <children>

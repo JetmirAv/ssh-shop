@@ -43,3 +43,28 @@
     -fx-text-fill: white;
 }
 
+.changeAvatarBttn{
+    -fx-font-size: 14px;
+    -fx-background-color: #129084;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+}
+.changeAvatarBttn:hover, .saveBttn:hover, .infoField:hover, .passwordField:hover,
+.addressesField:hover, .cardsField:hover {
+    -fx-background-color: #129f84;
+}
+
+.active {
+    -fx-background-color: #129f84;
+}
+
+.profile-information-field {
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 20px;
+    -fx-prompt-text-fill: #888888;
+    -jfx-unfocus-color: #00000080;
+    -fx-text-fill: black;
+}
+
+
+

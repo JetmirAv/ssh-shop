@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane styleClass="windowSize" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.profile.InfoController">
+    <children>
+        <HBox layoutX="38.0" layoutY="71.0" prefHeight="49.0" prefWidth="556.0">
+            <children>
+                <JFXButton prefHeight="40.0" prefWidth="720.0" styleClass="infoField" text="Info" />
+                <JFXButton prefHeight="40.0" prefWidth="720.0" styleClass="passwordField" text="Password" />
+                <JFXButton prefHeight="40.0" prefWidth="720.0" styleClass="addressesField" text="Addresses" />
+                <JFXButton prefHeight="40.0" prefWidth="720.0" styleClass="cardsField" text="Cards" />
+            </children>
+        </HBox>
+      <Pane layoutX="38.0" layoutY="136.0" prefHeight="408.0" prefWidth="380.0">
+         <children>
+            <ImageView fitHeight="339.0" fitWidth="342.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/ImagePlaceHolder.png" />
+               </image></ImageView>
+            <JFXButton layoutX="115.0" layoutY="353.0" styleClass="changeAvatarBttn" text="Change avatar" />
+         </children>
+      </Pane>
+      <GridPane layoutX="440.0" layoutY="151.0" prefHeight="332.0" prefWidth="254.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <JFXTextField labelFloat="true" promptText="First name" styleClass="profile-information-field" />
+            <JFXTextField labelFloat="true" promptText="Last name" styleClass="profile-information-field" GridPane.rowIndex="1" />
+            <JFXTextField labelFloat="true" promptText="Email" styleClass="profile-information-field" GridPane.rowIndex="2" />
+            <JFXTextField labelFloat="true" promptText="Birthdate" styleClass="profile-information-field" GridPane.rowIndex="3" />
+            <JFXComboBox prefHeight="25.0" prefWidth="249.0" promptText="Gender" styleClass="profile-information-field" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <HBox layoutX="623.0" layoutY="544.0" prefHeight="50.0" prefWidth="239.0">
+         <children>
+            <JFXButton prefHeight="40.0" prefWidth="150.0" styleClass="saveBttn" text="Save" />
+            <JFXButton prefHeight="40.0" prefWidth="150.0" styleClass="updateBttn" text="Update">
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton prefHeight="40.0" prefWidth="150.0" styleClass="deleteBttn" text="Delete">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>
