@@ -9,46 +9,29 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.cards.CardsController">
+<AnchorPane styleClass="windowSize" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.cards.CardsController">
     <children>
-        <AnchorPane id="anchorPaneSideOneId" layoutX="38.0" layoutY="136.0" prefHeight="459.0" prefWidth="250.0" style="-fx-border-color: #B0B0B9; -fx-background-color: #E5E5E8;">
+        <AnchorPane layoutX="38.0" layoutY="136.0" prefHeight="459.0" prefWidth="250.0" styleClass="anchorPaneSideOne">
             <children>
-                <AnchorPane prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #129084;" AnchorPane.leftAnchor="0.0">
+                <AnchorPane prefHeight="50.0" prefWidth="250.0" styleClass="anchorCards" AnchorPane.leftAnchor="0.0">
                     <children>
-                        <Label id="firstCardId" alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" text="123456789" textFill="WHITE">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Label>
+                        <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" styleClass="anchorCards" text="123456789" />
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="1.0" layoutY="189.0" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #129084;">
+                <AnchorPane layoutX="1.0" layoutY="189.0" prefHeight="50.0" prefWidth="250.0" styleClass="anchorCards">
                     <children>
-                        <Label id="fourthCardId" alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" text="456890112" textFill="WHITE">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Label>
+                        <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" styleClass="anchorCards" text="456890112" />
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="1.0" layoutY="65.0" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #129084;">
+                <AnchorPane layoutX="1.0" layoutY="65.0" prefHeight="50.0" prefWidth="250.0" styleClass="anchorCards">
                     <children>
-                        <Label id="secondCardId" alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" text="827432331" textFill="WHITE">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Label>
+                        <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" styleClass="anchorCards" text="827432331" />
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="1.0" layoutY="127.0" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #129084;">
+                <AnchorPane layoutX="1.0" layoutY="127.0" prefHeight="50.0" prefWidth="250.0" styleClass="anchorCards">
                     <children>
-                        <Label id="thirdCardId" alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" text="177821963" textFill="WHITE">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Label>
+                        <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" styleClass="anchorCards" text="177821963" />
                     </children>
                 </AnchorPane>
             </children>
@@ -68,67 +51,36 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <JFXTextField id="numberId" focusColor="#00d087" labelFloat="true" promptText="Number" unFocusColor="#c9c9c9">
-                     <font>
-                        <Font size="20.0" />
-                     </font></JFXTextField>
-                        <JFXTextField id="expDateId" focusColor="#00d087" labelFloat="true" promptText="Exp date" unFocusColor="#c9c9c9" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="20.0" />
-                     </font></JFXTextField>
-                  <JFXTextField id="csvId" focusColor="#00d087" labelFloat="true" promptText="CSV" unFocusColor="#c9c9c9" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </JFXTextField>
+                        <JFXTextField labelFloat="true" promptText="Number" styleClass="numberField" />
+                        <JFXTextField labelFloat="true" promptText="Exp date" styleClass="expdateField" GridPane.rowIndex="1" />
+                  <JFXTextField labelFloat="true" promptText="CSV" styleClass="csvField" GridPane.rowIndex="2" />
                     </children>
                 </GridPane>
                 <HBox layoutX="397.0" layoutY="395.0" prefHeight="50.0" prefWidth="239.0">
                     <children>
-                        <JFXButton id="saveBtnId" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #129084;" text="Save" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font></JFXButton>
-                        <JFXButton id="updateBtnId" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #129084;" text="Update" textFill="WHITE">
+                        <JFXButton prefHeight="40.0" prefWidth="150.0" styleClass="saveBttn" text="Save" />
+                        <JFXButton prefHeight="40.0" prefWidth="150.0" styleClass="updateBttn" text="Update">
                             <padding>
                                 <Insets right="5.0" />
                             </padding>
                             <HBox.margin>
                                 <Insets left="20.0" />
                             </HBox.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
                         </JFXButton>
-                        <JFXButton id="deleteBtnId" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #129084;" text="Delete" textFill="WHITE">
+                        <JFXButton prefHeight="40.0" prefWidth="150.0" styleClass="deleteBttn" text="Delete">
                             <HBox.margin>
                                 <Insets left="20.0" />
                             </HBox.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
                         </JFXButton>
                     </children>
                 </HBox>
             </children></AnchorPane>
         <HBox layoutX="38.0" layoutY="71.0" prefHeight="49.0" prefWidth="556.0">
             <children>
-                <JFXButton id="infoBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Info" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font></JFXButton>
-                <JFXButton id="passwordBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Password" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font></JFXButton>
-                <JFXButton id="addressBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Addresses" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font></JFXButton>
-                <JFXButton id="cardsBtnId" prefHeight="40.0" prefWidth="720.0" style="-fx-background-color: #129084;" text="Cards" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font></JFXButton>
+                <JFXButton prefHeight="40.0" prefWidth="720.0" styleClass="infoField" text="Info" />
+                <JFXButton prefHeight="40.0" prefWidth="720.0" styleClass="passwordField" text="Password" />
+                <JFXButton prefHeight="40.0" prefWidth="720.0" styleClass="addressesField" text="Addresses" />
+                <JFXButton prefHeight="40.0" prefWidth="720.0" styleClass="cardsField" text="Cards" />
             </children>
         </HBox>
     </children>

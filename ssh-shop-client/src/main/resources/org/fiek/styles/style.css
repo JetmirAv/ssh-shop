@@ -1,4 +1,10 @@
-.AnchorAddress {
+.windowSize{
+    -fx-min-width: 960;
+    -fx-min-height: 640;
+    -fx-font-family: Ubuntu sans-serif;
+}
+
+.anchorAddress, .anchorCards {
     -fx-background-color:  #129084;
     -fx-font-family: "Roboto Regular";
     -fx-font-size: 16px;
@@ -15,7 +21,8 @@
     -fx-background-color: #E5E5E8;
 }
 
-.streetField, .postalField, .countryCombobox, .cityCombobox{
+.streetField, .postalField,.numberField, .expdateField, .csvField,
+.countryCombobox, .cityCombobox{
     -fx-font-size: 20px;
     -fx-font-family: "Times New Roman";
     -jfx-focus-color: #00d087;
