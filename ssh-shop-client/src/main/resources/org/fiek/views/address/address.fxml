@@ -4,7 +4,6 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -17,22 +16,21 @@
          <children>
             <AnchorPane prefHeight="50.0" prefWidth="250.0" styleClass="anchorAddress" AnchorPane.leftAnchor="0.0">
                <children>
-                  <Label id="firstAddId" alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" styleClass="anchorAddress" text="Address1" />
-               </children>
-            </AnchorPane>
+                  <JFXButton layoutX="3.0" layoutY="7.0" prefHeight="37.0" prefWidth="239.0" styleClass="address-switch-button" text="Address1" />
+               </children></AnchorPane>
             <AnchorPane layoutX="1.0" layoutY="189.0" prefHeight="50.0" prefWidth="250.0" styleClass="anchorAddress">
                <children>
-                  <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" styleClass="anchorAddress" text="Address1" />
+                  <JFXButton layoutX="3.0" layoutY="7.0" prefHeight="37.0" prefWidth="239.0" styleClass="address-switch-button" text="Address1" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="1.0" layoutY="65.0" prefHeight="50.0" prefWidth="250.0" styleClass="anchorAddress">
                <children>
-                  <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" styleClass="anchorAddress" text="Address1" />
+                  <JFXButton layoutX="3.0" layoutY="7.0" prefHeight="37.0" prefWidth="239.0" styleClass="address-switch-button" text="Address1" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="1.0" layoutY="127.0" prefHeight="50.0" prefWidth="250.0" styleClass="anchorAddress">
                <children>
-                  <Label alignment="TOP_LEFT" layoutX="14.0" layoutY="10.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="229.0" styleClass="anchorAddress" text="Address1" />
+                  <JFXButton layoutX="3.0" layoutY="7.0" prefHeight="37.0" prefWidth="239.0" styleClass="address-switch-button" text="Address1" />
                </children>
             </AnchorPane>
          </children>

@@ -66,5 +66,14 @@
     -fx-text-fill: black;
 }
 
+.address-switch-button, .cards-switch-button{
+    -fx-background-color:  #129084;
+    -fx-font-family: "Roboto Regular";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-background-radius: 50px;
+    -fx-text-alignment: left;
+}
+
 
 
