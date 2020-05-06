@@ -1,58 +1,65 @@
 .hboxKryesor{
--fx-fillHeight:false;
--fx-prefHeight:459.0;
--fx-prefWidth:960.0;
+    -fx-fillHeight:false;
+    -fx-prefHeight:459.0;
+    -fx-prefWidth:960.0;
 }
+
 
 .vboxFirst{
--fx-prefHeight:459.0;
--fx-prefWidth:250.0;
--fx-background-color: #E5E5E8;
+    -fx-prefHeight:459.0;
+    -fx-prefWidth:250.0;
+    -fx-background-color: #E5E5E8;
 }
+
 
 .horizontalB{
--fx-fillHeight:false;
--fx-prefHeight:50.0;
--fx-prefWidth:250.0;
--fx-background-color: #129F84;
+    -fx-fillHeight:false;
+    -fx-prefHeight:50.0;
+    -fx-prefWidth:250.0;
+    -fx-background-color: #129F84;
 }
+
 
 .circleHB{
--fx-radius:20.0;
--fx-stroke:BLACK;
--fx-strokeType:INSIDE;
--fx-fill: #E5E5E8;
+    -fx-radius:20.0;
+    -fx-stroke:BLACK;
+    -fx-strokeType:INSIDE;
+    -fx-fill: #E5E5E8;
 }
+
 
 .anchorPane2{
--fx-prefHeight:459.0;
--fx-prefWidth:650.0;
--fx-background-color: #E5E5E8;
+    -fx-prefHeight:459.0;
+    -fx-prefWidth:650.0;
+    -fx-background-color: #E5E5E8;
 }
+
 
 .hboxAPane2{
--fx-fillHeight:false;
--fx-prefHeight:60.0;
--fx-prefWidth:650.0;
--fx-background-color: #129F84;
+    -fx-fillHeight:false;
+    -fx-prefHeight:60.0;
+    -fx-prefWidth:650.0;
+    -fx-background-color: #129F84;
 }
 
-.hboxAPane3{
--fx-fillHeight:false;
--fx-layoutY:406.0;
--fx-prefHeight:60.0;
--fx-prefWidth:650.0;
--fx-background-color: #129F84;
+
+.hboxAP3{
+    -fx-fillHeight:false;
+    -fx-layoutY:406.0;
+    -fx-prefHeight:60.0;
+    -fx-prefWidth:650.0;
+    -fx-background-color: #129F84;
 }
+
 
 .sendButonCH{
--fx-mnemonicParsing:false;
--fx-prefHeight:40.0;
--fx-prefWidth:120.0;
--fx-background-color: #CFD8DC;
+    -fx-mnemonicParsing:false;
+    -fx-prefHeight:40.0;
+    -fx-prefWidth:120.0;
+    -fx-background-color: #CFD8DC;
 }
 
 .labelChat{
--fx-textFill:WHITE;
--fx-background-color: #129084;
+    -fx-background-color: #129084;
+    -fx-text-fill: white;
 }
