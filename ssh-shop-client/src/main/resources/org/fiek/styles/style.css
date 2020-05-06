@@ -23,6 +23,8 @@
 
 .streetField, .postalField,.numberField, .expdateField, .csvField,
 .countryCombobox, .cityCombobox{
+
+    -fx-pref-width: 300px;
     -fx-font-size: 20px;
     -fx-font-family: "Times New Roman";
     -jfx-focus-color: #00d087;
@@ -30,6 +32,8 @@
 }
 
 .saveBttn, .updateBttn, .deleteBttn{
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
     -fx-font-family: "Roboto Regular";
     -fx-text-fill: white;
     -fx-font-size: 14px;
@@ -37,6 +41,7 @@
 }
 
 .infoField, .passwordField, .addressesField, .cardsField{
+    -fx-border-color: white;
     -fx-background-color: #129084;
     -fx-font-family: "Roboto Regular";
     -fx-font-size: 16px;
@@ -71,9 +76,36 @@
     -fx-font-family: "Roboto Regular";
     -fx-font-size: 16px;
     -fx-text-fill: white;
-    -fx-background-radius: 50px;
     -fx-text-alignment: left;
 }
 
+.hboxContainer{
+    -fx-hgap: 10px;
+    -fx-pref-width: 900px;
+    -fx-pref-height: 459px;
+}
+.firstVbox{
+    -fx-background-color: #E5E5E8;
+    -fx-border-color: #B0B0B9;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 459px;
+    -fx-spacing: 5px;
+}
+.secondAncharPane{
+    -fx-background-color: #E5E5E8;
+    -fx-border-color: #B0B0B9;
+    -fx-pref-width: 650px;
+    -fx-pref-height: 459px;
+
+}
+.pane {
+    -fx-background-color: #E5E5E8;
+    -fx-pref-width: 900px;
+    -fx-pref-height: 459px;
+}
+.gridPane{
+    -fx-pref-width: 300px;
+
+}
 
 

@@ -9,82 +9,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane styleClass="windowSize" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.address.AddressController">
    <children>
-      <AnchorPane layoutX="38.0" layoutY="136.0" prefHeight="459.0" prefWidth="250.0" styleClass="anchorPaneSideOne">
-         <children>
-            <AnchorPane prefHeight="50.0" prefWidth="250.0" styleClass="anchorAddress" AnchorPane.leftAnchor="0.0">
-               <children>
-                  <JFXButton fx:id="firstAddressId" layoutX="3.0" layoutY="7.0" prefHeight="37.0" prefWidth="239.0" styleClass="address-switch-button" text="Address1" />
-               </children></AnchorPane>
-            <AnchorPane layoutX="1.0" layoutY="189.0" prefHeight="50.0" prefWidth="250.0" styleClass="anchorAddress">
-               <children>
-                  <JFXButton fx:id="fourthAddressId" layoutX="3.0" layoutY="7.0" prefHeight="37.0" prefWidth="239.0" styleClass="address-switch-button" text="Address1" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="1.0" layoutY="65.0" prefHeight="50.0" prefWidth="250.0" styleClass="anchorAddress">
-               <children>
-                  <JFXButton fx:id="secondAddressId" layoutX="3.0" layoutY="7.0" prefHeight="37.0" prefWidth="239.0" styleClass="address-switch-button" text="Address1" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="1.0" layoutY="127.0" prefHeight="50.0" prefWidth="250.0" styleClass="anchorAddress">
-               <children>
-                  <JFXButton fx:id="thirdAddressId" layoutX="3.0" layoutY="7.0" prefHeight="37.0" prefWidth="239.0" styleClass="address-switch-button" text="Address1" />
-               </children>
-            </AnchorPane>
-         </children>
-         <padding>
-            <Insets right="-1.0" />
-         </padding>
-      </AnchorPane>
-      <AnchorPane layoutX="310.0" layoutY="136.0" prefHeight="459.0" prefWidth="650.0" style="-fx-border-color: #696969; -fx-background-color: #E5E5E8;" styleClass="anchorPaneSideTwo">
-         <children>
-            <GridPane fx:id="countryComboId" layoutX="31.0" layoutY="49.0" prefHeight="296.0" prefWidth="295.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <JFXTextField fx:id="streetId" labelFloat="true" promptText="Street" styleClass="streetField" />
-                  <JFXComboBox id="cityCombId" fx:id="cityComboId" prefHeight="28.0" prefWidth="330.0" promptText="City" styleClass="cityCombobox" GridPane.rowIndex="3">
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </JFXComboBox>
-                  <JFXComboBox id="countryCombId" fx:id="countryComboId" prefHeight="28.0" prefWidth="330.0" promptText="Country" styleClass="countryCombobox" GridPane.rowIndex="2">
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </JFXComboBox>
-                  <JFXTextField id="postalId" fx:id="postalId" focusColor="#00d087" labelFloat="true" promptText="Postal" styleClass="postalField" unFocusColor="#c9c9c9" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
-            <HBox layoutX="397.0" layoutY="395.0" prefHeight="50.0" prefWidth="239.0">
-               <children>
-                  <JFXButton fx:id="saveBtnId" prefHeight="40.0" prefWidth="150.0" styleClass="saveBttn" text="Save" />
-                  <JFXButton fx:id="updateBtnId" prefHeight="40.0" prefWidth="150.0" styleClass="updateBttn" text="Update">
-                     <padding>
-                        <Insets right="5.0" />
-                     </padding>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="deleteBtnId" prefHeight="40.0" prefWidth="150.0" styleClass="deleteBttn" text="Delete">
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </JFXButton>
-               </children>
-            </HBox>
-         </children></AnchorPane>
-      <HBox layoutX="38.0" layoutY="71.0" prefHeight="49.0" prefWidth="556.0">
+      <HBox layoutX="30.0" layoutY="52.0" prefHeight="49.0" prefWidth="556.0">
          <children>
             <JFXButton fx:id="infoFieldId" prefHeight="40.0" prefWidth="720.0" styleClass="infoField" text="Info" />
             <JFXButton fx:id="passwordFieldId" prefHeight="40.0" prefWidth="720.0" styleClass="passwordField" text="Password" />
@@ -92,5 +21,58 @@
             <JFXButton fx:id="cardsFieldId" prefHeight="40.0" prefWidth="720.0" styleClass="cardsField" text="Cards" />
          </children>
       </HBox>
+      <HBox layoutX="30.0" layoutY="123.0" styleClass="hboxContainer">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="firstVbox">
+               <children>
+                  <JFXButton fx:id="firstAddId" prefHeight="40.0" prefWidth="720.0" styleClass="address-switch-button" text="Address1">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="secondAddId" prefHeight="40.0" prefWidth="720.0" styleClass="address-switch-button" text="Address2">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="thirdAddId" prefHeight="40.0" prefWidth="720.0" styleClass="address-switch-button" text="Address3">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="fourthAddId" prefHeight="40.0" prefWidth="720.0" styleClass="address-switch-button" text="Address4">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="secondAncharPane">
+               <children>
+                  <GridPane layoutX="34.0" layoutY="29.0" prefHeight="304.0" prefWidth="262.0" styleClass="gridPane">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <JFXTextField fx:id="streetId" labelFloat="true" promptText="Street" styleClass="streetField" />
+                        <JFXTextField fx:id="postalId" labelFloat="true" promptText="Postal" styleClass="postalField" GridPane.rowIndex="1" />
+                        <JFXComboBox fx:id="countryComboId" prefHeight="25.0" prefWidth="149.0" promptText="Country" styleClass="countryCombobox" GridPane.rowIndex="2" />
+                        <JFXComboBox fx:id="cityComboId" prefHeight="25.0" prefWidth="149.0" promptText="City" styleClass="cityCombobox" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+                  <JFXButton fx:id="saveBttnId" layoutX="281.0" layoutY="395.0" styleClass="saveBttn" text="Save" />
+                  <JFXButton fx:id="deleteBttnId" layoutX="464.0" layoutY="395.0" styleClass="deleteBttn" text="Delete" />
+               </children>
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </AnchorPane>
+         </children></HBox>
    </children>
 </AnchorPane>
