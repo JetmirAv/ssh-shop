@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="900.0" prefWidth="960.0" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.home.HomeController">
    <children>
-      <HBox fx:id="homeFirstHbox" layoutX="14.0" layoutY="23.0" prefHeight="46.0" prefWidth="931.0" spacing="50.0">
+      <HBox fx:id="homeFirstHbox" layoutX="14.0" layoutY="23.0" prefHeight="46.0" prefWidth="931.0" spacing="50.0" styleClass="search-category-order">
          <children>
             <TextField prefHeight="41.0" prefWidth="200.0" styleClass="search-product" text="Search..." />
             <ChoiceBox prefHeight="40.0" prefWidth="225.0" styleClass="select-category" />
@@ -23,14 +23,14 @@
       </HBox>
       <HBox fx:id="homeProductHbox" layoutX="11.0" layoutY="117.0" prefHeight="220.0" prefWidth="947.0" spacing="35.0" styleClass="home-product-one">
          <children>
-            <VBox fx:id="firstProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="first-product-info">
+            <VBox fx:id="firstProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
                <children>
                   <ImageView fx:id="firstImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/placeholder.png" />
                      </image>
                   </ImageView>
-                  <VBox prefHeight="112.0" prefWidth="208.0">
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
                            <children>
@@ -53,14 +53,14 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox fx:id="secondProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="second-product-info">
+            <VBox fx:id="secondProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
                <children>
                   <ImageView fx:id="secondImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/placeholder.png" />
                      </image>
                   </ImageView>
-                  <VBox prefHeight="112.0" prefWidth="208.0">
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
                            <children>
@@ -83,14 +83,14 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox fx:id="thirdProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="third-product-info">
+            <VBox fx:id="thirdProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
                <children>
                   <ImageView fx:id="thirdImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/placeholder.png" />
                      </image>
                   </ImageView>
-                  <VBox prefHeight="112.0" prefWidth="208.0">
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
                            <children>
@@ -113,14 +113,14 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox fx:id="fourthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="fourth-product-info">
+            <VBox fx:id="fourthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
                <children>
                   <ImageView fx:id="fourthImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/placeholder.png" />
                      </image>
                   </ImageView>
-                  <VBox prefHeight="112.0" prefWidth="208.0">
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
                            <children>
@@ -147,14 +147,14 @@
       </HBox>
       <HBox fx:id="homeProductHbox1" layoutX="11.0" layoutY="372.0" prefHeight="220.0" prefWidth="947.0" spacing="35.0" styleClass="home-product-two">
          <children>
-            <VBox fx:id="fifthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="fifth-product-info">
+            <VBox fx:id="fifthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
                <children>
                   <ImageView fx:id="fifthImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/placeholder.png" />
                      </image>
                   </ImageView>
-                  <VBox prefHeight="112.0" prefWidth="208.0">
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
                            <children>
@@ -177,14 +177,14 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox fx:id="sixthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="sixth-product-info">
+            <VBox fx:id="sixthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
                <children>
                   <ImageView fx:id="sixthImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/placeholder.png" />
                      </image>
                   </ImageView>
-                  <VBox prefHeight="112.0" prefWidth="208.0">
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
                            <children>
@@ -207,14 +207,14 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox fx:id="seventhProductinfo" prefHeight="190.0" prefWidth="208.0" styleClass="seventh-product-info">
+            <VBox fx:id="seventhProductinfo" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
                <children>
                   <ImageView fx:id="seventhImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/placeholder.png" />
                      </image>
                   </ImageView>
-                  <VBox prefHeight="112.0" prefWidth="208.0">
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
                            <children>
@@ -237,14 +237,14 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox fx:id="eighthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="eighth-product-info">
+            <VBox fx:id="eighthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
                <children>
                   <ImageView fx:id="eighthImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/placeholder.png" />
                      </image>
                   </ImageView>
-                  <VBox prefHeight="112.0" prefWidth="208.0">
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
                            <children>
