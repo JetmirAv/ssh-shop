@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="900.0" prefWidth="960.0" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.home.HomeController">
+   <children>
+      <HBox fx:id="homeFirstHbox" layoutX="14.0" layoutY="23.0" prefHeight="46.0" prefWidth="931.0" spacing="50.0">
+         <children>
+            <TextField prefHeight="41.0" prefWidth="200.0" styleClass="search-product" text="Search..." />
+            <ChoiceBox prefHeight="40.0" prefWidth="225.0" styleClass="select-category" />
+            <ChoiceBox prefHeight="40.0" prefWidth="225.0" styleClass="order-by" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="homeProductHbox" layoutX="11.0" layoutY="117.0" prefHeight="220.0" prefWidth="947.0" spacing="35.0" styleClass="home-product-one">
+         <children>
+            <VBox fx:id="firstProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="first-product-info">
+               <children>
+                  <ImageView fx:id="firstImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/placeholder.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
+                           <children>
+                              <Label fx:id="productTitle" prefHeight="24.0" prefWidth="95.0" text="Title" />
+                              <Label fx:id="productCategory" prefHeight="24.0" prefWidth="95.0" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0">
+                           <children>
+                              <Label fx:id="productDescription" prefHeight="47.0" prefWidth="187.0" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="secondProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="second-product-info">
+               <children>
+                  <ImageView fx:id="secondImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/placeholder.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Title" />
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0">
+                           <children>
+                              <Label prefHeight="47.0" prefWidth="187.0" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="thirdProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="third-product-info">
+               <children>
+                  <ImageView fx:id="thirdImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/placeholder.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Title" />
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0">
+                           <children>
+                              <Label prefHeight="47.0" prefWidth="187.0" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="fourthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="fourth-product-info">
+               <children>
+                  <ImageView fx:id="fourthImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/placeholder.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Title" />
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0">
+                           <children>
+                              <Label prefHeight="47.0" prefWidth="187.0" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox fx:id="homeProductHbox1" layoutX="11.0" layoutY="372.0" prefHeight="220.0" prefWidth="947.0" spacing="35.0" styleClass="home-product-two">
+         <children>
+            <VBox fx:id="fifthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="fifth-product-info">
+               <children>
+                  <ImageView fx:id="fifthImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/placeholder.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Title" />
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0">
+                           <children>
+                              <Label prefHeight="47.0" prefWidth="187.0" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="sixthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="sixth-product-info">
+               <children>
+                  <ImageView fx:id="sixthImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/placeholder.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Title" />
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0">
+                           <children>
+                              <Label prefHeight="47.0" prefWidth="187.0" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="seventhProductinfo" prefHeight="190.0" prefWidth="208.0" styleClass="seventh-product-info">
+               <children>
+                  <ImageView fx:id="seventhImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/placeholder.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Title" />
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0">
+                           <children>
+                              <Label prefHeight="47.0" prefWidth="187.0" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="eighthProductInfo" prefHeight="190.0" prefWidth="208.0" styleClass="eighth-product-info">
+               <children>
+                  <ImageView fx:id="eighthImg" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/placeholder.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0">
+                           <children>
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Title" />
+                              <Label prefHeight="24.0" prefWidth="95.0" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0">
+                           <children>
+                              <Label prefHeight="47.0" prefWidth="187.0" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
