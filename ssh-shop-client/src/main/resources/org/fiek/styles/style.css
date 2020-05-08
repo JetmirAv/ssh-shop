@@ -221,3 +221,210 @@
   -fx-font-size: 16px;
   -fx-padding: 0 50px 50px 0;
 }
+.windowSize{
+    -fx-min-width: 960;
+    -fx-min-height: 640;
+    -fx-font-family: Ubuntu sans-serif;
+}
+
+.anchorAddress, .anchorCards {
+    -fx-pref-width: "720.0";
+    -fx-pref-height: 40.0;
+    -fx-background-color:  #129084;
+    -fx-font-family: "Roboto Regular";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
+
+.anchorPaneSideOne{
+    -fx-border-color: #B0B0B9;
+    -fx-background-color: #E5E5E8;
+}
+
+.anchorPaneSideTwo{
+    -fx-border-color: #696969;
+    -fx-background-color: #E5E5E8;
+}
+
+.streetField, .postalField,.numberField, .expdateField, .csvField,
+.countryCombobox, .cityCombobox
+{
+    -jfx-label-float: true;
+    -fx-pref-width: 300px;
+    -fx-font-size: 20px;
+    -fx-font-family: "Times New Roman";
+    -jfx-focus-color: #00d087;
+    -jfx-unfocus-color: #c9c9c9;
+}
+.saveBttnPassword{
+    -fx-translate-x: 524.0;
+    -fx-translate-y: 395.0;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
+    -fx-font-family: "Roboto Regular";
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-color:  #129084;
+}
+.deleteBttnPassword{
+    -fx-translate-x: 707.0;
+    -fx-translate-y: 395.0;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
+    -fx-font-family: "Roboto Regular";
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-color:  #129084;
+}
+.saveBttnAddressCards{
+    -fx-translate-x: 281.0;
+    -fx-translate-y: 395.0;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
+    -fx-font-family: "Roboto Regular";
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-color:  #129084;
+}
+.deleteBttnAddressCards{
+    -fx-translate-x: 464.0;
+    -fx-translate-y: 395.0;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
+    -fx-font-family: "Roboto Regular";
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-color:  #129084;
+}
+.saveBttnInfo{
+    -fx-translate-x: 554.0;
+    -fx-translate-y: 515.0;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
+    -fx-font-family: "Roboto Regular";
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-color:  #129084;
+}
+
+.deleteBttnInfo{
+    -fx-translate-x: 734.0;
+    -fx-translate-y: 515.0;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
+    -fx-font-family: "Roboto Regular";
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-color:  #129084;
+}
+.infoField, .passwordField, .addressesField, .cardsField{
+    -fx-pref-height: 40.0;
+    -fx-pref-width: 720.0;
+    -fx-border-color: white;
+    -fx-background-color: #129084;
+    -fx-font-family: "Roboto Regular";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
+
+.changeAvatarBttn{
+    -fx-translate-x: 115.0 ;
+    -fx-translate-y: 353.0;
+    -fx-font-size: 14px;
+    -fx-background-color: #129084;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+}
+.changeAvatarBttn:hover, .saveBttn:hover, .infoField:hover, .passwordField:hover,
+.addressesField:hover, .cardsField:hover {
+    -fx-background-color: #129f84;
+}
+
+.active {
+    -fx-background-color: #129f84;
+}
+
+.profile-information-field{
+    -jfx-label-float: true;
+    -fx-pref-height: 20.0;
+    -fx-pref-width: 344.0;
+    -fx-prompt-text-fill: #888888;
+    -jfx-unfocus-color: #00000080;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+}
+
+.new-password-field{
+    -jfx-label-float: true;
+    -fx-translate-x: 28.0;
+    -fx-translate-y: 156.0;
+    -fx-pref-height: 49.0;
+    -fx-pref-width: 344.0;
+    -fx-prompt-text-fill: #888888;
+    -jfx-unfocus-color: #00000080;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+}
+
+.old-password-field{
+    -jfx-label-float: true;
+    -fx-translate-x: 28.0;
+    -fx-translate-y: 45.0;
+    -fx-pref-height: 49.0;
+    -fx-pref-width: 344.0;
+    -fx-prompt-text-fill: #888888;
+    -jfx-unfocus-color: #00000080;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+}
+
+.confirm-password-field{
+    -jfx-label-float: true;
+    -fx-translate-x: 428.0;
+    -fx-translate-y: 156.0;
+    -fx-pref-height: 49.0;
+    -fx-pref-width: 344.0;
+    -fx-prompt-text-fill: #888888;
+    -jfx-unfocus-color: #00000080;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+}
+.address-switch-button, .cards-switch-button{
+    -fx-pref-width: 720.0;
+    -fx-pref-height: 40.0;
+    -fx-background-color:  #129084;
+    -fx-font-family: "Roboto Regular";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-text-alignment: left;
+}
+.hboxContainer{
+    -fx-hgap: 10px;
+    -fx-pref-width: 900px;
+    -fx-pref-height: 459px;
+}
+.firstVbox{
+    -fx-background-color: #E5E5E8;
+    -fx-border-color: #B0B0B9;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 459px;
+    -fx-spacing: 5px;
+}
+.secondAncharPane{
+    -fx-background-color: #E5E5E8;
+    -fx-border-color: #B0B0B9;
+    -fx-pref-width: 650px;
+    -fx-pref-height: 459px;
+
+}
+.pane {
+    -fx-background-color: #E5E5E8;
+    -fx-pref-width: 900px;
+    -fx-pref-height: 459px;
+}
+.gridPane{
+    -fx-pref-width: 300px;
+
+}
+
+
