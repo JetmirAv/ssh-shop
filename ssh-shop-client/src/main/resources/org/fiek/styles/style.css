@@ -428,3 +428,68 @@
 }
 
 
+
+.main-image-create {
+  -fx-background-size: contain;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+}
+.triangle {
+  -fx-fill: #e5e5e8;
+  -fx-stroke: #e5e5e8;
+  -fx-padding: 0;
+}
+.add-circle-button {
+  -fx-background-radius:50;
+  -fx-background-color: #129084;
+  -fx-font-size: 16px;
+  -fx-focus-traversable: false;
+}
+
+.add-product-fields {
+  -fx-border-color:#129084 ;
+  -fx-font-size: 22px;
+  -jfx-focus-color: #129084;
+  -fx-unfocus-color: white;
+}
+.fx-labels{
+  -fx-font-size: 20px;
+  -fx-padding: 0;
+  -fx-focus-traversable: false;
+}
+.backward-button{
+  -fx-padding: 0;
+  -fx-fill: transparent;
+}
+.add-product-options {
+  -fx-font-size: 12px;
+  -fx-background-color: #129084;
+  -fx-text-fill: #ffffff;
+  -fx-padding: 0;
+  -fx-background-radius: 0;
+  -fx-focus-traversable: false;
+}
+.slide-button {
+  -fx-padding: 0;
+  -fx-background-color: #f3f3f3;
+}
+.add-product-button {
+  -fx-background-color: #129084;
+  -fx-font-size: 14px;
+  -fx-text-fill: #ffffff;
+  -fx-focus-traversable: false;
+  -fx-background-radius: 0;
+}
+.add-product-options:hover{
+  -fx-background-color: #129f84;
+}
+.add-product-button:hover {
+  -fx-background-color: #129f84;
+}
+.triangle:hover {
+  -fx-fill: #b0b0b9;
+  -fx-stroke: #b0b0b9;
+}
+.add-circle-button:hover {
+  -fx-background-color: #129f84;
+}
