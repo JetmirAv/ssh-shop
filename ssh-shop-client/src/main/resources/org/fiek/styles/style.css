@@ -222,9 +222,10 @@
   -fx-padding: 0 50px 50px 0;
 }
 .home-product-detail {
-  -fx-pref-width: 208px;
-  -fx-pref-height: 112px;
-  -fx-background-color: #DCDCDC;
+  -fx-pref-width: 207px;
+  -fx-pref-height: 82px;
+  -fx-background-color: #E5E5E5;
+  -fx-border-color: #B0B0B0;
 }
 .search-category-order {
   -fx-pref-width: 931px;
@@ -233,29 +234,74 @@
   -fx-spacing: 50;
 
 }
-.home-product-one {
-  -fx-pref-width: 947px;
-  -fx-pref-height: 220px;
-  -fx-spacing: 35;
-}
-.home-product-two {
-  -fx-pref-width: 947px;
-  -fx-pref-height: 220px;
-  -fx-spacing: 35;
-}
 .search-product {
   -fx-pref-width: 200px;
-  -fx-pref-height: 41px;
+  -fx-pref-height: 40px;
+  -fx-background-color: #F3F3F3;
+  -fx-border-color: #F3F3F3;
+  -fx-text-fill: #5C696D;
+  -fx-font-size: 14px;
+
 }
 .select-category {
   -fx-pref-width: 225px;
   -fx-pref-height: 40px;
+  -fx-background-color: #F3F3F3;
+  -fx-border-color: #CFD8DC;
+  -fx-font-size: 14px;
+  -fx-text-fill: #7B8D93;
 }
 .order-by {
   -fx-pref-width: 225px;
   -fx-pref-height: 40px;
+  -fx-background-color: #F3F3F3;
+  -fx-border-color: #CFD8DC;
+  -fx-font-size: 14px;
+  -fx-text-fill: #7B8D93;
 }
 .home-product-image {
   -fx-pref-width: 208px;
   -fx-pref-height: 190px;
+  -fx-border-color: #B0B0B0;
 }
+.home-product-imageView {
+  -fx-pref-width: 207px;
+  -fx-pref-height: 108px;
+  -fx-background-color: #129F84;
+  -fx-border-color: #B0B0B9;
+}
+.home-product-title {
+  -fx-pref-width: 95px;
+  -fx-pref-height: 24px;
+  -fx-font-size: 16px;
+  -fx-text-fill: #888888;
+
+}
+.home-product-category {
+  -fx-pref-width: 95px;
+  -fx-pref-height: 24px;
+  -fx-font-size: 16px;
+  -fx-text-fill: #888888;
+}
+.home-product-description {
+  -fx-pref-width: 187px;
+  -fx-pref-height: 47px;
+  -fx-font-size: 9px;
+  -fx-text-fill: #888888;
+
+}
+.home-first-info {
+  -fx-pref-width: 207px;
+  -fx-pref-height: 27px;
+}
+.home-description-info {
+  -fx-pref-width: 207px;
+  -fx-pref-height: 55px;
+}
+.home-product-info {
+  -fx-hgap: 35px;
+  -fx-vgap: 30px;
+  -fx-pref-width: 960px;
+  -fx-pref-height: 400px;
+}
+
