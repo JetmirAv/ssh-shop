@@ -1,4 +1,4 @@
-package org.fiek.controllers.cards;
+package org.fiek.controllers.profile;
 
 import javafx.fxml.FXML;
 import org.fiek.App;
