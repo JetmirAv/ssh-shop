@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="900.0" prefWidth="960.0" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.home.HomeController">
+   <children>
+      <HBox fx:id="homeFirstHbox" layoutX="14.0" layoutY="23.0" spacing="50.0" styleClass="search-category-order">
+         <children>
+            <TextField styleClass="search-product" text="Search..." />
+            <ComboBox promptText="Category" styleClass="select-category" />
+            <ComboBox promptText="Order by" styleClass="order-by" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+      <FlowPane fx:id="homeAllPrdouct" layoutX="15.0" layoutY="137.0" styleClass="home-product-info">
+         <children>
+            <VBox fx:id="homeProduct1" styleClass="home-product-image">
+               <children>
+                  <ImageView fx:id="productImage1" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true" styleClass="home-product-imageView">
+                     <image>
+                        <Image url="@../../images/placeholder207x108.png" />
+                     </image>
+                  </ImageView>
+                  <VBox styleClass="home-product-detail">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0" styleClass="home-first-info">
+                           <children>
+                              <Label fx:id="homeProductTitle1" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-title" text="Title" />
+                              <Label fx:id="homeProductCategory1" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-category" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0" styleClass="home-description-info">
+                           <children>
+                              <Label fx:id="homeProductDescription1" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="homeProduct2" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
+               <children>
+                  <ImageView fx:id="productImage2" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true" styleClass="home-product-imageView">
+                     <image>
+                        <Image url="@../../images/placeholder207x108.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0" styleClass="home-first-info">
+                           <children>
+                              <Label fx:id="homeProductTitle2" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-title" text="Title" />
+                              <Label fx:id="homeProductCategory2" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-category" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0" styleClass="home-description-info">
+                           <children>
+                              <Label fx:id="homeProductDescription2" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="homeProduct3" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
+               <children>
+                  <ImageView fx:id="productImage3" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true" styleClass="home-product-imageView">
+                     <image>
+                        <Image url="@../../images/placeholder207x108.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0" styleClass="home-first-info">
+                           <children>
+                              <Label fx:id="homeProductTitle3" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-title" text="Title" />
+                              <Label fx:id="homeProductCategory3" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-category" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0" styleClass="home-description-info">
+                           <children>
+                              <Label fx:id="homeProductDescription3" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="homeProduct4" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
+               <children>
+                  <ImageView fx:id="productImage4" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true" styleClass="home-product-imageView">
+                     <image>
+                        <Image url="@../../images/placeholder207x108.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0" styleClass="home-first-info">
+                           <children>
+                              <Label fx:id="homeProductTitle4" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-title" text="Title" />
+                              <Label fx:id="homeProductCategory4" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-category" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0" styleClass="home-description-info">
+                           <children>
+                              <Label fx:id="homeProductDescription4" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="homeProduct5" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
+               <children>
+                  <ImageView fx:id="productImage5" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true" styleClass="home-product-imageView">
+                     <image>
+                        <Image url="@../../images/placeholder207x108.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0" styleClass="home-first-info">
+                           <children>
+                              <Label fx:id="homeProductTitle5" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-title" text="Title" />
+                              <Label fx:id="homeProductCategory5" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-category" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0" styleClass="home-description-info">
+                           <children>
+                              <Label fx:id="homeProductDescription5" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="homeProduct6" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
+               <children>
+                  <ImageView fx:id="productImage6" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true" styleClass="home-product-imageView">
+                     <image>
+                        <Image url="@../../images/placeholder207x108.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0" styleClass="home-first-info">
+                           <children>
+                              <Label fx:id="homeProductTitle6" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-title" text="Title" />
+                              <Label fx:id="homeProductCategory6" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-category" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0" styleClass="home-description-info">
+                           <children>
+                              <Label fx:id="homeProductDescription6" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="homeProduct7" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
+               <children>
+                  <ImageView fx:id="productImage7" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true" styleClass="home-product-imageView">
+                     <image>
+                        <Image url="@../../images/placeholder207x108.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0" styleClass="home-first-info">
+                           <children>
+                              <Label fx:id="homeProductTitle7" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-title" text="Title" />
+                              <Label fx:id="homeProductCategory7" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-category" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0" styleClass="home-description-info">
+                           <children>
+                              <Label fx:id="homeProductDescription7" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox fx:id="homeProduct8" prefHeight="190.0" prefWidth="208.0" styleClass="home-product-image">
+               <children>
+                  <ImageView fx:id="productImage8" fitHeight="108.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true" styleClass="home-product-imageView">
+                     <image>
+                        <Image url="@../../images/placeholder207x108.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="112.0" prefWidth="208.0" styleClass="home-product-detail">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0" styleClass="home-first-info">
+                           <children>
+                              <Label fx:id="homeProductTitle8" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-title" text="Title" />
+                              <Label fx:id="homeProductCategory8" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-category" text="Category" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="72.0" prefWidth="208.0" styleClass="home-description-info">
+                           <children>
+                              <Label fx:id="homeProductDescription8" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text="Description" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </FlowPane>
+   </children>
+</AnchorPane>
