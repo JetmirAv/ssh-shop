@@ -13,33 +13,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="459.0" prefWidth="960.0" styleClass="hboxKryesor" stylesheets="@../../styles/style.css">
+      <HBox prefHeight="459.0" prefWidth="959.0" styleClass="hboxKryesor" stylesheets="@../../styles/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="459.0" prefWidth="250.0" styleClass="vboxFirst" stylesheets="@../../styles/style.css">
+            <VBox prefHeight="459.0" prefWidth="250.0" spacing="2.0" stylesheets="@../../styles/style.css">
                <children>
                   <HBox prefHeight="50.0" prefWidth="250.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
-                     <padding>
-                        <Insets top="11.0" />
-                     </padding>
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                      <children>
                         <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;" styleClass="circleHB">
                            <HBox.margin>
-                              <Insets left="10.0" top="-6.0" />
+                              <Insets />
                            </HBox.margin>
                         </Circle>
-                        <VBox prefHeight="50.0" prefWidth="156.0">
+                        <VBox prefHeight="50.0" prefWidth="156.0" styleClass="user-name">
                            <HBox.margin>
-                              <Insets top="-10.0" />
+                              <Insets />
                            </HBox.margin>
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
                                  <VBox.margin>
-                                    <Insets left="5.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -47,7 +44,7 @@
                               </Text>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
                                  <VBox.margin>
-                                    <Insets left="5.0" top="4.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -64,17 +61,17 @@
                      <children>
                         <Circle fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;" styleClass="circleHB">
                            <HBox.margin>
-                              <Insets left="10.0" top="-6.0" />
+                              <Insets />
                            </HBox.margin>
                         </Circle>
-                        <VBox prefHeight="50.0" prefWidth="156.0">
+                        <VBox prefHeight="50.0" prefWidth="156.0" styleClass="user-name">
                            <HBox.margin>
-                              <Insets top="-10.0" />
+                              <Insets />
                            </HBox.margin>
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
                                  <VBox.margin>
-                                    <Insets left="5.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -82,7 +79,7 @@
                               </Text>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
                                  <VBox.margin>
-                                    <Insets left="5.0" top="4.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -92,7 +89,7 @@
                         </VBox>
                      </children>
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </HBox>
                   <HBox prefHeight="50.0" prefWidth="250.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
@@ -102,17 +99,17 @@
                      <children>
                         <Circle fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;" styleClass="circleHB">
                            <HBox.margin>
-                              <Insets left="10.0" top="-6.0" />
+                              <Insets />
                            </HBox.margin>
                         </Circle>
-                        <VBox prefHeight="50.0" prefWidth="156.0" stylesheets="@../../styles/style.css">
+                        <VBox prefHeight="50.0" prefWidth="156.0" styleClass="user-name" stylesheets="@../../styles/style.css">
                            <HBox.margin>
-                              <Insets top="-10.0" />
+                              <Insets />
                            </HBox.margin>
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
                                  <VBox.margin>
-                                    <Insets left="5.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -120,7 +117,7 @@
                               </Text>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
                                  <VBox.margin>
-                                    <Insets left="5.0" top="4.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -130,7 +127,7 @@
                         </VBox>
                      </children>
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </HBox>
                   <HBox prefHeight="50.0" prefWidth="250.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
@@ -138,19 +135,19 @@
                         <Insets top="11.0" />
                      </padding>
                      <children>
-                        <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;" styleClass="circleHB">
+                        <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleHB">
                            <HBox.margin>
-                              <Insets left="10.0" top="-6.0" />
+                              <Insets />
                            </HBox.margin>
                         </Circle>
-                        <VBox prefHeight="50.0" prefWidth="156.0" stylesheets="@../../styles/style.css">
+                        <VBox prefHeight="50.0" prefWidth="156.0" styleClass="user-name" stylesheets="@../../styles/style.css">
                            <HBox.margin>
-                              <Insets top="-10.0" />
+                              <Insets />
                            </HBox.margin>
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
                                  <VBox.margin>
-                                    <Insets left="5.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -158,7 +155,7 @@
                               </Text>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
                                  <VBox.margin>
-                                    <Insets left="5.0" top="4.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -168,27 +165,27 @@
                         </VBox>
                      </children>
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="50.0" prefWidth="250.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
+                  <HBox layoutX="11.0" layoutY="167.0" prefHeight="50.0" prefWidth="250.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
                      <padding>
-                        <Insets top="9.0" />
+                        <Insets top="11.0" />
                      </padding>
                      <children>
-                        <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;" styleClass="circleHB">
+                        <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleHB">
                            <HBox.margin>
-                              <Insets left="10.0" top="-6.0" />
+                              <Insets />
                            </HBox.margin>
                         </Circle>
-                        <VBox prefHeight="50.0" prefWidth="156.0" stylesheets="@../../styles/style.css">
+                        <VBox prefHeight="50.0" prefWidth="156.0" styleClass="user-name" stylesheets="@../../styles/style.css">
                            <HBox.margin>
-                              <Insets top="-10.0" />
+                              <Insets />
                            </HBox.margin>
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
                                  <VBox.margin>
-                                    <Insets left="5.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -196,7 +193,7 @@
                               </Text>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
                                  <VBox.margin>
-                                    <Insets left="5.0" top="4.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -205,9 +202,6 @@
                            </children>
                         </VBox>
                      </children>
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
                   </HBox>
                </children>
                <HBox.margin>
@@ -216,16 +210,17 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <styleClass>
+                  <String fx:value="vboxFirst" />
+                  <String fx:value="border" />
+               </styleClass>
             </VBox>
             <AnchorPane prefHeight="459.0" prefWidth="650.0" styleClass="anchorPane2" stylesheets="@../../styles/style.css">
                <HBox.margin>
-                  <Insets left="20.0" />
+                  <Insets />
                </HBox.margin>
                <children>
                   <HBox prefHeight="60.0" prefWidth="650.0" styleClass="hboxAPane2" stylesheets="@../../styles/style.css">
-                     <padding>
-                        <Insets top="11.0" />
-                     </padding>
                      <children>
                         <Circle radius="25.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;">
                            <HBox.margin>
@@ -257,17 +252,14 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox layoutY="406.0" prefHeight="60.0" prefWidth="650.0" styleClass="hboxAP3" stylesheets="@../../styles/style.css">
-                     <padding>
-                        <Insets top="11.0" />
-                     </padding>
+                  <HBox layoutY="406.0" prefHeight="60.0" prefWidth="650.0" stylesheets="@../../styles/style.css">
                      <children>
                         <TextField id="textfieldChat" prefHeight="40.0" prefWidth="500.0" promptText="Type something funny . . . " stylesheets="@../../styles/style.css">
                            <HBox.margin>
-                              <Insets left="9.0" />
+                              <Insets />
                            </HBox.margin>
                         </TextField>
-                        <Button id="sendButtonChat" prefHeight="40.0" prefWidth="120.0" styleClass="sendButonCH" stylesheets="@../../styles/style.css" text="Send">
+                        <Button prefHeight="40.0" prefWidth="120.0" styleClass="sendButonCH" stylesheets="@../../styles/style.css" text="Send">
                            <HBox.margin>
                               <Insets left="11.0" />
                            </HBox.margin>
@@ -276,30 +268,32 @@
                            </font>
                         </Button>
                      </children>
+                     <styleClass>
+                        <String fx:value="hboxAP3" />
+                        <String fx:value="hboxAPane2" />
+                     </styleClass>
                   </HBox>
-                  <ScrollPane layoutY="59.0" pannable="true" prefHeight="348.0" prefWidth="650.0" style="-fx-background-color: #E5E5E8;" vmax="2.0">
+                  <ScrollPane layoutY="59.0" pannable="true" prefHeight="348.0" prefWidth="650.0" vmax="2.0">
                      <content>
-                        <VBox prefHeight="490.0" prefWidth="634.0" spacing="5.0" style="-fx-background-color: #E5E5E8;" styleClass="vboxChat" stylesheets="@../../styles/style.css">
+                        <VBox prefHeight="413.0" prefWidth="634.0" spacing="5.0" style="-fx-background-color: #E5E5E8;" styleClass="vboxChat" stylesheets="@../../styles/style.css">
                            <children>
                               <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="620.0" styleClass="rightHBchat" stylesheets="@../../styles/style.css">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <Label alignment="TOP_RIGHT" contentDisplay="TOP" prefHeight="40.0" prefWidth="73.0" stylesheets="@../../styles/style.css" text="Hello" textAlignment="RIGHT" wrapText="true">
+                                    <Label alignment="TOP_RIGHT" contentDisplay="TOP" prefHeight="40.0" stylesheets="@../../styles/style.css" text="Hello" textAlignment="RIGHT" wrapText="true">
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font size="18.0" />
                                        </font>
-                                       <padding>
-                                          <Insets right="5.0" />
-                                       </padding>
-                                       <styleClass>
-                                          <String fx:value="labelChat" />
-                                          <String fx:value="rightMessage" />
-                                       </styleClass>
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="labelChat" />
+                                          <String fx:value="rightMessage" />
+                                          <String fx:value="message" />
+                                       </styleClass>
                                     </Label>
                                  </children>
                               </HBox>
@@ -308,7 +302,7 @@
                                     <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <Label prefHeight="40.0" prefWidth="358.0" styleClass="labelChat" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+                                    <Label prefHeight="40.0" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -318,6 +312,10 @@
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="labelChat" />
+                                          <String fx:value="message" />
+                                       </styleClass>
                                     </Label>
                                  </children>
                               </HBox>
@@ -326,13 +324,14 @@
                                     <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <Label alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="388.0" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+                                    <Label alignment="TOP_RIGHT" prefHeight="40.0" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                        <styleClass>
                                           <String fx:value="labelChat" />
                                           <String fx:value="rightMessage" />
+                                          <String fx:value="message" />
                                        </styleClass>
                                     </Label>
                                  </children>
@@ -345,7 +344,7 @@
                                     <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <Label prefHeight="40.0" prefWidth="188.0" styleClass="labelChat" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet">
+                                    <Label prefHeight="40.0" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -355,6 +354,10 @@
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="labelChat" />
+                                          <String fx:value="message" />
+                                       </styleClass>
                                     </Label>
                                  </children>
                               </HBox>
@@ -363,7 +366,7 @@
                                     <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <Label prefHeight="40.0" prefWidth="188.0" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet">
+                                    <Label prefHeight="40.0" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -373,6 +376,7 @@
                                        <styleClass>
                                           <String fx:value="labelChat" />
                                           <String fx:value="rightMessage" />
+                                          <String fx:value="message" />
                                        </styleClass>
                                     </Label>
                                  </children>
@@ -382,7 +386,7 @@
                                     <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <Label prefHeight="40.0" prefWidth="70.0" styleClass="labelChat" stylesheets="@../../styles/style.css" text="OKAY" textAlignment="RIGHT">
+                                    <Label prefHeight="40.0" stylesheets="@../../styles/style.css" text="OKAY" textAlignment="RIGHT">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -392,6 +396,10 @@
                                        <padding>
                                           <Insets left="5.0" />
                                        </padding>
+                                       <styleClass>
+                                          <String fx:value="labelChat" />
+                                          <String fx:value="message" />
+                                       </styleClass>
                                     </Label>
                                  </children>
                               </HBox>
@@ -400,7 +408,7 @@
                                     <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <Label prefHeight="40.0" prefWidth="70.0" stylesheets="@../../styles/style.css" text="Hello">
+                                    <Label prefHeight="40.0" stylesheets="@../../styles/style.css" text="Hello">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -410,6 +418,7 @@
                                        <styleClass>
                                           <String fx:value="labelChat" />
                                           <String fx:value="rightMessage" />
+                                          <String fx:value="message" />
                                        </styleClass>
                                     </Label>
                                  </children>
@@ -419,7 +428,7 @@
                                     <Insets />
                                  </VBox.margin>
                                  <children>
-                                    <Label prefHeight="40.0" prefWidth="73.0" styleClass="labelChat" stylesheets="@../../styles/style.css" text="Hello">
+                                    <Label prefHeight="40.0" stylesheets="@../../styles/style.css" text="Hello">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -429,12 +438,16 @@
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="labelChat" />
+                                          <String fx:value="message" />
+                                       </styleClass>
                                     </Label>
                                  </children>
                               </HBox>
-                              <HBox alignment="TOP_RIGHT" styleClass="rightHBchat" stylesheets="@../../styles/style.css">
+                              <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="561.0" styleClass="rightHBchat" stylesheets="@../../styles/style.css">
                                  <children>
-                                    <Label prefHeight="40.0" prefWidth="73.0" stylesheets="@../../styles/style.css" text="Hello">
+                                    <Label graphicTextGap="0.0" prefHeight="40.0" stylesheets="@../../styles/style.css" text="Hello">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -444,6 +457,7 @@
                                        <styleClass>
                                           <String fx:value="labelChat" />
                                           <String fx:value="rightMessage" />
+                                          <String fx:value="message" />
                                        </styleClass>
                                     </Label>
                                  </children>
@@ -461,9 +475,6 @@
                </children>
             </AnchorPane>
          </children>
-         <padding>
-            <Insets left="20.0" top="26.0" />
-         </padding>
       </HBox>
    </children>
 </AnchorPane>
