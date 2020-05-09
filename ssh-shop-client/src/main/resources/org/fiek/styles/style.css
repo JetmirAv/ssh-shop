@@ -51,7 +51,7 @@
 }
 
 .menu-button {
-  -fx-font-size: 24px;
+  -fx-font-size: 20px;
   -fx-font-weight: bold;
   -fx-text-fill: #ffffff;
   -fx-background-color: #129084;
@@ -500,9 +500,8 @@
   -fx-border-color: #B0B0B0;
 }
 .search-category-order {
-  -fx-pref-width: 931px;
-  -fx-pref-height: 46px;
-  -fx-padding: 5px 5px 5px 5px;
+  -fx-pref-width: 930px;
+  -fx-pref-height: 50px;
   -fx-spacing: 50;
 
 }
@@ -574,6 +573,5 @@
   -fx-hgap: 30px;
   -fx-vgap: 25px;
   -fx-pref-width: 960px;
-  -fx-pref-height: 400px;
 }
 

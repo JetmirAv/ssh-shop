@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.fiek.controllers.AbstractController;
+import org.fiek.controllers.layout.LayoutController;
 
 import java.io.IOException;
 
@@ -15,12 +17,14 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    public static BorderPane main;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("views/layout/index"));
+        scene = new Scene(loadFXML("views/layout/index", new LayoutController()));
         stage.setMinWidth(960);
         stage.setMinHeight(640);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
