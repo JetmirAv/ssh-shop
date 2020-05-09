@@ -10,11 +10,12 @@ import org.fiek.controllers.AbstractController;
 import org.fiek.controllers.layout.LayoutController;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class App  {
 
     private static Scene scene;
     public static BorderPane main;
@@ -48,8 +49,21 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) {
-        launch();
-    }
+    public static void main(String[] args) throws Exception {
+        //launch();
+        String type = "json";
+        String cmd = "ser";
+        String filepath = "src/main/java/org/fiek/utils/json/java2.json";
+        System.out.println(type + ", " + cmd + ", " + filepath);
 
+        User model = new User("John Doe", 24, new ArrayList<>());
+        model.emails.add("john.doe.java@example.com");
+        System.out.println(model);
+        String rawData = "";
+        rawData = new JsonHelper<User>(User.class).serializeJson(model, filepath);
+        System.out.println("serialized object: " + rawData);
+        User user = null;
+        model = new JsonHelper<User>(User.class).deserializeJson(filepath);
+        System.out.println("deserialized object: " + model.toString());
+    }
 }
