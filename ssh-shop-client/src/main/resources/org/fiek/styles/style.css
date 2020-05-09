@@ -299,8 +299,8 @@
   -fx-pref-height: 55px;
 }
 .home-product-info {
-  -fx-hgap: 35px;
-  -fx-vgap: 30px;
+  -fx-hgap: 30px;
+  -fx-vgap: 25px;
   -fx-pref-width: 960px;
   -fx-pref-height: 400px;
 }
