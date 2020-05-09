@@ -1,4 +1,4 @@
-const { GetCities } = require("../services/cities");
+const { GetCities, GetCitiesFromCountry } = require("../services/cities");
 
 const getCities = async (req, res, next) => {
   try {
@@ -10,6 +10,17 @@ const getCities = async (req, res, next) => {
   }
 };
 
+const getCitiesFromCountry = async (req, res, next) => {
+  try {
+    var cities = [];
+    cities = await GetCitiesFromCountry(req.params.country_id);
+    return res.status(200).json({ cities });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getCities,
+  getCitiesFromCountry,
 };
