@@ -277,131 +277,184 @@
                         </Button>
                      </children>
                   </HBox>
-                  <ScrollPane layoutY="59.0" pannable="true" prefHeight="348.0" prefWidth="650.0" vmax="2.0">
+                  <ScrollPane layoutY="59.0" pannable="true" prefHeight="348.0" prefWidth="650.0" style="-fx-background-color: #E5E5E8;" vmax="2.0">
                      <content>
-                        <VBox prefHeight="490.0" prefWidth="634.0" spacing="5.0">
+                        <VBox prefHeight="490.0" prefWidth="634.0" spacing="5.0" style="-fx-background-color: #E5E5E8;" styleClass="vboxChat" stylesheets="@../../styles/style.css">
                            <children>
-                              <Label alignment="TOP_RIGHT" contentDisplay="TOP" prefHeight="40.0" prefWidth="73.0" stylesheets="@../../styles/style.css" text="Hello" textAlignment="RIGHT" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets right="5.0" />
-                                 </padding>
-                                 <styleClass>
-                                    <String fx:value="labelChat" />
-                                    <String fx:value="rightMessage" />
-                                 </styleClass>
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Label prefHeight="40.0" prefWidth="358.0" styleClass="labelChat" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
+                              <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="620.0" styleClass="rightHBchat" stylesheets="@../../styles/style.css">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
-                              </Label>
-                              <Label prefHeight="40.0" prefWidth="388.0" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets right="5.0" />
-                                 </padding>
-                                 <styleClass>
-                                    <String fx:value="labelChat" />
-                                    <String fx:value="rightMessage" />
-                                 </styleClass>
+                                 <children>
+                                    <Label alignment="TOP_RIGHT" contentDisplay="TOP" prefHeight="40.0" prefWidth="73.0" stylesheets="@../../styles/style.css" text="Hello" textAlignment="RIGHT" wrapText="true">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets right="5.0" />
+                                       </padding>
+                                       <styleClass>
+                                          <String fx:value="labelChat" />
+                                          <String fx:value="rightMessage" />
+                                       </styleClass>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="leftHBchat" stylesheets="@../../styles/style.css">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
-                              </Label>
-                              <Label prefHeight="40.0" prefWidth="188.0" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <styleClass>
-                                    <String fx:value="labelChat" />
-                                    <String fx:value="rightMessage" />
-                                 </styleClass>
-                                 <padding>
-                                    <Insets right="5.0" />
-                                 </padding>
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="358.0" styleClass="labelChat" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="615.0" styleClass="rightHBchat" stylesheets="@../../styles/style.css">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
-                              </Label>
-                              <Label prefHeight="40.0" prefWidth="188.0" styleClass="labelChat" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
+                                 <children>
+                                    <Label alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="388.0" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <styleClass>
+                                          <String fx:value="labelChat" />
+                                          <String fx:value="rightMessage" />
+                                       </styleClass>
+                                    </Label>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox styleClass="leftHBchat" stylesheets="@../../styles/style.css">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
-                              </Label>
-                              <Label prefHeight="40.0" prefWidth="70.0" stylesheets="@../../styles/style.css" text="OKAY" textAlignment="RIGHT">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets right="5.0" />
-                                 </padding>
-                                 <styleClass>
-                                    <String fx:value="labelChat" />
-                                    <String fx:value="rightMessage" />
-                                 </styleClass>
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="188.0" styleClass="labelChat" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets right="5.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_RIGHT" styleClass="rightHBchat" stylesheets="@../../styles/style.css">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
-                              </Label>
-                              <Label prefHeight="40.0" prefWidth="70.0" stylesheets="@../../styles/style.css" text="Hello">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="188.0" stylesheets="@../../styles/style.css" text="Lorem ipsum dolor sit amet">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                       <styleClass>
+                                          <String fx:value="labelChat" />
+                                          <String fx:value="rightMessage" />
+                                       </styleClass>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="leftHBchat" stylesheets="@../../styles/style.css">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
-                                 <styleClass>
-                                    <String fx:value="labelChat" />
-                                    <String fx:value="rightMessage" />
-                                 </styleClass>
-                              </Label>
-                              <Label prefHeight="40.0" prefWidth="73.0" styleClass="labelChat" stylesheets="@../../styles/style.css" text="Hello">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="70.0" styleClass="labelChat" stylesheets="@../../styles/style.css" text="OKAY" textAlignment="RIGHT">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_RIGHT" styleClass="rightHBchat" stylesheets="@../../styles/style.css">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
-                              </Label>
-                              <Label prefHeight="40.0" prefWidth="73.0" stylesheets="@../../styles/style.css" text="Hello">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets right="5.0" />
-                                 </padding>
-                                 <styleClass>
-                                    <String fx:value="labelChat" />
-                                    <String fx:value="rightMessage" />
-                                 </styleClass>
-                              </Label>
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="70.0" stylesheets="@../../styles/style.css" text="Hello">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                       <styleClass>
+                                          <String fx:value="labelChat" />
+                                          <String fx:value="rightMessage" />
+                                       </styleClass>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="leftHBchat" stylesheets="@../../styles/style.css">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="73.0" styleClass="labelChat" stylesheets="@../../styles/style.css" text="Hello">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_RIGHT" styleClass="rightHBchat" stylesheets="@../../styles/style.css">
+                                 <children>
+                                    <Label prefHeight="40.0" prefWidth="73.0" stylesheets="@../../styles/style.css" text="Hello">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets right="5.0" />
+                                       </padding>
+                                       <styleClass>
+                                          <String fx:value="labelChat" />
+                                          <String fx:value="rightMessage" />
+                                       </styleClass>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
                            </children>
+                           <padding>
+                              <Insets left="5.0" right="5.0" top="5.0" />
+                           </padding>
                         </VBox>
                      </content>
                   </ScrollPane>
