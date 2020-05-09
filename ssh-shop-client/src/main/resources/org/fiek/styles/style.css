@@ -575,3 +575,90 @@
   -fx-pref-width: 960px;
 }
 
+.hboxKryesor{
+    -fx-fill-height: false;
+    -fx-pref-height: 459px;
+    -fx-pref-width: 960px;
+    -fx-padding: 15px;
+    -fx-spacing: 15px;
+}
+.image {
+    -fx-cell-size: 20px;
+}
+.vboxFirst{
+    -fx-prefHeight:459.0;
+    -fx-prefWidth:250.0;
+    -fx-background-color: #E5E5E8;
+    -fx-spacing: 5px;
+}
+.user-name {
+    -fx-spacing: 1px;
+}
+.horizontalB{
+    -fx-prefHeight:50.0;
+    -fx-prefWidth:250.0;
+    -fx-background-color: #129F84;
+    -fx-spacing: 8px;
+    -fx-padding: 4px 0 0 4px;
+}
+.circleHB{
+    -fx-radius:20.0;
+    -fx-stroke:BLACK;
+    -fx-strokeType:INSIDE;
+    -fx-fill: #E5E5E8;
+}
+.anchorPane2{
+    -fx-pref-height:459.0;
+    -fx-pref-width:650.0;
+    -fx-background-color: #E5E5E8;
+
+}
+.hboxAPane2{
+    -fx-fillHeight:false;
+    -fx-prefHeight:60.0;
+    -fx-prefWidth:650.0;
+    -fx-background-color: #129F84;
+    -fx-padding: 9px 0 0 0;
+    -fx-spacing: 10px;
+}
+.chat {
+    -fx-background-color:  #E5E5E8;
+}
+.hboxAP3{
+    -fx-prefHeight:60.0;
+    -fx-prefWidth:650.0;
+    -fx-background-color: #129F84;
+    -fx-spacing: 5px;
+    -fx-padding: 9px 0 0 5px;
+}
+.sendButonCH{
+    -fx-mnemonicParsing:false;
+    -fx-text-fill: #7b8d93;
+    -fx-prefHeight:40.0;
+    -fx-prefWidth:120.0;
+    -fx-background-color: #CFD8DC;
+}
+.sendButonCH:hover {
+    -fx-text-fill: #129F84;
+}
+.message {
+    -fx-padding: 0 15px 0 15px;
+    -fx-background-radius: 10px;
+    -fx-font-size: 15px;
+}
+.labelChat{
+    -fx-background-color: #129084;
+    -fx-text-fill: white;
+}
+.rightMessage {
+     -fx-alignment: baseline-right;
+}
+.rightHBchat{
+    -fx-alignment: top-right;
+}
+.leftHBchat{
+    -fx-alignment:top-left ;
+}
+.vboxChat{
+    -fx-background-color:  #E5E5E8;
+}
