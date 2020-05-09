@@ -20,7 +20,7 @@
          <top>
             <HBox fx:id="header" prefHeight="70.0" prefWidth="200.0" styleClass="header">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox fx:id="profile" onMouseClicked="#navClick" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Circle fill="DODGERBLUE" radius="30.0" stroke="BLACK" strokeType="INSIDE">
                         

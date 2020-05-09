@@ -7,9 +7,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -29,6 +30,9 @@ public class LayoutController extends AbstractController {
 
     @FXML // fx:id="header"
     private HBox header; // Value injected by FXMLLoader
+
+    @FXML // fx:id="profile"
+    private HBox profile; // Value injected by FXMLLoader
 
     @FXML // fx:id="navigator"
     private GridPane navigator; // Value injected by FXMLLoader
@@ -71,43 +75,62 @@ public class LayoutController extends AbstractController {
     }
 
     @FXML
-    void navClick(ActionEvent event) throws IOException{
-        String id = event.getSource().toString();
+    void navClick(Event event) throws IOException{
+        String id = ((Node) event.getSource()).getId();
         System.out.println(id);
+
+        removeActiveClass();
 
         switch (id) {
             case "navHome":
                 setRoot("views/home/home");
+                navHome.getStyleClass().add("active");
                 System.out.println("Home Called");
                 break;
 
             case "navCart":
                 setRoot("views/home/home");
+                navCart.getStyleClass().add("active");
                 System.out.println("Cart Called");
                 break;
 
             case "navMyProducts":
                 setRoot("views/home/home");
+                navMyProducts.getStyleClass().add("active");
                 System.out.println("Products Called");
                 break;
 
             case "navWishlist":
                 setRoot("views/home/home");
+                navWishlist.getStyleClass().add("active");
                 System.out.println("Wishlist Called");
                 break;
 
             case "navChat":
-                setRoot("views/home/home");
-                System.out.println("Chat Called");
+                setRoot("views/chat/chat");
+                navChat.getStyleClass().add("active");
+                System.out.println("views/chat/chat");
                 break;
+
+            case "profile":
+                setRoot("views/profile/info");
+                System.out.println("Profile");
+                break;
+
         }
 
     }
 
-
-
+    void removeActiveClass(){
+        navHome.getStyleClass().removeAll("active");
+        navCart.getStyleClass().removeAll("active");
+        navMyProducts.getStyleClass().removeAll("active");
+        navWishlist.getStyleClass().removeAll("active");
+        navChat.getStyleClass().removeAll("active");
+    };
 
     public void setRoot(String fxml) throws IOException {
+        main.setContent(null);
         main.setContent(loadFXML(fxml));
     }
 
