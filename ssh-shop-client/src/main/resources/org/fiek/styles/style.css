@@ -59,7 +59,35 @@
     -fx-background-color: #CFD8DC;
 }
 
+
 .labelChat{
     -fx-background-color: #129084;
     -fx-text-fill: white;
+
+
+
+}
+
+
+.rightMessage {
+     -fx-alignment: baseline-right;
+
+}
+
+
+.leftMessage{
+    -fx-alignment: baseline-left ;
+
+}
+
+
+.rightHBchat{
+    -fx-alignment: top-right;
+
+}
+
+.leftHBchat{
+    -fx-alignment:top-left ;
+
+
 }
