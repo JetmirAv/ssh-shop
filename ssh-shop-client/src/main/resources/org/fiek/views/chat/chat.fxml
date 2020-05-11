@@ -13,209 +13,96 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="459.0" prefWidth="959.0" styleClass="hboxKryesor" stylesheets="@../../styles/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="450.0" prefWidth="959.0" styleClass="hboxKryesor" stylesheets="@../../styles/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="459.0" prefWidth="250.0" spacing="2.0" stylesheets="@../../styles/style.css">
-               <children>
-                  <HBox prefHeight="50.0" prefWidth="250.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <children>
-                        <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;" styleClass="circleHB">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Circle>
-                        <VBox prefHeight="50.0" prefWidth="156.0" styleClass="user-name">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="50.0" prefWidth="250.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
-                     <padding>
-                        <Insets top="11.0" />
-                     </padding>
-                     <children>
-                        <Circle fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;" styleClass="circleHB">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Circle>
-                        <VBox prefHeight="50.0" prefWidth="156.0" styleClass="user-name">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="50.0" prefWidth="250.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
-                     <padding>
-                        <Insets top="11.0" />
-                     </padding>
-                     <children>
-                        <Circle fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;" styleClass="circleHB">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Circle>
-                        <VBox prefHeight="50.0" prefWidth="156.0" styleClass="user-name" stylesheets="@../../styles/style.css">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="50.0" prefWidth="250.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
-                     <padding>
-                        <Insets top="11.0" />
-                     </padding>
-                     <children>
-                        <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleHB">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Circle>
-                        <VBox prefHeight="50.0" prefWidth="156.0" styleClass="user-name" stylesheets="@../../styles/style.css">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox layoutX="11.0" layoutY="167.0" prefHeight="50.0" prefWidth="250.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
-                     <padding>
-                        <Insets top="11.0" />
-                     </padding>
-                     <children>
-                        <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleHB">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Circle>
-                        <VBox prefHeight="50.0" prefWidth="156.0" styleClass="user-name" stylesheets="@../../styles/style.css">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
+            <ScrollPane prefWidth="250.0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <styleClass>
-                  <String fx:value="vboxFirst" />
-                  <String fx:value="border" />
-               </styleClass>
-            </VBox>
-            <AnchorPane prefHeight="459.0" prefWidth="650.0" styleClass="anchorPane2" stylesheets="@../../styles/style.css">
+               <content>
+                  <VBox prefHeight="465.0" prefWidth="225.0" spacing="2.0" stylesheets="@../../styles/style.css">
+                     <children>
+                        <HBox prefHeight="50.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <children>
+                              <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;" styleClass="circleHB">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Circle>
+                              <VBox prefHeight="50.0" styleClass="user-name">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" styleClass="horizontalB" stylesheets="@../../styles/style.css">
+                           <children>
+                              <Circle radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;" styleClass="circleHB">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Circle>
+                              <VBox prefHeight="50.0" styleClass="user-name">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <styleClass>
+                        <String fx:value="vboxFirst" />
+                        <String fx:value="border" />
+                     </styleClass>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <AnchorPane prefHeight="465.0" prefWidth="650.0" styleClass="anchorPane2" stylesheets="@../../styles/style.css">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -275,7 +162,7 @@
                   </HBox>
                   <ScrollPane layoutY="59.0" pannable="true" prefHeight="348.0" prefWidth="650.0" vmax="2.0">
                      <content>
-                        <VBox prefHeight="413.0" prefWidth="634.0" spacing="5.0" style="-fx-background-color: #E5E5E8;" styleClass="vboxChat" stylesheets="@../../styles/style.css">
+                        <VBox prefHeight="413.0" prefWidth="630.0" spacing="5.0" style="-fx-background-color: #E5E5E8;" styleClass="vboxChat" stylesheets="@../../styles/style.css">
                            <children>
                               <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="620.0" styleClass="rightHBchat" stylesheets="@../../styles/style.css">
                                  <VBox.margin>
