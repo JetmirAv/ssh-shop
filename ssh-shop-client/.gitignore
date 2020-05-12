@@ -1,7 +1,6 @@
 .idea/
-*.iml
-*.iws
-out/
-
-log/
-target/
+.settings
+target
+bin
+.classpath
+.project
