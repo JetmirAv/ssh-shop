@@ -1,8 +1,19 @@
 .main {
-  -fx-min-width: 960;
-  -fx-min-height: 640;
+  -fx-min-width: 950;
+  -fx-min-height:500;
   -fx-font-family: Ubuntu sans-serif;
 }
+.frame {
+    -fx-padding: 15px;
+}
+.root-pane {
+
+    -fx-pref-width: 950;
+    -fx-pref-height: 400;
+    -fx-font-family: Ubuntu sans-serif;
+
+}
+
 
 .header {
   -fx-background-color: #129084;
@@ -222,8 +233,8 @@
   -fx-padding: 0 50px 50px 0;
 }
 .windowSize{
-    -fx-min-width: 960;
-    -fx-min-height: 640;
+    -fx-pref-width: 870;
+    -fx-pref-height: 400;
     -fx-font-family: Ubuntu sans-serif;
 }
 
@@ -258,7 +269,7 @@
 }
 .saveBttnPassword{
     -fx-translate-x: 524.0;
-    -fx-translate-y: 395.0;
+    -fx-translate-y: 370.0;
     -fx-pref-width: 150px;
     -fx-pref-height: 40px;
     -fx-font-family: "Roboto Regular";
@@ -268,7 +279,7 @@
 }
 .deleteBttnPassword{
     -fx-translate-x: 707.0;
-    -fx-translate-y: 395.0;
+    -fx-translate-y: 370.0;
     -fx-pref-width: 150px;
     -fx-pref-height: 40px;
     -fx-font-family: "Roboto Regular";
@@ -277,8 +288,8 @@
     -fx-background-color:  #129084;
 }
 .saveBttnAddressCards{
-    -fx-translate-x: 281.0;
-    -fx-translate-y: 395.0;
+    -fx-translate-x: 280.0;
+    -fx-translate-y: 370.0;
     -fx-pref-width: 150px;
     -fx-pref-height: 40px;
     -fx-font-family: "Roboto Regular";
@@ -287,8 +298,8 @@
     -fx-background-color:  #129084;
 }
 .deleteBttnAddressCards{
-    -fx-translate-x: 464.0;
-    -fx-translate-y: 395.0;
+    -fx-translate-x: 445.0;
+    -fx-translate-y: 345.0;
     -fx-pref-width: 150px;
     -fx-pref-height: 40px;
     -fx-font-family: "Roboto Regular";
@@ -342,6 +353,7 @@
 
 .active {
     -fx-background-color: #129f84;
+    -fx-background-color: #129f84;
 }
 
 .profile-information-field{
@@ -352,6 +364,11 @@
     -jfx-unfocus-color: #00000080;
     -fx-text-fill: black;
     -fx-font-size: 20px;
+}
+.profile-information-grid {
+    -fx-pref-width: 200;
+    -fx-pref-height: 300;
+
 }
 
 .new-password-field{
@@ -365,7 +382,95 @@
     -fx-text-fill: black;
     -fx-font-size: 20px;
 }
+.cart-properties{
 
+
+    -fx-spacing: 10px;
+    -fx-pref-width: 910px;
+    -fx-pref-height: 410;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: black;
+}
+.cart-frame {
+    -fx-padding: 15px 15px 15px 15px ;
+
+}
+.cart-total-properties {
+    -fx-pref-height: 35px;
+    -fx-alignment: center-right;
+    -fx-spacing: 100px;
+    -fx-padding: 5px;
+
+
+
+}
+.cart-total-button {
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-background-color: #1d9184;
+}
+.cart-total-font {
+    -fx-text-fill: #129084;
+    -fx-font-size: 18px;
+}
+.cart-font {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+.cart-row {
+    -fx-padding: 5px;
+    -fx-pref-height: 50px;
+    -fx-background-color: #129084 ;
+    -fx-border-color: #e5e5e8;
+    -fx-border-width: 0 0 5px 0;
+    -fx-alignment: center-left;
+    -fx-spacing: 10px;
+
+}
+.cart-button {
+    -fx-background-color: #129084;
+    -fx-border-width: 0 0 0 1px;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+
+}
+.cart-button:hover {
+    -fx-background-color: ffffff;
+    -fx-text-fill: #129084;
+}
+.cart-info {
+
+    -fx-spacing: 110px;
+    -fx-pref-width: 900;
+
+}
+.cart-align-left {
+    -fx-alignment: center-left;
+    -fx-spacing: 20px;
+    -fx-pref-width: 350;
+}
+
+.cart-align-right {
+    -fx-alignment: center-right;
+}
+.cart-row-properties {
+    -fx-spacing: 50px;
+    -fx-pref-width: 400px;
+
+}
+.qty-box {
+    -fx-alignment: center;
+
+
+}
+.qty-input {
+    -fx-background-color: #1d9184;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-pref-width: 40;
+}
 .old-password-field{
     -jfx-label-float: true;
     -fx-translate-x: 28.0;
@@ -376,6 +481,7 @@
     -jfx-unfocus-color: #00000080;
     -fx-text-fill: black;
     -fx-font-size: 20px;
+
 }
 
 .confirm-password-field{
@@ -399,31 +505,46 @@
     -fx-text-alignment: left;
 }
 .hboxContainer{
-    -fx-hgap: 10px;
-    -fx-pref-width: 900px;
-    -fx-pref-height: 459px;
+    -fx-spacing: 15px;
+    -fx-pref-width: 870px;
+    -fx-pref-height: 400px;
 }
 .firstVbox{
     -fx-background-color: #E5E5E8;
     -fx-border-color: #B0B0B9;
-    -fx-pref-width: 250px;
-    -fx-pref-height: 459px;
+    -fx-pref-width: 238px;
+    -fx-pref-height: 396px;
+    -fx-spacing: 5px;
+}
+.secondVbox {
+    -fx-background-color: #E5E5E8;
+    -fx-border-color: #B0B0B9;
+    -fx-pref-width: 230px;
+    -fx-pref-height: 395px;
     -fx-spacing: 5px;
 }
 .secondAncharPane{
     -fx-background-color: #E5E5E8;
     -fx-border-color: #B0B0B9;
-    -fx-pref-width: 650px;
-    -fx-pref-height: 459px;
+    -fx-pref-width: 700px;
+    -fx-pref-height:400px;
 
+
+
+
+}
+.address-scrollpane{
+    -fx-pref-height: 440px;
+    -fx-pref-width: 325px;
 }
 .pane {
     -fx-background-color: #E5E5E8;
     -fx-pref-width: 900px;
-    -fx-pref-height: 459px;
+    -fx-pref-height: 420px;
 }
 .gridPane{
-    -fx-pref-width: 300px;
+    -fx-pref-width: 290px;
+    -fx-pref-height: 320px;
 
 }
 
@@ -661,4 +782,27 @@
 }
 .vboxChat{
     -fx-background-color:  #E5E5E8;
+}
+.window {
+    -fx-pref-height: 570px;
+    -fx-pref-width: 930px;
+    -fx-spacing: 15px;
+}
+.grid-buttons {
+    -fx-pref-width: 180px;
+    -fx-pref-height: 40px;
+
+}
+.profile-nav {
+    -fx-pref-height: 40px;
+}
+.dynamic-pane {
+    -fx-pref-height: 370px;
+    -fx-pref-width: 870px;
+}
+
+.grid-properties {
+    -fx-pref-width: 724px;
+    -fx-max-height: 40px;
+    -fx-hgap: 1px;
 }

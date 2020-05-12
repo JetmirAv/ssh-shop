@@ -19,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import org.fiek.App;
 import org.fiek.controllers.AbstractController;
+import org.fiek.controllers.profile.ProfileController;
 
 public class LayoutController extends AbstractController {
 
@@ -89,7 +90,7 @@ public class LayoutController extends AbstractController {
                 break;
 
             case "navCart":
-                setRoot("views/home/home");
+                setRoot("views/cart/cart");
                 navCart.getStyleClass().add("active");
                 System.out.println("Cart Called");
                 break;
@@ -113,7 +114,7 @@ public class LayoutController extends AbstractController {
                 break;
 
             case "profile":
-                setRoot("views/profile/info");
+                setRoot("views/profile/index", new ProfileController());
                 System.out.println("Profile");
                 break;
 
