@@ -1,5 +1,7 @@
 package org.fiek.models;
 
+import java.util.ArrayList;
+
 public class Category {
     final String tableName = "categories";
 

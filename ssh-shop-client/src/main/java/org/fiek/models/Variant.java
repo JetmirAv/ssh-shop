@@ -1,5 +1,7 @@
 package org.fiek.models;
 
+import java.util.ArrayList;
+
 public class Variant {
     final String tableName = "variants";
 
@@ -20,7 +22,7 @@ public class Variant {
         this.ID = ID;
         this.product_id = product_id;
         this.name = name;
-        this.descriptiom = description;
+        this.description = description;
         this.product = product;
         this.options = options;
     }

@@ -12,11 +12,11 @@ public class Media {
                    int reference_id,
                    String path) {
         this.ID = ID;
-        this.reference_id_id = reference_id;
+        this.reference_id = reference_id;
         this.path = path;
     }
 
-    public Media {
+    public Media() {
         this(-1, -1, "");
     }
 

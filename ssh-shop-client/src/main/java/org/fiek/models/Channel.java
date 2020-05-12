@@ -27,7 +27,7 @@ public class Channel{
     }
 
     public Channel(){
-        this( -1, -1, -1, "", null, null )
+        this( -1, -1, -1, "", null, null );
     }
 
 
@@ -39,7 +39,7 @@ public class Channel{
         return ID;
     }
 
-    public int getProduct_id{
+    public int getProduct_id(){
         return product_id;
     }
 
