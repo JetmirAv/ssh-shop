@@ -9,7 +9,7 @@ public class VariantOptions {
 
     public Variant variant;
 
-    public VariantOptions(int ID, int variant_id, String name, String description, Variant variant) {
+    public VariantOptions(int ID, int variant_id, String name, String description) {
         this.ID = ID;
         this.variant_id = variant_id;
         this.name = name;
@@ -17,8 +17,8 @@ public class VariantOptions {
         this.variant = variant;
     }
 
-    public VariantOptions(){
-        this(-1,-1,"","",null);
+    public VariantOptions() {
+        this(-1, -1, "", "");
     }
 
     public String getTableName() {
@@ -29,11 +29,11 @@ public class VariantOptions {
         return ID;
     }
 
-    public int getVariant_id() {
+    public int getVariantId() {
         return variant_id;
     }
 
-    public void setVariant_id(int variant_id) {
+    public void setVariantId(int variant_id) {
         this.variant_id = variant_id;
     }
 

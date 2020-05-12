@@ -1,8 +1,8 @@
 package org.fiek.models;
 
 public class Cart {
-
     final String tableName = "carts";
+
     public int ID;
     public int user_id;
     public int variant_id;
@@ -10,16 +10,15 @@ public class Cart {
 
     public User user;
 
-    public Cart(int ID, int user_id, int variant_id, int quantity, User user) {
+    public Cart(int ID, int user_id, int variant_id, int quantity) {
         this.ID = ID;
         this.user_id = user_id;
         this.variant_id = variant_id;
         this.quantity = quantity;
-        this.user = user;
     }
 
-    public Cart(){
-        this(-1,-1,-1,-1,null);
+    public Cart() {
+        this(-1, -1, -1, -1);
     }
 
     public String getTableName() {
@@ -30,19 +29,19 @@ public class Cart {
         return ID;
     }
 
-    public int getUser_id() {
+    public int getUserId() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUserId(int user_id) {
         this.user_id = user_id;
     }
 
-    public int getVariant_id() {
+    public int getVariantId() {
         return variant_id;
     }
 
-    public void setVariant_id(int variant_id) {
+    public void setVariantId(int variant_id) {
         this.variant_id = variant_id;
     }
 

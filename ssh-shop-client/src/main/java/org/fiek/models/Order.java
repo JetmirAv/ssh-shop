@@ -15,16 +15,7 @@ public class Order {
     public Card card;
     public Address address;
 
-    public Order(int ID,
-                 int user_id,
-                 int card_id,
-                 int address_id,
-                 int variant_id,
-                 int quantity,
-                 float price,
-                 User user,
-                 Card card,
-                 Address address) {
+    public Order(int ID, int user_id, int card_id, int address_id, int variant_id, int quantity, float price) {
         this.ID = ID;
         this.user_id = user_id;
         this.card_id = card_id;
@@ -32,14 +23,11 @@ public class Order {
         this.variant_id = variant_id;
         this.quantity = quantity;
         this.price = price;
-        this.user = user;
-        this.card = card;
-        this.address = address;
     }
 
 
     public Order() {
-        this(-1, -1, -1, -1, -1, -1, -1, null, null, null);
+        this(-1, -1, -1, -1, -1, -1, -1);
     }
 
     public String getTableName() {
@@ -50,35 +38,35 @@ public class Order {
         return ID;
     }
 
-    public int getUser_id() {
+    public int getUserId() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUserId(int user_id) {
         this.user_id = user_id;
     }
 
-    public int getCard_id() {
-    return card_id;
+    public int getCardId() {
+        return card_id;
     }
 
-    public void setCard_id(int card_id) {
+    public void setCardId(int card_id) {
         this.card_id = card_id;
     }
 
-    public int getAddress_id() {
+    public int getAddressId() {
         return address_id;
     }
 
-    public void setAddress_id(int address_id) {
+    public void setAddressId(int address_id) {
         this.address_id = address_id;
     }
 
-    public int getVariant_id() {
+    public int getVariantId() {
         return variant_id;
     }
 
-    public void setVariant_id(int variant_id) {
+    public void setVariantId(int variant_id) {
         this.variant_id = variant_id;
     }
 

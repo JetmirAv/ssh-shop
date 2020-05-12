@@ -8,9 +8,7 @@ public class Media {
     public String path;
 
 
-    public Media(int ID,
-                   int reference_id,
-                   String path) {
+    public Media(int ID, int reference_id, String path) {
         this.ID = ID;
         this.reference_id = reference_id;
         this.path = path;
@@ -28,11 +26,11 @@ public class Media {
         return ID;
     }
 
-    public int getReference_id() {
+    public int getReferenceId() {
         return reference_id;
     }
 
-    public void setReference_id(int reference_id) {
+    public void setReferenceId(int reference_id) {
         this.reference_id = reference_id;
     }
 

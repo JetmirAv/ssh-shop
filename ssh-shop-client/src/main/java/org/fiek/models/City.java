@@ -9,15 +9,14 @@ public class City {
 
     public Country country;
 
-    public City(int ID, String name, int country_id, Country country) {
+    public City(int ID, String name, int country_id) {
         this.ID = ID;
         this.name = name;
         this.country_id = country_id;
-        this.country = country;
     }
 
     public City() {
-        this(-1, "", -1, null);
+        this(-1, "", -1);
     }
 
     public String getTableName() {
@@ -36,11 +35,11 @@ public class City {
         this.name = name;
     }
 
-    public int getCountry_id() {
+    public int getCountryId() {
         return country_id;
     }
 
-    public void setCountry_id(int country_id) {
+    public void setCountryId(int country_id) {
         this.country_id = country_id;
     }
 

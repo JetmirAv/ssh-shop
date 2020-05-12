@@ -12,18 +12,17 @@ public class Card {
 
     public User user;
 
-    public Card(int ID, int user_id, String number, String exp_month, String exp_year, String code, User user) {
+    public Card(int ID, int user_id, String number, String exp_month, String exp_year, String code) {
         this.ID = ID;
         this.user_id = user_id;
         this.number = number;
         this.exp_month = exp_month;
         this.exp_year = exp_year;
         this.code = code;
-        this.user = user;
     }
 
     public Card() {
-        this(-1, -1, "", "", "", "", null);
+        this(-1, -1, "", "", "", "");
     }
 
     public String getTableName() {
@@ -34,11 +33,11 @@ public class Card {
         return ID;
     }
 
-    public int getUser_id() {
+    public int getUserId() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUserId(int user_id) {
         this.user_id = user_id;
     }
 

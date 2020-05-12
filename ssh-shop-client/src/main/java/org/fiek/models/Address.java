@@ -13,20 +13,17 @@ public class Address {
     public User user;
     public City city;
 
-    public Address(int ID, int user_id, String street, String postal, String phone_number, int city_id, User user,
-                   City city) {
+    public Address(int ID, int user_id, String street, String postal, String phone_number, int city_id) {
         this.ID = ID;
         this.user_id = user_id;
         this.street = street;
         this.postal = postal;
         this.phone_number = phone_number;
         this.city_id = city_id;
-        this.user = user;
-        this.city = city;
     }
 
     public Address() {
-        this(-1, -1, "", "", "", -1, null, null);
+        this(-1, -1, "", "", "", -1);
     }
 
     public String getTableName() {
@@ -37,11 +34,11 @@ public class Address {
         return ID;
     }
 
-    public int getUser_id() {
+    public int getUserId() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUserId(int user_id) {
         this.user_id = user_id;
     }
 
@@ -61,19 +58,19 @@ public class Address {
         this.postal = postal;
     }
 
-    public String getPhone_number() {
+    public String getPhoneNumber() {
         return phone_number;
     }
 
-    public void setPhone_number(String phone_number) {
+    public void setPhoneNumber(String phone_number) {
         this.phone_number = phone_number;
     }
 
-    public int getCity_id() {
+    public int getCityId() {
         return city_id;
     }
 
-    public void setCity_id(int city_id) {
+    public void setCityId(int city_id) {
         this.city_id = city_id;
     }
 

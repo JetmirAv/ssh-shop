@@ -14,22 +14,17 @@ public class Product {
     public User user;
     public Category category;
 
-    public Product(int ID, int user_id, String name,
-                   String description, int category_id,
-                   float discount_pt, User user, Category category) {
+    public Product(int ID, int user_id, String name, String description, int category_id, float discount_pt) {
         this.ID = ID;
         this.user_id = user_id;
         this.name = name;
         this.description = description;
         this.category_id = category_id;
         this.discount_pt = discount_pt;
-        this.user = user;
-        this.category = category;
     }
 
-    public Product(){
-        this(-1,-1,"","",-1,
-                -1,null,null);
+    public Product() {
+        this(-1, -1, "", "", -1, -1);
     }
 
     public String getTableName() {
@@ -40,11 +35,11 @@ public class Product {
         return ID;
     }
 
-    public int getUser_id() {
+    public int getUserId() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUserId(int user_id) {
         this.user_id = user_id;
     }
 
@@ -64,11 +59,11 @@ public class Product {
         this.description = description;
     }
 
-    public int getCategory_id() {
+    public int getCategoryId() {
         return category_id;
     }
 
-    public void setCategory_id(int category_id) {
+    public void setCategoryId(int category_id) {
         this.category_id = category_id;
     }
 

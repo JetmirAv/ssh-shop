@@ -10,20 +10,14 @@ public class Wishlist {
     public User user;
     public Product product;
 
-    public Wishlist(int ID,
-                   int user_id,
-                   int product_id,
-                   User user,
-                   Product product) {
+    public Wishlist(int ID, int user_id, int product_id) {
         this.ID = ID;
         this.user_id = user_id;
         this.product_id = product_id;
-        this.user = user;
-        this.product = product;
     }
 
-    public Wishlist(){
-         this( -1, -1, -1, null,null);
+    public Wishlist() {
+        this(-1, -1, -1);
     }
 
     public String getTableName() {
@@ -34,19 +28,19 @@ public class Wishlist {
         return ID;
     }
 
-    public int getUser_id() {
+    public int getUserId() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUserId(int user_id) {
         this.user_id = user_id;
     }
 
-    public int getProduct_id() {
+    public int getProductId() {
         return product_id;
     }
 
-    public void setProduct_id(int product_id) {
+    public void setProductId(int product_id) {
         this.product_id = product_id;
     }
 

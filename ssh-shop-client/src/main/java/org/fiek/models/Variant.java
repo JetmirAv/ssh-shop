@@ -13,12 +13,7 @@ public class Variant {
     public Product product;
     public ArrayList<VariantOptions> options;
 
-    public Variant(int ID,
-                   int product_id,
-                   String name,
-                   String description,
-                   Product product,
-                   ArrayList<VariantOptions> options) {
+    public Variant(int ID, int product_id, String name, String description,  ArrayList<VariantOptions> options) {
         this.ID = ID;
         this.product_id = product_id;
         this.name = name;
@@ -27,8 +22,8 @@ public class Variant {
         this.options = options;
     }
 
-    public Variant(){
-         this( -1, -1, "", "", null, new ArrayList<VariantOptions>() );
+    public Variant() {
+        this(-1, -1, "", "", new ArrayList<VariantOptions>());
     }
 
     public String getTableName() {
@@ -39,11 +34,11 @@ public class Variant {
         return ID;
     }
 
-    public int getProduct_id() {
+    public int getProductId() {
         return product_id;
     }
 
-    public void setProduct_id(int product_id) {
+    public void setProductId(int product_id) {
         this.product_id = product_id;
     }
 
