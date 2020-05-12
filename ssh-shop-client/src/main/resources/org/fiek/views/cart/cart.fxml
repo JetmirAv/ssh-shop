@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="940.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox styleClass="cart-frame">
+         <children>
+            <VBox styleClass="cart-properties">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" styleClass="cart-row">
+                     <children>
+                        <HBox prefHeight="38.0" prefWidth="834.0" styleClass="cart-info">
+                           <children>
+                              <HBox styleClass="cart-align-left">
+                                 <children>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../images/ImagePlaceHolder.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label styleClass="cart-font" text="Product Name" />
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <HBox styleClass="qty-box">
+                                       <children>
+                                          <Label text="Qty:1">
+                                             <styleClass>
+                                                <String fx:value="cart-font" />
+                                                <String fx:value="qty-box" />
+                                             </styleClass>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label prefHeight="23.0" prefWidth="91.0" styleClass="cart-font" text="Price: 20$" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="cart-align-right" />
+                                    <String fx:value="cart-row-properties" />
+                                 </styleClass>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <JFXButton prefHeight="37.0" prefWidth="125.0" text="X">
+                                 <styleClass>
+                                    <String fx:value="cart-button" />
+                                    <String fx:value="cart-font" />
+                                 </styleClass>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="cart-total-properties">
+               <children>
+                  <Label styleClass="cart-total-font" text="Total: 60$" />
+                  <JFXButton styleClass="cart-total-button" text="Buy" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
