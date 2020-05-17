@@ -1,4 +1,5 @@
 package org.fiek.controllers;
 
-public class AbstractController {
+public abstract class AbstractController {
+
 }

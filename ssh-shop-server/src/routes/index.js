@@ -8,4 +8,11 @@ module.exports = (app) => {
   app.use("/auth", authRouter);
   app.use("/channel", channelRouter);
   app.use("/products", productsRouter);
+  app.use("/", (req, res) => {
+    return setTimeout(() => {
+      return res.json("Hello");
+    }, 3000);
+
+    return res.json("Hello");
+  });
 };

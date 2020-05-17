@@ -13,4 +13,5 @@ public class InfoController extends AbstractController {
     private void profile() throws IOException {
         App.setRoot("views/profile/info");
     }
+
 }

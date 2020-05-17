@@ -29,6 +29,8 @@ const me = async (req, res, next) => {
  */
 const login = async (req, res, next) => {
   try {
+    console.log({ ...req.body });
+
     let user = await User.findOne({
       where: { email: { [Sequelize.Op.like]: req.body.email } },
     });

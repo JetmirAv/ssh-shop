@@ -1,12 +1,16 @@
 package org.fiek.models;
+
 import java.util.ArrayList;
 
 
 public class User {
     final String tableName = "users";
-    public enum Gender {MALE, FEMALE};
 
-    public int ID;
+    public enum Gender {MALE, FEMALE}
+
+    ;
+
+    public int id;
     public int role_id;
     public String first_name;
     public String last_name;
@@ -27,10 +31,10 @@ public class User {
     public ArrayList<Channel> channels;
 
 
-    public User(int ID, int role_id, String first_name, String last_name, String email,
+    public User(int id, int role_id, String first_name, String last_name, String email,
                 String password, String forgot_password_token,
                 String birthdate, Gender gender, String avatar, String phone_number, Role role) {
-        this.ID = ID;
+        this.id = id;
         this.role_id = role_id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -45,17 +49,17 @@ public class User {
     }
 
     public User() {
-        this(-1,-1,"","",
-                "","","",
-                "",null,"","",null);
+        this(-1, -1, "", "",
+                "", "", "",
+                "", null, "", "", null);
     }
 
     public String getTableName() {
         return tableName;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     public int getRoleId() {
@@ -66,7 +70,7 @@ public class User {
         this.role_id = role_id;
     }
 
-    public String getFirst_name() {
+    public String getFirstName() {
         return first_name;
     }
 
@@ -74,7 +78,7 @@ public class User {
         this.first_name = first_name;
     }
 
-    public String getLast_name() {
+    public String getLastName() {
         return last_name;
     }
 
@@ -194,4 +198,8 @@ public class User {
         this.channels = channels;
     }
 
+    @Override
+    public String toString() {
+        return this.first_name + " " + this.last_name;
+    }
 }
