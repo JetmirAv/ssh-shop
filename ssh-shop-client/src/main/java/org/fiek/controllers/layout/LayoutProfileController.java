@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -23,7 +24,7 @@ import org.fiek.store.auth.AuthStore;
 
 public class LayoutProfileController extends AbstractController {
 
-    AuthStore authStore = AuthStore.getInstance();
+    private final AuthStore authStore;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -40,6 +41,10 @@ public class LayoutProfileController extends AbstractController {
     @FXML // fx:id="lastName"
     private Label lastName; // Value injected by FXMLLoader
 
+    public LayoutProfileController(AuthStore authStore){
+        this.authStore = authStore;
+    }
+
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -50,32 +55,34 @@ public class LayoutProfileController extends AbstractController {
 //        firstName.textProperty().bind(new SimpleStringProperty(authStore.getUser().getFirstName()));
 //        lastName.textProperty().bind(new SimpleStringProperty(authStore.getUser().getLastName()));
 
-        firstName.textProperty().bind(Bindings.createStringBinding(() -> {
+        System.out.println("authStore.getUser(): " + authStore.getUser());
 
-            System.out.println("Log user: " + authStore.getUser());
-            System.out.println("Log token: " + authStore.getToken());
-
-            authStore.getTokenSource().supply(() -> {
-                System.out.println("palidhje");
-                return "Jetmir";
-            });
-
-            if (authStore.getUser() != null) {
-                System.out.println("Not null");
-            } else {
-                System.out.println("Null");
-            }
-
-
-            return "Jetmir";
-        }));
+//        firstName.textProperty().bind(Bindings.createStringBinding(() -> {
+//
+//            System.out.println("Log user: " + authStore.getUser());
+//            System.out.println("Log token: " + authStore.getToken());
+//
+//            authStore.getTokenSource().supply(() -> {
+//                System.out.println("palidhje");
+//                return "Jetmir";
+//            });
+//
+//            if (authStore.getUser() != null) {
+//                System.out.println("Not null");
+//            } else {
+//                System.out.println("Null");
+//            }
+//
+//
+//            return "Jetmir";
+//        }));
 
         authStore.getUserSource().subscribe(this::profile);
     }
 
     private void profile(User user) {
         if (user != null) {
-            System.out.println("Profile asfas");
+            System.out.println("Profile asfas: " + user);
             firstName.setText(user.getFirstName());
             lastName.setText(user.getLastName());
         }

@@ -29,7 +29,7 @@ import org.fiek.store.auth.AuthStore;
 
 public class LayoutController extends AbstractController implements View {
 
-    AuthStore authStore = AuthStore.getInstance();
+    private final AuthStore authStore;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -72,6 +72,11 @@ public class LayoutController extends AbstractController implements View {
 
     }
 
+    public LayoutController(AuthStore store) {
+        this.authStore = store;
+    }
+
+
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException {
@@ -89,12 +94,12 @@ public class LayoutController extends AbstractController implements View {
 
         main.setContent(App.loadFXML("views/home/home"));
 
-        System.out.println(authStore.getToken());
+        System.out.println("tokenasfas: "  + authStore.getToken());
 
         if (authStore.getUser() == null) {
             header.getChildren().add(App.loadFXML("views/layout/no-auth"));
         } else {
-            header.getChildren().add(App.loadFXML("views/layout/profile", new ProfileController()));
+            header.getChildren().add(App.loadFXML("views/layout/profile"));
         }
 
 
@@ -149,11 +154,6 @@ public class LayoutController extends AbstractController implements View {
                 setRoot("views/chat/chat");
                 navChat.getStyleClass().add("active");
                 break;
-
-            case "profile":
-                setRoot("views/profile/index", new ProfileController());
-                break;
-
         }
 
     }
