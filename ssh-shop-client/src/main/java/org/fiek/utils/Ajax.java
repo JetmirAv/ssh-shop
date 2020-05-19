@@ -16,7 +16,7 @@ public class Ajax {
 
     AuthStore authStore = new AuthStore();
 
-    private final String host = "http://localhost:3000/";
+    private final String host = "http://192.168.1.67:5000/";
 
     public static enum methods {GET, POST, PATCH, DELETE}
 

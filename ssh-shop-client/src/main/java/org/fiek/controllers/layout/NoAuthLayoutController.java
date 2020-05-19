@@ -31,14 +31,20 @@ public class NoAuthLayoutController extends AbstractController {
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException {
         assert profile != null : "fx:id=\"profile\" was not injected: check your FXML file 'no-auth.fxml'.";
-        stage.setScene(new Scene(App.loadFXML("views/auth/sign-in")));
+        openSignIn();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Sign in");
     }
 
     @FXML
-    public void clickHandler(MouseEvent mouseEvent)  {
+    public void clickHandler(MouseEvent mouseEvent) throws IOException  {
+        openSignIn();
         stage.showAndWait();
+
+    }
+    public static void openSignIn() throws IOException {
+        stage.setScene(new Scene(App.loadFXML("views/auth/sign-in")));
+
+        stage.setTitle("Sign in");
     }
 
 }

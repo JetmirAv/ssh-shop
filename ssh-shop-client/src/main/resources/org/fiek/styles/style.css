@@ -128,15 +128,16 @@
 .sign-up-information-field {
     -fx-font-size: 15px;
     -fx-prompt-text-fill: #ffffff66;
-    -jfx-unfocus-color: #00000080;
+    -jfx-unfocus-color: white;
 
     -fx-alignment: center;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 
 .profile-image {
-    -fx-border-color: #00000080;
-    -fx-border-size: 2px;
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+
 }
 
 * {
@@ -298,7 +299,19 @@
     -fx-border-color: #696969;
     -fx-background-color: #E5E5E8;
 }
+.date-picker {
+    -fx-border-color: white;
+    -fx-border-width: 0 0 1px 0;
+    -fx-base: #1d9184;
+    -fx-background-insets: 0 0 0 0, 0 0 1 0;
 
+}
+.date-picker:hover {
+    -fx-border-color: white;
+    -fx-border-width: 0 0 1px 0;
+    -fx-base: #1d9184;
+
+}
 .streetField, .postalField, .numberField, .expdateField, .csvField,
 .countryCombobox, .cityCombobox {
     -jfx-label-float: true;

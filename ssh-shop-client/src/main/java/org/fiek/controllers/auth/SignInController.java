@@ -18,7 +18,13 @@ import eu.lestard.fluxfx.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import org.fiek.App;
 import org.fiek.controllers.AbstractController;
 import org.fiek.controllers.layout.NoAuthLayoutController;
 import org.fiek.store.auth.AddTokenAction;
@@ -45,12 +51,14 @@ public class SignInController extends AbstractController implements View {
     private JFXButton register; // Value injected by FXMLLoader
 
     @FXML
-    void registerHandler(ActionEvent event) {
-        new Thread(logInRequest).start();
+    void registerHandler(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        NoAuthLayoutController.stage.setScene(new Scene(App.loadFXML("views/auth/sign-up")));
+        NoAuthLayoutController.stage.setTitle("Sign up");
     }
 
     @FXML
-    void logInHandler(ActionEvent event) {
+    void logInHandler(ActionEvent event) throws IOException   {
         new Thread(logInRequest).start();
     }
 
