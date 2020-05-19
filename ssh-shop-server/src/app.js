@@ -1,14 +1,18 @@
 require("dotenv").config();
 const express = require("express");
 const logger = require("morgan");
+const app = express();
 
-require("./config/mongoose");
 require("./models/sequelize");
 
-const handleError = require("./errors");
+var mongodb = require( "./config/mongodb" );
+
+mongodb.connectToServer( function( err, client ) {
+  if (err) console.log(err);
+
 const routes = require("./routes");
 
-const app = express();
+const handleError = require("./errors");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -20,4 +24,5 @@ routes(app);
 // error handler
 app.use(handleError);
 
+} );
 module.exports = app;
