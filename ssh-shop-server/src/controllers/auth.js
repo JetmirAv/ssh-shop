@@ -53,6 +53,8 @@ const login = async (req, res, next) => {
  */
 const register = async (req, res, next) => {
   try {
+    console.log({ ...req.body });
+
     const user = await CreateUser(req.body);
 
     return res.status(200).json({ user: user, token: generateJWT(user.id) });

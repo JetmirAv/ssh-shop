@@ -1,5 +1,8 @@
 package org.fiek.utils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import eu.lestard.easydi.EasyDI;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -14,7 +17,9 @@ import java.io.IOException;
 
 public class Ajax {
 
-    AuthStore authStore = new AuthStore();
+    EasyDI easyDI = new EasyDI();
+
+    AuthStore authStore = easyDI.getInstance(AuthStore.class);
 
     private final String host = "http://192.168.1.67:5000/";
 
@@ -32,7 +37,7 @@ public class Ajax {
         System.out.println("data: " + this.data);
     }
 
-    public String post() throws IOException {
+    public JsonObject post() throws IOException {
         String result = "";
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
@@ -67,7 +72,8 @@ public class Ajax {
             httpClient.close();
         }
 
-        return result;
+        JsonObject object = JsonParser.parseString(result).getAsJsonObject();
+        return object;
     }
 
     public String get() throws IOException {

@@ -10,15 +10,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane focusTraversable="true" prefHeight="750.0" prefWidth="500.0" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.auth.RegisterController">
+<AnchorPane focusTraversable="true" prefHeight="750.0" prefWidth="500.0" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.auth.RegisterController">
    <children>
       <Label layoutX="101.0" layoutY="25.0" styleClass="pane-info" text="REGISTER" />
-      <JFXTextField alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="22.0" layoutY="289.0" prefHeight="33.0" prefWidth="180.0" promptText="First Name" styleClass="sign-up-information-field" unFocusColor="WHITE" />
-      <JFXTextField alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="299.0" layoutY="289.0" promptText="Last Name" style="-fx-underline: false;" styleClass="sign-up-information-field" unFocusColor="WHITE" />
-      <JFXTextField alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="64.0" layoutY="359.0" prefHeight="33.0" prefWidth="377.0" promptText="Email" styleClass="sign-up-information-field" unFocusColor="WHITE" />
-      <JFXPasswordField focusColor="WHITE" labelFloat="true" layoutX="62.0" layoutY="429.0" prefHeight="33.0" prefWidth="377.0" promptText="Password" styleClass="sign-up-information-field" />
-      <JFXComboBox focusColor="WHITE" layoutX="326.0" layoutY="499.0" promptText="Gender" styleClass="sign-up-information-field" visibleRowCount="2" />
-      <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="64.0" layoutY="559.0" prefHeight="33.0" prefWidth="377.0" promptText="Phone Number" styleClass="sign-up-information-field" />
+      <JFXTextField fx:id="firstName" alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="22.0" layoutY="289.0" prefHeight="33.0" prefWidth="180.0" promptText="First Name" styleClass="sign-up-information-field" unFocusColor="WHITE" />
+      <JFXTextField fx:id="lastName" alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="299.0" layoutY="289.0" promptText="Last Name" style="-fx-underline: false;" styleClass="sign-up-information-field" unFocusColor="WHITE" />
+      <JFXTextField fx:id="email" alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="64.0" layoutY="359.0" prefHeight="33.0" prefWidth="377.0" promptText="Email" styleClass="sign-up-information-field" unFocusColor="WHITE" />
+      <JFXPasswordField fx:id="password" focusColor="WHITE" labelFloat="true" layoutX="62.0" layoutY="429.0" prefHeight="33.0" prefWidth="377.0" promptText="Password" styleClass="sign-up-information-field" />
+      <JFXComboBox fx:id="gender" focusColor="WHITE" layoutX="326.0" layoutY="499.0" promptText="Gender" styleClass="sign-up-information-field" visibleRowCount="2" />
+      <JFXTextField fx:id="phoneNumber" focusColor="WHITE" labelFloat="true" layoutX="64.0" layoutY="559.0" prefHeight="33.0" prefWidth="377.0" promptText="Phone Number" styleClass="sign-up-information-field" />
       <AnchorPane layoutX="135.0" layoutY="94.0" styleClass="profile-image">
          <children>
             <ImageView fx:id="imageSelector" fitHeight="172.5" fitWidth="230.0" onMouseClicked="#selectImage" pickOnBounds="true" preserveRatio="true" styleClass="profile-image" y="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
@@ -26,8 +26,8 @@
          </children>
       </AnchorPane>
       <JFXButton layoutX="203.0" layoutY="696.0" onAction="#clickHandler" prefHeight="33.0" prefWidth="100.0" styleClass="login-register-switch-button" text="Log in" />
-      <JFXButton layoutX="144.0" layoutY="611.0" prefHeight="70.0" prefWidth="220.0" styleClass="info-getter-button" text="Register" />
-      <DatePicker editable="false" layoutX="44.0" layoutY="499.0" styleClass="date-picker" />
+      <JFXButton onAction="#registerHandler" layoutX="144.0" layoutY="611.0" prefHeight="70.0" prefWidth="220.0" styleClass="info-getter-button" text="Register" />
+      <DatePicker fx:id="birthdate" editable="false" layoutX="44.0" layoutY="499.0" styleClass="date-picker" />
    </children>
    <styleClass>
       <String fx:value="base-root" />

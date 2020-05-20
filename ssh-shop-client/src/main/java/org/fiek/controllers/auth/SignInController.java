@@ -84,16 +84,15 @@ public class SignInController extends AbstractController implements View {
             json.addProperty("email", "jetmir99@hotmail.com");
             json.addProperty("password", "password");
             Ajax request = new Ajax("/auth/login", Ajax.methods.POST, json.toString());
-            String response = null;
+            JsonObject response = null;
             try {
                 response = request.post();
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
-            JsonObject object = JsonParser.parseString(response).getAsJsonObject();
 
-            String user = object.get("user").toString();
-            String token = object.get("token").toString();
+            String user = response.get("user").toString();
+            String token = response.get("token").toString();
             token = token.substring(1, token.length() - 1);
 
             publishAction(new AddTokenAction(token, user));
