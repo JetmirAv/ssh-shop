@@ -1,5 +1,7 @@
 package org.fiek.controllers;
 
-public abstract class AbstractController {
+import javafx.concurrent.Service;
+
+public abstract class AbstractController  {
 
 }

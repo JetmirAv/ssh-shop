@@ -27,10 +27,11 @@ import javafx.stage.StageStyle;
 import org.fiek.App;
 import org.fiek.controllers.AbstractController;
 import org.fiek.controllers.layout.NoAuthLayoutController;
+import org.fiek.services.auth.LogInService;
 import org.fiek.store.auth.AddTokenAction;
 import org.fiek.utils.Ajax;
 
-public class SignInController extends AbstractController implements View {
+public class SignInController extends AbstractController{
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -59,7 +60,16 @@ public class SignInController extends AbstractController implements View {
 
     @FXML
     void logInHandler(ActionEvent event) throws IOException   {
-        new Thread(logInRequest).start();
+
+        LogInService logInService = new LogInService(username.getText(), password.getText());
+        logInService.start();
+        logInService.setOnSucceeded(e -> {
+            System.out.println("Tash");
+            NoAuthLayoutController.stage.close();
+        });
+
+
+
     }
 
     public static Stage stage = new Stage();
@@ -77,32 +87,14 @@ public class SignInController extends AbstractController implements View {
     Runnable logInRequest = new Runnable() {
         @Override
         public void run() {
-            JsonObject json = new JsonObject();
-//            json.addProperty("email", username.getText());
-//            json.addProperty("password", password.getText());
 
-            json.addProperty("email", "jetmir99@hotmail.com");
-            json.addProperty("password", "password");
-            Ajax request = new Ajax("/auth/login", Ajax.methods.POST, json.toString());
-            JsonObject response = null;
-            try {
-                response = request.post();
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-
-            String user = response.get("user").toString();
-            String token = response.get("token").toString();
-            token = token.substring(1, token.length() - 1);
-
-            publishAction(new AddTokenAction(token, user));
 
             Platform.runLater(() -> {
-                System.out.println("Tash");
-                NoAuthLayoutController.stage.close();
+
             });
 
         }
     };
+
 
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane focusTraversable="true" prefHeight="750.0" prefWidth="500.0" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.auth.RegisterController">
+<AnchorPane fx:id="root" focusTraversable="true" prefHeight="750.0" prefWidth="500.0" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.auth.RegisterController">
    <children>
       <Label layoutX="101.0" layoutY="25.0" styleClass="pane-info" text="REGISTER" />
       <JFXTextField fx:id="firstName" alignment="CENTER" focusColor="WHITE" labelFloat="true" layoutX="22.0" layoutY="289.0" prefHeight="33.0" prefWidth="180.0" promptText="First Name" styleClass="sign-up-information-field" unFocusColor="WHITE" />
@@ -26,7 +26,7 @@
          </children>
       </AnchorPane>
       <JFXButton layoutX="203.0" layoutY="696.0" onAction="#clickHandler" prefHeight="33.0" prefWidth="100.0" styleClass="login-register-switch-button" text="Log in" />
-      <JFXButton onAction="#registerHandler" layoutX="144.0" layoutY="611.0" prefHeight="70.0" prefWidth="220.0" styleClass="info-getter-button" text="Register" />
+      <JFXButton layoutX="144.0" layoutY="611.0" onAction="#registerHandler" prefHeight="70.0" prefWidth="220.0" styleClass="info-getter-button" text="Register" />
       <DatePicker fx:id="birthdate" editable="false" layoutX="44.0" layoutY="499.0" styleClass="date-picker" />
    </children>
    <styleClass>

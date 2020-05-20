@@ -133,11 +133,17 @@
     -fx-alignment: center;
     -fx-text-fill: white;
 }
+.jfx-spinner .arc {
+    -fx-stroke: linear-gradient(to top right, white 35%, white 100%);
+}
 
 .profile-image {
     -fx-border-color: white;
     -fx-border-width: 1px;
 
+}
+.backdrop {
+    -fx-background-color: #1d9184;
 }
 
 * {

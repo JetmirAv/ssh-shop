@@ -67,11 +67,6 @@ public class LayoutController extends AbstractController implements View {
     @FXML // fx:id="main"
     private ScrollPane main; // Value injected by FXMLLoader
 
-    @FXML
-    void navClick(ActionEvent event) {
-
-    }
-
     public LayoutController(AuthStore store) {
         this.authStore = store;
     }

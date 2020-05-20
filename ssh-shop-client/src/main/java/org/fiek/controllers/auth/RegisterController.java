@@ -12,7 +12,6 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import eu.lestard.fluxfx.View;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -20,9 +19,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import org.fiek.App;
 import org.fiek.controllers.layout.NoAuthLayoutController;
 import org.fiek.models.User;
-import org.fiek.services.AuthServices;
+import org.fiek.services.auth.RegisterService;
 import org.fiek.store.auth.AddTokenAction;
 import org.fiek.utils.ImageUploadHandler;
 import org.fiek.utils.Tuple;
@@ -35,6 +37,9 @@ public class RegisterController implements View {
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+
+    @FXML // fx:id="root"
+    private AnchorPane root; // Value injected by FXMLLoader
 
     @FXML // fx:id="firstName"
     private JFXTextField firstName; // Value injected by FXMLLoader
@@ -63,6 +68,9 @@ public class RegisterController implements View {
     @FXML // fx:id="birthdate"
     private DatePicker birthdate; // Value injected by FXMLLoader
 
+
+
+
     @FXML
     void selectImage(MouseEvent event) throws FileNotFoundException {
         ImageUploadHandler imageUploadHandler = new ImageUploadHandler();
@@ -77,7 +85,7 @@ public class RegisterController implements View {
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
+    void initialize() throws IOException {
         assert firstName != null : "fx:id=\"firstName\" was not injected: check your FXML file 'sign-up.fxml'.";
         assert lastName != null : "fx:id=\"lastName\" was not injected: check your FXML file 'sign-up.fxml'.";
         assert email != null : "fx:id=\"email\" was not injected: check your FXML file 'sign-up.fxml'.";
@@ -89,6 +97,15 @@ public class RegisterController implements View {
         assert birthdate != null : "fx:id=\"birthdate\" was not injected: check your FXML file 'sign-up.fxml'.";
         user = new User();
         gender.getItems().addAll(User.Gender.values());
+
+        Pane loading = new Pane(App.loadFXML("views/loading/loading"));
+        root.getChildren().addAll(loading);
+        AnchorPane.setBottomAnchor(loading, 0.0);
+        AnchorPane.setTopAnchor(loading, 0.0);
+        AnchorPane.setLeftAnchor(loading, 0.0);
+        AnchorPane.setRightAnchor(loading, 0.0);
+
+
 
     }
 
@@ -107,25 +124,36 @@ public class RegisterController implements View {
         user.setPhoneNumber(phoneNumber.getText());
         user.setBirthdate(Utils.formatDate(birthdate.getValue()));
 
-        new Thread(runnable).start();
+        RegisterService registerService = new RegisterService(user);
+        registerService.start();
+        registerService.setOnRunning(e  -> {
+
+        });
+        registerService.setOnSucceeded(e -> {
+            System.out.println("Tash");
+            Tuple<String, String> response = registerService.getResponse();
+            publishAction(new AddTokenAction(response.getSecond(), response.getFirst()));
+            NoAuthLayoutController.stage.close();
+        });
+
+
     }
 
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            try {
-                Tuple<String, String> response = AuthServices.register(user);
-                publishAction(new AddTokenAction(response.getSecond(), response.getFirst()));
-
-                Platform.runLater(() -> {
-                    System.out.println("Tash");
-                    NoAuthLayoutController.stage.close();
-                });
-
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        }
-    };
+//    Runnable runnable = new Runnable() {
+//        @Override
+//        public void run() {
+//            try {
+////                Tuple<String, String> response = AuthServices.register(user);
+//
+//
+//                Platform.runLater(() -> {
+//
+//                });
+//
+//            } catch (IOException exception) {
+//                exception.printStackTrace();
+//            }
+//        }
+//    };
 
 }
