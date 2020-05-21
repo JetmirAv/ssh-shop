@@ -14,30 +14,28 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import eu.lestard.fluxfx.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.fiek.App;
 import org.fiek.controllers.AbstractController;
 import org.fiek.controllers.layout.NoAuthLayoutController;
 import org.fiek.services.auth.LogInService;
-import org.fiek.store.auth.AddTokenAction;
-import org.fiek.utils.Ajax;
+import org.fiek.utils.Loading;
 
-public class SignInController extends AbstractController{
+public class SignInController extends AbstractController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+
+    @FXML // fx:id="root"
+    private AnchorPane root; // Value injected by FXMLLoader
 
     @FXML // fx:id="username"
     private JFXTextField username; // Value injected by FXMLLoader
@@ -48,53 +46,42 @@ public class SignInController extends AbstractController{
     @FXML // fx:id="logIn"
     private JFXButton logIn; // Value injected by FXMLLoader
 
-    @FXML // fx:id="register"
-    private JFXButton register; // Value injected by FXMLLoader
+    Loading loading;
 
     @FXML
     void registerHandler(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
         NoAuthLayoutController.stage.setScene(new Scene(App.loadFXML("views/auth/sign-up")));
         NoAuthLayoutController.stage.setTitle("Sign up");
     }
 
     @FXML
-    void logInHandler(ActionEvent event) throws IOException   {
+    void logInHandler(ActionEvent event) {
 
         LogInService logInService = new LogInService(username.getText(), password.getText());
         logInService.start();
+        logInService.setOnRunning(e -> {
+            loading = new Loading();
+            root.getChildren().add(loading);
+        });
         logInService.setOnSucceeded(e -> {
             System.out.println("Tash");
             NoAuthLayoutController.stage.close();
         });
 
-
+        logInService.setOnFailed(e -> {
+            System.out.println("Bravo");
+            root.getChildren().remove(loading);
+        });
 
     }
 
-    public static Stage stage = new Stage();
-
-    @FXML
-        // This method is called by the FXMLLoader when initialization is complete
+    @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException {
         assert username != null : "fx:id=\"username\" was not injected: check your FXML file 'sign-in.fxml'.";
         assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'sign-in.fxml'.";
         assert logIn != null : "fx:id=\"logIn\" was not injected: check your FXML file 'sign-in.fxml'.";
-        assert register != null : "fx:id=\"register\" was not injected: check your FXML file 'sign-in.fxml'.";
 
     }
-
-    Runnable logInRequest = new Runnable() {
-        @Override
-        public void run() {
-
-
-            Platform.runLater(() -> {
-
-            });
-
-        }
-    };
 
 
 }

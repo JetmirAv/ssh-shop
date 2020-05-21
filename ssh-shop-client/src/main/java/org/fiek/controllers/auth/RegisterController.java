@@ -16,21 +16,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import org.fiek.App;
 import org.fiek.controllers.layout.NoAuthLayoutController;
 import org.fiek.models.User;
 import org.fiek.services.auth.RegisterService;
 import org.fiek.store.auth.AddTokenAction;
 import org.fiek.utils.ImageUploadHandler;
+import org.fiek.utils.Loading;
 import org.fiek.utils.Tuple;
 import org.fiek.utils.Utils;
 
-public class RegisterController implements View {
+public class RegisterController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -69,8 +72,6 @@ public class RegisterController implements View {
     private DatePicker birthdate; // Value injected by FXMLLoader
 
 
-
-
     @FXML
     void selectImage(MouseEvent event) throws FileNotFoundException {
         ImageUploadHandler imageUploadHandler = new ImageUploadHandler();
@@ -98,15 +99,6 @@ public class RegisterController implements View {
         user = new User();
         gender.getItems().addAll(User.Gender.values());
 
-        Pane loading = new Pane(App.loadFXML("views/loading/loading"));
-        root.getChildren().addAll(loading);
-        AnchorPane.setBottomAnchor(loading, 0.0);
-        AnchorPane.setTopAnchor(loading, 0.0);
-        AnchorPane.setLeftAnchor(loading, 0.0);
-        AnchorPane.setRightAnchor(loading, 0.0);
-
-
-
     }
 
     @FXML
@@ -126,34 +118,12 @@ public class RegisterController implements View {
 
         RegisterService registerService = new RegisterService(user);
         registerService.start();
-        registerService.setOnRunning(e  -> {
-
+        registerService.setOnRunning(e -> {
+            root.getChildren().add(new Loading());
         });
         registerService.setOnSucceeded(e -> {
-            System.out.println("Tash");
-            Tuple<String, String> response = registerService.getResponse();
-            publishAction(new AddTokenAction(response.getSecond(), response.getFirst()));
             NoAuthLayoutController.stage.close();
         });
-
-
     }
-
-//    Runnable runnable = new Runnable() {
-//        @Override
-//        public void run() {
-//            try {
-////                Tuple<String, String> response = AuthServices.register(user);
-//
-//
-//                Platform.runLater(() -> {
-//
-//                });
-//
-//            } catch (IOException exception) {
-//                exception.printStackTrace();
-//            }
-//        }
-//    };
 
 }

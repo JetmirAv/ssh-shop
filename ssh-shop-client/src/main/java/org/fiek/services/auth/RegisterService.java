@@ -2,26 +2,25 @@ package org.fiek.services.auth;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import eu.lestard.fluxfx.View;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import org.fiek.models.User;
+import org.fiek.store.auth.AddTokenAction;
 import org.fiek.utils.Ajax;
 import org.fiek.utils.Tuple;
 
 import java.io.IOException;
 
-public class RegisterService extends Service<Tuple<String, String>> {
+public class RegisterService extends Service<Void> implements View {
     private User user;
-    private Tuple<String, String> response;
+
     public RegisterService(User user) {
         this.user = user;
     }
 
-    public Tuple<String, String> getResponse() {
-        return response;
-    }
 
-    public Tuple<String, String> register() throws IOException {
+    public void register() throws Exception {
 
         final String json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.user, User.class);
 
@@ -32,27 +31,18 @@ public class RegisterService extends Service<Tuple<String, String>> {
         String jsonToken = response.get("token").toString();
         jsonToken = jsonToken.substring(1, jsonToken.length() - 1);
 
-        System.out.println("User: " + jsonUser);
-        System.out.println("Token: " + jsonToken);
+        publishAction(new AddTokenAction(jsonToken, jsonUser));
 
-        return new Tuple<>(jsonUser, jsonToken);
     }
 
     @Override
-    protected Task<Tuple<String, String>> createTask() {
-        return new Task<Tuple<String, String>>() {
+    protected Task<Void> createTask() {
+        return new Task<Void>() {
             @Override
-            protected Tuple<String, String> call() throws Exception {
-                response = register();
-                return response;
+            protected Void call() throws Exception {
+                register();
+                return null;
             }
-
-
         };
-
-
-
-
-
     }
 }
