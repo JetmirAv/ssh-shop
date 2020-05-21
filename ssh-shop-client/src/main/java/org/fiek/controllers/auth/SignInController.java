@@ -59,17 +59,23 @@ public class SignInController extends AbstractController {
 
         LogInService logInService = new LogInService(username.getText(), password.getText());
         logInService.start();
+
         logInService.setOnRunning(e -> {
             loading = new Loading();
             root.getChildren().add(loading);
         });
         logInService.setOnSucceeded(e -> {
-            System.out.println("Tash");
+            System.out.println("setOnSucceeded");
             NoAuthLayoutController.stage.close();
+            root.getChildren().remove(loading);
         });
 
         logInService.setOnFailed(e -> {
-            System.out.println("Bravo");
+            System.out.println("setOnFailed");
+            root.getChildren().remove(loading);
+        });
+
+        logInService.setOnCancelled(e -> {
             root.getChildren().remove(loading);
         });
 

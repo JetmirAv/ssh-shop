@@ -14,6 +14,14 @@ public class AuthStore extends Store {
 
     private EventSource<String> tokenSource = new EventSource<>();
     private EventSource<User> userSource = new EventSource<>();
+
+
+    private EventSource<String> changed = new EventSource();
+
+    public EventStream<String> getChanged() {
+        return changed;
+    }
+
     private String token;
     private User user = null;
 
@@ -21,6 +29,7 @@ public class AuthStore extends Store {
     public EventStream<String> getTokenSource() {
         return tokenSource;
     }
+
     public EventStream<User> getUserSource() {
         return userSource;
     }

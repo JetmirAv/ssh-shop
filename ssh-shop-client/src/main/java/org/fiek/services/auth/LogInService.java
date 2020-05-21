@@ -39,7 +39,8 @@ public class LogInService extends Service<Void> implements View {
                     token = token.substring(1, token.length() - 1);
 
                     publishAction(new AddTokenAction(token, user));
-                } catch (IOException exception) {
+                } catch (Exception exception) {
+                    this.cancel();
                     exception.printStackTrace();
                 }
 

@@ -34,8 +34,6 @@ public class Ajax {
         this.route = route;
         this.method = method.toString();
         this.data = data;
-
-        System.out.println("data: " + this.data);
     }
 
     public JsonObject post() throws Exception {
@@ -99,8 +97,9 @@ public class Ajax {
                 throw new Exception("500");
             default:
                 HttpEntity entity = response.getEntity();
-                if (entity != null)
+                if (entity != null) {
                     ErrorHandler.handle(EntityUtils.toString(entity));
+                }
                 throw new Exception("Error");
         }
     }
