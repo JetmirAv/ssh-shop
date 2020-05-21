@@ -162,7 +162,7 @@
 
 .product-button {
     -fx-font-size: 14px;
-    -fx-background-color: #129084;
+    -fx-background-color: ;
     -fx-text-fill: white;
     -fx-background-radius: 5px;
 }
@@ -170,6 +170,27 @@
 .profile-image {
     -fx-fill: white;
     -fx-stroke: none;
+}
+.text-area {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, #129084, transparent,#129084;
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+}
+
+.text-area{
+
+    -fx-font-size: 29px;
+    -fx-text-fill: white;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+
+}
+.text-area *.text {
+    -fx-text-alignment: center;
+
 }
 
 .profile-info {
