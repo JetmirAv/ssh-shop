@@ -12,4 +12,5 @@ public class CardsController extends AbstractController {
     private void cards() throws IOException {
         App.setRoot("views/cards/cards");
     }
+
 }

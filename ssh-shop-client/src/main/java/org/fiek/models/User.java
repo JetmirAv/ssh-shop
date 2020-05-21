@@ -1,36 +1,63 @@
 package org.fiek.models;
+
+import com.google.gson.annotations.Expose;
+
 import java.util.ArrayList;
 
 
 public class User {
     final String tableName = "users";
-    public enum Gender {MALE, FEMALE};
 
-    public int ID;
+    public enum Gender {
+        MALE,
+        FEMALE
+    }
+
+    @Expose(serialize = false, deserialize = true)
+    public int id;
+
+    @Expose(serialize = false, deserialize = true)
     public int role_id;
+
+    @Expose
     public String first_name;
+    @Expose
     public String last_name;
+    @Expose
     public String email;
+    @Expose
     public String password;
+    @Expose
     public String forgot_password_token;
+    @Expose
     public String birthdate;
+    @Expose
     public Gender gender;
+    @Expose
     public String avatar;
+    @Expose
     public String phone_number;
 
+    @Expose(serialize = false, deserialize = true)
     public Role role;
+    @Expose(serialize = false, deserialize = true)
     public ArrayList<Card> cards;
+    @Expose(serialize = false, deserialize = true)
     public ArrayList<Address> addresses;
+    @Expose(serialize = false, deserialize = true)
     public ArrayList<Wishlist> wishlists;
+    @Expose(serialize = false, deserialize = true)
     public ArrayList<Cart> carts;
+    @Expose(serialize = false, deserialize = true)
     public ArrayList<Product> products;
+    @Expose(serialize = false, deserialize = true)
     public ArrayList<Channel> channels;
 
 
-    public User(int ID, int role_id, String first_name, String last_name, String email,
+    public User(int id, int role_id, String first_name, String last_name, String email,
                 String password, String forgot_password_token,
                 String birthdate, Gender gender, String avatar, String phone_number, Role role) {
-        this.ID = ID;
+        this.id = id;
         this.role_id = role_id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -45,17 +72,17 @@ public class User {
     }
 
     public User() {
-        this(-1,-1,"","",
-                "","","",
-                "",null,"","",null);
+        this(-1, -1, "", "",
+                "", "", "",
+                "", null, "", "", null);
     }
 
     public String getTableName() {
         return tableName;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     public int getRoleId() {
@@ -66,19 +93,19 @@ public class User {
         this.role_id = role_id;
     }
 
-    public String getFirst_name() {
+    public String getFirstName() {
         return first_name;
     }
 
-    public void setFirst_name(String first_name) {
+    public void setFirstName(String first_name) {
         this.first_name = first_name;
     }
 
-    public String getLast_name() {
+    public String getLastName() {
         return last_name;
     }
 
-    public void setLast_name(String last_name) {
+    public void setLastName(String last_name) {
         this.last_name = last_name;
     }
 
@@ -98,11 +125,11 @@ public class User {
         this.password = password;
     }
 
-    public String getForgot_password_token() {
+    public String getForgotPasswordToken() {
         return forgot_password_token;
     }
 
-    public void setForgot_password_token(String forgot_password_token) {
+    public void setForgotPasswordToken(String forgot_password_token) {
         this.forgot_password_token = forgot_password_token;
     }
 
@@ -127,14 +154,15 @@ public class User {
     }
 
     public void setAvatar(String avatar) {
+        System.out.println("Avatar: " + avatar);
         this.avatar = avatar;
     }
 
-    public String getPhone_number() {
+    public String getPhoneNumber() {
         return phone_number;
     }
 
-    public void setPhone_number(String phone_number) {
+    public void setPhoneNumber(String phone_number) {
         this.phone_number = phone_number;
     }
 
@@ -194,4 +222,8 @@ public class User {
         this.channels = channels;
     }
 
+    @Override
+    public String toString() {
+        return this.first_name + " " + this.last_name + " " + this.email + " " + this.password + " " + this.phone_number + " " + this.gender + " " + this.birthdate + " " + this.avatar;
+    }
 }
