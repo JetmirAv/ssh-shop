@@ -30,6 +30,7 @@ const create = async (req, res, next) => {
  * @param {Response} res
  */
 const update = async (req, res, next) => {
+  console.log("Po hin te update!");
   try {
     const user = await UpdateUser(req.params.user_id, req.body);
 

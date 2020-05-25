@@ -4,10 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import eu.lestard.easydi.EasyDI;
 import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -22,7 +19,7 @@ public class Ajax {
 
     AuthStore authStore = easyDI.getInstance(AuthStore.class);
 
-    private final String host = "http://192.168.1.67:5000/";
+    private final String host = "http://localhost:3000/";
 
     public static enum methods {GET, POST, PATCH, DELETE}
 
@@ -64,6 +61,36 @@ public class Ajax {
         JsonObject object = JsonParser.parseString(result).getAsJsonObject();
         return object;
     }
+
+    public JsonObject patch() throws Exception {
+        String result = "";
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+
+        try {
+            HttpPatch request = new HttpPatch(this.host + this.route);
+            addHeaders(request);
+
+            request.setEntity(new StringEntity(this.data));
+            CloseableHttpResponse response = httpClient.execute(request);
+
+            try {
+                HttpEntity entity = getResponse(response);
+                if (entity != null)
+                    result = EntityUtils.toString(entity);
+
+            } finally {
+                response.close();
+            }
+        } finally {
+            httpClient.close();
+        }
+
+
+        JsonObject object = JsonParser.parseString(result).getAsJsonObject();
+        return object;
+    }
+
+
 
     public String get() throws Exception {
         String result = "";

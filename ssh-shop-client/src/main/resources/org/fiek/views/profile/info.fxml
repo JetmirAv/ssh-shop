@@ -51,6 +51,6 @@
             </GridPane>
          </children>
       </HBox>
-      <JFXButton fx:id="saveBttnId" layoutX="171.0" layoutY="-155.0" styleClass="saveBttnInfo" text="Save" />
+      <JFXButton fx:id="saveBttnId"  onAction="#editHandler" layoutX="171.0" layoutY="-155.0" styleClass="saveBttnInfo" text="Save" />
     </children>
 </AnchorPane>

@@ -44,6 +44,7 @@ public class AuthStore extends Store {
 
     public AuthStore() {
         subscribe(AddTokenAction.class, this::addTokenAction);
+        subscribe(EditUserAction.class, this::editUserAction);
     }
 
     public static AuthStore getInstance() {
@@ -61,6 +62,17 @@ public class AuthStore extends Store {
             this.tokenSource.push(token);
             this.token = token;
         }
+
+        if (user != null) {
+            this.user = user;
+            this.userSource.push(user);
+        }
+
+    }
+
+
+    private void editUserAction(EditUserAction action) {
+        final User user = new GsonBuilder().create().fromJson(action.getUser(), User.class);
 
         if (user != null) {
             this.user = user;

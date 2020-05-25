@@ -11,9 +11,14 @@ import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import org.fiek.controllers.layout.NoAuthLayoutController;
 import org.fiek.models.User;
+import org.fiek.services.auth.InfoService;
+import org.fiek.services.auth.LogInService;
 import org.fiek.store.auth.AuthStore;
+import org.fiek.utils.Loading;
 
 public class InfoController {
 
@@ -50,6 +55,8 @@ public class InfoController {
         this.authStore = authStore;
     }
 
+    User user;
+
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -63,9 +70,9 @@ public class InfoController {
 
         genderComboId.getItems().addAll(User.Gender.values());
 
-        User user = authStore.getUser();
+        user = authStore.getUser();
 
-        if (user != null){
+        if (user != null) {
             firstNameId.setText(user.getFirstName());
             lastNameId.setText(user.getLastName());
             emailId.setText(user.getEmail());
@@ -76,9 +83,24 @@ public class InfoController {
         authStore.getUserSource().subscribe(this::profile);
 
     }
+    @FXML
+    private void editHandler(ActionEvent event) {
+
+        InfoService infoService = new InfoService(user);
+        infoService.start();
+        System.out.println("Deri qitu po!");
+
+        infoService.setOnSucceeded(e -> {
+
+            System.out.println("Suksesi!");
+        });
+    }
+
+
+
 
     private void profile(User user) {
-        if (user != null){
+        if (user != null) {
             firstNameId.setText(user.getFirstName());
             lastNameId.setText(user.getLastName());
             emailId.setText(user.getEmail());
@@ -87,6 +109,7 @@ public class InfoController {
         }
 
     }
+
 
 
 
