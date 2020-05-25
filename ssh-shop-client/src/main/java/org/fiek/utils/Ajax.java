@@ -22,7 +22,7 @@ public class Ajax {
 
     AuthStore authStore = easyDI.getInstance(AuthStore.class);
 
-    private final String host = "http://192.168.1.67:5000/";
+    private final String host = "https://192.168.1.67:5000/";
 
     public static enum methods {GET, POST, PATCH, DELETE}
 

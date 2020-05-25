@@ -9,9 +9,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.fiek.controllers.AbstractController;
 import org.fiek.controllers.layout.LayoutController;
+import org.fiek.socket.SocketClient;
 import org.fiek.store.auth.AuthStore;
 
 import java.io.IOException;
+import java.net.Socket;
 
 /**
  * JavaFX App
@@ -24,9 +26,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        SocketClient socketClient = new SocketClient("http://192.168.1.67:5000/", 5000);
 
         AuthStore authStore = new AuthStore();
         context.bindInstance(AuthStore.class, authStore);
+        context.bindInstance(SocketClient.class, socketClient);
 
         scene = new Scene(loadFXML("views/layout/index"));
         stage.setMinWidth(960);

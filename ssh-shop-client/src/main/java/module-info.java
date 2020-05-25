@@ -9,6 +9,7 @@ module org.fiek {
     requires easy.di;
     requires org.apache.httpcomponents.httpclient;
     requires org.apache.httpcomponents.httpcore;
+    requires socket.io.client;
 
     opens org.fiek to javafx.fxml;
     opens org.fiek.controllers.profile to javafx.fxml, easy.di;
