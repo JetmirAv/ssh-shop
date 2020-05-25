@@ -4,7 +4,7 @@ const Op = Sequelize.Op;
 
 const GetCategories = async () => {
   try {
-    var categories = await Category.findAll({});
+    var categories = await Category.findAll();
     if (!categories) throw new CustomError("Not found!", {}, 401);
     return categories;
   } catch (err) {
