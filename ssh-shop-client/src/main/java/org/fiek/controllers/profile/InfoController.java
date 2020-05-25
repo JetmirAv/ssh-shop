@@ -8,17 +8,24 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import eu.lestard.fluxfx.Action;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import org.fiek.controllers.layout.NoAuthLayoutController;
 import org.fiek.models.User;
 import org.fiek.services.auth.InfoService;
 import org.fiek.services.auth.LogInService;
 import org.fiek.store.auth.AuthStore;
+import org.fiek.utils.ImageUploadHandler;
 import org.fiek.utils.Loading;
+import org.fiek.utils.Tuple;
 
 public class InfoController {
 
@@ -51,11 +58,19 @@ public class InfoController {
     @FXML // fx:id="saveBttnId"
     private JFXButton saveBttnId; // Value injected by FXMLLoader
 
+    @FXML
+    private ImageView imageSelector;
+
     public InfoController(AuthStore authStore) {
         this.authStore = authStore;
     }
 
+
+
     User user;
+    Tuple<Image, String> customImage;
+
+
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
@@ -71,7 +86,6 @@ public class InfoController {
         genderComboId.getItems().addAll(User.Gender.values());
 
         user = authStore.getUser();
-
         if (user != null) {
             firstNameId.setText(user.getFirstName());
             lastNameId.setText(user.getLastName());
@@ -85,18 +99,29 @@ public class InfoController {
     }
     @FXML
     private void editHandler(ActionEvent event) {
-
+        user.setFirstName(firstNameId.getText());
+        user.setLastName(lastNameId.getText());
+        user.setBirthdate(birthdateId.getText());
+        user.setEmail(emailId.getText());
+        user.setGender(genderComboId.getValue());
+        user.setAvatar(customImage.getSecond());
         InfoService infoService = new InfoService(user);
         infoService.start();
-        System.out.println("Deri qitu po!");
 
         infoService.setOnSucceeded(e -> {
-
-            System.out.println("Suksesi!");
+            System.out.println("update Successfully!");
         });
     }
 
+    @FXML
+    void selectImage(ActionEvent event) throws FileNotFoundException {
+        ImageUploadHandler imageUploadHandler = new ImageUploadHandler();
+        customImage = imageUploadHandler.uploadImage();
+        imageSelector.setImage(customImage.getFirst());
+        imageSelector.setPreserveRatio(false);
+        user.setAvatar(customImage.getSecond());
 
+    }
 
 
     private void profile(User user) {
@@ -106,6 +131,7 @@ public class InfoController {
             emailId.setText(user.getEmail());
             birthdateId.setText(user.getBirthdate());
             genderComboId.setValue(user.getGender());
+
         }
 
     }

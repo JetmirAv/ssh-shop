@@ -13,18 +13,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane styleClass="windowSize" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.profile.InfoController">
+<AnchorPane styleClass="windowSize" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.profile.InfoController">
     <children>
       <HBox>
          <children>
             <Pane prefHeight="408.0" prefWidth="380.0">
                <children>
-                  <ImageView fitHeight="339.0" fitWidth="342.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageSelector" fitHeight="339.0" fitWidth="342.0" layoutX="-4.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/ImagePlaceHolder.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="changeAvatarId" styleClass="changeAvatarBttn" text="Change avatar" />
+                  <JFXButton fx:id="changeAvatarId" onAction="#selectImage" styleClass="changeAvatarBttn" text="Change avatar" />
                </children>
             </Pane>
             <GridPane prefHeight="332.0" prefWidth="254.0" styleClass="profile-information-grid">
@@ -51,6 +51,6 @@
             </GridPane>
          </children>
       </HBox>
-      <JFXButton fx:id="saveBttnId"  onAction="#editHandler" layoutX="171.0" layoutY="-155.0" styleClass="saveBttnInfo" text="Save" />
+      <JFXButton fx:id="saveBttnId" layoutX="171.0" layoutY="-155.0" onAction="#editHandler" styleClass="saveBttnInfo" text="Save" />
     </children>
 </AnchorPane>

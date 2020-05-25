@@ -24,14 +24,9 @@ public class InfoService extends Service<Void> implements View {
     public void edit() throws Exception {
 
         final String json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.user, User.class);
-        System.out.println("UPDATE:" + json);
         Ajax request = new Ajax("users/" + user.getId(), Ajax.methods.PATCH, json);
         JsonObject response = request.patch();
-        System.out.println("Pergjigjja" + response);
-
-
         String jsonUser = response.get("user").toString();
-        System.out.println("USERI:" + jsonUser);
         publishAction(new EditUserAction(jsonUser));
 
     }
