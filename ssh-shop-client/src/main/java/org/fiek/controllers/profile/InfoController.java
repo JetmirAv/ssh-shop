@@ -18,10 +18,12 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import org.fiek.controllers.layout.NoAuthLayoutController;
 import org.fiek.models.User;
 import org.fiek.services.auth.InfoService;
 import org.fiek.services.auth.LogInService;
+import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
 import org.fiek.utils.ImageUploadHandler;
 import org.fiek.utils.Loading;
@@ -29,13 +31,16 @@ import org.fiek.utils.Tuple;
 
 public class InfoController {
 
-    private final AuthStore authStore;
+    private final BaseStore baseStore;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+
+    @FXML // fx:id="root"
+    private AnchorPane root; // Value injected by FXMLLoader
 
     @FXML // fx:id="changeAvatarId"
     private JFXButton changeAvatarId; // Value injected by FXMLLoader
@@ -61,16 +66,15 @@ public class InfoController {
     @FXML
     private ImageView imageSelector;
 
-    public InfoController(AuthStore authStore) {
-        this.authStore = authStore;
+    public InfoController(BaseStore baseStore) {
+        this.baseStore = baseStore;
     }
 
 
-
+    AuthStore authStore;
     User user;
     Tuple<Image, String> customImage;
-
-
+    Loading loading;
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
@@ -85,18 +89,14 @@ public class InfoController {
 
         genderComboId.getItems().addAll(User.Gender.values());
 
+        authStore = baseStore.getAuthStore();
         user = authStore.getUser();
-        if (user != null) {
-            firstNameId.setText(user.getFirstName());
-            lastNameId.setText(user.getLastName());
-            emailId.setText(user.getEmail());
-            birthdateId.setText(user.getBirthdate());
-            genderComboId.setValue(user.getGender());
-        }
+        profile(authStore);
 
-        authStore.getUserSource().subscribe(this::profile);
+        baseStore.getAuthStoreEventStream().subscribe(this::profile);
 
     }
+
     @FXML
     private void editHandler(ActionEvent event) {
         user.setFirstName(firstNameId.getText());
@@ -104,12 +104,18 @@ public class InfoController {
         user.setBirthdate(birthdateId.getText());
         user.setEmail(emailId.getText());
         user.setGender(genderComboId.getValue());
-        user.setAvatar(customImage.getSecond());
+//        user.setAvatar(customImage.getSecond());
         InfoService infoService = new InfoService(user);
         infoService.start();
 
+        infoService.setOnRunning(e -> {
+            loading = new Loading();
+            root.getChildren().add(loading);
+        });
+
         infoService.setOnSucceeded(e -> {
             System.out.println("update Successfully!");
+            root.getChildren().remove(loading);
         });
     }
 
@@ -124,7 +130,7 @@ public class InfoController {
     }
 
 
-    private void profile(User user) {
+    private void profile(AuthStore authStore) {
         if (user != null) {
             firstNameId.setText(user.getFirstName());
             lastNameId.setText(user.getLastName());
@@ -135,8 +141,6 @@ public class InfoController {
         }
 
     }
-
-
 
 
 }

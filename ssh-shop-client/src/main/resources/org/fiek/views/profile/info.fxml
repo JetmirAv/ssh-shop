@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane styleClass="windowSize" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.profile.InfoController">
+<AnchorPane fx:id="root" styleClass="windowSize" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.profile.InfoController">
     <children>
       <HBox>
          <children>

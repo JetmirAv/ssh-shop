@@ -25,11 +25,12 @@ import javafx.scene.layout.HBox;
 import org.fiek.App;
 import org.fiek.controllers.AbstractController;
 import org.fiek.controllers.profile.ProfileController;
+import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
 
 public class LayoutController extends AbstractController implements View {
 
-    private final AuthStore authStore;
+    private final BaseStore baseStore;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -67,8 +68,8 @@ public class LayoutController extends AbstractController implements View {
     @FXML // fx:id="main"
     private ScrollPane main; // Value injected by FXMLLoader
 
-    public LayoutController(AuthStore store) {
-        this.authStore = store;
+    public LayoutController(BaseStore store) {
+        this.baseStore = store;
     }
 
 
@@ -89,24 +90,22 @@ public class LayoutController extends AbstractController implements View {
 
         main.setContent(App.loadFXML("views/home/home"));
 
-        System.out.println("tokenasfas: "  + authStore.getToken());
-
-        if (authStore.getUser() == null) {
+        if (baseStore.getAuthStore() == null || baseStore.getAuthStore().getUser() == null) {
             header.getChildren().add(App.loadFXML("views/layout/no-auth"));
         } else {
             header.getChildren().add(App.loadFXML("views/layout/profile"));
         }
 
 
-        authStore.getTokenSource().subscribe(this::authorize);
+        baseStore.getAuthStoreEventStream().subscribe(this::authorize);
 
     }
 
-    private void authorize(String s) {
+
+    private void authorize(AuthStore authStore) {
         try {
-            System.out.println("Pub:" + s);
             header.getChildren().clear();
-            if (s == null) {
+            if (authStore.getUser() == null) {
                 header.getChildren().add(App.loadFXML("views/layout/no-auth"));
             } else {
                 header.getChildren().add(App.loadFXML("views/layout/profile"));

@@ -25,15 +25,19 @@ public class LogInService extends Service<Void> implements View {
         return new Task<Void>() {
             @Override
             protected Void call() throws Exception {
+                System.out.println("Nisja json");
                 JsonObject json = new JsonObject();
                 json.addProperty("email", email);
                 json.addProperty("password", password);
 //                json.addProperty("email", "jetmir99@hotmail.com");
 //                json.addProperty("password", "password");
-
-                Ajax request = new Ajax("/auth/login", Ajax.methods.POST, json.toString());
+                System.out.println("Para ajax");
                 try {
+                    Ajax request = new Ajax("/auth/login", Ajax.methods.POST, json.toString());
+                    System.out.println("Pas ajax");
+                    System.out.println("Para response");
                     JsonObject response = request.post();
+                    System.out.println("Pas response");
                     String user = response.get("user").toString();
                     String token = response.get("token").toString();
                     token = token.substring(1, token.length() - 1);

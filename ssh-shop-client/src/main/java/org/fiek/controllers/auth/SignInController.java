@@ -60,6 +60,8 @@ public class SignInController extends AbstractController {
         LogInService logInService = new LogInService(username.getText(), password.getText());
         logInService.start();
 
+        System.out.println("Nisja");
+
         logInService.setOnRunning(e -> {
             loading = new Loading();
             root.getChildren().add(loading);
@@ -71,6 +73,7 @@ public class SignInController extends AbstractController {
         });
 
         logInService.setOnFailed(e -> {
+            System.out.println("E: " + e);
             System.out.println("setOnFailed");
             root.getChildren().remove(loading);
         });
