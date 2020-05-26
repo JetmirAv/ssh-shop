@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import org.fiek.App;
 import org.fiek.models.User;
+import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
 
 import static org.fiek.App.setRoot;
@@ -72,12 +73,6 @@ public class ProfileController {
 
         }
 
-    }
-
-    private final AuthStore authStore;
-
-    public ProfileController(AuthStore authStore) {
-        this.authStore = authStore;
     }
 
     @FXML

@@ -5,6 +5,7 @@ let productsRouter = require("./products");
 let citiesRouter = require("./cities");
 let countriesRouter = require("./countries");
 let testRouter = require("./test");
+let categoriesRouter = require("./categories");
 
 module.exports = (app) => {
   app.use("/users", usersRouter);
@@ -14,4 +15,5 @@ module.exports = (app) => {
   app.use("/cities", citiesRouter);
   app.use("/countries", countriesRouter);
   app.use("/test", testRouter);
+  app.use("/categories", categoriesRouter);
 };

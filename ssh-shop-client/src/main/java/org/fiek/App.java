@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import org.fiek.controllers.AbstractController;
 import org.fiek.controllers.layout.LayoutController;
 import org.fiek.socket.SocketClient;
+import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
 
 import java.io.IOException;
@@ -27,10 +28,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         SocketClient socketClient = new SocketClient("http://192.168.1.67:5000/", 5000);
-
-        AuthStore authStore = new AuthStore();
-        context.bindInstance(AuthStore.class, authStore);
         context.bindInstance(SocketClient.class, socketClient);
+        
+        BaseStore baseStore = new BaseStore();
+        context.bindInstance(BaseStore.class, baseStore);
 
         scene = new Scene(loadFXML("views/layout/index"));
         stage.setMinWidth(960);
@@ -57,6 +58,7 @@ public class App extends Application {
     public static Parent loadFXML(String fxml, AbstractController controller) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         fxmlLoader.setController(controller);
+        fxmlLoader.setControllerFactory(context::getInstance);
         return fxmlLoader.load();
     }
 
