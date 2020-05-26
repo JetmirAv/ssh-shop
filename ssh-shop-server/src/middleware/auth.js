@@ -7,10 +7,6 @@ const auth = async (req, res, next) => {
 
   token = token.replace("Bearer ", "");
 
-  console.log("====================================");
-  console.log({ token });
-  console.log("====================================");
-
   try {
     const data = jwt.verify(token, process.env.JWT_KEY);
     const user = await User.findByPk(data.id);

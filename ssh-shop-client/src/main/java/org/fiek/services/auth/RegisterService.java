@@ -2,6 +2,7 @@ package org.fiek.services.auth;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import eu.lestard.easydi.EasyDI;
 import eu.lestard.fluxfx.View;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -24,8 +25,8 @@ public class RegisterService extends Service<Void> implements View {
 
         final String json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.user, User.class);
 
-        Ajax request = new Ajax("auth/register", Ajax.methods.POST, json);
-        JsonObject response = request.post();
+        Ajax request = new Ajax();
+        JsonObject response = request.post("auth/register", json);
 
         String jsonUser = response.get("user").toString();
         String jsonToken = response.get("token").toString();

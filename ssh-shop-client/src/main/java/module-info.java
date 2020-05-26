@@ -7,6 +7,7 @@ module org.fiek {
     requires fluxfx;
     requires reactfx;
     requires easy.di;
+    requires javax.inject;
     requires org.apache.httpcomponents.httpclient;
     requires org.apache.httpcomponents.httpcore;
     requires socket.io.client;
@@ -18,6 +19,7 @@ module org.fiek {
     opens org.fiek.controllers.auth to javafx.fxml, easy.di;
     opens org.fiek.controllers.modal to javafx.fxml, easy.di;
     opens org.fiek.store to easy.di;
+    opens org.fiek.utils to easy.di;
 
     exports org.fiek.controllers;
 

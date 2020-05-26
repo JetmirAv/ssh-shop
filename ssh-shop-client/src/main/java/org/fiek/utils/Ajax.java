@@ -9,41 +9,44 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.fiek.App;
 import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
 
 public class Ajax {
 
-    EasyDI easyDI = new EasyDI();
+    EasyDI easyDI = App.context;
 
-    BaseStore baseStore = easyDI.getInstance(BaseStore.class);
+    final BaseStore baseStore;
 
-    private final String host = "https://192.168.1.67:5000/";
+    private final String host = "http://192.168.1.67:5000/";
 
     public static enum methods {GET, POST, PATCH, DELETE}
 
-    final String route;
-    final String method;
-    final String data;
+    String route;
+    String method;
+    String data;
 
-    public Ajax(String route, methods method, String data) {
-        this.route = route;
-        this.method = method.toString();
-        this.data = data;
+    public Ajax() {
+        this.baseStore = easyDI.getInstance(BaseStore.class);
     }
 
-    public JsonObject post() throws Exception {
+//    public Ajax(String route, methods method, String data) {
+//        this.route = route;
+//        this.method = method.toString();
+//        this.data = data;
+//    }
+
+    public JsonObject post(String route, String data) throws Exception {
         String result = "";
 
-        System.out.println("Para post");
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        System.out.println("MAs post");
 
         try {
-            HttpPost request = new HttpPost(this.host + this.route);
+            HttpPost request = new HttpPost(this.host + route);
             addHeaders(request);
 
-            request.setEntity(new StringEntity(this.data));
+            request.setEntity(new StringEntity(data));
             CloseableHttpResponse response = httpClient.execute(request);
 
             try {
@@ -62,21 +65,19 @@ public class Ajax {
             httpClient.close();
         }
 
-        System.out.println("Kenj");
-
         JsonObject object = JsonParser.parseString(result).getAsJsonObject();
         return object;
     }
 
-    public JsonObject patch() throws Exception {
+    public JsonObject patch(String route, String data) throws Exception {
         String result = "";
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         try {
-            HttpPatch request = new HttpPatch(this.host + this.route);
+            HttpPatch request = new HttpPatch(this.host + route);
             addHeaders(request);
 
-            request.setEntity(new StringEntity(this.data));
+            request.setEntity(new StringEntity(data));
             CloseableHttpResponse response = httpClient.execute(request);
 
             try {
@@ -97,11 +98,11 @@ public class Ajax {
     }
 
 
-    public String get() throws Exception {
+    public String get(String route) throws Exception {
         String result = "";
         CloseableHttpClient httpClient = HttpClients.createDefault();
         try {
-            HttpGet request = new HttpGet(this.host + this.route);
+            HttpGet request = new HttpGet(this.host + route);
             addHeaders(request);
 
             CloseableHttpResponse response = httpClient.execute(request);
@@ -126,6 +127,8 @@ public class Ajax {
             case 200:
                 return response.getEntity();
             case 500:
+                String error = "{ \"message\": \"Server Error\" }";
+                ErrorHandler.handle(error);
                 throw new Exception("500");
             default:
                 HttpEntity entity = response.getEntity();
@@ -137,17 +140,9 @@ public class Ajax {
     }
 
     private void addHeaders(HttpRequestBase request) {
-        System.out.println("Knej po ");
         AuthStore authStore = baseStore.getAuthStore();
-        System.out.println("Knej nashta ");
-        if (authStore != null) {
-            System.out.println("Token Ajax: " + authStore.getToken());
-            if (authStore.getUser() != null)
-                System.out.println("USer Ajax" + authStore.getUser().getFirstName());
-            request.addHeader("token", authStore.getToken() == null ? "" : "Bearer " + authStore.getToken());
-        }
-        System.out.println("ishalla jo knej");
-
+        if (authStore != null)
+            request.addHeader("Authorization", authStore.getToken() == null ? "" : "Bearer " + authStore.getToken());
         request.addHeader("content-type", "application/json");
         request.addHeader("UserAgent", "Mozilla");
         request.addHeader("Connection", "keep-alive");

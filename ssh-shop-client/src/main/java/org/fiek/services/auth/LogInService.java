@@ -1,6 +1,7 @@
 package org.fiek.services.auth;
 
 import com.google.gson.JsonObject;
+import eu.lestard.easydi.EasyDI;
 import eu.lestard.fluxfx.View;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -33,10 +34,10 @@ public class LogInService extends Service<Void> implements View {
 //                json.addProperty("password", "password");
                 System.out.println("Para ajax");
                 try {
-                    Ajax request = new Ajax("/auth/login", Ajax.methods.POST, json.toString());
+                    Ajax request = new Ajax();
                     System.out.println("Pas ajax");
                     System.out.println("Para response");
-                    JsonObject response = request.post();
+                    JsonObject response = request.post("/auth/login", json.toString());
                     System.out.println("Pas response");
                     String user = response.get("user").toString();
                     String token = response.get("token").toString();

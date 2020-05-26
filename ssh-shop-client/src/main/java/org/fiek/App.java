@@ -23,7 +23,7 @@ public class App extends Application {
 
     private static Scene scene;
     public static BorderPane main;
-    static EasyDI context = new EasyDI();
+    public static EasyDI context = new EasyDI();
 
     @Override
     public void start(Stage stage) throws IOException {

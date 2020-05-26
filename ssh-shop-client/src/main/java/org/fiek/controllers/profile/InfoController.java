@@ -95,6 +95,12 @@ public class InfoController {
 
         baseStore.getAuthStoreEventStream().subscribe(this::profile);
 
+        if(baseStore.getAuthStore() != null){
+            if(baseStore.getAuthStore().getToken() != null){
+                System.out.println("A po vjen tokeni: " + baseStore.getAuthStore().getToken());
+            }
+        }
+
     }
 
     @FXML

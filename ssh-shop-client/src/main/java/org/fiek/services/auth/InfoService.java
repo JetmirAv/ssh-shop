@@ -2,6 +2,7 @@ package org.fiek.services.auth;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import eu.lestard.easydi.EasyDI;
 import eu.lestard.fluxfx.View;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -16,7 +17,6 @@ import java.io.IOException;
 
 public class InfoService extends Service<Void> implements View {
     private User user;
-
     public InfoService(User user) {
         this.user = user;
     }
@@ -24,8 +24,8 @@ public class InfoService extends Service<Void> implements View {
     public void edit() throws Exception {
 
         final String json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.user, User.class);
-        Ajax request = new Ajax("users/" + user.getId(), Ajax.methods.PATCH, json);
-        JsonObject response = request.patch();
+        Ajax request = new Ajax();
+        JsonObject response = request.patch("users/" + user.getId(), json);
         String jsonUser = response.get("user").toString();
         publishAction(new EditUserAction(jsonUser));
 

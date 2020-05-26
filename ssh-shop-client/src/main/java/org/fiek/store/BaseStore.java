@@ -1,6 +1,5 @@
 package org.fiek.store;
 
-import eu.lestard.fluxfx.Action;
 import eu.lestard.fluxfx.Store;
 import org.fiek.store.auth.AddTokenAction;
 import org.fiek.store.auth.AuthStore;
@@ -8,6 +7,9 @@ import org.fiek.store.auth.EditUserAction;
 import org.reactfx.EventSource;
 import org.reactfx.EventStream;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class BaseStore extends Store {
 
     private final EventSource<AuthStore> authStoreEventSource = new EventSource<>();

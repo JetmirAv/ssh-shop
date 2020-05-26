@@ -16,7 +16,7 @@ module.exports = (io) => {
 
     socket.on("sign-in", auth.onSignIn);
 
-    socket.on("disconnect", auth.onDisconnect);
+    // socket.on("disconnect", auth.onDisconnect);
 
     socket.on("message", chat.onMessage);
 
