@@ -20,11 +20,12 @@ import javafx.scene.layout.HBox;
 import org.fiek.App;
 import org.fiek.controllers.AbstractController;
 import org.fiek.models.User;
+import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
 
 public class LayoutProfileController extends AbstractController {
 
-    private final AuthStore authStore;
+    private final BaseStore baseStore;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -41,8 +42,8 @@ public class LayoutProfileController extends AbstractController {
     @FXML // fx:id="lastName"
     private Label lastName; // Value injected by FXMLLoader
 
-    public LayoutProfileController(AuthStore authStore){
-        this.authStore = authStore;
+    public LayoutProfileController(BaseStore baseStore){
+        this.baseStore = baseStore;
     }
 
     @FXML
@@ -55,7 +56,6 @@ public class LayoutProfileController extends AbstractController {
 //        firstName.textProperty().bind(new SimpleStringProperty(authStore.getUser().getFirstName()));
 //        lastName.textProperty().bind(new SimpleStringProperty(authStore.getUser().getLastName()));
 
-        System.out.println("authStore.getUser(): " + authStore.getUser());
 
 //        firstName.textProperty().bind(Bindings.createStringBinding(() -> {
 //
@@ -77,14 +77,17 @@ public class LayoutProfileController extends AbstractController {
 //            return "Jetmir";
 //        }));
 
-        authStore.getUserSource().subscribe(this::profile);
+        baseStore.getAuthStoreEventStream().subscribe(this::profile);
+        profile(baseStore.getAuthStore());
     }
 
-    private void profile(User user) {
-        if (user != null) {
-            System.out.println("Profile asfas: " + user);
-            firstName.setText(user.getFirstName());
-            lastName.setText(user.getLastName());
+    private void profile(AuthStore authStore) {
+        if (authStore.getUser() != null) {
+            System.out.println("Profile asfas: " + authStore.getUser());
+            firstName.setText(authStore.getUser().getFirstName());
+            lastName.setText(authStore.getUser().getLastName());
+        } else {
+            System.out.println("KEq");
         }
     }
 

@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
 
 
-public class User {
+public class User implements Cloneable {
     final String tableName = "users";
 
     public enum Gender {
@@ -225,5 +225,10 @@ public class User {
     @Override
     public String toString() {
         return this.first_name + " " + this.last_name + " " + this.email + " " + this.password + " " + this.phone_number + " " + this.gender + " " + this.birthdate + " " + this.avatar;
+    }
+
+    @Override
+    protected User clone() throws CloneNotSupportedException {
+        return (User) super.clone();
     }
 }

@@ -4,25 +4,21 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import eu.lestard.easydi.EasyDI;
 import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
-
-import java.io.IOException;
 
 public class Ajax {
 
     EasyDI easyDI = new EasyDI();
 
-    AuthStore authStore = easyDI.getInstance(AuthStore.class);
+    BaseStore baseStore = easyDI.getInstance(BaseStore.class);
 
-    private final String host = "http://192.168.1.67:5000/";
+    private final String host = "http://localhost:5000/";
 
     public static enum methods {GET, POST, PATCH, DELETE}
 
@@ -38,10 +34,46 @@ public class Ajax {
 
     public JsonObject post() throws Exception {
         String result = "";
+
+        System.out.println("Para post");
         CloseableHttpClient httpClient = HttpClients.createDefault();
+        System.out.println("MAs post");
 
         try {
             HttpPost request = new HttpPost(this.host + this.route);
+            addHeaders(request);
+
+            request.setEntity(new StringEntity(this.data));
+            CloseableHttpResponse response = httpClient.execute(request);
+
+            try {
+                HttpEntity entity = getResponse(response);
+                if (entity != null)
+                    result = EntityUtils.toString(entity);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            } finally {
+                response.close();
+            }
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            httpClient.close();
+        }
+
+        System.out.println("Kenj");
+
+        JsonObject object = JsonParser.parseString(result).getAsJsonObject();
+        return object;
+    }
+
+    public JsonObject patch() throws Exception {
+        String result = "";
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+
+        try {
+            HttpPatch request = new HttpPatch(this.host + this.route);
             addHeaders(request);
 
             request.setEntity(new StringEntity(this.data));
@@ -59,11 +91,11 @@ public class Ajax {
             httpClient.close();
         }
 
-        System.out.println("Kenj");
 
         JsonObject object = JsonParser.parseString(result).getAsJsonObject();
         return object;
     }
+
 
     public String get() throws Exception {
         String result = "";
@@ -105,7 +137,17 @@ public class Ajax {
     }
 
     private void addHeaders(HttpRequestBase request) {
-        request.addHeader("token", authStore.getToken() == null ? "" : "Bearer " + authStore.getToken());
+        System.out.println("Knej po ");
+        AuthStore authStore = baseStore.getAuthStore();
+        System.out.println("Knej nashta ");
+        if (authStore != null) {
+            System.out.println("Token Ajax: " + authStore.getToken());
+            if (authStore.getUser() != null)
+                System.out.println("USer Ajax" + authStore.getUser().getFirstName());
+            request.addHeader("token", authStore.getToken() == null ? "" : "Bearer " + authStore.getToken());
+        }
+        System.out.println("ishalla jo knej");
+
         request.addHeader("content-type", "application/json");
         request.addHeader("UserAgent", "Mozilla");
         request.addHeader("Connection", "keep-alive");
