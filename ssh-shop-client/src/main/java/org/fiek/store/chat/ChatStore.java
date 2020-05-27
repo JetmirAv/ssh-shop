@@ -12,7 +12,7 @@ import java.util.List;
 public class ChatStore extends Store {
 
     Integer selectedChannel;
-    ArrayList<Channel> channels = new ArrayList<>();
+    ArrayList<Channel> channels = null;
     Integer count = 0;
 
     public Integer getSelectedChannel() {
@@ -24,6 +24,9 @@ public class ChatStore extends Store {
     }
 
     public void addChannel(Channel channel) {
+        if(this.channels == null ){
+            this.channels = new ArrayList<>();
+        }
         channels.add(0, channel);
     }
 
@@ -40,6 +43,9 @@ public class ChatStore extends Store {
     }
 
     public void addChannels(List<Channel> channels) {
+        if(this.channels == null ){
+            this.channels = new ArrayList<>();
+        }
         this.channels.addAll(channels);
     }
 

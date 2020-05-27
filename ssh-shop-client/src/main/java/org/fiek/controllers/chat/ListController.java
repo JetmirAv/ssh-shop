@@ -43,19 +43,19 @@ public class ListController {
 
     private void renderChats(ChatStore chatStore) {
         ArrayList<Channel> channels = chatStore.getChannels();
-        messageList.getChildren().clear();
-        try {
-            for(Channel channel : channels){
-                fxmlLoader = new FXMLLoader(App.class.getResource("views/chat/list-item.fxml"));
-                fxmlLoader.setController(new ListItemController(channel));
-                HBox hbox = fxmlLoader.load();
-                messageList.getChildren().add(hbox);
+        if(channels != null){
+            messageList.getChildren().clear();
+            try {
+                for (Channel channel : channels) {
+                    fxmlLoader = new FXMLLoader(App.class.getResource("views/chat/list-item.fxml"));
+                    fxmlLoader.setController(new ListItemController(channel));
+                    HBox hbox = fxmlLoader.load();
+                    messageList.getChildren().add(hbox);
+                }
+            } catch (Exception exception) {
+                exception.printStackTrace();
             }
-        } catch (Exception exception){
-            exception.printStackTrace();
         }
-
-
     }
 
 

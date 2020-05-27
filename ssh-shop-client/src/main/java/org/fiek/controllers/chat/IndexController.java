@@ -39,6 +39,8 @@ public class IndexController {
     void initialize() {
         assert chatContainer != null : "fx:id=\"chatContainer\" was not injected: check your FXML file 'index.fxml'.";
 
+        chatStore = baseStore.getChatStore();
+
         fetchChats();
 
         baseStore.getChatStoreEventStream().subscribe(this::displayChat);
@@ -53,35 +55,37 @@ public class IndexController {
             } else {
                 chatContainer.getChildren().add(App.loadFXML("views/chat/chat"));
             }
-        } catch (Exception exception){
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
 
     }
 
     private void fetchChats() {
-        FindAndCountChannelsService service = new FindAndCountChannelsService();
-        service.start();
+        if (chatStore.getChannels() == null) {
+            FindAndCountChannelsService service = new FindAndCountChannelsService();
+            service.start();
 
-        service.setOnRunning(e -> {
-            System.out.println("running");
-            loading = new Loading();
-            container.getChildren().add(loading);
-        });
+            service.setOnRunning(e -> {
+                System.out.println("running");
+                loading = new Loading();
+                container.getChildren().add(loading);
+            });
 
-        service.setOnFailed(e -> {
-            System.out.println("setOnFailed");
-            container.getChildren().remove(loading);
-        });
+            service.setOnFailed(e -> {
+                System.out.println("setOnFailed");
+                container.getChildren().remove(loading);
+            });
 
-        service.setOnCancelled(e -> {
-            System.out.println("setOnCancelled");
-            container.getChildren().remove(loading);
-        });
+            service.setOnCancelled(e -> {
+                System.out.println("setOnCancelled");
+                container.getChildren().remove(loading);
+            });
 
-        service.setOnSucceeded(e -> {
-            System.out.println("setOnSucceeded Bravo");
-            container.getChildren().remove(loading);
-        });
+            service.setOnSucceeded(e -> {
+                System.out.println("setOnSucceeded Bravo");
+                container.getChildren().remove(loading);
+            });
+        }
     }
 }
