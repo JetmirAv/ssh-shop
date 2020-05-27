@@ -56,7 +56,6 @@ const CreateProduct = async (data) => {
 //  * @returns Product
  */
 const UpdateProduct = async (product_id, user_id, data) => {
-  console.log("here");
   try {
     const product = await Product.findOne({
       where: { id: product_id, user_id: user_id },
