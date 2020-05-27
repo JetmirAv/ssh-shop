@@ -2,7 +2,22 @@ const {
   CreateChannel,
   UpdateChannel,
   GetExistingChannel,
+  FindAndCountChannels,
 } = require("../services/channel");
+
+/**
+ *
+ * @param {Request} req
+ * @param {Response} res
+ */
+const findAll = async (req, res, next) => {
+  try {
+    const channels = await FindAndCountChannels(req.user);
+    return res.status(200).json({ channels });
+  } catch (err) {
+    next(err);
+  }
+};
 
 /**
  *
@@ -61,6 +76,7 @@ const get = async (req, res, next) => {
 
 module.exports = {
   create,
+  findAll,
   update,
   get,
 };

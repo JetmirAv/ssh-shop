@@ -7,6 +7,22 @@ const Op = Sequelize.Op;
 //  * @param {Number} product_id
 //  * @returns Product
  */
+const FindAndCountProducts = async (user) => {
+  try {
+    let where = {};
+    if (user.role_id != 1) where.user_id = user.id;
+    let result = await Product.findAndCountAll({ where });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+};
+
+/**
+ *
+//  * @param {Number} product_id
+//  * @returns Product
+ */
 const GetProduct = async (product_id) => {
   try {
     const product = await Product.findByPk(product_id);
@@ -79,4 +95,5 @@ module.exports = {
   CreateProduct,
   UpdateProduct,
   DeleteProduct,
+  FindAndCountProducts,
 };

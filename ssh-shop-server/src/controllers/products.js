@@ -3,10 +3,13 @@ const {
   UpdateProduct,
   GetProduct,
   DeleteProduct,
+  FindAndCountProducts,
 } = require("../services/products");
 
-const func = async (req, res) => {
-  await res.send("create");
+const getAll = async (req, res) => {
+  let result = await FindAndCountProducts(req.user);
+
+  return res.status(200).json(result);
 };
 
 /**
@@ -72,7 +75,7 @@ const drop = async (req, res, next) => {
 module.exports = {
   get,
   create,
-  func,
   update,
   drop,
+  getAll,
 };
