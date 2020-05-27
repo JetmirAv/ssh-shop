@@ -5,6 +5,7 @@ const router = express.Router();
 const addressRoutes = require("./address");
 const cardRoutes = require("./card");
 const controllers = require("../controllers/users");
+const wishlistRoutes = require("./wishlist");
 const auth = require("../middleware/auth");
 
 /* GET users listing. */
@@ -21,5 +22,7 @@ router.delete("/:user_id([0-9]+)", auth, controllers.drop);
 router.use("/:user_id([0-9]+)/address", addressRoutes);
 
 router.use("/:user_id([0-9]+)/cards", cardRoutes);
+
+router.use("/:user_id([0-9]+)/wishlist", wishlistRoutes);
 
 module.exports = router;
