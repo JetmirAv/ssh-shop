@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const controllers = require("../controllers/wishlist");
+const auth = require("../middleware/auth");
 
 
 /*GET wishlist by user_id. */
