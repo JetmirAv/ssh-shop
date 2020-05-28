@@ -14,7 +14,7 @@ const get = async (req, res, next) => {
       return res.status(200).json({
         wishlist: await GetWishlist(
           req.params.user_id,
-          req.params.product_id
+          
         ),
       });
     } catch (err) {

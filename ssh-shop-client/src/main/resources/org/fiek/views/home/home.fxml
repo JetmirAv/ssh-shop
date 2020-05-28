@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -11,11 +15,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="500.0" prefWidth="940.0" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.home.HomeController">
+<AnchorPane prefHeight="500.0" prefWidth="940.0" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.home.HomeController">
    <children>
       <HBox fx:id="homeFirstHbox" layoutX="14.0" layoutY="23.0" prefHeight="500.0" spacing="50.0" styleClass="search-category-order" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
          <children>
-            <TextField styleClass="search-product" text="Search..." />
+            <TextField promptText="Search..." styleClass="search-product" />
             <ComboBox promptText="Category" styleClass="select-category" />
             <ComboBox promptText="Order by" styleClass="order-by" />
          </children>
