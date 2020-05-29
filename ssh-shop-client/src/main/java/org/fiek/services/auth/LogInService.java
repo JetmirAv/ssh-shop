@@ -27,10 +27,10 @@ public class LogInService extends Service<Void> implements View {
             @Override
             protected Void call() throws Exception {
                 JsonObject json = new JsonObject();
-                json.addProperty("email", email);
-                json.addProperty("password", password);
-//                json.addProperty("email", "jetmir99@hotmail.com");
-//                json.addProperty("password", "password");
+//                json.addProperty("email", email);
+//                json.addProperty("password", password);
+                json.addProperty("email", "jetmir99@hotmail.com");
+                json.addProperty("password", "password");
                 try {
                     Ajax request = new Ajax();
                     JsonObject response = request.post("/auth/login", json.toString());

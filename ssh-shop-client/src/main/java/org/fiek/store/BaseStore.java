@@ -7,6 +7,7 @@ import org.fiek.store.auth.AuthStore;
 import org.fiek.store.auth.EditUserAction;
 import org.fiek.store.chat.AddChannelsAction;
 import org.fiek.store.chat.ChatStore;
+import org.fiek.store.chat.GetMessagesAction;
 import org.fiek.store.chat.SetActiveChannelAction;
 import org.reactfx.EventSource;
 import org.reactfx.EventStream;
@@ -48,6 +49,12 @@ public class BaseStore extends Store {
         chatStoreEventSource.push(chatStore);
         subscribe(AddChannelsAction.class, this::addChannelsAction);
         subscribe(SetActiveChannelAction.class, this::setActiveChannelAction);
+        subscribe(GetMessagesAction.class, this::getMeesageAction);
+    }
+
+    private void getMeesageAction(GetMessagesAction action) {
+        chatStore.getMessageAction(action.getMessages());
+        chatStoreEventSource.push(chatStore);
     }
 
     private void setActiveChannelAction(SetActiveChannelAction action) {

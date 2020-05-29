@@ -1,23 +1,27 @@
 package org.fiek.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Channel {
     final String tableName = "channels";
 
-    public int ID;
+    public int id;
     public int product_id;
     public int user_id;
     public String name;
 
     public User user;
     public Product product;
+    public ArrayList<Message> messages = new ArrayList<>();
 
 
-    public Channel(int ID,
+    public Channel(int id,
                    int product_id,
                    int user_id,
                    String name
     ) {
-        this.ID = ID;
+        this.id = id;
         this.product_id = product_id;
         this.user_id = user_id;
         this.name = name;
@@ -32,8 +36,8 @@ public class Channel {
         return tableName;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     public int getProductId() {
@@ -74,6 +78,14 @@ public class Channel {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public ArrayList<Message> getMessages() {
+        return messages;
+    }
+
+    public void addMessages(List<Message> messages){
+        this.messages.addAll(messages);
     }
 }
 

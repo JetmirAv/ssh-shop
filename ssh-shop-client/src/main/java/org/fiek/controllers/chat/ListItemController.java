@@ -6,7 +6,6 @@ package org.fiek.controllers.chat;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import eu.lestard.fluxfx.Action;
 import eu.lestard.fluxfx.View;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
@@ -62,6 +61,8 @@ public class ListItemController implements View {
 
     @FXML
     public void clickHandler(MouseEvent action){
-        publishAction(new SetActiveChannelAction(channel.getID()));
+        System.out.println("ChannelID: " + channel.getId());
+
+        publishAction(new SetActiveChannelAction(channel.getId()));
     }
 }

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import eu.lestard.fluxfx.Store;
 import org.fiek.models.Channel;
+import org.fiek.models.Message;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +15,15 @@ public class ChatStore extends Store {
     Integer selectedChannel;
     ArrayList<Channel> channels = null;
     Integer count = 0;
+    Integer offset = 0;
+
+    public Integer getOffset() {
+        return offset;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
 
     public Integer getSelectedChannel() {
         return selectedChannel;
@@ -36,6 +46,7 @@ public class ChatStore extends Store {
 
     public void setSelectedChannel(Integer selectedChannel) {
         this.selectedChannel = selectedChannel;
+        this.setOffset(0);
     }
 
     public void setCount(Integer count) {
@@ -55,5 +66,14 @@ public class ChatStore extends Store {
         List<Channel> channelList = Arrays.asList(channelsArray);
         addChannels(channelList);
         setCount(Integer.parseInt(count));
+    }
+
+    public void getMessageAction(String messages) {
+        Gson gson = new Gson();
+        Message[] messageArray = gson.fromJson(messages, Message[].class);
+        List<Message> messageList = Arrays.asList(messageArray);
+        System.out.println("List<Message>: " + messageList.size());
+        this.channels.get(this.selectedChannel).addMessages(messageList);
+        this.setOffset(10);
     }
 }

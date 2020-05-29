@@ -13,7 +13,7 @@ public class SocketClient {
 
     final String hostname;
     final Integer port;
-    Socket socket;
+    public static Socket socket;
 
     public SocketClient(String hostname, Integer port) {
         this.hostname = hostname;
@@ -23,12 +23,20 @@ public class SocketClient {
 
     public void execute() {
         try {
-            Socket socket = IO.socket(this.hostname);
+            socket = IO.socket(this.hostname);
             socket.connect();
+
+            ChatSocket.onMessage(socket);
+
         } catch (Exception exception) {
             System.out.println("Exception" + exception.getMessage());
             exception.printStackTrace();
 
         }
     }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
 }

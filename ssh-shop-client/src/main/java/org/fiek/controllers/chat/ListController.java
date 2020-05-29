@@ -3,7 +3,6 @@
  */
 package org.fiek.controllers.chat;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -47,6 +46,7 @@ public class ListController {
             messageList.getChildren().clear();
             try {
                 for (Channel channel : channels) {
+                    System.out.println("ListController channels ids: " + channel.getId());
                     fxmlLoader = new FXMLLoader(App.class.getResource("views/chat/list-item.fxml"));
                     fxmlLoader.setController(new ListItemController(channel));
                     HBox hbox = fxmlLoader.load();
