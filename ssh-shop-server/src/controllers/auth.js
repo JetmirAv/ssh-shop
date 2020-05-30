@@ -72,15 +72,32 @@ const register = async (req, res, next) => {
  */
 const changePassword = async (req, res, next) => {
   try {
+    console.log("Brenda try-it!");
     let user = req.user;
+    var oldPassword = req.body.oldPassword;
+    var newPassword = req.body.newPassword;
+    var confirmPassword = req.body.confirmPassword;
+    console.log("Old password:" + oldPassword);
+    console.log("New password:" + newPassword);
+    console.log("Confirm password:" + confirmPassword);
     console.log({ user });
-    await user.update(
-      { password: req.body.password },
-      { fields: ["password"] }
-    );
-
-    return res.status(200).json(true);
+    let hash = user.password;
+    console.log("Hash : " + hash);
+    bcrypt.compare(oldPassword, hash, function (err, user) {
+      if (res) {
+        // Passwords match
+        if (newPassword == confirmPassword) {
+          console.log("Mir o!");
+          // user.update(
+          //   { password: req.body.newPassword },
+          //   { fields: ["password"] }
+          // );
+          console.log("u ba update!");
+        }
+      }
+    });
   } catch (err) {
+    console.log("Jasht try-it!");
     next(err);
   }
 };

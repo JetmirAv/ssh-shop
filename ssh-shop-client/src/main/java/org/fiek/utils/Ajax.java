@@ -19,7 +19,7 @@ public class Ajax {
 
     final BaseStore baseStore;
 
-    private final String host = "http://192.168.1.67:5000/";
+    private final String host = "http://localhost:3000/";
 
     public static enum methods {GET, POST, PATCH, DELETE}
 
