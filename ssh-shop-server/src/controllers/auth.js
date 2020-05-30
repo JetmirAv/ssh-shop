@@ -78,14 +78,16 @@ const changePassword = async (req, res, next) => {
     var confirmPassword = req.body.confirmPassword;
     var oldPassword = req.body.oldPassword;
 
-    if (oldPassword === undefined)
-      throw new CustomError("Old Password is not defined !", {}, 401);
+    if (confirmPassword === "" || newPassword === "" || oldPassword === "")
+      throw new CustomError("Please fill the fields !", {}, 401);
 
-    if (confirmPassword === undefined)
-      throw new CustomError("Confirm Password is not defined !", {}, 401);
-
-    if (newPassword === undefined)
-      throw new CustomError("New Password is not defined !", {}, 401);
+    if (newPassword === oldPassword) {
+      throw new CustomError(
+        "New password is the same as old password !",
+        {},
+        401
+      );
+    }
 
     if (newPassword !== confirmPassword)
       throw new CustomError(
