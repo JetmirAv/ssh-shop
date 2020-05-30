@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const { User, Sequelize } = require("../models/sequelize");
 const CustomError = require("../errors/CustomError");
+const { check, validationResult } = require("express-validator");
 const { generateJWT } = require("../util/generateJWT");
 const {
   CreateUser,
@@ -75,12 +76,35 @@ const changePassword = async (req, res, next) => {
     let user = req.user;
     var newPassword = req.body.newPassword;
     var confirmPassword = req.body.confirmPassword;
-    console.log({ user });
+    var oldPassword = req.body.oldPassword;
+
+    if (oldPassword === undefined)
+      throw new CustomError("Old Password is not defined !", {}, 401);
+
+    if (confirmPassword === undefined)
+      throw new CustomError("Confirm Password is not defined !", {}, 401);
+
+    if (newPassword === undefined)
+      throw new CustomError("New Password is not defined !", {}, 401);
+
+    if (newPassword !== confirmPassword)
+      throw new CustomError(
+        "New Password and Confirm Password does not match !",
+        {},
+        401
+      );
+
+    if (newPassword.length < 6)
+      throw new CustomError(
+        "Password must be at least six character !",
+        {},
+        401
+      );
+
     await user.validatePassword(req.body.oldPassword);
-    if (newPassword == confirmPassword) {
-      user.update({ password: confirmPassword }, { fields: ["password"] });
-      return res.status(200).json({ password: newPassword });
-    }
+
+    user.update({ password: confirmPassword }, { fields: ["password"] });
+    return res.status(200).json({ password: newPassword });
   } catch (err) {
     console.log(err);
     next(err);
