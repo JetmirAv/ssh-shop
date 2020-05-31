@@ -1,27 +1,40 @@
 const assert = require('assert');
-  
-const insertDocuments = function(db, variantCollections, collectionName, callback) {
-    // Get the documents collection
-    const collection = db.collection(collectionName);
-    // Insert some documents
-    for (i in variantCollections) {
-        collection.insertOne(variantCollections[i], function(err, res) {
-        if (err) throw err;
-        console.log("Document inserted");
-    }); 
+const mongoose = require('../config/mongoose') 
+
+/**
+ *
+ * @param {Product} data
+ * @returns Product
+ */
+const CreateMongoProduct = async (data) => {
+  try {
+    //const product = "new" 
+    //await product.validate();
+    //await product.save();
+    //return product;
+  } catch (err) {
+    throw err;
   }
-}; 
+};  
 
 const findDocuments = function(db, collectionName, callback) {
   // Get the documents collection
-  const collection = db.collection(collectionName);
-  // Find some documents
-  collection.find({}).toArray(function(err, docs) {
-    assert.equal(err, null);
-    console.log("Found the following records");
-    console.log(docs)
+//  const collection = db.collection(collectionName);
+//  // Find some documents
+//  console.log(db.collectionNames(callback));
+//  collection.find({}).toArray(function(err, docs) {
+//    assert.equal(err, null);
+//    console.log("Found the following records");
+//    console.log(docs)
     //callback(docs);
-  });
+//  });
+db.listCollections().toArray().then((docs) => {
+  docs.forEach((doc, idx, array) => { console.log(doc.name) });
+
+}).catch((err) => {
+
+  console.log(err);
+})
 }
 
 const removeDocument = function(db,collectionName, callback) {
@@ -47,7 +60,7 @@ const updateDocument = function(db, variantCollections, collectionName, callback
   }
 
   module.exports = {
-    insertDocuments,
+    CreateMongoProduct,
     findDocuments,
     updateDocument,
     removeDocument
