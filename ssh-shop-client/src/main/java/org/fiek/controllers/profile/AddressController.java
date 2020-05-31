@@ -13,6 +13,7 @@ import java.net.URL;
 
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import org.fiek.models.Address;
 import org.fiek.models.User;
 import org.fiek.services.auth.AddressService;
@@ -29,7 +30,8 @@ import org.fiek.utils.Tuple;
 public class AddressController {
 
     private final BaseStore baseStore;
-
+    @FXML
+    private VBox vboxList;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -72,7 +74,7 @@ public class AddressController {
 
     AuthStore authStore;
     User user;
-    public ArrayList<Address> address;
+    public ArrayList<Address> address = new ArrayList<>();
     ArrayList<Address> addressDetails;
 
     @FXML
@@ -90,46 +92,22 @@ public class AddressController {
         assert deleteBttnId != null : "fx:id=\"deleteBttnId\" was not injected: check your FXML file 'address.fxml'.";
         authStore = baseStore.getAuthStore();
         user = authStore.getUser();
-        address = authStore.getAddresses();
 
         AddressService addressService = new AddressService(user);
         addressService.start();
 
-        user.setAddresses(address);
-
-
         addressService.setOnSucceeded(e -> {
-            System.out.println("Great!");
+            address = authStore.getAddresses();
+            user.setAddresses(address);
+            int number = address.size();
+            for(Address addr : user.getAddresses()) {
+                JFXButton jfxButton = new JFXButton(addr.getStreet());
+                jfxButton.getStyleClass().add("address-switch-button");
+                vboxList.getChildren().add(jfxButton);
+            }
         });
 
     }
 
-    public void addressOneClicked(ActionEvent actionEvent) {
-        addressDetails = user.getAddresses();
-        firstAddId.setText(addressDetails.get(0).getStreet());
-        streetId.setText(addressDetails.get(0).getStreet());
-        postalId.setText(addressDetails.get(0).getPostal());
-    }
 
-    public void addressSecondClicked(ActionEvent actionEvent) {
-        addressDetails = user.getAddresses();
-        secondAddId.setText(addressDetails.get(1).getStreet());
-        streetId.setText(addressDetails.get(1).getStreet());
-        postalId.setText(addressDetails.get(1).getPostal());
-    }
-
-    public void addressThirdClicked(ActionEvent actionEvent) {
-        addressDetails = user.getAddresses();
-        thirdAddId.setText(addressDetails.get(2).getStreet());
-        streetId.setText(addressDetails.get(2).getStreet());
-        postalId.setText(addressDetails.get(2).getPostal());
-    }
-
-    public void addressFourthClicked(ActionEvent actionEvent) {
-        addressDetails = user.getAddresses();
-        fourthAddId.setText(addressDetails.get(3).getStreet());
-        streetId.setText(addressDetails.get(3).getStreet());
-        postalId.setText(addressDetails.get(3).getPostal());
-
-    }
 }
