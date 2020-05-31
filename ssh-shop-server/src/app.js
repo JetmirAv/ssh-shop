@@ -9,10 +9,15 @@ const debug = require("debug")("server:server");
 const host = process.env.NODE_HOST || "localhost";
 const port = +process.env.NODE_PORT || 3000;
 
-require("./config/mongoose");
 require("./models/sequelize");
 
 const errorHandler = require("./errors");
+var mongodb = require("./config/mongodb");
+
+mongodb.connectToServer(function (err, client) {
+  if (err) console.log(err);
+});
+
 const routes = require("./routes");
 const socketRoutes = require("./socket");
 

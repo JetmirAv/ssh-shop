@@ -10,7 +10,7 @@ module.exports = class Cart extends Sequelize.Model {
           allowNull: false,
         },
         variant_id: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING,
           allowNull: false,
         },
         quantity: {
