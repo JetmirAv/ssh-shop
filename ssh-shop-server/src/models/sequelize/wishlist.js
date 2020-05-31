@@ -10,7 +10,7 @@ module.exports = class WishList extends Sequelize.Model {
           allowNull: false,
         },
         product_id: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING,
           allowNull: false,
         },
       },
@@ -27,10 +27,6 @@ module.exports = class WishList extends Sequelize.Model {
     this.belongsTo(models.User, {
       foreignKey: "user_id",
       as: "user",
-    });
-    this.belongsTo(models.Product, {
-      foreignKey: "product_id",
-      as: "product",
     });
   }
 };
