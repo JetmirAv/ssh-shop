@@ -7,14 +7,19 @@ package org.fiek.controllers.profile;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+
+import java.lang.reflect.Array;
 import java.net.URL;
 
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
+import org.fiek.models.Address;
 import org.fiek.models.User;
 import org.fiek.services.auth.AddressService;
 import org.fiek.services.auth.InfoService;
 import org.fiek.store.BaseStore;
+
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import org.fiek.store.auth.AuthStore;
@@ -67,7 +72,8 @@ public class AddressController {
 
     AuthStore authStore;
     User user;
-
+    public ArrayList<Address> address;
+    ArrayList<Address> addressDetails;
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
@@ -82,20 +88,48 @@ public class AddressController {
         assert cityComboId != null : "fx:id=\"cityComboId\" was not injected: check your FXML file 'address.fxml'.";
         assert saveBttnId != null : "fx:id=\"saveBttnId\" was not injected: check your FXML file 'address.fxml'.";
         assert deleteBttnId != null : "fx:id=\"deleteBttnId\" was not injected: check your FXML file 'address.fxml'.";
-        System.out.println("TE ADRESA!");
         authStore = baseStore.getAuthStore();
         user = authStore.getUser();
-    }
+        address = authStore.getAddresses();
 
-    @FXML
-    private void getAddresses(ActionEvent event) {
-        System.out.println("Useri:" + user.getFirstName());
         AddressService addressService = new AddressService(user);
         addressService.start();
 
+        user.setAddresses(address);
+
+
         addressService.setOnSucceeded(e -> {
-            System.out.println("getAddress Successfully!");
+            System.out.println("Great!");
         });
+
+    }
+
+    public void addressOneClicked(ActionEvent actionEvent) {
+        addressDetails = user.getAddresses();
+        firstAddId.setText(addressDetails.get(0).getStreet());
+        streetId.setText(addressDetails.get(0).getStreet());
+        postalId.setText(addressDetails.get(0).getPostal());
+    }
+
+    public void addressSecondClicked(ActionEvent actionEvent) {
+        addressDetails = user.getAddresses();
+        secondAddId.setText(addressDetails.get(1).getStreet());
+        streetId.setText(addressDetails.get(1).getStreet());
+        postalId.setText(addressDetails.get(1).getPostal());
+    }
+
+    public void addressThirdClicked(ActionEvent actionEvent) {
+        addressDetails = user.getAddresses();
+        thirdAddId.setText(addressDetails.get(2).getStreet());
+        streetId.setText(addressDetails.get(2).getStreet());
+        postalId.setText(addressDetails.get(2).getPostal());
+    }
+
+    public void addressFourthClicked(ActionEvent actionEvent) {
+        addressDetails = user.getAddresses();
+        fourthAddId.setText(addressDetails.get(3).getStreet());
+        streetId.setText(addressDetails.get(3).getStreet());
+        postalId.setText(addressDetails.get(3).getPostal());
 
     }
 }

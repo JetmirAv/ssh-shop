@@ -122,6 +122,32 @@ public class Ajax {
         return result;
     }
 
+    public JsonObject getAsJson(String route) throws Exception {
+        String result = "";
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        try {
+            HttpGet request = new HttpGet(this.host + route);
+            addHeaders(request);
+
+            CloseableHttpResponse response = httpClient.execute(request);
+
+            try {
+                HttpEntity entity = getResponse(response);
+                if (entity != null)
+                    result = EntityUtils.toString(entity);
+
+            } finally {
+                response.close();
+            }
+        } finally {
+            httpClient.close();
+        }
+        JsonObject object = JsonParser.parseString(result).getAsJsonObject();
+        return object;
+
+    }
+
+
     private HttpEntity getResponse(CloseableHttpResponse response) throws Exception {
         switch (response.getStatusLine().getStatusCode()) {
             case 200:

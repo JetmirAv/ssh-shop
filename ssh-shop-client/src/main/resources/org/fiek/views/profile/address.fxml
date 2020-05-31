@@ -20,22 +20,22 @@
                <content>
                   <VBox prefHeight="368.0" prefWidth="253.0" styleClass="firstVbox">
                      <children>
-                        <JFXButton fx:id="firstAddId"  styleClass="address-switch-button" onAction="#getAddresses" text="Address1">
+                        <JFXButton fx:id="firstAddId" onAction="#addressOneClicked" styleClass="address-switch-button"  text="Address1">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="secondAddId" styleClass="address-switch-button" text="Address2">
+                        <JFXButton fx:id="secondAddId" onAction="#addressSecondClicked" styleClass="address-switch-button" text="Address2">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="thirdAddId" styleClass="address-switch-button" text="Address3">
+                        <JFXButton fx:id="thirdAddId" onAction="#addressThirdClicked" styleClass="address-switch-button" text="Address3">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="fourthAddId" styleClass="address-switch-button" text="Address4">
+                        <JFXButton fx:id="fourthAddId" onAction="#addressFourthClicked" styleClass="address-switch-button" text="Address4">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>

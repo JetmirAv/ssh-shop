@@ -89,4 +89,18 @@ public class Address {
     public void setCity(City city) {
         this.city = city;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "ID=" + ID +
+                ", user_id=" + user_id +
+                ", street='" + street + '\'' +
+                ", postal='" + postal + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", city_id=" + city_id +
+                ", user=" + user +
+                ", city=" + city +
+                '}';
+    }
 }
