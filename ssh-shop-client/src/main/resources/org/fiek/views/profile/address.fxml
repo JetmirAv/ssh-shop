@@ -20,7 +20,7 @@
                <content>
                   <VBox prefHeight="368.0" prefWidth="253.0" styleClass="firstVbox">
                      <children>
-                        <JFXButton fx:id="firstAddId" styleClass="address-switch-button" text="Address1">
+                        <JFXButton fx:id="firstAddId"  styleClass="address-switch-button" onAction="#getAddresses" text="Address1">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>

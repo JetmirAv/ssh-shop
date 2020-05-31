@@ -38,4 +38,12 @@ public class AuthStore extends Store {
             this.user = actionUser;
 
     }
+
+    public void getAddressesAction(String user) {
+        final User actionUser = new GsonBuilder().create().fromJson(user, User.class);
+
+        if (user != null)
+            this.user = actionUser;
+
+    }
 }
