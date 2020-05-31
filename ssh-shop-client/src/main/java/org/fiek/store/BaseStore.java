@@ -5,10 +5,7 @@ import eu.lestard.fluxfx.Store;
 import org.fiek.store.auth.AddTokenAction;
 import org.fiek.store.auth.AuthStore;
 import org.fiek.store.auth.EditUserAction;
-import org.fiek.store.chat.AddChannelsAction;
-import org.fiek.store.chat.ChatStore;
-import org.fiek.store.chat.GetMessagesAction;
-import org.fiek.store.chat.SetActiveChannelAction;
+import org.fiek.store.chat.*;
 import org.reactfx.EventSource;
 import org.reactfx.EventStream;
 
@@ -50,6 +47,12 @@ public class BaseStore extends Store {
         subscribe(AddChannelsAction.class, this::addChannelsAction);
         subscribe(SetActiveChannelAction.class, this::setActiveChannelAction);
         subscribe(GetMessagesAction.class, this::getMeesageAction);
+        subscribe(NewMessageAction.class, this::newMessageAction);
+    }
+
+    private void newMessageAction(NewMessageAction action) {
+        chatStore.newMessageAction(action.getMessage());
+        chatStoreEventSource.push(chatStore);
     }
 
     private void getMeesageAction(GetMessagesAction action) {

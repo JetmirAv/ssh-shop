@@ -31,7 +31,8 @@ public class ListController {
 
     FXMLLoader fxmlLoader;
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert messageList != null : "fx:id=\"messageList\" was not injected: check your FXML file 'list.fxml'.";
         System.out.println("ListController init");
@@ -42,13 +43,14 @@ public class ListController {
 
     private void renderChats(ChatStore chatStore) {
         ArrayList<Channel> channels = chatStore.getChannels();
-        if(channels != null){
+        if (channels != null) {
             messageList.getChildren().clear();
             try {
+                int index = 0;
                 for (Channel channel : channels) {
                     System.out.println("ListController channels ids: " + channel.getId());
                     fxmlLoader = new FXMLLoader(App.class.getResource("views/chat/list-item.fxml"));
-                    fxmlLoader.setController(new ListItemController(channel));
+                    fxmlLoader.setController(new ListItemController(channel, index++));
                     HBox hbox = fxmlLoader.load();
                     messageList.getChildren().add(hbox);
                 }
@@ -57,7 +59,6 @@ public class ListController {
             }
         }
     }
-
 
 
 }

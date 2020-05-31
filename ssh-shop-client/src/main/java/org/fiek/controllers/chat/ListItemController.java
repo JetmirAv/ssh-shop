@@ -20,6 +20,7 @@ import org.fiek.store.chat.SetActiveChannelAction;
 public class ListItemController implements View {
 
     Channel channel;
+    int index;
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
     AuthStore authStore;
 
@@ -38,8 +39,9 @@ public class ListItemController implements View {
     @FXML // fx:id="sellerName"
     private Text sellerName; // Value injected by FXMLLoader
 
-    public ListItemController(Channel channel){
+    public ListItemController(Channel channel, int index){
         this.channel = channel;
+        this.index = index;
         this.authStore = baseStore.getAuthStore();
     }
 
@@ -51,7 +53,7 @@ public class ListItemController implements View {
 
 
 
-        productName.setText(channel.getName());
+        productName.setText(channel.getProduct().getName());
         if(authStore.getUser().getId() == channel.getUserId()){
             sellerName.setText(channel.getProduct().getUser().getFirstName());
         } else {
@@ -61,8 +63,8 @@ public class ListItemController implements View {
 
     @FXML
     public void clickHandler(MouseEvent action){
-        System.out.println("ChannelID: " + channel.getId());
+        System.out.println("ChannelID: " + index);
 
-        publishAction(new SetActiveChannelAction(channel.getId()));
+        publishAction(new SetActiveChannelAction(index));
     }
 }

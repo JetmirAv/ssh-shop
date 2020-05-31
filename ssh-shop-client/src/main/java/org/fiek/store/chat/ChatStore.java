@@ -73,7 +73,21 @@ public class ChatStore extends Store {
         Message[] messageArray = gson.fromJson(messages, Message[].class);
         List<Message> messageList = Arrays.asList(messageArray);
         System.out.println("List<Message>: " + messageList.size());
-        this.channels.get(this.selectedChannel).addMessages(messageList);
-        this.setOffset(10);
+        this.getActiveChanner().addMessages(messageList);
+        this.getActiveChanner().setOffset(10);
+    }
+
+    public Channel getActiveChanner(){
+        return this.channels.get(this.selectedChannel);
+    }
+
+    public void newMessageAction(String message) {
+        Gson gson = new Gson();
+        Message messageInstance = gson.fromJson(message, Message.class);
+        this.getActiveChanner().addMessage(messageInstance);
+
+
+//        messageInstance.getChannelId();
+
     }
 }

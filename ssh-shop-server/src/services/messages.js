@@ -12,7 +12,7 @@ const GetMessages = async (channel_id) => {
 
 const CreateMessage = async (data) => {
   try {
-    let channel = await Channel.scope(null).findByPk(data.channel_id);
+    let channel = await Channel.findByPk(data.channel_id);
     if (!channel) throw new Error("Not found");
     let message = new Message({
       ...data,
@@ -20,10 +20,8 @@ const CreateMessage = async (data) => {
     });
     message = await message.save();
     channel.changed("updatedAt", true);
-    console.log({ date: new Date() });
-
     await channel.save();
-    return message;
+    return { ...message._doc, channel };
   } catch (error) {
     throw error;
   }

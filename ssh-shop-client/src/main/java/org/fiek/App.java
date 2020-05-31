@@ -34,6 +34,10 @@ public class App extends Application {
         context.bindInstance(BaseStore.class, baseStore);
 
         scene = new Scene(loadFXML("views/layout/index"));
+
+        stage.setOnCloseRequest(e -> {
+            socketClient.getSocket().disconnect();
+        });
         stage.setMinWidth(960);
         stage.setMinHeight(640);
         stage.setResizable(false);
