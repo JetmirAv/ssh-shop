@@ -25,12 +25,12 @@ const GetUser = async (user_id) => {
 const CreateUser = async (data) => {
   try {
     data.role_id = 2;
-    const user = new User({ ...data });
 
     let userWithEmail = await User.findOne({
       where: { email: { [Op.like]: data.email } },
     });
     if (userWithEmail) throw new CustomError("Email already in use", {}, 401);
+    const user = new User({ ...data });
 
     await user.validate();
     await user.save();

@@ -29,6 +29,8 @@ const me = async (req, res, next) => {
  */
 const login = async (req, res, next) => {
   try {
+    console.log({ ...req.body });
+
     let user = await User.findOne({
       where: { email: { [Sequelize.Op.like]: req.body.email } },
     });
@@ -51,6 +53,8 @@ const login = async (req, res, next) => {
  */
 const register = async (req, res, next) => {
   try {
+    console.log({ ...req.body });
+
     const user = await CreateUser(req.body);
 
     return res.status(200).json({ user: user, token: generateJWT(user.id) });

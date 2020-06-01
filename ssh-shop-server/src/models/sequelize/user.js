@@ -2,6 +2,8 @@
 const Sequelize = require("sequelize");
 const bcrypt = require("bcrypt");
 const CustomError = require("../../errors/CustomError");
+const moment = require("moment");
+const { dateFormat } = require("../../constants");
 
 module.exports = class User extends Sequelize.Model {
   static init(sequelize) {
@@ -76,6 +78,12 @@ module.exports = class User extends Sequelize.Model {
         },
         birthdate: {
           type: Sequelize.DATEONLY,
+          set(val) {
+            val = moment(val, dateFormat).format("YYYY-MM-DD");
+            console.log({ val });
+
+            if (val) this.setDataValue("birthdate", val);
+          },
         },
         gender: {
           type: Sequelize.ENUM("MALE", "FEMALE"),

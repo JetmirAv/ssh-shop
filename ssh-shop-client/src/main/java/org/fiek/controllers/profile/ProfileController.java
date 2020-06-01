@@ -1,31 +1,30 @@
 package org.fiek.controllers.profile;
-
 /**
  * Sample Skeleton for 'index.fxml' Controller Class
  */
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.Event;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import org.fiek.App;
-import org.fiek.controllers.AbstractController;
+import org.fiek.models.User;
+import org.fiek.store.auth.AuthStore;
 
-public class ProfileController extends AbstractController {
+import static org.fiek.App.setRoot;
+
+public class ProfileController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
-
-    @FXML // fx:id="profileBox"
-    private Pane profileBox; // Value injected by FXMLLoader
 
     @FXML // fx:id="navInfo"
     private Button navInfo; // Value injected by FXMLLoader
@@ -39,73 +38,63 @@ public class ProfileController extends AbstractController {
     @FXML // fx:id="navCards"
     private Button navCards; // Value injected by FXMLLoader
 
+    @FXML // fx:id="profileBox"
+    private Pane profileBox; // Value injected by FXMLLoader
 
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() throws IOException {
-        assert profileBox != null : "fx:id=\"profileBox\" was not injected: check your FXML file 'index.fxml'.";
-        setRoot("views/profile/info");
-
-    }
     @FXML
-    void navClick(Event event)throws IOException {
+    void navClick(ActionEvent event) throws IOException {
         String id = ((Node) event.getSource()).getId();
+        System.out.println(id);
+        profileBox.getChildren().clear();
+
         removeActiveClass();
 
         switch (id) {
             case "navInfo":
-                setRoot("views/profile/info");
+                profileBox.getChildren().add(App.loadFXML("views/profile/info"));
                 navInfo.getStyleClass().add("active");
                 break;
 
             case "navPassword":
-                setRoot("views/profile/password");
+                profileBox.getChildren().add(App.loadFXML("views/profile/password"));
                 navPassword.getStyleClass().add("active");
                 break;
 
             case "navAddresses":
-                setRoot("views/profile/address");
+                profileBox.getChildren().add(App.loadFXML("views/profile/address"));
                 navAddresses.getStyleClass().add("active");
                 break;
 
             case "navCards":
-                setRoot("views/profile/cards");
+                profileBox.getChildren().add(App.loadFXML("views/profile/cards"));
                 navCards.getStyleClass().add("active");
                 break;
-
-
 
         }
 
     }
-    public void setRoot(String fxml) throws IOException {
-        profileBox.getChildren().clear();
-        profileBox.getChildren().add(loadFXML(fxml));
 
+    private final AuthStore authStore;
+
+    public ProfileController(AuthStore authStore) {
+        this.authStore = authStore;
     }
 
-
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
+    void initialize() throws IOException {
+        assert navInfo != null : "fx:id=\"navInfo\" was not injected: check your FXML file 'index.fxml'.";
+        assert navPassword != null : "fx:id=\"navPassword\" was not injected: check your FXML file 'index.fxml'.";
+        assert navAddresses != null : "fx:id=\"navAddresses\" was not injected: check your FXML file 'index.fxml'.";
+        assert navCards != null : "fx:id=\"navCards\" was not injected: check your FXML file 'index.fxml'.";
+        assert profileBox != null : "fx:id=\"profileBox\" was not injected: check your FXML file 'index.fxml'.";
+        profileBox.getChildren().add(App.loadFXML("views/profile/info"));
     }
 
-    public void setRoot(String fxml, AbstractController controller) throws IOException {
-        profileBox.getChildren().removeAll();
-        profileBox.getChildren().add(loadFXML(fxml, controller));
+    void removeActiveClass() {
+        navInfo.getStyleClass().removeAll("active");
+        navPassword.getStyleClass().removeAll("active");
+        navAddresses.getStyleClass().removeAll("active");
+        navCards.getStyleClass().removeAll("active");
     }
-
-    private static Parent loadFXML(String fxml, AbstractController controller) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        fxmlLoader.setController(controller);
-        return fxmlLoader.load();
-    }
-    void removeActiveClass(){
-        navInfo.getStyleClass().remove("active");
-        navPassword.getStyleClass().remove("active");
-        navAddresses.getStyleClass().remove("active");
-        navCards.getStyleClass().remove("active");
-    };
 }
-
