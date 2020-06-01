@@ -229,9 +229,9 @@ public class User implements Cloneable {
         addresses.removeAll(addresses);
     }
 
-    public void clearCities() {
-        ArrayList<City> cities = getCities();
-        cities.removeAll(cities);
+    public void clearCards() {
+        ArrayList<Card> cards = getCards();
+        cards.removeAll(cards);
     }
 
     private ArrayList<City> getCities() {

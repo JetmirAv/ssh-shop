@@ -30,6 +30,7 @@ public class BaseStore extends Store {
         subscribe(CityAction.class, this::GetCityAction);
         subscribe(CountryAction.class, this::GetCountryAction);
         subscribe(GetCountryByCityAction.class, this::GetCountryByCity);
+        subscribe(AddCardAction.class, this::addCardAction);
     }
 
     private void editUserAction(EditUserAction t) {
@@ -47,12 +48,15 @@ public class BaseStore extends Store {
         authStoreEventSource.push(authStore);
     }
 
-    private void GetCityAction(CityAction t) {
-        System.out.println("Ne basStore:" + t.getCities());
-        authStore.GetCityAction(t.getCities());
+    private void addCardAction(AddCardAction t) {
+        authStore.addCardAction(t.getCards());
         authStoreEventSource.push(authStore);
     }
 
+    private void GetCityAction(CityAction t) {
+        authStore.GetCityAction(t.getCities());
+        authStoreEventSource.push(authStore);
+    }
 
     private void GetCountryAction(CountryAction t) {
         authStore.GetCountryAction(t.getCountries());
@@ -63,5 +67,4 @@ public class BaseStore extends Store {
         authStore.GetCountryByCity(t.getCountry());
         authStoreEventSource.push(authStore);
     }
-
 }

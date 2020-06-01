@@ -3,10 +3,7 @@ package org.fiek.store.auth;
 
 import com.google.gson.GsonBuilder;
 import eu.lestard.fluxfx.Store;
-import org.fiek.models.Address;
-import org.fiek.models.City;
-import org.fiek.models.Country;
-import org.fiek.models.User;
+import org.fiek.models.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -17,17 +14,30 @@ public class AuthStore extends Store {
     public String token;
     public User user;
     public Address address;
-
-    public Country getCountry() {
-        return country;
-    }
-
+    public Card card;
     private City city;
     private Country country;
     public ArrayList<Address> addresses = new ArrayList<>();
     public ArrayList<City> cities = new ArrayList<>();
     public ArrayList<Country> countries = new ArrayList<>();
+    public ArrayList<Card> cards = new ArrayList<>();
 
+
+    public Card getCard() {
+        return card;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
     public ArrayList<Country> getCountries() {
         return countries;
     }
@@ -71,18 +81,22 @@ public class AuthStore extends Store {
 
     }
 
-    public void addAddressAction(String [] address) {
-        for (String strAddr : address) {
-            final Address actionAddress = new GsonBuilder().create().fromJson(strAddr, Address.class);
-            System.out.println("AddressActiton:" + actionAddress);
-            if (address != null) {
+    public void addAddressAction(String [] addressList) {
+        for (String strAddr : addressList) {
+                final Address actionAddress = new GsonBuilder().create().fromJson(strAddr, Address.class);
+                System.out.println("AddressActiton:" + actionAddress);
                 this.address = actionAddress;
                 addresses.add(this.address);
+        }
+    }
+
+    public void addCardAction(String [] cardsList) {
+        for (String strCard : cardsList) {
+            final Card actionCard = new GsonBuilder().create().fromJson(strCard, Card.class);
+                this.card = actionCard;
+                cards.add(this.card);
             }
         }
-
-
-    }
 
     public void GetCityAction(String [] city) {
         for (String strCity : city) {

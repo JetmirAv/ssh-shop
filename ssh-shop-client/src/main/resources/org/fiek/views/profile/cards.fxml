@@ -17,7 +17,7 @@
          <children>
             <ScrollPane prefHeight="351.0" prefWidth="240.0" styleClass="address-scrollpane">
                <content>
-                  <VBox prefHeight="368.0" prefWidth="253.0" styleClass="firstVbox" />
+                  <VBox fx:id="vboxList" prefHeight="368.0" prefWidth="253.0" styleClass="firstVbox" />
                </content>
             </ScrollPane>
             <AnchorPane prefHeight="310.0" prefWidth="615.0" styleClass="secondAncharPane">
