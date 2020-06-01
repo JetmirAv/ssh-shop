@@ -11,16 +11,22 @@ import com.jfoenix.controls.JFXTextField;
 import java.lang.reflect.Array;
 import java.net.URL;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import org.fiek.models.Address;
+import org.fiek.models.City;
 import org.fiek.models.User;
 import org.fiek.services.auth.AddressService;
+import org.fiek.services.auth.CityService;
 import org.fiek.services.auth.InfoService;
 import org.fiek.store.BaseStore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import org.fiek.store.auth.AuthStore;
@@ -60,7 +66,7 @@ public class AddressController {
     private JFXComboBox<?> countryComboId; // Value injected by FXMLLoader
 
     @FXML // fx:id="cityComboId"
-    private JFXComboBox<?> cityComboId; // Value injected by FXMLLoader
+    private JFXComboBox<String> cityComboId; // Value injected by FXMLLoader
 
     @FXML // fx:id="saveBttnId"
     private JFXButton saveBttnId; // Value injected by FXMLLoader
@@ -75,7 +81,9 @@ public class AddressController {
     AuthStore authStore;
     User user;
     public ArrayList<Address> address = new ArrayList<>();
-    ArrayList<Address> addressDetails;
+    public ArrayList<City> cities = new ArrayList<>();
+    ArrayList<JFXButton> buttonsAddress;
+
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
@@ -93,21 +101,48 @@ public class AddressController {
         authStore = baseStore.getAuthStore();
         user = authStore.getUser();
 
+        CityService cityService = new CityService();
+        cityService.start();
+        cityService.setOnSucceeded(e -> {
+            cities = authStore.getCities();
+            for(int i=0; i<cities.size(); i++){
+                cityComboId.getItems().add(cities.get(i).getName());
+            }
+            cities.removeAll(cities);
+        });
         AddressService addressService = new AddressService(user);
         addressService.start();
 
         addressService.setOnSucceeded(e -> {
+            buttonsAddress = new ArrayList<>();
             address = authStore.getAddresses();
             user.setAddresses(address);
-            int number = address.size();
-            for(Address addr : user.getAddresses()) {
-                JFXButton jfxButton = new JFXButton(addr.getStreet());
-                jfxButton.getStyleClass().add("address-switch-button");
-                vboxList.getChildren().add(jfxButton);
+            int numberOfButtons = user.getAddresses().size();
+            for (int i = 0; i < numberOfButtons; i++) {
+                JFXButton jfxButton_i = new JFXButton();
+                buttonsAddress.add(jfxButton_i);
             }
+            for (int i = 0; i < buttonsAddress.size(); i++) {
+                buttonsAddress.get(i).setText(user.getAddresses().get(i).getStreet());
+                buttonsAddress.get(i).getStyleClass().add("address-switch-button");
+                vboxList.getChildren().add(buttonsAddress.get(i));
+            }
+            for (int i = 0; i < buttonsAddress.size(); i++) {
+                ArrayList<Address> addressesOfUser = new ArrayList<>();
+                int finalI = i;
+                for(Address addr: user.getAddresses()){
+                    addressesOfUser.add(addr);
+                }
+                buttonsAddress.get(i).setOnAction(event -> {
+                    streetId.setText(addressesOfUser.get(finalI).getStreet());
+                    postalId.setText(addressesOfUser.get(finalI).getPostal());
+
+                });
+            }
+            user.clearAddresses();
+
         });
 
+        }
     }
 
-
-}

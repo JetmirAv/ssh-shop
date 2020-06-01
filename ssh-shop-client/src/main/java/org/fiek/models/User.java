@@ -45,6 +45,8 @@ public class User implements Cloneable {
     @Expose(serialize = false, deserialize = true)
     public ArrayList<Address> addresses;
     @Expose(serialize = false, deserialize = true)
+    public ArrayList<City> cities;
+    @Expose(serialize = false, deserialize = true)
     public ArrayList<Wishlist> wishlists;
     @Expose(serialize = false, deserialize = true)
     public ArrayList<Cart> carts;
@@ -220,6 +222,20 @@ public class User implements Cloneable {
 
     public void setChannels(ArrayList<Channel> channels) {
         this.channels = channels;
+    }
+
+    public void clearAddresses() {
+        ArrayList<Address> addresses = getAddresses();
+        addresses.removeAll(addresses);
+    }
+
+    public void clearCities() {
+        ArrayList<City> cities = getCities();
+        cities.removeAll(cities);
+    }
+
+    private ArrayList<City> getCities() {
+        return cities;
     }
 
     @Override

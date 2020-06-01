@@ -8,9 +8,9 @@ import java.io.IOException;
 
 public class CardsController extends AbstractController {
 
-    @FXML
-    private void cards() throws IOException {
-        App.setRoot("views/cards/cards");
-    }
+//    @FXML
+//    private void cards() throws IOException {
+//        App.setRoot("views/cards/cards");
+//    }
 
 }

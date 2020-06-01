@@ -1,10 +1,7 @@
 package org.fiek.store;
 
 import eu.lestard.fluxfx.Store;
-import org.fiek.store.auth.AddAddressAction;
-import org.fiek.store.auth.AddTokenAction;
-import org.fiek.store.auth.AuthStore;
-import org.fiek.store.auth.EditUserAction;
+import org.fiek.store.auth.*;
 import org.reactfx.EventSource;
 import org.reactfx.EventStream;
 
@@ -30,6 +27,7 @@ public class BaseStore extends Store {
         subscribe(AddTokenAction.class, this::addTokenAction);
         subscribe(EditUserAction.class, this::editUserAction);
         subscribe(AddAddressAction.class, this::addAddressAction);
+        subscribe(CityAction.class, this::GetCityAction);
     }
 
     private void editUserAction(EditUserAction t) {
@@ -47,5 +45,10 @@ public class BaseStore extends Store {
         authStoreEventSource.push(authStore);
     }
 
+    private void GetCityAction(CityAction t) {
+        System.out.println("Ne basStore:" + t.getCities());
+        authStore.GetCityAction(t.getCities());
+        authStoreEventSource.push(authStore);
+    }
 
 }
