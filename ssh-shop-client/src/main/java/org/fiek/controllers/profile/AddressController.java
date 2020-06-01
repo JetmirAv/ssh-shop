@@ -19,9 +19,11 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import org.fiek.models.Address;
 import org.fiek.models.City;
+import org.fiek.models.Country;
 import org.fiek.models.User;
 import org.fiek.services.auth.AddressService;
 import org.fiek.services.auth.CityService;
+import org.fiek.services.auth.CountryService;
 import org.fiek.services.auth.InfoService;
 import org.fiek.store.BaseStore;
 
@@ -63,7 +65,7 @@ public class AddressController {
     private JFXTextField postalId; // Value injected by FXMLLoader
 
     @FXML // fx:id="countryComboId"
-    private JFXComboBox<?> countryComboId; // Value injected by FXMLLoader
+    private JFXComboBox<String> countryComboId; // Value injected by FXMLLoader
 
     @FXML // fx:id="cityComboId"
     private JFXComboBox<String> cityComboId; // Value injected by FXMLLoader
@@ -82,6 +84,7 @@ public class AddressController {
     User user;
     public ArrayList<Address> address = new ArrayList<>();
     public ArrayList<City> cities = new ArrayList<>();
+    public ArrayList<Country> countries = new ArrayList<>();
     ArrayList<JFXButton> buttonsAddress;
 
 
@@ -101,11 +104,24 @@ public class AddressController {
         authStore = baseStore.getAuthStore();
         user = authStore.getUser();
 
+        CountryService countryService = new CountryService();
+        countryService.start();
+        countryService.setOnSucceeded(e -> {
+            countries = authStore.getCountries();
+            System.out.println("Country size:" + countries.size());
+            for(int i=0; i<countries.size(); i++){
+
+                countryComboId.getItems().add(countries.get(i).getName());
+            }
+            cities.removeAll(countries);
+        });
+
         CityService cityService = new CityService();
         cityService.start();
         cityService.setOnSucceeded(e -> {
             cities = authStore.getCities();
             for(int i=0; i<cities.size(); i++){
+
                 cityComboId.getItems().add(cities.get(i).getName());
             }
             cities.removeAll(cities);
@@ -136,7 +152,7 @@ public class AddressController {
                 buttonsAddress.get(i).setOnAction(event -> {
                     streetId.setText(addressesOfUser.get(finalI).getStreet());
                     postalId.setText(addressesOfUser.get(finalI).getPostal());
-
+                    cityComboId.getSelectionModel().select(addressesOfUser.get(finalI).getCityId() - 1);
                 });
             }
             user.clearAddresses();

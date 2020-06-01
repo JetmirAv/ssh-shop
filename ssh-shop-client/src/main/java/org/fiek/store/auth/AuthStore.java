@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import eu.lestard.fluxfx.Store;
 import org.fiek.models.Address;
 import org.fiek.models.City;
+import org.fiek.models.Country;
 import org.fiek.models.User;
 
 import java.lang.reflect.Array;
@@ -16,9 +17,15 @@ public class AuthStore extends Store {
     public String token;
     public User user;
     public Address address;
+    private City city;
+    private Country country;
     public ArrayList<Address> addresses = new ArrayList<>();
     public ArrayList<City> cities = new ArrayList<>();
-    private City city;
+    public ArrayList<Country> countries = new ArrayList<>();
+
+    public ArrayList<Country> getCountries() {
+        return countries;
+    }
 
     public ArrayList<Address> getAddresses() {
         return addresses;
@@ -50,7 +57,6 @@ public class AuthStore extends Store {
 
     }
 
-
     public void editUserAction(String user) {
         System.out.println("Useri ketu:" + user);
         final User actionUser = new GsonBuilder().create().fromJson(user, User.class);
@@ -72,7 +78,6 @@ public class AuthStore extends Store {
 
     }
 
-
     public void GetCityAction(String [] city) {
         for (String strCity : city) {
             final City actionCity = new GsonBuilder().create().fromJson(strCity, City.class);
@@ -81,7 +86,15 @@ public class AuthStore extends Store {
                 cities.add(this.city);
             }
         }
+    }
 
-
+    public void GetCountryAction(String [] country) {
+        for (String strCountry : country) {
+            final Country actionCountry = new GsonBuilder().create().fromJson(strCountry, Country.class);
+            if (country != null) {
+                this.country = actionCountry;
+                countries.add(this.country);
+            }
+        }
     }
 }

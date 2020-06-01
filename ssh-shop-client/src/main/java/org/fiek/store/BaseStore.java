@@ -28,6 +28,7 @@ public class BaseStore extends Store {
         subscribe(EditUserAction.class, this::editUserAction);
         subscribe(AddAddressAction.class, this::addAddressAction);
         subscribe(CityAction.class, this::GetCityAction);
+        subscribe(CountryAction.class, this::GetCountryAction);
     }
 
     private void editUserAction(EditUserAction t) {
@@ -48,6 +49,12 @@ public class BaseStore extends Store {
     private void GetCityAction(CityAction t) {
         System.out.println("Ne basStore:" + t.getCities());
         authStore.GetCityAction(t.getCities());
+        authStoreEventSource.push(authStore);
+    }
+
+
+    private void GetCountryAction(CountryAction t) {
+        authStore.GetCountryAction(t.getCountries());
         authStoreEventSource.push(authStore);
     }
 
