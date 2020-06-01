@@ -16,15 +16,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import org.fiek.models.Address;
 import org.fiek.models.City;
 import org.fiek.models.Country;
 import org.fiek.models.User;
-import org.fiek.services.auth.AddressService;
-import org.fiek.services.auth.CityService;
-import org.fiek.services.auth.CountryService;
-import org.fiek.services.auth.InfoService;
+import org.fiek.services.auth.*;
 import org.fiek.store.BaseStore;
 
 import java.util.ArrayList;
@@ -42,6 +40,9 @@ public class AddressController {
     private VBox vboxList;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
+
+    @FXML
+    private AnchorPane root;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
@@ -85,9 +86,9 @@ public class AddressController {
     public ArrayList<Address> address = new ArrayList<>();
     public ArrayList<City> cities = new ArrayList<>();
     public ArrayList<Country> countries = new ArrayList<>();
+    Country targetCountry;
     ArrayList<JFXButton> buttonsAddress;
-
-
+    Loading loading;
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -104,28 +105,6 @@ public class AddressController {
         authStore = baseStore.getAuthStore();
         user = authStore.getUser();
 
-        CountryService countryService = new CountryService();
-        countryService.start();
-        countryService.setOnSucceeded(e -> {
-            countries = authStore.getCountries();
-            System.out.println("Country size:" + countries.size());
-            for(int i=0; i<countries.size(); i++){
-
-                countryComboId.getItems().add(countries.get(i).getName());
-            }
-            cities.removeAll(countries);
-        });
-
-        CityService cityService = new CityService();
-        cityService.start();
-        cityService.setOnSucceeded(e -> {
-            cities = authStore.getCities();
-            for(int i=0; i<cities.size(); i++){
-
-                cityComboId.getItems().add(cities.get(i).getName());
-            }
-            cities.removeAll(cities);
-        });
         AddressService addressService = new AddressService(user);
         addressService.start();
 
@@ -148,17 +127,51 @@ public class AddressController {
                 int finalI = i;
                 for(Address addr: user.getAddresses()){
                     addressesOfUser.add(addr);
+
                 }
                 buttonsAddress.get(i).setOnAction(event -> {
                     streetId.setText(addressesOfUser.get(finalI).getStreet());
                     postalId.setText(addressesOfUser.get(finalI).getPostal());
                     cityComboId.getSelectionModel().select(addressesOfUser.get(finalI).getCityId() - 1);
+                    GetCountryByCityService getCountryByCityService =
+                            new GetCountryByCityService(addressesOfUser.get(finalI).getCityId());
+                    getCountryByCityService.start();
+                    getCountryByCityService.setOnSucceeded(event1 -> {
+                        targetCountry = authStore.getCountry();
+                        countryComboId.getSelectionModel().select(targetCountry.getName());
+
+                    });
+
                 });
             }
             user.clearAddresses();
-
         });
 
-        }
+        CountryService countryService = new CountryService();
+        countryService.start();
+        countryService.setOnSucceeded(e -> {
+            countries = authStore.getCountries();
+            System.out.println("Country size:" + countries.size());
+            for(int i=0; i<countries.size(); i++){
+
+                countryComboId.getItems().add(countries.get(i).getName());
+            }
+            countries.removeAll(countries);
+        });
+
+
+        CityService cityService = new CityService();
+        cityService.start();
+        cityService.setOnSucceeded(e -> {
+            cities = authStore.getCities();
+            for(int i=0; i<cities.size(); i++){
+
+                cityComboId.getItems().add(cities.get(i).getName());
+            }
+            cities.removeAll(cities);
+        });
+
+
+    }
     }
 

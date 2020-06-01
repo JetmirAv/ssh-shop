@@ -17,6 +17,11 @@ public class AuthStore extends Store {
     public String token;
     public User user;
     public Address address;
+
+    public Country getCountry() {
+        return country;
+    }
+
     private City city;
     private Country country;
     public ArrayList<Address> addresses = new ArrayList<>();
@@ -69,6 +74,7 @@ public class AuthStore extends Store {
     public void addAddressAction(String [] address) {
         for (String strAddr : address) {
             final Address actionAddress = new GsonBuilder().create().fromJson(strAddr, Address.class);
+            System.out.println("AddressActiton:" + actionAddress);
             if (address != null) {
                 this.address = actionAddress;
                 addresses.add(this.address);
@@ -97,4 +103,13 @@ public class AuthStore extends Store {
             }
         }
     }
-}
+
+    public void GetCountryByCity(String country) {
+            final Country actionCountry = new GsonBuilder().create().fromJson(country, Country.class);
+            System.out.println("HEH:" + actionCountry);
+            if (country != null) {
+                this.country = actionCountry;
+            }
+        }
+    }
+

@@ -15,6 +15,7 @@ public class CityAction implements Action {
     }
 
 
+
     public String[] getCities() {
         return cities;
     }

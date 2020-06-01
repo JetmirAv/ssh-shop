@@ -1,10 +1,12 @@
 const CustomError = require("../errors/CustomError");
-const { City, Sequelize } = require("../models/sequelize");
+const { City, Country, Sequelize } = require("../models/sequelize");
 const Op = Sequelize.Op;
 
 const GetCities = async () => {
   try {
-    var cities = await City.findAll({});
+    var cities = await City.findAll({
+      order: [["name", "ASC"]],
+    });
     if (!cities) throw new CustomError("Not found!", {}, 401);
     return cities;
   } catch (err) {
@@ -24,7 +26,27 @@ const GetCitiesFromCountry = async (country_id) => {
   }
 };
 
+const GetCountryByCity = async (city_id) => {
+  try {
+    const countryID = await City.findOne({
+      where: {
+        id: city_id,
+      },
+    });
+    if (!countryID) throw new CustomError("Not found!", {}, 401);
+    let countryName = await Country.findOne({
+      attributes: ["name"],
+      where: { id: { [Op.eq]: countryID.country_id } },
+    });
+    if (!countryName) throw new CustomError("Not found!", {}, 401);
+    return countryName;
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   GetCities,
   GetCitiesFromCountry,
+  GetCountryByCity,
 };

@@ -21,7 +21,7 @@
                   <VBox fx:id="vboxList" prefHeight="368.0" prefWidth="253.0" styleClass="firstVbox" />
                </content>
             </ScrollPane>
-            <AnchorPane prefHeight="310.0" prefWidth="615.0" styleClass="secondAncharPane">
+            <AnchorPane fx:id="root" prefHeight="310.0" prefWidth="615.0" styleClass="secondAncharPane">
                <children>
                   <GridPane layoutX="15.0" layoutY="15.0" prefHeight="304.0" prefWidth="262.0" styleClass="gridPane">
                     <columnConstraints>

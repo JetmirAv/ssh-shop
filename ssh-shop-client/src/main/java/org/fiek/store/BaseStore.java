@@ -29,6 +29,7 @@ public class BaseStore extends Store {
         subscribe(AddAddressAction.class, this::addAddressAction);
         subscribe(CityAction.class, this::GetCityAction);
         subscribe(CountryAction.class, this::GetCountryAction);
+        subscribe(GetCountryByCityAction.class, this::GetCountryByCity);
     }
 
     private void editUserAction(EditUserAction t) {
@@ -55,6 +56,11 @@ public class BaseStore extends Store {
 
     private void GetCountryAction(CountryAction t) {
         authStore.GetCountryAction(t.getCountries());
+        authStoreEventSource.push(authStore);
+    }
+
+    private void GetCountryByCity(GetCountryByCityAction t) {
+        authStore.GetCountryByCity(t.getCountry());
         authStoreEventSource.push(authStore);
     }
 
