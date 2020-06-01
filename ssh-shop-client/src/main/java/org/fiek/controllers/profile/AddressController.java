@@ -133,8 +133,8 @@ public class AddressController {
                     streetId.setText(addressesOfUser.get(finalI).getStreet());
                     postalId.setText(addressesOfUser.get(finalI).getPostal());
                     cityComboId.getSelectionModel().select(addressesOfUser.get(finalI).getCityId() - 1);
-                    GetCountryByCityService getCountryByCityService =
-                            new GetCountryByCityService(addressesOfUser.get(finalI).getCityId());
+                    CountryService getCountryByCityService =
+                            new CountryService(addressesOfUser.get(finalI).getCityId());
                     getCountryByCityService.start();
                     getCountryByCityService.setOnSucceeded(event1 -> {
                         targetCountry = authStore.getCountry();

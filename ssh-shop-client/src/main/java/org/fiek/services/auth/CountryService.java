@@ -10,6 +10,7 @@ import org.fiek.models.User;
 import org.fiek.store.auth.AddAddressAction;
 import org.fiek.store.auth.CityAction;
 import org.fiek.store.auth.CountryAction;
+import org.fiek.store.auth.GetCountryByCityAction;
 import org.fiek.utils.Ajax;
 
 import java.lang.reflect.Array;
@@ -17,7 +18,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CountryService extends Service<Void> implements View {
+    public int getCityID() {
+        return cityID;
+    }
 
+    private int cityID;
+
+    public CountryService(int cityID) {
+        this.cityID = cityID;
+    }
+    public CountryService() {
+
+    }
     private void getCountries() throws Exception {
         Ajax request = new Ajax();
         JsonObject response = request.getAsJson("/countries");
@@ -28,12 +40,27 @@ public class CountryService extends Service<Void> implements View {
         publishAction(new CountryAction(addr));
     }
 
+    private void getCountryByCity(int cityID) throws Exception {
+        Ajax request = new Ajax();
+        JsonObject response = request.getAsJson("cities/test/" + cityID);
+        String jsonCities = response.get("countryName").toString();
+        String jsonAddr = jsonCities.replaceAll("\\[", "").replaceAll("\\]", "");
+        String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
+        String[] country = jsonAddr1.split("},");
+        String countryValue = country[0];
+        System.out.println("Value:" + countryValue);
+        publishAction(new GetCountryByCityAction(countryValue));
+    }
+
     @Override
     protected Task<Void> createTask() {
         return new Task<Void>() {
             @Override
             protected Void call() throws Exception {
                 getCountries();
+                cityID = getCityID();
+                if(cityID!=0) getCountryByCity(cityID);
+
                 return null;
             }
         };
