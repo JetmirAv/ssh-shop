@@ -70,6 +70,7 @@ public class Address {
         return city_id;
     }
 
+
     public void setCityId(int city_id) {
         this.city_id = city_id;
     }

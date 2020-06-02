@@ -35,7 +35,7 @@ const GetCountryByCity = async (city_id) => {
     });
     if (!countryID) throw new CustomError("Not found!", {}, 401);
     let countryName = await Country.findOne({
-      attributes: ["name"],
+      attributes: ["id", "name"],
       where: { id: { [Op.eq]: countryID.country_id } },
     });
     if (!countryName) throw new CustomError("Not found!", {}, 401);

@@ -133,8 +133,6 @@ public class AddressController {
                 int finalI1 = i;
                 buttonsAddress.get(i).setOnAction(event -> {
                     addressNr = addressesOfUser.get(finalI).getID();
-                    System.out.println(addressNr + " adrnr");
-                    System.out.println("Id:" + addressNr);
                     streetId.setText(addressesOfUser.get(finalI).getStreet());
                     postalId.setText(addressesOfUser.get(finalI).getPostal());
                     cityComboId.getSelectionModel().select(addressesOfUser.get(finalI).getCityId() - 1);
@@ -144,7 +142,7 @@ public class AddressController {
                     getCountryByCityService.setOnSucceeded(event1 -> {
                         targetCountry = authStore.getCountry();
                         countryComboId.getSelectionModel().select(targetCountry.getName());
-
+                        countries.removeAll(countries);
                     });
 
                 });
@@ -176,6 +174,7 @@ public class AddressController {
                 cityComboId.getItems().add(cities.get(i).getName());
             }
             cities.removeAll(cities);
+            countries.removeAll(countries);
         });
 
 

@@ -78,13 +78,10 @@ public class AuthStore extends Store {
 
         if (user != null)
             this.user = actionUser;
-
     }
 
     public void addAddressAction(String [] addressList) {
         for (String strAddr : addressList) {
-                /*final Address actionAddress = new GsonBuilder().create().fromJson(strAddr, Address.class);
-                System.out.println("AddressActiton:" + actionAddress);*/
             strAddr = strAddr.replaceAll("\"","");
             Address a1 ;
             int id;int user_id; String street; String postal; String phone_number; int city_id;
@@ -93,10 +90,8 @@ public class AuthStore extends Store {
                 for (int i = 0; i < strAddr2.length; i++) {
                     String[] str2 = strAddr2[i].split(":");
                     for (int j = 1; j < str2.length; j+=2) {
-                        //System.out.println("test test " + str2[j] + " - " + j);
                         tt.add(str2[j] + "");
                     }
-
                 }
             id = Integer.parseInt(tt.get(0));
             user_id = Integer.parseInt(tt.get(1));
@@ -104,26 +99,39 @@ public class AuthStore extends Store {
             postal = tt.get(3);
             phone_number = tt.get(4);
             city_id = Integer.parseInt(tt.get(5));
-            System.out.println(id + " id - " + user_id + "user_id - ");
             a1 = new Address(id,user_id,street,postal,phone_number,city_id);
             addresses.add(a1);
-            /*for (int i = 0; i < addresses.size(); i++) {
-                System.out.println(addresses.get(i) + " - qitu adresa");
-            }*/
-               /* this.address = actionAddress;
-                addresses.add(this.address);*/
         }
-
     }
 
     public void addCardAction(String [] cardsList) {
         for (String strCard : cardsList) {
-            final Card actionCard = new GsonBuilder().create().fromJson(strCard, Card.class);
-                this.card = actionCard;
-                cards.add(this.card);
+            strCard = strCard.replaceAll("\"", "");
+            Card c1;
+            int id;
+            int user_id;
+            String number;
+            String exp_month;
+            String exp_year;
+            String code;
+            ArrayList<String> tt = new ArrayList<String>();
+            String[] strAddr2 = strCard.split(",");
+            for (int i = 0; i < strAddr2.length; i++) {
+                String[] str2 = strAddr2[i].split(":");
+                for (int j = 1; j < str2.length; j += 2) {
+                    tt.add(str2[j] + "");
+                }
             }
+            id = Integer.parseInt(tt.get(0));
+            user_id = Integer.parseInt(tt.get(1));
+            number = tt.get(2);
+            exp_month = tt.get(3);
+            exp_year = tt.get(4);
+            code = tt.get(5);
+            c1 = new Card(id, user_id, number, exp_month, exp_year, code);
+            cards.add(c1);
         }
-
+    }
     public void GetCityAction(String [] city) {
         for (String strCity : city) {
             final City actionCity = new GsonBuilder().create().fromJson(strCity, City.class);

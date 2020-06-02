@@ -52,7 +52,7 @@ public class CardsController {
     ArrayList<JFXButton> buttonsCard;
     ArrayList<Card> cards = new ArrayList<Card>();
     Loading loading;
-
+    private int cardsNr = -1;
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -80,7 +80,9 @@ public class CardsController {
                 buttonsCard.add(jfxButton_i);
             }
             for (int i = 0; i < buttonsCard.size(); i++) {
-                buttonsCard.get(i).setText(user.getCards().get(i).getNumber());
+                int s = 0;
+                s = s + i ;
+                buttonsCard.get(i).setText("CARD " + s);
                 buttonsCard.get(i).getStyleClass().add("cards-switch-button");
                 vboxList.getChildren().add(buttonsCard.get(i));
             }
@@ -91,11 +93,12 @@ public class CardsController {
                     cardsOfUser.add(card);
                 }
                 buttonsCard.get(i).setOnAction(event -> {
+                    cardsNr = cardsOfUser.get(finalI).getID();
+                    System.out.println("Cards nr : " + cardsNr);
                     numberId.setText(cardsOfUser.get(finalI).getNumber());
                     expDateId.setText(cardsOfUser.get(finalI).getExp_month() + "/" +
                             cardsOfUser.get(finalI).getExp_year());
                     csvId.setText(cardsOfUser.get(finalI).getCode());
-
                 });
             }
             user.clearCards();
