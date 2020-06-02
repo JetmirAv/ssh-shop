@@ -83,11 +83,37 @@ public class AuthStore extends Store {
 
     public void addAddressAction(String [] addressList) {
         for (String strAddr : addressList) {
-                final Address actionAddress = new GsonBuilder().create().fromJson(strAddr, Address.class);
-                System.out.println("AddressActiton:" + actionAddress);
-                this.address = actionAddress;
-                addresses.add(this.address);
+                /*final Address actionAddress = new GsonBuilder().create().fromJson(strAddr, Address.class);
+                System.out.println("AddressActiton:" + actionAddress);*/
+            strAddr = strAddr.replaceAll("\"","");
+            Address a1 ;
+            int id;int user_id; String street; String postal; String phone_number; int city_id;
+            ArrayList<String> tt = new ArrayList<String>();
+            String[] strAddr2 = strAddr.split(",");
+                for (int i = 0; i < strAddr2.length; i++) {
+                    String[] str2 = strAddr2[i].split(":");
+                    for (int j = 1; j < str2.length; j+=2) {
+                        //System.out.println("test test " + str2[j] + " - " + j);
+                        tt.add(str2[j] + "");
+                    }
+
+                }
+            id = Integer.parseInt(tt.get(0));
+            user_id = Integer.parseInt(tt.get(1));
+            street = tt.get(2);
+            postal = tt.get(3);
+            phone_number = tt.get(4);
+            city_id = Integer.parseInt(tt.get(5));
+            System.out.println(id + " id - " + user_id + "user_id - ");
+            a1 = new Address(id,user_id,street,postal,phone_number,city_id);
+            addresses.add(a1);
+            /*for (int i = 0; i < addresses.size(); i++) {
+                System.out.println(addresses.get(i) + " - qitu adresa");
+            }*/
+               /* this.address = actionAddress;
+                addresses.add(this.address);*/
         }
+
     }
 
     public void addCardAction(String [] cardsList) {

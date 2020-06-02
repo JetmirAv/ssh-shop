@@ -89,6 +89,7 @@ public class AddressController {
     Country targetCountry;
     ArrayList<JFXButton> buttonsAddress;
     Loading loading;
+    private int addressNr = -1;
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -129,7 +130,11 @@ public class AddressController {
                     addressesOfUser.add(addr);
 
                 }
+                int finalI1 = i;
                 buttonsAddress.get(i).setOnAction(event -> {
+                    addressNr = addressesOfUser.get(finalI).getID();
+                    System.out.println(addressNr + " adrnr");
+                    System.out.println("Id:" + addressNr);
                     streetId.setText(addressesOfUser.get(finalI).getStreet());
                     postalId.setText(addressesOfUser.get(finalI).getPostal());
                     cityComboId.getSelectionModel().select(addressesOfUser.get(finalI).getCityId() - 1);
@@ -145,11 +150,13 @@ public class AddressController {
                 });
             }
             user.clearAddresses();
+            countries.removeAll(countries);
         });
 
         CountryService countryService = new CountryService();
         countryService.start();
         countryService.setOnSucceeded(e -> {
+
             countries = authStore.getCountries();
             System.out.println("Country size:" + countries.size());
             for(int i=0; i<countries.size(); i++){
@@ -173,5 +180,13 @@ public class AddressController {
 
 
     }
+
+    public void EditHandler(ActionEvent event) {
+
+        // e thirr const UpdateAddress = async (address_id, user_id, data) => {
+        // UpdateAddress(AddressNr, user_id , .......)
+
+
     }
+}
 
