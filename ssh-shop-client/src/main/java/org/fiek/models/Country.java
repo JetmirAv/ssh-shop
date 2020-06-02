@@ -1,17 +1,21 @@
 package org.fiek.models;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.ArrayList;
 
 public class Country {
     final String tableName = "countries";
 
-    public int ID;
+    @Expose(serialize = false, deserialize = true)
+    public int id;
+    @Expose
     public String name;
-
+    @Expose
     public ArrayList<City> cities;
 
-    public Country(int ID, String name) {
-        this.ID = ID;
+    public Country(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
@@ -37,5 +41,14 @@ public class Country {
 
     public void setCities(ArrayList<City> cities) {
         this.cities = cities;
+    }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", cities=" + cities +
+                '}';
     }
 }

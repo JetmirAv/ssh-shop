@@ -1,20 +1,29 @@
 package org.fiek.models;
 
+import com.google.gson.annotations.Expose;
+
 public class Address {
     final String tableName = "addresses";
+    @Expose(serialize = false, deserialize = true)
+    public int id;
 
-    public int ID;
+    @Expose
     public int user_id;
+    @Expose
     public String street;
+    @Expose
     public String postal;
+    @Expose
     public String phone_number;
+    @Expose
     public int city_id;
-
+    @Expose(serialize = false, deserialize = true)
     public User user;
+    @Expose(serialize = false, deserialize = true)
     public City city;
 
     public Address(int ID, int user_id, String street, String postal, String phone_number, int city_id) {
-        this.ID = ID;
+        this.id = id;
         this.user_id = user_id;
         this.street = street;
         this.postal = postal;
@@ -30,9 +39,12 @@ public class Address {
         return tableName;
     }
 
+
     public int getID() {
-        return ID;
+        return id;
     }
+
+
 
     public int getUserId() {
         return user_id;
@@ -94,7 +106,7 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "ID=" + ID +
+                "ID=" + id +
                 ", user_id=" + user_id +
                 ", street='" + street + '\'' +
                 ", postal='" + postal + '\'' +

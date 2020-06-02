@@ -90,6 +90,7 @@ public class AddressController {
     ArrayList<JFXButton> buttonsAddress;
     Loading loading;
     private int addressNr = -1;
+    private int cityID;
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -112,6 +113,7 @@ public class AddressController {
         addressService.setOnSucceeded(e -> {
             buttonsAddress = new ArrayList<>();
             address = authStore.getAddresses();
+            System.out.println("testest:" + address.size());
             user.setAddresses(address);
             int numberOfButtons = user.getAddresses().size();
             for (int i = 0; i < numberOfButtons; i++) {
@@ -136,6 +138,7 @@ public class AddressController {
                     streetId.setText(addressesOfUser.get(finalI).getStreet());
                     postalId.setText(addressesOfUser.get(finalI).getPostal());
                     cityComboId.getSelectionModel().select(addressesOfUser.get(finalI).getCityId() - 1);
+                    cityID = addressesOfUser.get(finalI).getCityId();
                     CountryService getCountryByCityService =
                             new CountryService(addressesOfUser.get(finalI).getCityId());
                     getCountryByCityService.start();
@@ -181,9 +184,38 @@ public class AddressController {
     }
 
     public void EditHandler(ActionEvent event) {
+        System.out.println("Hini!");
+        Address addrObj = null;
+        int id = addressNr;
+        int userID = user.getId();
+        String street;
+        String postal;
+        String country;
+        String city;
+        int cityID1 = cityID;
+        street = streetId.getText();
+        postal = postalId.getText();
+        country = countryComboId.getSelectionModel().getSelectedItem();
+        cityID = countryComboId.getSelectionModel().getSelectedIndex();
+        addrObj = new Address(id,userID,street,postal,user.getPhoneNumber(),cityID1);
+        UpdateAddressService updateAddressService = new UpdateAddressService(user,addrObj);
+        updateAddressService.start();
+//        updateAddressService.setOnRunning(e -> {
+//            loading = new Loading();
+//        });
 
-        // e thirr const UpdateAddress = async (address_id, user_id, data) => {
-        // UpdateAddress(AddressNr, user_id , .......)
+        updateAddressService.setOnSucceeded(e -> {
+
+            System.out.println("update Successfully!");
+
+        });
+
+        updateAddressService.setOnFailed(e -> {
+            System.out.println("setOnFailed");
+        });
+
+        updateAddressService.setOnCancelled(e -> {
+        });
 
 
     }
