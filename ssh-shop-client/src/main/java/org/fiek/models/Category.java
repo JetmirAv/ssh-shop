@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Category {
     final String tableName = "categories";
 
-    public int ID;
+    public int id;
     public String name;
     public String description;
 
     public ArrayList<Product> products;
 
-    public Category(int ID, String name, String description) {
-        this.ID = ID;
+    public Category(int id, String name, String description) {
+        this.id = id;
         this.name = name;
         this.description = description;
     }
@@ -26,7 +26,7 @@ public class Category {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
     public String getName() {

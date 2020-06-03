@@ -3,7 +3,7 @@ package org.fiek.models;
 public class Order {
     final String tableName = "orders";
 
-    public int ID;
+    public int id;
     public int user_id;
     public int card_id;
     public int address_id;
@@ -15,8 +15,8 @@ public class Order {
     public Card card;
     public Address address;
 
-    public Order(int ID, int user_id, int card_id, int address_id, int variant_id, int quantity, float price) {
-        this.ID = ID;
+    public Order(int id, int user_id, int card_id, int address_id, int variant_id, int quantity, float price) {
+        this.id = id;
         this.user_id = user_id;
         this.card_id = card_id;
         this.address_id = address_id;
@@ -35,7 +35,7 @@ public class Order {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
     public int getUserId() {

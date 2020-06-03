@@ -4,7 +4,7 @@ public class Product {
 
     final String tableName = "products";
 
-    public int ID;
+    public int id;
     public int user_id;
     public String name;
     public String description;
@@ -14,8 +14,8 @@ public class Product {
     public User user;
     public Category category;
 
-    public Product(int ID, int user_id, String name, String description, int category_id, float discount_pt) {
-        this.ID = ID;
+    public Product(int id, int user_id, String name, String description, int category_id, float discount_pt) {
+        this.id = id;
         this.user_id = user_id;
         this.name = name;
         this.description = description;
@@ -32,7 +32,7 @@ public class Product {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
     public int getUserId() {
