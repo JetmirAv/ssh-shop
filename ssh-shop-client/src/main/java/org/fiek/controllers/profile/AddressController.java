@@ -91,9 +91,8 @@ public class AddressController {
     ArrayList<JFXButton> buttonsAddress;
     Loading loading;
     private int addressNr = -1;
-    private int cityID;
     private int countryID;
-    City cityTarget;
+    City cityTarget = null;
     City cityTargetChanged;
 
     @FXML
@@ -113,8 +112,10 @@ public class AddressController {
         user = authStore.getUser();
 
 
+
         AddressService addressService = new AddressService(user);
         addressService.start();
+
 
         addressService.setOnSucceeded(e -> {
             buttonsAddress = new ArrayList<>();
@@ -160,44 +161,47 @@ public class AddressController {
                     getCityService.start();
                     getCityService.setOnSucceeded(e1 -> {
                         cityTarget = authStore.getCityTarget();
-                        cityID = cityTarget.getID();
+                    });
+                    countryComboId.setOnAction(e3 -> {
+                        System.out.println("Klikove ne combobox");
+                        String value = countryComboId.getSelectionModel().getSelectedItem().toString();
+                        GetCountryByNameService countryServiceObj = new GetCountryByNameService(value);
+                        countryServiceObj.start();
+                        countryServiceObj.setOnSucceeded(e5 -> {
+                            Country targetCountryChanged = authStore.getCountryTarget();
+                            countryID = targetCountryChanged.getId();
+                            cityComboId.getItems().clear();
+                            GetCitiesByCountryService getCitiesByCountryService = new GetCitiesByCountryService(countryID);
+                            getCitiesByCountryService.start();
+                            getCitiesByCountryService.setOnSucceeded(e4 -> {
+                                ArrayList<City> citiesByCountry = authStore.getCities();
+                                for (int j = 0; j < cities.size(); j++) {
+                                    cityComboId.getItems().add(citiesByCountry.get(j).getName());
+                                }
+                                cityComboId.getSelectionModel().select(cityTarget.getName());
+                                citiesByCountry.removeAll(citiesByCountry);
+                            });
+                });
+                // Put info in all fields
+
 
                     });
-
                 });
-                countryComboId.setOnAction(e3 -> {
-                    String value = countryComboId.getSelectionModel().getSelectedItem().toString();
-                    GetCountryByNameService countryServiceObj = new GetCountryByNameService(value);
-                    countryServiceObj.start();
-                    countryServiceObj.setOnSucceeded(e5 -> {
-                        Country targetCountryChanged = authStore.getCountryTarget();
-                        countryID = targetCountryChanged.getId();
-                        cityComboId.getItems().clear();
-                        GetCitiesByCountryService getCitiesByCountryService = new GetCitiesByCountryService(countryID);
-                        getCitiesByCountryService.start();
-                        getCitiesByCountryService.setOnSucceeded(e4 -> {
-                            ArrayList<City> citiesByCountry = authStore.getCities();
-                            for (int j = 0; j < cities.size(); j++) {
-                                cityComboId.getItems().add(citiesByCountry.get(j).getName());
-                            }
-                            cityComboId.getSelectionModel().select(cityTarget.getName());
-                            citiesByCountry.removeAll(citiesByCountry);
-
-                        });
-
-                    });
-                });
-
             }
-
             user.clearAddresses();
             countries.removeAll(countries);
         });
 
+
+
+
+
+
+
+        // Fill Combobox with all countries
         CountryService countryService = new CountryService();
         countryService.start();
         countryService.setOnSucceeded(e -> {
-
             countries = authStore.getCountries();
             System.out.println("Country size:" + countries.size());
             for (int i = 0; i < countries.size(); i++) {
@@ -207,7 +211,7 @@ public class AddressController {
             countries.removeAll(countries);
         });
 
-
+        // Fill combobox with all cities
         CityService cityService = new CityService();
         cityService.start();
         cityService.setOnSucceeded(e -> {
@@ -220,8 +224,38 @@ public class AddressController {
             countries.removeAll(countries);
         });
 
+//        GetCityService getCityService = new GetCityService(addressesOfUser.get(finalI).getCityId());
+//        getCityService.start();
+//        getCityService.setOnSucceeded(e1 -> {
+//            cityTarget = authStore.getCityTarget();
+//        });
+
+        countryComboId.setOnAction(e3 -> {
+            String value = countryComboId.getSelectionModel().getSelectedItem().toString();
+            System.out.println("hahahahaha:" + value);
+            GetCountryByNameService countryServiceObj = new GetCountryByNameService(value);
+            countryServiceObj.start();
+            countryServiceObj.setOnSucceeded(e5 -> {
+                Country targetCountryChanged = authStore.getCountryTarget();
+                countryID = targetCountryChanged.getId();
+                cityComboId.getItems().clear();
+                GetCitiesByCountryService getCitiesByCountryService = new GetCitiesByCountryService(countryID);
+                getCitiesByCountryService.start();
+                getCitiesByCountryService.setOnSucceeded(e4 -> {
+                    ArrayList<City> citiesByCountry = authStore.getCities();
+                    System.out.println("size of city:" + citiesByCountry.size());
+                    for (int j = 0; j < citiesByCountry.size(); j++) {
+                        cityComboId.getItems().add(citiesByCountry.get(j).getName());
+                    }
+                    citiesByCountry.removeAll(citiesByCountry);
+                    System.out.println("madhesia:" + citiesByCountry.size());
+                });
+            });
+        });
+
     }
 
+    // Edit Address
     public void EditHandler(ActionEvent event) {
         cities.removeAll(cities);
         int id = addressNr;
@@ -236,7 +270,6 @@ public class AddressController {
         cityInstance.setOnSucceeded(e -> {
             Address addrObj = null;
             cityTargetChanged = authStore.getCityFromCombo();
-            System.out.println("Instanca:" + cityTargetChanged);
             addrObj = new Address(id, userID, street, postal, user.getPhoneNumber(), cityTargetChanged.getID());
             UpdateAddressService updateAddressService = new UpdateAddressService(user, addrObj);
             updateAddressService.start();
@@ -246,7 +279,6 @@ public class AddressController {
             });
             updateAddressService.setOnSucceeded(e2 -> {
                 System.out.println("update Successfully!");
-
                 root.getChildren().remove(loading);
             });
 
@@ -260,9 +292,6 @@ public class AddressController {
 
         });
 
-
     }
-
-
 
 }
