@@ -6,5 +6,9 @@ const controllers = require("../controllers/countries");
 const citiesRoutes = require("./cities");
 /* get countries. */
 router.get("/", controllers.getCountries);
+
 router.use("/cities", citiesRoutes);
+
+router.use("/:name", controllers.getCountry);
+
 module.exports = router;

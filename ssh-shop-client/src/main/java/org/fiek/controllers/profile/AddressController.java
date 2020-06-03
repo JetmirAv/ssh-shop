@@ -30,6 +30,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import org.fiek.store.auth.AuthStore;
+import org.fiek.store.auth.GetCitiesByCountryAction;
 import org.fiek.utils.Loading;
 import org.fiek.utils.Tuple;
 
@@ -91,6 +92,10 @@ public class AddressController {
     Loading loading;
     private int addressNr = -1;
     private int cityID;
+    private int countryID;
+    City cityTarget;
+    City cityTargetChanged;
+
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -107,19 +112,21 @@ public class AddressController {
         authStore = baseStore.getAuthStore();
         user = authStore.getUser();
 
+
         AddressService addressService = new AddressService(user);
         addressService.start();
 
         addressService.setOnSucceeded(e -> {
             buttonsAddress = new ArrayList<>();
             address = authStore.getAddresses();
-            System.out.println("testest:" + address.size());
             user.setAddresses(address);
             int numberOfButtons = user.getAddresses().size();
+            System.out.println("intigjer:" + numberOfButtons);
             for (int i = 0; i < numberOfButtons; i++) {
                 JFXButton jfxButton_i = new JFXButton();
                 buttonsAddress.add(jfxButton_i);
             }
+
             for (int i = 0; i < buttonsAddress.size(); i++) {
                 buttonsAddress.get(i).setText(user.getAddresses().get(i).getStreet());
                 buttonsAddress.get(i).getStyleClass().add("address-switch-button");
@@ -128,28 +135,61 @@ public class AddressController {
             for (int i = 0; i < buttonsAddress.size(); i++) {
                 ArrayList<Address> addressesOfUser = new ArrayList<>();
                 int finalI = i;
-                for(Address addr: user.getAddresses()){
+                for (Address addr : user.getAddresses()) {
                     addressesOfUser.add(addr);
 
                 }
                 int finalI1 = i;
                 buttonsAddress.get(i).setOnAction(event -> {
-                    addressNr = addressesOfUser.get(finalI).getID();
+                    addressNr = addressesOfUser.get(finalI).getId();
+                    System.out.println("Address number:" + addressNr);
                     streetId.setText(addressesOfUser.get(finalI).getStreet());
                     postalId.setText(addressesOfUser.get(finalI).getPostal());
-                    cityComboId.getSelectionModel().select(addressesOfUser.get(finalI).getCityId() - 1);
-                    cityID = addressesOfUser.get(finalI).getCityId();
                     CountryService getCountryByCityService =
                             new CountryService(addressesOfUser.get(finalI).getCityId());
                     getCountryByCityService.start();
                     getCountryByCityService.setOnSucceeded(event1 -> {
+                        System.out.println("test11");
                         targetCountry = authStore.getCountry();
+                        System.out.println("Target Country" + targetCountry.getName());
                         countryComboId.getSelectionModel().select(targetCountry.getName());
                         countries.removeAll(countries);
                     });
 
+                    GetCityService getCityService = new GetCityService(addressesOfUser.get(finalI).getCityId());
+                    getCityService.start();
+                    getCityService.setOnSucceeded(e1 -> {
+                        cityTarget = authStore.getCityTarget();
+                        cityID = cityTarget.getID();
+
+                    });
+
                 });
+                countryComboId.setOnAction(e3 -> {
+                    String value = countryComboId.getSelectionModel().getSelectedItem().toString();
+                    GetCountryByNameService countryServiceObj = new GetCountryByNameService(value);
+                    countryServiceObj.start();
+                    countryServiceObj.setOnSucceeded(e5 -> {
+                        Country targetCountryChanged = authStore.getCountryTarget();
+                        countryID = targetCountryChanged.getId();
+                        cityComboId.getItems().clear();
+                        GetCitiesByCountryService getCitiesByCountryService = new GetCitiesByCountryService(countryID);
+                        getCitiesByCountryService.start();
+                        getCitiesByCountryService.setOnSucceeded(e4 -> {
+                            ArrayList<City> citiesByCountry = authStore.getCities();
+                            for (int j = 0; j < cities.size(); j++) {
+                                cityComboId.getItems().add(citiesByCountry.get(j).getName());
+                            }
+                            cityComboId.getSelectionModel().select(cityTarget.getName());
+                            citiesByCountry.removeAll(citiesByCountry);
+
+                        });
+
+                    });
+                });
+
             }
+
             user.clearAddresses();
             countries.removeAll(countries);
         });
@@ -160,7 +200,7 @@ public class AddressController {
 
             countries = authStore.getCountries();
             System.out.println("Country size:" + countries.size());
-            for(int i=0; i<countries.size(); i++){
+            for (int i = 0; i < countries.size(); i++) {
 
                 countryComboId.getItems().add(countries.get(i).getName());
             }
@@ -172,7 +212,7 @@ public class AddressController {
         cityService.start();
         cityService.setOnSucceeded(e -> {
             cities = authStore.getCities();
-            for(int i=0; i<cities.size(); i++){
+            for (int i = 0; i < cities.size(); i++) {
 
                 cityComboId.getItems().add(cities.get(i).getName());
             }
@@ -180,44 +220,49 @@ public class AddressController {
             countries.removeAll(countries);
         });
 
-
     }
 
     public void EditHandler(ActionEvent event) {
-        System.out.println("Hini!");
-        Address addrObj = null;
+        cities.removeAll(cities);
         int id = addressNr;
         int userID = user.getId();
         String street;
         String postal;
-        String country;
-        String city;
-        int cityID1 = cityID;
         street = streetId.getText();
         postal = postalId.getText();
-        country = countryComboId.getSelectionModel().getSelectedItem();
-        cityID = countryComboId.getSelectionModel().getSelectedIndex();
-        addrObj = new Address(id,userID,street,postal,user.getPhoneNumber(),cityID1);
-        UpdateAddressService updateAddressService = new UpdateAddressService(user,addrObj);
-        updateAddressService.start();
-//        updateAddressService.setOnRunning(e -> {
-//            loading = new Loading();
-//        });
+        String valueOfCity = cityComboId.getSelectionModel().getSelectedItem().toString();
+        GetCityFromComboService cityInstance = new GetCityFromComboService(valueOfCity, countryID);
+        cityInstance.start();
+        cityInstance.setOnSucceeded(e -> {
+            Address addrObj = null;
+            cityTargetChanged = authStore.getCityFromCombo();
+            System.out.println("Instanca:" + cityTargetChanged);
+            addrObj = new Address(id, userID, street, postal, user.getPhoneNumber(), cityTargetChanged.getID());
+            UpdateAddressService updateAddressService = new UpdateAddressService(user, addrObj);
+            updateAddressService.start();
+            updateAddressService.setOnRunning(e2 -> {
+                loading = new Loading();
+                root.getChildren().add(loading);
+            });
+            updateAddressService.setOnSucceeded(e2 -> {
+                System.out.println("update Successfully!");
 
-        updateAddressService.setOnSucceeded(e -> {
+                root.getChildren().remove(loading);
+            });
 
-            System.out.println("update Successfully!");
+            updateAddressService.setOnFailed(e2 -> {
+                System.out.println("setOnFailed");
+            });
 
-        });
+            updateAddressService.setOnCancelled(e2 -> {
+                root.getChildren().remove(loading);
+            });
 
-        updateAddressService.setOnFailed(e -> {
-            System.out.println("setOnFailed");
-        });
-
-        updateAddressService.setOnCancelled(e -> {
         });
 
 
     }
-}
 
+
+
+}

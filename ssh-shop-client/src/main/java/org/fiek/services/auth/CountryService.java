@@ -6,6 +6,7 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import org.fiek.store.auth.CountryAction;
 import org.fiek.store.auth.GetCountryByCityAction;
+import org.fiek.store.auth.GetCountryByNameAction;
 import org.fiek.utils.Ajax;
 
 public class CountryService extends Service<Void> implements View {
@@ -14,13 +15,14 @@ public class CountryService extends Service<Void> implements View {
     }
 
     private int cityID;
-
+    private String name;
     public CountryService(int cityID) {
         this.cityID = cityID;
     }
     public CountryService() {
 
     }
+
     private void getCountries() throws Exception {
         Ajax request = new Ajax();
         JsonObject response = request.getAsJson("/countries");
@@ -33,7 +35,7 @@ public class CountryService extends Service<Void> implements View {
 
     private void getCountryByCity(int cityID) throws Exception {
         Ajax request = new Ajax();
-        JsonObject response = request.getAsJson("cities/test/" + cityID);
+        JsonObject response = request.getAsJson("cities/test/test/" + cityID);
         String jsonCities = response.get("countryName").toString();
         String jsonAddr = jsonCities.replaceAll("\\[", "").replaceAll("\\]", "");
         String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
@@ -51,7 +53,6 @@ public class CountryService extends Service<Void> implements View {
                 getCountries();
                 cityID = getCityID();
                 if(cityID!=0) getCountryByCity(cityID);
-
                 return null;
             }
         };

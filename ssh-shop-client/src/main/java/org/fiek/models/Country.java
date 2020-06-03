@@ -14,6 +14,10 @@ public class Country {
     @Expose
     public ArrayList<City> cities;
 
+    public int getId() {
+        return id;
+    }
+
     public Country(int id, String name) {
         this.id = id;
         this.name = name;

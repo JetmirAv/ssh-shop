@@ -22,7 +22,7 @@ public class Address {
     @Expose(serialize = false, deserialize = true)
     public City city;
 
-    public Address(int ID, int user_id, String street, String postal, String phone_number, int city_id) {
+    public Address(int id, int user_id, String street, String postal, String phone_number, int city_id) {
         this.id = id;
         this.user_id = user_id;
         this.street = street;
@@ -40,7 +40,7 @@ public class Address {
     }
 
 
-    public int getID() {
+    public int getId() {
         return id;
     }
 

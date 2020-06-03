@@ -2,6 +2,8 @@ const {
   GetCities,
   GetCitiesFromCountry,
   GetCountryByCity,
+  GetCity,
+  GetCityFromCountryID,
 } = require("../services/cities");
 
 const getCities = async (req, res, next) => {
@@ -13,7 +15,15 @@ const getCities = async (req, res, next) => {
     next(err);
   }
 };
-
+const getCity = async (req, res, next) => {
+  try {
+    var cities = [];
+    cities = await GetCity(req.params.city_id);
+    return res.status(200).json({ cities });
+  } catch (err) {
+    next(err);
+  }
+};
 const getCitiesFromCountry = async (req, res, next) => {
   try {
     var cities = [];
@@ -24,9 +34,18 @@ const getCitiesFromCountry = async (req, res, next) => {
   }
 };
 
+const getCityFromCountryID = async (req, res, next) => {
+  try {
+    var cities = [];
+    cities = await GetCityFromCountryID(req.params.country_id, req.params.name);
+    return res.status(200).json({ cities });
+  } catch (err) {
+    next(err);
+  }
+};
+
 const getCountryByCity = async (req, res, next) => {
   try {
-    console.log("brenda try-it");
     var countryName = "";
     countryName = await GetCountryByCity(req.params.city_id);
     return res.status(200).json({ countryName });
@@ -39,4 +58,6 @@ module.exports = {
   getCities,
   getCitiesFromCountry,
   getCountryByCity,
+  getCity,
+  getCityFromCountryID,
 };

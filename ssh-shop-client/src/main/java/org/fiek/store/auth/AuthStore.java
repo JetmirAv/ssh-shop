@@ -15,20 +15,22 @@ public class AuthStore extends Store {
     public User user;
     public Address address;
     public Card card;
-    private City city;
     private Country country;
     public ArrayList<Address> addresses = new ArrayList<>();
     public ArrayList<City> cities = new ArrayList<>();
     public ArrayList<Country> countries = new ArrayList<>();
     public ArrayList<Card> cards = new ArrayList<>();
+    public City cityTarget;
+    private City city;
+    private Country countryTarget;
+    private City cityFromCombo;
 
-
-    public Card getCard() {
-        return card;
+    public City getCityFromCombo() {
+        return cityFromCombo;
     }
 
-    public City getCity() {
-        return city;
+    public City getCityTarget() {
+        return cityTarget;
     }
 
     public Country getCountry() {
@@ -62,6 +64,7 @@ public class AuthStore extends Store {
     }
 
 
+
     public void addTokenAction(String token, String user) {
         final User actionUser = new GsonBuilder().create().fromJson(user, User.class);
         if (token != null && !token.trim().isEmpty())
@@ -72,11 +75,22 @@ public class AuthStore extends Store {
 
     }
 
+    public Country getCountryTarget() {
+        return countryTarget;
+    }
+
     public void editUserAction(String user) {
         final User actionUser = new GsonBuilder().create().fromJson(user, User.class);
 
         if (user != null)
             this.user = actionUser;
+    }
+
+    public void editAddressAction(String address) {
+        final Address actionAddress = new GsonBuilder().create().fromJson(address, Address.class);
+
+        if (address != null)
+            this.address = actionAddress;
     }
 
     public void addAddressAction(String [] addressList) {
@@ -99,6 +113,7 @@ public class AuthStore extends Store {
     public void GetCityAction(String [] city) {
         for (String strCity : city) {
             final City actionCity = new GsonBuilder().create().fromJson(strCity, City.class);
+            System.out.println("Knej:" + actionCity);
                 this.city = actionCity;
                 cities.add(this.city);
             }
@@ -116,5 +131,36 @@ public class AuthStore extends Store {
             final Country actionCountry = new GsonBuilder().create().fromJson(country, Country.class);
                 this.country = actionCountry;
             }
+
+    public void GetCityByCombo(String city) {
+        final City actionCountry = new GsonBuilder().create().fromJson(city, City.class);
+        this.cityFromCombo = actionCountry;
+    }
+
+    public void GetCountryByName(String country) {
+        System.out.println("a po thirret qekjo?");
+        final Country actionCountry = new GsonBuilder().create().fromJson(country, Country.class);
+        System.out.println("Country by name:" + actionCountry.getName());
+        this.countryTarget = actionCountry;
+    }
+
+    public void GetCity(String city) {
+        System.out.println("testest:" + city);
+        final City actionCity = new GsonBuilder().create().fromJson(city, City.class);
+        System.out.println("test1test1:" + actionCity);
+        int id = actionCity.getID();
+        String name = actionCity.getName();
+        int country = actionCity.getCountryId();
+        this.cityTarget = new City(id,name,country);
+    }
+
+    public void GetCityByCountryAction(String [] city) {
+        for (String strCity : city) {
+            final City actionCity = new GsonBuilder().create().fromJson(strCity, City.class);
+            System.out.println("Knej:" + actionCity);
+            this.city = actionCity;
+            cities.add(this.city);
+        }
+    }
         }
 

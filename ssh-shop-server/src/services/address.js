@@ -60,6 +60,7 @@ const CreateAddress = async (data) => {
  */
 const UpdateAddress = async (address_id, user_id, data) => {
   try {
+    console.log("User id : " + user_id + ", address id : " + address_id);
     const address = await Address.findOne({
       where: {
         id: address_id,

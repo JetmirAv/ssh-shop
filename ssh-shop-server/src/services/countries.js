@@ -13,6 +13,21 @@ const GetCountries = async () => {
   }
 };
 
+const GetCountryByName = async (countryName) => {
+  try {
+    const countryID = await Country.findOne({
+      where: {
+        name: countryName,
+      },
+    });
+    if (!countryID) throw new CustomError("Not found!", {}, 401);
+    return countryID;
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   GetCountries,
+  GetCountryByName,
 };

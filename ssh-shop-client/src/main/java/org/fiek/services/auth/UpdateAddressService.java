@@ -8,6 +8,7 @@ import javafx.concurrent.Task;
 import org.fiek.models.Address;
 import org.fiek.models.User;
 import org.fiek.store.auth.AddAddressAction;
+import org.fiek.store.auth.EditAddressAction;
 import org.fiek.utils.Ajax;
 import org.fiek.utils.JsonHelper;
 
@@ -24,17 +25,16 @@ public class UpdateAddressService extends Service<Void> implements View {
 
     private void updateAddress() throws Exception {
         final String json1 = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.addressObj, Address.class);
-        System.out.println("jsonTest:" + json1);
-        System.out.println("User id : " + user.getId() + "-- -- " + addressObj.getID());
         Ajax request = new Ajax();
-        JsonObject response = request.patch("users/" + user.getId() + "/address/" + addressObj.getID(), json1);
+        JsonObject response = request.patch("users/" + user.getId() + "/address/" + addressObj.getId(), json1);
         System.out.println("Response:" + response);
         String jsonAddress = response.get("address").toString();
         System.out.println("Response in String:" + jsonAddress);
         String jsonAddr = jsonAddress.replaceAll("\\[", "").replaceAll("\\]", "");
         String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
         String[] addr = jsonAddr1.split("},");
-        publishAction(new AddAddressAction(addr));
+        String address = addr[0];
+        publishAction(new EditAddressAction(address));
     }
 
     @Override
@@ -42,7 +42,6 @@ public class UpdateAddressService extends Service<Void> implements View {
         return new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                System.out.println("ne thread!");
                 updateAddress();
                 return null;
             }
