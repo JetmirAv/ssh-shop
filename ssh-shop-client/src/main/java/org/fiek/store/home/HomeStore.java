@@ -29,6 +29,8 @@ public class HomeStore extends Store {
         return user;
     }
 
+
+
     public ArrayList<Product> getProducts() {
         return products;
     }

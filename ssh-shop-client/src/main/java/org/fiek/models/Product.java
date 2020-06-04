@@ -4,6 +4,15 @@ public class Product {
 
     final String tableName = "products";
 
+    public enum Category {
+        Clothing,
+        Shoes,
+        ConsumerElectronics,
+        Books,
+        Sports
+
+    }
+
     public int id;
     public int user_id;
     public String name;

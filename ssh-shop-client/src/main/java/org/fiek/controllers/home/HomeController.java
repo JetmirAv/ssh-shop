@@ -2,13 +2,16 @@ package org.fiek.controllers.home;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import org.fiek.models.Product;
 import org.fiek.models.User;
+import org.fiek.services.auth.InfoService;
 import org.fiek.store.BaseStore;
 import org.fiek.store.home.HomeStore;
 import org.fiek.utils.Loading;
@@ -42,7 +45,7 @@ public class HomeController {
     private FlowPane homeAllPrdouct; // Value injected by FXMLLoader
 
     @FXML // fx:id="categoryComboId"
-    private JFXComboBox<?> categoryComboId; // Value injected by FXMLLoader
+    private JFXComboBox<Product.Category> categoryComboId; // Value injected by FXMLLoader
 
     public HomeController(BaseStore baseStore) {
         this.baseStore = baseStore;
@@ -50,6 +53,7 @@ public class HomeController {
 
     HomeStore homeStore;
     User user;
+    Product product;
     Loading loading;
 
 
@@ -67,6 +71,16 @@ public class HomeController {
 
 
         homeStore = baseStore.getHomeStore();
+
+    }
+
+    @FXML
+    private void categoryHandler(ActionEvent event) {
+        //user.setProducts(searchId.getText());
+       product.setCategory(categoryComboId.getValue());
+
+
+
 
     }
 

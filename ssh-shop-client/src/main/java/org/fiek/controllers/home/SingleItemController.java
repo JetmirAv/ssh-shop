@@ -1,15 +1,23 @@
 package org.fiek.controllers.home;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import org.fiek.models.Product;
+import org.fiek.models.User;
+import org.fiek.store.BaseStore;
+import org.fiek.store.home.HomeStore;
+import org.fiek.utils.Loading;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SingleItemController {
+
+    private final BaseStore baseStore;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -38,6 +46,17 @@ public class SingleItemController {
     @FXML // fx:id="homeProductCategory1Id"
     private Label homeProductCategory1Id; // Value injected by FXMLLoader
 
+    public SingleItemController(BaseStore baseStore) {
+        this.baseStore = baseStore;
+    }
+
+    HomeStore homeStore;
+    User user;
+    Product product;
+    //Category category;
+    Loading loading;
+
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert homeProductTitle1Id != null : "fx:id=\"homeProductTitle1Id\" was not injected: check your FXML file 'single-item.fxml'.";
@@ -48,8 +67,24 @@ public class SingleItemController {
         assert homeProduct1 != null : "fx:id=\"homeProduct1\" was not injected: check your FXML file 'single-item.fxml'.";
         assert homeProductCategory1Id != null : "fx:id=\"homeProductCategory1Id\" was not injected: check your FXML file 'single-item.fxml'.";
 
+
+        homeStore = baseStore.getHomeStore();
+
     }
 
+    @FXML
+    private void productInfoHandler(ActionEvent event) {
+
+        product.setName(homeProductTitle1Id.getText());
+        product.setDescription(homeProductDescription1Id.getText());
+        //product.setCategory(homeProductCategory1Id.getText());
+
+
+
+
+
+
+    }
 
 
 }
