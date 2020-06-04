@@ -6,13 +6,11 @@ import io.socket.client.Socket;
 public class SocketClient {
 
     final String hostname;
-    final Integer port;
     public static Socket socket;
     public ChatSocket chatSocket = new ChatSocket();
 
-    public SocketClient(String hostname, Integer port) {
+    public SocketClient(String hostname) {
         this.hostname = hostname;
-        this.port = port;
         execute();
     }
 
@@ -25,7 +23,6 @@ public class SocketClient {
             socket.connect();
 
         } catch (Exception exception) {
-            System.out.println("Exception" + exception.getMessage());
             exception.printStackTrace();
 
         }

@@ -115,7 +115,6 @@ public class LayoutController extends AbstractController implements View {
     @FXML
     void navClick(Event event) throws IOException {
         String id = ((Node) event.getSource()).getId();
-        System.out.println(id);
 
         removeActiveClass();
 

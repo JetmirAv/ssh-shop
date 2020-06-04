@@ -41,8 +41,8 @@ public class Channel implements Comparable {
         this.updated_at = updated_at;
     }
 
-    public void setOffset(Integer offset) {
-        this.offset = offset;
+    public void setOffset() {
+        this.offset = messages.size();
     }
 
     public Channel(int id,
@@ -110,8 +110,14 @@ public class Channel implements Comparable {
     }
 
     public ArrayList<Message> getMessages() {
+        System.out.println("Knej: " + messages.size());
         return messages;
     }
+
+    public ArrayList<Message> getLeftMessages() {
+        return new ArrayList<>(messages.subList(this.offset, this.messages.size()));
+    }
+
 
     public void addMessages(List<Message> messages){
         this.messages.addAll(messages);

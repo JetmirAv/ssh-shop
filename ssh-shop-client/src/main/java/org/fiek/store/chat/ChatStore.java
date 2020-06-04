@@ -15,15 +15,6 @@ public class ChatStore extends Store {
     Integer selectedChannel;
     ArrayList<Channel> channels = null;
     Integer count = 0;
-    Integer offset = 0;
-
-    public Integer getOffset() {
-        return offset;
-    }
-
-    public void setOffset(Integer offset) {
-        this.offset = offset;
-    }
 
     public Integer getSelectedChannel() {
         return selectedChannel;
@@ -34,8 +25,14 @@ public class ChatStore extends Store {
     }
 
     public void addChannel(Channel channel) {
-        if(this.channels == null ){
+        if (this.channels == null) {
             this.channels = new ArrayList<>();
+        }
+        for (int i = 0; i < this.channels.size(); i++) {
+            if (this.channels.get(i).getId() == channel.getId()) {
+                this.channels.remove(i);
+                break;
+            }
         }
         channels.add(0, channel);
     }
@@ -46,7 +43,6 @@ public class ChatStore extends Store {
 
     public void setSelectedChannel(Integer selectedChannel) {
         this.selectedChannel = selectedChannel;
-        this.setOffset(0);
     }
 
     public void setCount(Integer count) {
@@ -54,11 +50,12 @@ public class ChatStore extends Store {
     }
 
     public void addChannels(List<Channel> channels) {
-        if(this.channels == null ){
+        if (this.channels == null) {
             this.channels = new ArrayList<>();
         }
         this.channels.addAll(channels);
     }
+
 
     public void addChannelsAction(String channels, String count) {
         Gson gson = new Gson();
@@ -72,20 +69,25 @@ public class ChatStore extends Store {
         Gson gson = new Gson();
         Message[] messageArray = gson.fromJson(messages, Message[].class);
         List<Message> messageList = Arrays.asList(messageArray);
-        System.out.println("List<Message>: " + messageList.size());
-        this.getActiveChanner().addMessages(messageList);
-        this.getActiveChanner().setOffset(10);
+        this.getActiveChannel().addMessages(messageList);
+//        this.getActiveChannel().setOffset(messageList.size());
     }
 
-    public Channel getActiveChanner(){
-        return this.channels.get(this.selectedChannel);
+    public Channel getActiveChannel() {
+        for (Channel channel : this.channels) {
+            if (channel.getId() == this.selectedChannel) {
+                return channel;
+            }
+        }
+        return null;
     }
 
     public void newMessageAction(String message) {
         Gson gson = new Gson();
         Message messageInstance = gson.fromJson(message, Message.class);
-        this.getActiveChanner().addMessage(messageInstance);
-
+        this.getActiveChannel().addMessage(messageInstance);
+        Channel channel = messageInstance.getChannel();
+        addChannel(channel);
 
 //        messageInstance.getChannelId();
 

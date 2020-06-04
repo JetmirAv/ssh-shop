@@ -9,12 +9,12 @@ const schema = Schema(
     created_at: {
       type: Schema.Types.Date,
       required: true,
-      default: new Date(),
+      default: Date.now,
     },
     updated_at: {
       type: Schema.Types.Date,
       required: true,
-      default: new Date(),
+      default: Date.now,
     },
   },
   { collection: "messages" }

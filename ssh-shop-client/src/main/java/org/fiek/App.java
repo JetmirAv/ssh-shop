@@ -2,6 +2,7 @@ package org.fiek;
 
 import eu.lestard.easydi.EasyDI;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,7 +28,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        SocketClient socketClient = new SocketClient("http://192.168.1.67:5000/", 5000);
+        SocketClient socketClient = new SocketClient("http://0.0.0.0:5000/");
         context.bindInstance(SocketClient.class, socketClient);
         
         BaseStore baseStore = new BaseStore();
@@ -37,6 +38,7 @@ public class App extends Application {
 
         stage.setOnCloseRequest(e -> {
             socketClient.getSocket().disconnect();
+            Platform.exit();
         });
         stage.setMinWidth(960);
         stage.setMinHeight(640);

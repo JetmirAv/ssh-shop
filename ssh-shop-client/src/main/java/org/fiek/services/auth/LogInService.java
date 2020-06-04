@@ -20,7 +20,6 @@ public class LogInService extends Service<Void> implements View {
         this.email = email;
         this.password = password;
     }
-
     @Override
     protected Task<Void> createTask() {
         return new Task<Void>() {
@@ -29,7 +28,7 @@ public class LogInService extends Service<Void> implements View {
                 JsonObject json = new JsonObject();
 //                json.addProperty("email", email);
 //                json.addProperty("password", password);
-                json.addProperty("email", "jetmir99@hotmail.com");
+                json.addProperty("email",  email.equals("1") ? "jetmir99@hotmail.com" : "agon@hotmail.com");
                 json.addProperty("password", "password");
                 try {
                     Ajax request = new Ajax();

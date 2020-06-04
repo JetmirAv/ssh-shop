@@ -53,7 +53,6 @@ router.post("/channels/:channel_id/messages", auth, async (req, res) => {
       channel_id: req.params.channel_id,
       author_id: req.user.id,
       content: req.body.content,
-      content2: { test: req.body.content },
     });
 
     message = await message.save();

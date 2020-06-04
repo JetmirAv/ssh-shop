@@ -1,6 +1,5 @@
 package org.fiek.store;
 
-import eu.lestard.fluxfx.Action;
 import eu.lestard.fluxfx.Store;
 import org.fiek.store.auth.AddTokenAction;
 import org.fiek.store.auth.AuthStore;
@@ -46,8 +45,13 @@ public class BaseStore extends Store {
         chatStoreEventSource.push(chatStore);
         subscribe(AddChannelsAction.class, this::addChannelsAction);
         subscribe(SetActiveChannelAction.class, this::setActiveChannelAction);
-        subscribe(GetMessagesAction.class, this::getMeesageAction);
+        subscribe(GetMessagesAction.class, this::getMessageAction);
         subscribe(NewMessageAction.class, this::newMessageAction);
+        subscribe(IncrementOffsetAction.class, this::incrementOffsetAction);
+    }
+
+    private void incrementOffsetAction(IncrementOffsetAction action) {
+        chatStore.getActiveChannel().setOffset();
     }
 
     private void newMessageAction(NewMessageAction action) {
@@ -55,7 +59,7 @@ public class BaseStore extends Store {
         chatStoreEventSource.push(chatStore);
     }
 
-    private void getMeesageAction(GetMessagesAction action) {
+    private void getMessageAction(GetMessagesAction action) {
         chatStore.getMessageAction(action.getMessages());
         chatStoreEventSource.push(chatStore);
     }

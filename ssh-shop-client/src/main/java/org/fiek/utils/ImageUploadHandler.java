@@ -34,7 +34,6 @@ public class ImageUploadHandler {
 
         if (!this.filterFile(imagePath)) throw new Error();
 
-        System.out.println(imagePath);
         FileInputStream imageHandler = new FileInputStream(imagePath);
         Image image = new Image(imageHandler);
 
@@ -65,7 +64,6 @@ public class ImageUploadHandler {
 
     public boolean filterFile(String path) {
         String[] extensions = path.split("\\.");
-        System.out.println(extensions[0]);
         String extension = extensions[extensions.length - 1];
         return Arrays.asList(this.extensions).contains(extension);
     }

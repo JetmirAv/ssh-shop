@@ -31,7 +31,7 @@ public class IndexController {
     @FXML // fx:id="chatContainer"
     private AnchorPane chatContainer; // Value injected by FXMLLoader
 
-    Loading loading;
+    Loading loading = new Loading();
     ChatStore chatStore;
 
     @FXML
@@ -67,23 +67,18 @@ public class IndexController {
             service.start();
 
             service.setOnRunning(e -> {
-                System.out.println("running");
-                loading = new Loading();
                 container.getChildren().add(loading);
             });
 
             service.setOnFailed(e -> {
-                System.out.println("setOnFailed");
                 container.getChildren().remove(loading);
             });
 
             service.setOnCancelled(e -> {
-                System.out.println("setOnCancelled");
                 container.getChildren().remove(loading);
             });
 
             service.setOnSucceeded(e -> {
-                System.out.println("setOnSucceeded Bravo");
                 container.getChildren().remove(loading);
             });
         }

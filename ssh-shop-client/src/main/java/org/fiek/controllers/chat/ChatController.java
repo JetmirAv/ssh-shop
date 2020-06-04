@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import com.google.gson.JsonObject;
 import eu.lestard.easydi.EasyDI;
+import eu.lestard.fluxfx.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,15 +31,16 @@ import org.fiek.socket.ChatSocket;
 import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
 import org.fiek.store.chat.ChatStore;
+import org.fiek.store.chat.IncrementOffsetAction;
 import org.fiek.utils.Loading;
 
-public class ChatController {
+public class ChatController implements View {
 
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
     AuthStore authStore = baseStore.getAuthStore();
     ChatStore chatStore = baseStore.getChatStore();
-    Channel channel = chatStore.getChannels().get(chatStore.getSelectedChannel());
-    Integer offset = 0;
+    Channel channel = chatStore.getActiveChannel();
+    Integer offset = channel.getOffset();
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -72,19 +74,14 @@ public class ChatController {
 
     @FXML
     void sendHandler(ActionEvent event) {
-        if(messageBox.getText().length() > 0){
+        if (messageBox.getText().length() > 0) {
             ChatSocket.emitMessage(channel.getId(), authStore.getUser().getId(), messageBox.getText());
+            messageBox.setText("");
         }
 
     }
 
     Loading loading;
-
-    public ChatController(){
-        System.out.println("ChatController Constructor");
-        loadChat(chatStore);
-
-    }
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
@@ -96,34 +93,45 @@ public class ChatController {
         assert sendBtn != null : "fx:id=\"sendBtn\" was not injected: check your FXML file 'chat.fxml'.";
         assert chatView != null : "fx:id=\"chatView\" was not injected: check your FXML file 'chat.fxml'.";
         assert messageHolder != null : "fx:id=\"messageHolder\" was not injected: check your FXML file 'chat.fxml'.";
+        assert chatViewHolder != null : "fx:id=\"chatViewHolder\" was not injected: check your FXML file 'chat.fxml'.";
 
-
-
+        loadChat(chatStore);
+        loadMessages(chatStore);
         productName.setText(channel.getProduct().getName());
-        if(authStore.getUser().getId() == channel.getUserId()){
+        if (authStore.getUser().getId() == channel.getUserId()) {
             contactName.setText(channel.getProduct().getUser().getFirstName());
         } else {
             contactName.setText(channel.getUser().getFirstName());
         }
-        loadMessages(chatStore);
-//        baseStore.getChatStoreEventStream().subscribe(this::loadChat);
-        baseStore.getChatStoreEventStream().subscribe(this::loadMessages);
+        baseStore.getChatStoreEventStream().subscribe(this::loadNewMessages);
     }
 
     private void loadMessages(ChatStore chatStore) {
-        ArrayList<Message> messages = chatStore.getChannels().get(chatStore.getSelectedChannel()).getMessages();
+        if (channel.getOffset() == 0)
+            messageHolder.setPrefHeight(350);
+
+        ArrayList<Message> messages = channel.getLeftMessages();
         for (Message message : messages) {
             messageHolder.getChildren().add(0, addMessage(message));
         }
+        if (channel.getOffset() == 0)
+            chatView.setVvalue(chatView.getVmax());
+
         Platform.runLater(() -> {
-            chatView.setVvalue(messageHolder.getHeight());
+            publishAction(new IncrementOffsetAction());
         });
         offset = 10;
     }
 
+    private void loadNewMessages(ChatStore chatStore) {
+
+    }
+
     private void loadChat(ChatStore chatStore) {
-        if (chatStore.getSelectedChannel() != null && chatStore.getChannels().get(chatStore.getSelectedChannel()).getOffset() == 0) {
-            GetChannelMessagesService service = new GetChannelMessagesService(chatStore.getChannels().get(chatStore.getSelectedChannel()).getId());
+        if (chatStore.getActiveChannel() != null && offset == 0) {
+            System.out.println("Ska pse vjen knej: " + channel.getMessages().size());
+
+            GetChannelMessagesService service = new GetChannelMessagesService(chatStore.getSelectedChannel());
             service.start();
 
             service.setOnRunning(e -> {
