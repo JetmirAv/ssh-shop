@@ -1,13 +1,10 @@
 const CustomError = require("../errors/CustomError");
-const { Channel, Sequelize, Product } = require("../models/sequelize");
-const Op = Sequelize.Op;
+const { Channel, Product, Sequelize } = require("../models/sequelize");
+const { FindAndCountProducts } = require("../services/products");
 
-/**
- *
 //  * @param {Number} product_id
 //  * @param {Channel} data
 //  * @returns Channel
- */
 const CreateChannel = async (data) => {
   try {
     const existChannel = await GetExistingChannel(
@@ -39,13 +36,10 @@ const GetExistingChannel = async (user_id, product_id) => {
     throw err;
   }
 };
-/**
- *
 
 //  * @param {Number} product_id
 //  * @param {Channel} data
 //  * @returns Channel
- */
 const UpdateChannel = async (user_id, product_id, data) => {
   try {
     const channel = await Channel.findOne({
@@ -69,8 +63,32 @@ const UpdateChannel = async (user_id, product_id, data) => {
   }
 };
 
+//  * @param {User} user
+//  * @returns Channel
+const FindAndCountChannels = async (user) => {
+  try {
+    let products = await FindAndCountProducts(user);
+    let porductIds = products.rows.map((p) => p.id);
+
+    let channels = await Channel.findAndCountAll({
+      where: {
+        [Sequelize.Op.or]: [
+          { user_id: user.id },
+          { product_id: { [Sequelize.Op.in]: porductIds } },
+        ],
+      },
+      order: [["updated_at", "desc"]],
+    });
+
+    return channels;
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   CreateChannel,
   UpdateChannel,
   GetExistingChannel,
+  FindAndCountChannels,
 };

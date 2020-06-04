@@ -19,23 +19,13 @@ public class Ajax {
 
     final BaseStore baseStore;
 
-    private final String host = "http://192.168.1.67:5000/";
+    private final String host = "http://0.0.0.0:5000/";
 
-    public static enum methods {GET, POST, PATCH, DELETE}
-
-    String route;
-    String method;
-    String data;
 
     public Ajax() {
         this.baseStore = easyDI.getInstance(BaseStore.class);
     }
 
-//    public Ajax(String route, methods method, String data) {
-//        this.route = route;
-//        this.method = method.toString();
-//        this.data = data;
-//    }
 
     public JsonObject post(String route, String data) throws Exception {
         String result = "";
@@ -98,7 +88,7 @@ public class Ajax {
     }
 
 
-    public String get(String route) throws Exception {
+    public JsonObject get(String route) throws Exception {
         String result = "";
         CloseableHttpClient httpClient = HttpClients.createDefault();
         try {
@@ -118,8 +108,8 @@ public class Ajax {
         } finally {
             httpClient.close();
         }
-
-        return result;
+        JsonObject object = JsonParser.parseString(result).getAsJsonObject();
+        return object;
     }
 
     private HttpEntity getResponse(CloseableHttpResponse response) throws Exception {
