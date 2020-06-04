@@ -9,6 +9,9 @@ const auth = require("../middleware/auth");
 /* GET cart by id. */
 router.get("/:cart_id([0-9]+)", auth, controllers.get);
 
+/* GET all carts. */
+router.get("/", auth, controllers.getAll);
+
 /* Create cart. */
 router.post("/", auth, controllers.create);
 

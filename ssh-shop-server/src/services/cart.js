@@ -19,6 +19,20 @@ const GetCart = async (cart_id) => {
 
 /**
  *
+//  * @param {Number} cart_id
+//  * @returns Cart
+ */
+const GetAllCarts = async (user_id) => {
+  try {
+    const cart = await Cart.findAll({ where: { user_id } });
+    return cart;
+  } catch (err) {
+    throw err;
+  }
+};
+
+/**
+ *
 //  * @param {Number} user_id
 //  * @returns Cart
  */
@@ -83,4 +97,5 @@ module.exports = {
   UpdateCart,
   DeleteCart,
   GetCart,
+  GetAllCarts,
 };

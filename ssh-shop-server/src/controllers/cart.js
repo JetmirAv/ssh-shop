@@ -3,11 +3,9 @@ const {
   UpdateCart,
   DeleteCart,
   GetCart,
+  GetAllCarts
 } = require("../services/cart");
 
-const func = async (req, res) => {
-  await res.send("create");
-};
 /**
  *
  * @param {Request} req
@@ -74,10 +72,24 @@ const get = async (req, res, next) => {
   }
 };
 
+/**
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @param {*} next
+ */
+const getAll = async (req, res, next) => {
+  try {
+    return res.status(200).json({ carts: await GetAllCarts(auth.user.id);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   create,
   update,
   drop,
-  func,
   get,
+  getAll,
 };
