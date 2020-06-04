@@ -43,8 +43,9 @@
                         <JFXComboBox fx:id="cityComboId" promptText="City" styleClass="cityCombobox" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <JFXButton fx:id="saveBttnId" onAction="#EditHandler" layoutX="-4.0" layoutY="-24.0" styleClass="saveBttnAddressCards" text="Save" />
+                  <JFXButton fx:id="saveBttnId" layoutX="-4.0" layoutY="-24.0" onAction="#EditHandler" styleClass="saveBttnAddressCards" text="Save" />
                   <JFXButton fx:id="deleteBttnId" styleClass="deleteBttnAddressCards" text="Delete" />
+                  <JFXButton fx:id="createBtn"   layoutX="-179.0" layoutY="-24.0" onAction="#CreateHandler" styleClass="saveBttnAddressCards" text="Create" />
                </children>
                <HBox.margin>
                   <Insets />

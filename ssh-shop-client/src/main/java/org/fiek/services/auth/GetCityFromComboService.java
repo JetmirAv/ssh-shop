@@ -23,7 +23,6 @@ public class GetCityFromComboService extends Service<Void> implements View {
     }
 
     private void getCity() throws Exception {
-
         Ajax request = new Ajax();
         JsonObject response = request.getAsJson("cities/" + name + "/" + countryID);
         String jsonCities = response.get("cities").toString();

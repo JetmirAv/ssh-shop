@@ -14,6 +14,8 @@ const GetCountries = async () => {
 };
 
 const GetCountryByName = async (countryName) => {
+  if (countryName === "default")
+    throw new CustomError("Please fill the fields!", {}, 401);
   try {
     const countryID = await Country.findOne({
       where: {

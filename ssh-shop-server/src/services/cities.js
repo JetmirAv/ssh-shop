@@ -27,6 +27,8 @@ const GetCity = async (city_id) => {
 };
 
 const GetCitiesFromCountry = async (country_id) => {
+  if (country_id == 0)
+    throw new CustomError("Please fill the fields!", {}, 401);
   try {
     let cities = await City.findAll({
       where: { country_id: { [Op.eq]: country_id } },
@@ -38,10 +40,13 @@ const GetCitiesFromCountry = async (country_id) => {
   }
 };
 
-const GetCityFromCountryID = async (countryID, country_Name) => {
+const GetCityFromCountryID = async (countryID, cityName) => {
+  if (countryID == 0 || cityName == "default")
+    throw new CustomError("Please fill the fields!", {}, 401);
+
   try {
     let cities = await City.findAll({
-      where: { name: { [Op.eq]: country_Name }, country_id: countryID },
+      where: { name: { [Op.eq]: cityName }, country_id: countryID },
     });
     if (cities == "") throw new CustomError("Not found!", {}, 401);
     if (!cities) throw new CustomError("Not found!", {}, 401);
