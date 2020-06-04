@@ -7,6 +7,8 @@ import org.fiek.models.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import org.fiek.models.User;
+import org.fiek.socket.AuthSocket;
 
 
 public class AuthStore extends Store {
@@ -70,8 +72,10 @@ public class AuthStore extends Store {
         if (token != null && !token.trim().isEmpty())
             this.token = token;
 
-        if (user != null)
+        if (user != null) {
             this.user = actionUser;
+            AuthSocket.onSignIn(actionUser.getId());
+        }
 
     }
 

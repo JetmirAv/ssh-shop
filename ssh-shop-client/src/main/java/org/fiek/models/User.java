@@ -156,7 +156,6 @@ public class User implements Cloneable {
     }
 
     public void setAvatar(String avatar) {
-        System.out.println("Avatar: " + avatar);
         this.avatar = avatar;
     }
 

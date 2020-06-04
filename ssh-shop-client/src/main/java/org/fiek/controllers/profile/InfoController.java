@@ -97,7 +97,6 @@ public class InfoController {
 
         if(baseStore.getAuthStore() != null){
             if(baseStore.getAuthStore().getToken() != null){
-                System.out.println("A po vjen tokeni: " + baseStore.getAuthStore().getToken());
             }
         }
 
@@ -120,7 +119,6 @@ public class InfoController {
         });
 
         infoService.setOnSucceeded(e -> {
-            System.out.println("update Successfully!");
             root.getChildren().remove(loading);
         });
 

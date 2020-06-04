@@ -21,21 +21,11 @@ public class Ajax {
 
     private final String host = "http://localhost:3000/";
 
-    public static enum methods {GET, POST, PATCH, DELETE}
-
-    String route;
-    String method;
-    String data;
 
     public Ajax() {
         this.baseStore = easyDI.getInstance(BaseStore.class);
     }
 
-//    public Ajax(String route, methods method, String data) {
-//        this.route = route;
-//        this.method = method.toString();
-//        this.data = data;
-//    }
 
     public JsonObject post(String route, String data) throws Exception {
         String result = "";
@@ -98,7 +88,7 @@ public class Ajax {
     }
 
 
-    public String get(String route) throws Exception {
+    public JsonObject get(String route) throws Exception {
         String result = "";
         CloseableHttpClient httpClient = HttpClients.createDefault();
         try {
@@ -118,8 +108,8 @@ public class Ajax {
         } finally {
             httpClient.close();
         }
-
-        return result;
+        JsonObject object = JsonParser.parseString(result).getAsJsonObject();
+        return object;
     }
 
     public JsonObject getAsJson(String route) throws Exception {

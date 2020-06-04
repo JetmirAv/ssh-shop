@@ -1,12 +1,15 @@
+var mongoose = require( '../config/mongoose' );
+
 const {
   CreateProduct,
   UpdateProduct,
   GetProduct,
   DeleteProduct,
+  GetAllProducts
 } = require("../services/products");
 
-const func = async (req, res) => {
-  await res.send("create");
+
+  return res.status(200).json(result);
 };
 
 /**
@@ -17,11 +20,9 @@ const create = async (req, res, next) => {
   try {
     req.body.user_id = req.user.id;
     const product = await CreateProduct(req.body);
-
     return res.status(200).json({ product });
   } catch (err) {
     console.log({ err });
-
     next(err);
   }
 };
@@ -44,6 +45,20 @@ const update = async (req, res, next) => {
     next(err);
   }
 };
+
+const getProducts = async (req, res, next) => {
+  try {
+    let category_id = req.query.category_id;
+    let sort_string = req.query.sort_string;
+    let search = req.query.search;
+    return res
+      .status(200)
+      .json({ user: await GetAllProducts(sort_string, category_id, search)});
+  } catch (err) {
+    next(err);
+  }
+};
+
 
 const get = async (req, res, next) => {
   try {
@@ -72,7 +87,7 @@ const drop = async (req, res, next) => {
 module.exports = {
   get,
   create,
-  func,
   update,
   drop,
+  getProducts
 };
