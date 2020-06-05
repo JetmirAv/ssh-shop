@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import eu.lestard.fluxfx.View;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import org.fiek.App;
 import org.fiek.models.Address;
@@ -21,9 +22,9 @@ import org.fiek.store.chat.SetActiveChannelAction;
 
 public class ListItemAddressController implements View {
 
-    Address address;
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
-    AuthStore authStore;
+    AuthStore authStore = baseStore.getAuthStore();
+    Address address;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -33,18 +34,25 @@ public class ListItemAddressController implements View {
     @FXML // fx:id="addressName"
     private Text addressName; // Value injected by FXMLLoader
 
+    @FXML // fx:id="itemBox"
+    private HBox itemBox; // Value injected by FXMLLoader
 
-    public ListItemAddressController(Address address){
+
+
+
+    public ListItemAddressController(Address address) {
         this.address = address;
-        this.authStore = baseStore.getAuthStore();
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert addressName != null : "fx:id=\"addressName\" was not injected: check your FXML file 'list-Item-Address.fxml'.";
-        System.out.println("List item u thirr!");
-        addressName.setText(address.getStreet());
 
+        addressName.setText(address.getStreet());
+        Address selectedAddress = authStore.getSelectedAddress();
+        if (selectedAddress != null && selectedAddress.getId() == address.getId())
+            itemBox.getStyleClass().add("active");
     }
 
     @FXML

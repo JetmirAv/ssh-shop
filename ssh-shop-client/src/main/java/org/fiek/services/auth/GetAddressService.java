@@ -27,12 +27,7 @@ public class GetAddressService extends Service<Void> implements View {
         Ajax request = new Ajax();
         JsonObject response = request.getAsJson("/users/" + userId + "/address/" + id);
         String jsonCities = response.get("address").toString();
-        String jsonAddr = jsonCities.replaceAll("\\[", "").replaceAll("\\]", "");
-        String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
-        String[] country = jsonAddr1.split("},");
-        String countryValue = country[0];
-        System.out.println("Value:" + countryValue);
-        publishAction(new GetAddressAction(countryValue));
+        publishAction(new GetAddressAction(jsonCities));
     }
 
 

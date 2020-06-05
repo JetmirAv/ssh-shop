@@ -14,6 +14,7 @@ import java.util.Arrays;
 
 public class AddressService extends Service<Void> implements View {
     private User user;
+
     public AddressService(User user) {
         this.user = user;
     }
@@ -22,12 +23,13 @@ public class AddressService extends Service<Void> implements View {
         Ajax request = new Ajax();
         JsonObject response = request.getAsJson("users/" + user.getId() + "/address");
         String jsonAddress = response.get("address").toString();
-        String jsonAddr = jsonAddress.replaceAll("\\[", "").replaceAll("\\]", "");
-        String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
-        String[] addr = jsonAddr1.split("},");
-        System.out.println("ne service:" + Arrays.toString(addr));
-            publishAction(new AddAddressAction(addr));
-        }
+        // String jsonAddr = jsonAddress.replaceAll("\\[", "").replaceAll("\\]", "");
+        // String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
+        // String[] addr = jsonAddr1.split("},");
+        // System.out.println("ne service:" + Arrays.toString(addr));
+        System.out.println("jsonAddress: " + jsonAddress);
+        publishAction(new AddAddressAction(jsonAddress));
+    }
 
     @Override
     protected Task<Void> createTask() {

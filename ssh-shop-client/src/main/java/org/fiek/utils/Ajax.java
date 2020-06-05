@@ -19,7 +19,7 @@ public class Ajax {
 
     final BaseStore baseStore;
 
-    private final String host = "http://localhost:3000/";
+    private final String host = "http://localhost:5000/";
 
 
     public Ajax() {

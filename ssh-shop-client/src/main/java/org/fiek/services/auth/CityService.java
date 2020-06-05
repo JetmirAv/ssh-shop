@@ -1,33 +1,39 @@
 package org.fiek.services.auth;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import eu.lestard.fluxfx.View;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import org.fiek.models.Address;
-import org.fiek.models.City;
-import org.fiek.models.User;
-import org.fiek.store.auth.AddAddressAction;
-import org.fiek.store.auth.CityAction;
+import org.fiek.models.Country;
+import org.fiek.store.auth.CountryAction;
+import org.fiek.store.auth.GetCountryByCityAction;
+import org.fiek.store.auth.GetCountryByNameAction;
 import org.fiek.utils.Ajax;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CityService extends Service<Void> implements View {
 
+    public static ArrayList<Country> countries = new ArrayList<>();
+
     private void getCities() throws Exception {
-        Ajax request = new Ajax();
-        JsonObject response = request.getAsJson("/cities");
-        String jsonCities = response.get("cities").toString();
-        String jsonAddr = jsonCities.replaceAll("\\[", "").replaceAll("\\]", "");
-        String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
-        String[] addr = jsonAddr1.split("},");
-        publishAction(new CityAction(addr));
+        if(countries == null || countries.isEmpty()){
+            Ajax request = new Ajax();
+            JsonObject response = request.getAsJson("/countries");
+            String jsonCities = response.get("countries").toString();
+
+            System.out.println(jsonCities);
+
+            Country[] countries1 = new GsonBuilder().create().fromJson(jsonCities, Country[].class);
+            countries.addAll(Arrays.asList(countries1));
+
+            System.out.println("asfgasfasf: " + countries.size());
+        }
     }
-
-
 
     @Override
     protected Task<Void> createTask() {

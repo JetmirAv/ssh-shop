@@ -4,6 +4,7 @@ package org.fiek.controllers.profile; /**
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -11,6 +12,7 @@ import java.util.ResourceBundle;
 import eu.lestard.fluxfx.View;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.StringConverter;
 import org.fiek.App;
 import org.fiek.models.Address;
 import org.fiek.models.Channel;
@@ -27,6 +29,7 @@ public class AddressContentController implements View {
 
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
     AuthStore authStore = baseStore.getAuthStore();
+    Address address = authStore.getSelectedAddress();
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -44,7 +47,7 @@ public class AddressContentController implements View {
     private JFXTextField postalId; // Value injected by FXMLLoader
 
     @FXML // fx:id="countryComboId"
-    private JFXComboBox<String> countryComboId; // Value injected by FXMLLoader
+    private JFXComboBox<Country> countryComboId; // Value injected by FXMLLoader
 
     @FXML // fx:id="cityComboId"
     private JFXComboBox<String> cityComboId; // Value injected by FXMLLoader
@@ -61,57 +64,33 @@ public class AddressContentController implements View {
         assert countryComboId != null : "fx:id=\"countryComboId\" was not injected: check your FXML file 'address-content.fxml'.";
         assert cityComboId != null : "fx:id=\"cityComboId\" was not injected: check your FXML file 'address-content.fxml'.";
 
-        user = authStore.getUser();
-        System.out.println("userID:" + user.getId());
-        System.out.println("------------------------");
+        if (address != null) {
+            CountryService countryService = new CountryService();
+            countryService.start();
 
-        System.out.println("Address id : " + addressId);
-        Address addr = authStore.getSelectedAddress();
-        System.out.println("Address:" + addr);
-        if (addr != null) {
-            streetId.setText(addr.getStreet());
-            postalId.setText(addr.getPostal());
+            countryService.setOnSucceeded(e -> {
+                countryComboId.setConverter(new StringConverter<Country>() {
+                    @Override
+                    public String toString(Country country) {
+                        return country == null ? "" : country.getName();
+                    }
 
-         // Momentin qe pe boj koment po rregullohet !
-            // Momentin qe pe heku prej komentit po hin infinit loop!
-            // Kue ke qata publish
+                    @Override
+                    public Country fromString(String s) {
+                        return new Country(-1, s);
+                    }
+                });
 
-            CountryService getCountryByCityService =
-                    new CountryService(addr.getCityId());
-            getCountryByCityService.start();
-            getCountryByCityService.setOnSucceeded(event1 -> {
-                System.out.println("test11");
-                Country targetCountry = authStore.getCountry();
-                System.out.println("Target Country" + targetCountry.getName());
-                countryComboId.getSelectionModel().select(targetCountry.getName());
+                System.out.println("setOnSucceded: " + CountryService.countries.size());
+                countryComboId.getItems().clear();
+                countryComboId.getItems().addAll(CountryService.countries);
+                countryComboId.valueProperty().setValue(address.getCity().getCountry());
             });
+
+
+            streetId.setText(address.getStreet());
+            postalId.setText(address.getPostal());
         }
 
-//    private void fillData() {
-//        System.out.println("brenda fill data!");
-//        System.out.println("Address id : " + addressId + ", userId: " + user.getId());
-//        if(addressId!=null)
-//        {
-//        GetAddressService service = new GetAddressService(addressId, user.getId());
-//        service.start();
-//
-//        streetId.setText("hahahah!");
-//        service.setOnSucceeded(e->{
-//
-//            Address address = authStore.getAddress();
-//            System.out.println("addressS:" + address);
-//            System.out.println("street:" + address.getStreet());
-//
-//
-//
-//        });
-//
-//        service.setOnFailed(e->{
-//            System.out.println("KEQ o!");
-//        });
-//    }
-//
-//
-//    }
-        }
     }
+}

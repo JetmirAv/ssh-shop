@@ -4,15 +4,13 @@ import eu.lestard.fluxfx.Action;
 
 public class AddAddressAction implements Action {
 
-    private final String []  addresses;
+    private final String addresses;
 
-
-    public AddAddressAction(String [] address) {
+    public AddAddressAction(String address) {
         this.addresses = address;
     }
 
-
-    public String[] getAddress() {
+    public String getAddress() {
         return addresses;
     }
 }

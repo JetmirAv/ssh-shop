@@ -19,7 +19,7 @@ public class Address {
     public int city_id;
     @Expose(serialize = false, deserialize = true)
     public User user;
-    @Expose(serialize = false, deserialize = true)
+    @Expose
     public City city;
 
     public Address(int id, int user_id, String street, String postal, String phone_number, int city_id) {

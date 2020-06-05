@@ -5,6 +5,7 @@ package org.fiek.controllers.profile; /**
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import org.fiek.App;
@@ -46,9 +47,9 @@ public class IndexController {
         authStore = baseStore.getAuthStore();
         user = authStore.getUser();
         user.clearAddresses();
-        fetchAddress();
+//        fetchAddress();
 //        authStore.setSelectedAddress(null);
-         baseStore.getAuthStoreEventStream().subscribe(this::displayListAddress);
+        baseStore.getAuthStoreEventStream().subscribe(this::displayListAddress);
     }
 
     private void displayListAddress(AuthStore authStore) {
@@ -63,34 +64,7 @@ public class IndexController {
             exception.printStackTrace();
         }
     }
-
-    private void fetchAddress() {
-            AddressService addressService = new AddressService(user);
-            addressService.start();
-
-            addressService.setOnRunning(e -> {
-                container.getChildren().add(loading);
-            });
-
-            addressService.setOnFailed(e -> {
-                System.out.println("Failed!");
-                container.getChildren().remove(loading);
-            });
-
-            addressService.setOnCancelled(e -> {
-                container.getChildren().remove(loading);
-            });
-
-            addressService.setOnSucceeded(e -> {
-                container.getChildren().remove(loading);
-                addresses = authStore.getAddresses();
-                user.setAddresses(addresses);
-                System.out.println("Madhesia:" + addresses.size());
-                System.out.println("Address get successfully!");
-
-            });
-        }
-    }
+}
 
 
 

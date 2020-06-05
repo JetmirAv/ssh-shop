@@ -1,48 +1,38 @@
 package org.fiek.services.auth;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import eu.lestard.fluxfx.View;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import org.fiek.models.Country;
 import org.fiek.store.auth.CountryAction;
 import org.fiek.store.auth.GetCountryByCityAction;
 import org.fiek.store.auth.GetCountryByNameAction;
 import org.fiek.utils.Ajax;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class CountryService extends Service<Void> implements View {
-    public int getCityID() {
-        return cityID;
-    }
 
-    private int cityID;
-    private String name;
-    public CountryService(int cityID) {
-        this.cityID = cityID;
-    }
-    public CountryService() {
-
-    }
+    public static ArrayList<Country> countries = new ArrayList<>();
 
     private void getCountries() throws Exception {
-        Ajax request = new Ajax();
-        JsonObject response = request.getAsJson("/countries");
-        String jsonCities = response.get("countries").toString();
-        String jsonAddr = jsonCities.replaceAll("\\[", "").replaceAll("\\]", "");
-        String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
-        String[] addr = jsonAddr1.split("},");
-        publishAction(new CountryAction(addr));
-    }
+        if(countries == null || countries.isEmpty()){
+            Ajax request = new Ajax();
+            JsonObject response = request.getAsJson("/countries");
+            String jsonCities = response.get("countries").toString();
 
-    private void getCountryByCity(int cityID) throws Exception {
-        Ajax request = new Ajax();
-        JsonObject response = request.getAsJson("cities/test/test/" + cityID);
-        String jsonCities = response.get("countryName").toString();
-        String jsonAddr = jsonCities.replaceAll("\\[", "").replaceAll("\\]", "");
-        String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
-        String[] country = jsonAddr1.split("},");
-        String countryValue = country[0];
-        System.out.println("Value:" + countryValue);
-        publishAction(new GetCountryByCityAction(countryValue));
+            System.out.println(jsonCities);
+
+            Country[] countries1 = new GsonBuilder().create().fromJson(jsonCities, Country[].class);
+            countries.addAll(Arrays.asList(countries1));
+
+            System.out.println("asfgasfasf: " + countries.size());
+        }
     }
 
     @Override
@@ -51,8 +41,6 @@ public class CountryService extends Service<Void> implements View {
             @Override
             protected Void call() throws Exception {
                 getCountries();
-                cityID = getCityID();
-                if(cityID!=0) getCountryByCity(cityID);
                 return null;
             }
         };

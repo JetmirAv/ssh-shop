@@ -1,15 +1,17 @@
 package org.fiek.store.auth;
 
-
 import com.google.gson.GsonBuilder;
 import eu.lestard.fluxfx.Store;
 import org.fiek.models.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import org.fiek.models.User;
-import org.fiek.socket.AuthSocket;
+import java.util.Arrays;
 
+import org.fiek.services.auth.GetAddressService;
+import org.fiek.socket.AuthSocket;
 
 public class AuthStore extends Store {
 
@@ -23,7 +25,7 @@ public class AuthStore extends Store {
     }
 
     private Country country;
-    public ArrayList<Address> addresses = new ArrayList<>();
+    public ArrayList<Address> addresses;
     public ArrayList<City> cities = new ArrayList<>();
     public ArrayList<Country> countries = new ArrayList<>();
     public ArrayList<Card> cards = new ArrayList<>();
@@ -31,7 +33,7 @@ public class AuthStore extends Store {
     private City city;
     private Country countryTarget;
     private City cityFromCombo;
-    Address selectedAddress = null;
+    Address selectedAddress;
     Integer selectedCard = null;
 
     public City getCityFromCombo() {
@@ -49,6 +51,7 @@ public class AuthStore extends Store {
     public ArrayList<Card> getCards() {
         return cards;
     }
+
     public ArrayList<Country> getCountries() {
         return countries;
     }
@@ -60,6 +63,7 @@ public class AuthStore extends Store {
     public ArrayList<City> getCities() {
         return cities;
     }
+
     public String getToken() {
         return token;
     }
@@ -81,7 +85,17 @@ public class AuthStore extends Store {
     }
 
     public void setSelectedAddress(Address selectedAddress) {
-        this.selectedAddress = selectedAddress;
+        if(this.selectedAddress == null || this.selectedAddress.getId() != selectedAddress.getId()){
+            this.selectedAddress = selectedAddress;
+            if(selectedAddress.getId() > 0){
+                GetAddressService addressService = new GetAddressService(selectedAddress.getId(), user.getId());
+                addressService.start();
+                System.out.println("Mrenda");
+            }
+            System.out.println("Jasht");
+        }
+        System.out.println("Shum Jasht");
+
     }
 
     public void addTokenAction(String token, String user) {
@@ -113,17 +127,26 @@ public class AuthStore extends Store {
             this.address = actionAddress;
     }
 
-    public void addAddressAction(String [] addressList) {
-        System.out.println("apet :D");
-            for (String addr : addressList) {
-                final Address actionAddress = new GsonBuilder().create().fromJson(addr, Address.class);
-                this.address = actionAddress;
-                addresses.add(this.address);
-            }
-        }
+    public void addAddressAction(String addressList) {
+        final Address[] addresses = new GsonBuilder().create().fromJson(addressList, Address[].class);
+        // for (String addr : addressList) {
+        // final Address actionAddress = new GsonBuilder().create().fromJson(addr,
+        // Address.class);
+        // this.address = actionAddress;
+        // addresses.add(this.address);
+        // }
+        // this.addresses.push(addresses);
+        this.addAddresses(Arrays.asList(addresses));
+    }
 
+    public void addAddresses(List<Address> addresses) {
+        if (this.addresses == null)
+            this.addresses = new ArrayList<>();
 
-    public void addCardAction(String [] cardsList) {
+        this.addresses.addAll(addresses);
+    }
+
+    public void addCardAction(String[] cardsList) {
         for (String cardStr : cardsList) {
             final Card cardObj = new GsonBuilder().create().fromJson(cardStr, Card.class);
             this.card = cardObj;
@@ -131,34 +154,32 @@ public class AuthStore extends Store {
         }
     }
 
-    public void GetCityAction(String [] city) {
+    public void GetCityAction(String[] city) {
         for (String strCity : city) {
             final City actionCity = new GsonBuilder().create().fromJson(strCity, City.class);
             System.out.println("Knej:" + actionCity);
-                this.city = actionCity;
-                cities.add(this.city);
-            }
+            this.city = actionCity;
+            cities.add(this.city);
         }
+    }
 
-    public void GetCountryAction(String [] country) {
+    public void GetCountryAction(String[] country) {
         for (String strCountry : country) {
             final Country actionCountry = new GsonBuilder().create().fromJson(strCountry, Country.class);
             this.country = actionCountry;
-                countries.add(this.country);
-            }
+            countries.add(this.country);
         }
+    }
 
     public void GetAddressAction(String address) {
-            final Address actionAddress = new GsonBuilder().create().fromJson(address, Address.class);
-                this.address = actionAddress;
-            }
+        final Address actionAddress = new GsonBuilder().create().fromJson(address, Address.class);
+        this.selectedAddress = actionAddress;
+    }
 
     public void GetCountryByCity(String country) {
         final Country actionCountry = new GsonBuilder().create().fromJson(country, Country.class);
         this.country = actionCountry;
     }
-
-
 
     public void GetCityByCombo(String city) {
         final City actionCountry = new GsonBuilder().create().fromJson(city, City.class);
@@ -179,10 +200,10 @@ public class AuthStore extends Store {
         int id = actionCity.getID();
         String name = actionCity.getName();
         int country = actionCity.getCountryId();
-        this.cityTarget = new City(id,name,country);
+        this.cityTarget = new City(id, name, country);
     }
 
-    public void GetCityByCountryAction(String [] city) {
+    public void GetCityByCountryAction(String[] city) {
         for (String strCity : city) {
             final City actionCity = new GsonBuilder().create().fromJson(strCity, City.class);
             System.out.println("Knej:" + actionCity);
@@ -190,5 +211,4 @@ public class AuthStore extends Store {
             cities.add(this.city);
         }
     }
-        }
-
+}

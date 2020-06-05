@@ -12,7 +12,7 @@ public class City {
     @Expose
     public int country_id;
 
-    @Expose(serialize = false, deserialize = true)
+    @Expose
     public Country country;
 
     public City(int id, String name, int country_id) {
