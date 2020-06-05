@@ -8,8 +8,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import com.google.gson.JsonObject;
-import eu.lestard.easydi.EasyDI;
 import eu.lestard.fluxfx.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -35,12 +33,12 @@ import org.fiek.store.chat.IncrementOffsetAction;
 import org.fiek.utils.Loading;
 
 public class ChatController implements View {
+    BaseStore baseStore;
+    AuthStore authStore;
+    ChatStore chatStore;
+    Channel channel;
+    Integer offset;
 
-    BaseStore baseStore = App.context.getInstance(BaseStore.class);
-    AuthStore authStore = baseStore.getAuthStore();
-    ChatStore chatStore = baseStore.getChatStore();
-    Channel channel = chatStore.getActiveChannel();
-    Integer offset = channel.getOffset();
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -94,37 +92,47 @@ public class ChatController implements View {
         assert chatView != null : "fx:id=\"chatView\" was not injected: check your FXML file 'chat.fxml'.";
         assert messageHolder != null : "fx:id=\"messageHolder\" was not injected: check your FXML file 'chat.fxml'.";
         assert chatViewHolder != null : "fx:id=\"chatViewHolder\" was not injected: check your FXML file 'chat.fxml'.";
+        baseStore = App.context.getInstance(BaseStore.class);
+        authStore = baseStore.getAuthStore();
+        chatStore = baseStore.getChatStore();
+        channel = chatStore.getActiveChannel();
+        offset = channel.getOffset();
 
-        loadChat(chatStore);
-        loadMessages(chatStore);
+//        loadChat(chatStore);
+        loadMessages(chatStore.getActiveChannel().getMessages());
         productName.setText(channel.getProduct().getName());
         if (authStore.getUser().getId() == channel.getUserId()) {
             contactName.setText(channel.getProduct().getUser().getFirstName());
         } else {
             contactName.setText(channel.getUser().getFirstName());
         }
-        baseStore.getChatStoreEventStream().subscribe(this::loadNewMessages);
+        baseStore.getChatStore().getActiveChannel().messageListEventStream().subscribe(this::loadNewMessages);
     }
 
-    private void loadMessages(ChatStore chatStore) {
-        if (channel.getOffset() == 0)
-            messageHolder.setPrefHeight(350);
+    private void loadNewMessages(ArrayList<Message> messages) {
+        System.out.println("Offset: " + offset);
+    }
 
-        ArrayList<Message> messages = channel.getLeftMessages();
+    private void loadMessages(ArrayList<Message> messages) {
+        messageHolder.getChildren().clear();
+        ArrayList<HBox> messagesList = new ArrayList<>();
         for (Message message : messages) {
-            messageHolder.getChildren().add(0, addMessage(message));
+            messagesList.add(0, addMessage(message));
         }
+
+        messageHolder.getChildren().addAll(messagesList);
+        offset += 10;
         if (channel.getOffset() == 0)
             chatView.setVvalue(chatView.getVmax());
 
         Platform.runLater(() -> {
+
             publishAction(new IncrementOffsetAction());
         });
         offset = 10;
     }
 
-    private void loadNewMessages(ChatStore chatStore) {
-
+    public void loadNewMessages(ChatStore chatStore) {
     }
 
     private void loadChat(ChatStore chatStore) {

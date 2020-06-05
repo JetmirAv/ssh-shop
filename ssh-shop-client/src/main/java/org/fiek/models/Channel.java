@@ -1,11 +1,15 @@
 package org.fiek.models;
 
+import eu.lestard.fluxfx.Store;
+import org.reactfx.EventSource;
+import org.reactfx.EventStream;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-public class Channel implements Comparable {
+public class Channel extends Store implements Comparable {
     final String tableName = "channels";
 
     public int id;
@@ -17,7 +21,13 @@ public class Channel implements Comparable {
 
     public User user;
     public Product product;
+
+    private final EventSource<ArrayList<Message>> messageListEventSource = new EventSource<>();
     public ArrayList<Message> messages = new ArrayList<>();
+
+    public EventStream<ArrayList<Message>> messageListEventStream() {
+        return messageListEventSource;
+    }
 
     public Integer offset = 0;
 
@@ -110,7 +120,6 @@ public class Channel implements Comparable {
     }
 
     public ArrayList<Message> getMessages() {
-        System.out.println("Knej: " + messages.size());
         return messages;
     }
 
@@ -119,12 +128,16 @@ public class Channel implements Comparable {
     }
 
 
-    public void addMessages(List<Message> messages){
+    public void addMessages(List<Message> messages) {
+        this.messages.clear();
         this.messages.addAll(messages);
+        this.messageListEventSource.push(this.messages);
+
     }
 
-    public void addMessage(Message messages){
+    public void addMessage(Message messages) {
         this.messages.add(0, messages);
+        this.messageListEventSource.push(this.messages);
     }
 
     @Override
