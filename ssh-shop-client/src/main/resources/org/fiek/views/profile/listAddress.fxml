@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<ScrollPane prefHeight="351.0" prefWidth="240.0" styleClass="address-scrollpane" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="org.fiek.controllers.profile.ListAddressController" >
+    <HBox.margin>
+        <Insets />
+    </HBox.margin>
+    <content>
+        <VBox fx:id="addressList" prefHeight="465.0" prefWidth="225.0" spacing="2.0" stylesheets="@../../styles/style.css">
+            <children>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </VBox>
+    </content>
+</ScrollPane>

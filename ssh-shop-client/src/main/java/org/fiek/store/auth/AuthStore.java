@@ -17,6 +17,11 @@ public class AuthStore extends Store {
     public User user;
     public Address address;
     public Card card;
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     private Country country;
     public ArrayList<Address> addresses = new ArrayList<>();
     public ArrayList<City> cities = new ArrayList<>();
@@ -26,6 +31,8 @@ public class AuthStore extends Store {
     private City city;
     private Country countryTarget;
     private City cityFromCombo;
+    Address selectedAddress = null;
+    Integer selectedCard = null;
 
     public City getCityFromCombo() {
         return cityFromCombo;
@@ -65,13 +72,22 @@ public class AuthStore extends Store {
         return address;
     }
 
+    public Address getSelectedAddress() {
+        return selectedAddress;
+    }
 
+    public Integer getSelectedCard() {
+        return selectedCard;
+    }
+
+    public void setSelectedAddress(Address selectedAddress) {
+        this.selectedAddress = selectedAddress;
+    }
 
     public void addTokenAction(String token, String user) {
         final User actionUser = new GsonBuilder().create().fromJson(user, User.class);
         if (token != null && !token.trim().isEmpty())
             this.token = token;
-
         if (user != null) {
             this.user = actionUser;
             AuthSocket.onSignIn(actionUser.getId());
@@ -98,8 +114,9 @@ public class AuthStore extends Store {
     }
 
     public void addAddressAction(String [] addressList) {
-        for (String addr : addressList) {
-            final Address actionAddress = new GsonBuilder().create().fromJson(addr, Address.class);
+        System.out.println("apet :D");
+            for (String addr : addressList) {
+                final Address actionAddress = new GsonBuilder().create().fromJson(addr, Address.class);
                 this.address = actionAddress;
                 addresses.add(this.address);
             }
@@ -131,10 +148,17 @@ public class AuthStore extends Store {
             }
         }
 
-    public void GetCountryByCity(String country) {
-            final Country actionCountry = new GsonBuilder().create().fromJson(country, Country.class);
-                this.country = actionCountry;
+    public void GetAddressAction(String address) {
+            final Address actionAddress = new GsonBuilder().create().fromJson(address, Address.class);
+                this.address = actionAddress;
             }
+
+    public void GetCountryByCity(String country) {
+        final Country actionCountry = new GsonBuilder().create().fromJson(country, Country.class);
+        this.country = actionCountry;
+    }
+
+
 
     public void GetCityByCombo(String city) {
         final City actionCountry = new GsonBuilder().create().fromJson(city, City.class);

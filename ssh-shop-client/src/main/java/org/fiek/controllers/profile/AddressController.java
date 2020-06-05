@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import java.lang.reflect.Array;
 import java.net.URL;
 
+import eu.lestard.fluxfx.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,7 +36,7 @@ import org.fiek.store.auth.GetCitiesByCountryAction;
 import org.fiek.utils.Loading;
 import org.fiek.utils.Tuple;
 
-public class AddressController {
+public class AddressController implements View {
 
     private final BaseStore baseStore;
     @FXML
@@ -115,7 +116,13 @@ public class AddressController {
         assert deleteBttnId != null : "fx:id=\"deleteBttnId\" was not injected: check your FXML file 'address.fxml'.";
         authStore = baseStore.getAuthStore();
         user = authStore.getUser();
+        fetchAddress(authStore);
+        baseStore.getAuthStoreEventStream().subscribe(this::fetchAddress);
 
+    }
+
+
+    private void fetchAddress(AuthStore authStore) {
 
         AddressService addressService = new AddressService(user);
         addressService.start();

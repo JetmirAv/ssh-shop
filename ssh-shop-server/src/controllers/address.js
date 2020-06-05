@@ -79,6 +79,7 @@ const drop = async (req, res, next) => {
  * @param {*} next
  */
 const get = async (req, res, next) => {
+  console.log("brenda get-it");
   try {
     return res
       .status(200)

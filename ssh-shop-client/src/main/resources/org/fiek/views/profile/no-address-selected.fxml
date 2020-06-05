@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="460.0" prefWidth="650.0"  styleClass="secondAncharPane" style="-fx-background-color: #E5E5E8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <StackPane layoutX="225.0" layoutY="158.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #E5E5E8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Text fill="#656464" strokeType="OUTSIDE" strokeWidth="0.0" text="No address selected">
+                    <font>
+                        <Font size="26.0" />
+                    </font>
+                </Text>
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>
+

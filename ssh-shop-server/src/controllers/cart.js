@@ -80,7 +80,7 @@ const get = async (req, res, next) => {
  */
 const getAll = async (req, res, next) => {
   try {
-    return res.status(200).json({ carts: await GetAllCarts(auth.user.id);
+    return res.status(200).json({ carts: await GetAllCarts(auth.user.id) });
   } catch (err) {
     next(err);
   }

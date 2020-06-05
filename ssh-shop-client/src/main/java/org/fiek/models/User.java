@@ -43,7 +43,7 @@ public class User implements Cloneable {
     @Expose(serialize = false, deserialize = true)
     public ArrayList<Card> cards;
     @Expose(serialize = false, deserialize = true)
-    public ArrayList<Address> addresses;
+    public ArrayList<Address> addresses = new ArrayList<>();
     @Expose(serialize = false, deserialize = true)
     public ArrayList<City> cities;
     @Expose(serialize = false, deserialize = true)

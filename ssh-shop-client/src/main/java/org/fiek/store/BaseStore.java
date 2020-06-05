@@ -52,6 +52,8 @@ public class BaseStore extends Store {
         subscribe(GetCountryByNameAction.class, this::GetCountryByName);
         subscribe(GetCityFromComboAction.class, this::GetCityByComboAction);
         subscribe(EditAddressAction.class, this::editAddressAction);
+        subscribe(SetActiveAddressAction.class, this::setActiveAddressAction);
+        subscribe(GetAddressAction.class, this::GetAddressAction);
 
         chatStoreEventSource.push(chatStore);
         subscribe(AddChannelsAction.class, this::addChannelsAction);
@@ -78,6 +80,11 @@ public class BaseStore extends Store {
     private void setActiveChannelAction(SetActiveChannelAction action) {
         chatStore.setSelectedChannel(action.getId());
         chatStoreEventSource.push(chatStore);
+    }
+
+    private void setActiveAddressAction(SetActiveAddressAction action) {
+        authStore.setSelectedAddress(action.getAddress());
+        authStoreEventSource.push(authStore);
     }
 
     private void addChannelsAction(AddChannelsAction action) {
@@ -118,6 +125,11 @@ public class BaseStore extends Store {
         authStoreEventSource.push(authStore);
     }
 
+    private void GetAddressAction(GetAddressAction t) {
+        authStore.GetAddressAction(t.getAddress());
+        authStoreEventSource.push(authStore);
+    }
+
     private void GetCityByComboAction(GetCityFromComboAction t) {
         authStore.GetCityByCombo(t.getCity());
         authStoreEventSource.push(authStore);
@@ -140,8 +152,9 @@ public class BaseStore extends Store {
     }
 
     private void GetCityAction(GetCityAction t) {
-        System.out.println("qitu koka:" + t.getCity());
         authStore.GetCity(t.getCity());
         authStoreEventSource.push(authStore);
     }
+
+
 }
