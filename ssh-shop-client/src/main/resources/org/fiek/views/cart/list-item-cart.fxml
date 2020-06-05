@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+
+<?import java.lang.*?>
+
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.image.*?>
+
+<?import javafx.scene.layout.*?>
+
+<HBox fx:id="productHB" prefHeight="52.0" prefWidth="910.0" styleClass="cart-row" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+
+        <HBox prefHeight="38.0" prefWidth="834.0" styleClass="cart-info" stylesheets="@../../styles/style.css">
+
+            <children>
+
+                <HBox styleClass="cart-align-left" stylesheets="@../../styles/style.css">
+
+                    <children>
+
+                        <ImageView fx:id="imageSelector" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+
+                            <image>
+
+                                <Image url="@../../images/ImagePlaceHolder.png" />
+
+                            </image>
+
+                        </ImageView>
+
+                        <Label fx:id="prodLb" styleClass="cart-font" stylesheets="@../../styles/style.css" text="Product Name" />
+
+                    </children>
+
+                </HBox>
+
+                <HBox stylesheets="@../../styles/style.css">
+
+                    <children>
+
+                        <HBox styleClass="qty-box">
+
+                            <children>
+
+                                <Label fx:id="quantityLb" stylesheets="@../../styles/style.css" text="Qty:1">
+
+                                    <styleClass>
+
+                                        <String fx:value="cart-font" />
+
+                                        <String fx:value="qty-box" />
+
+                                    </styleClass>
+
+                                </Label>
+
+                            </children>
+
+                        </HBox>
+
+                        <Label fx:id="priceLb" prefHeight="23.0" prefWidth="91.0" styleClass="cart-font" text="Price: 20$" />
+
+                    </children>
+
+                    <styleClass>
+
+                        <String fx:value="cart-align-right" />
+
+                        <String fx:value="cart-row-properties" />
+
+                    </styleClass>
+
+                </HBox>
+
+            </children>
+
+        </HBox>
+
+        <HBox>
+
+            <children>
+
+                <JFXButton fx:id="exitbutton" prefHeight="37.0" prefWidth="125.0" text="X">
+
+                    <styleClass>
+
+                        <String fx:value="cart-button" />
+
+                        <String fx:value="cart-font" />
+
+                    </styleClass>
+
+                </JFXButton>
+
+            </children>
+
+        </HBox>
+
+    </children>
+
+</HBox>
