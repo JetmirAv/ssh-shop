@@ -33,10 +33,10 @@ import org.fiek.store.chat.IncrementOffsetAction;
 import org.fiek.utils.Loading;
 
 public class ChatController implements View {
-    BaseStore baseStore;
-    AuthStore authStore;
-    ChatStore chatStore;
-    Channel channel;
+    BaseStore baseStore = App.context.getInstance(BaseStore.class);
+    AuthStore authStore = baseStore.getAuthStore();
+    ChatStore chatStore = baseStore.getChatStore();
+    Channel channel = chatStore.getSelectedChannel();
     Integer offset;
 
 
@@ -92,75 +92,16 @@ public class ChatController implements View {
         assert chatView != null : "fx:id=\"chatView\" was not injected: check your FXML file 'chat.fxml'.";
         assert messageHolder != null : "fx:id=\"messageHolder\" was not injected: check your FXML file 'chat.fxml'.";
         assert chatViewHolder != null : "fx:id=\"chatViewHolder\" was not injected: check your FXML file 'chat.fxml'.";
-        baseStore = App.context.getInstance(BaseStore.class);
-        authStore = baseStore.getAuthStore();
-        chatStore = baseStore.getChatStore();
-        channel = chatStore.getActiveChannel();
-        offset = channel.getOffset();
 
-//        loadChat(chatStore);
-        loadMessages(chatStore.getActiveChannel().getMessages());
+
         productName.setText(channel.getProduct().getName());
         if (authStore.getUser().getId() == channel.getUserId()) {
             contactName.setText(channel.getProduct().getUser().getFirstName());
         } else {
             contactName.setText(channel.getUser().getFirstName());
         }
-        baseStore.getChatStore().getActiveChannel().messageListEventStream().subscribe(this::loadNewMessages);
     }
 
-    private void loadNewMessages(ArrayList<Message> messages) {
-        System.out.println("Offset: " + offset);
-    }
-
-    private void loadMessages(ArrayList<Message> messages) {
-        messageHolder.getChildren().clear();
-        ArrayList<HBox> messagesList = new ArrayList<>();
-        for (Message message : messages) {
-            messagesList.add(0, addMessage(message));
-        }
-
-        messageHolder.getChildren().addAll(messagesList);
-        offset += 10;
-        if (channel.getOffset() == 0)
-            chatView.setVvalue(chatView.getVmax());
-
-        Platform.runLater(() -> {
-
-            publishAction(new IncrementOffsetAction());
-        });
-        offset = 10;
-    }
-
-    public void loadNewMessages(ChatStore chatStore) {
-    }
-
-    private void loadChat(ChatStore chatStore) {
-        if (chatStore.getActiveChannel() != null && offset == 0) {
-            System.out.println("Ska pse vjen knej: " + channel.getMessages().size());
-
-            GetChannelMessagesService service = new GetChannelMessagesService(chatStore.getSelectedChannel());
-            service.start();
-
-            service.setOnRunning(e -> {
-                loading = new Loading();
-                chatViewHolder.getChildren().add(loading);
-            });
-
-            service.setOnCancelled(e -> {
-                chatViewHolder.getChildren().remove(loading);
-            });
-
-            service.setOnSucceeded(e -> {
-                chatViewHolder.getChildren().remove(loading);
-                messageHolder.getChildren().clear();
-            });
-
-            service.setOnFailed(e -> {
-                chatViewHolder.getChildren().remove(loading);
-            });
-        }
-    }
 
     public HBox addMessage(Message message) {
         HBox hBox = new HBox();

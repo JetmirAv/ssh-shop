@@ -44,6 +44,8 @@ public class ChatStore extends Store implements View {
     }
 
     public void setSelectedChannel(Channel selectedChannel) {
+        Channel old = this.selectedChannel;
+
         this.selectedChannel = selectedChannel;
 
         if (selectedChannel.getMessages().isEmpty()) {
@@ -51,6 +53,17 @@ public class ChatStore extends Store implements View {
             service.start();
         }
 
+        if (old != null) replaceChannel(old);
+
+    }
+
+    public void replaceChannel(Channel channel) {
+        for (int i = 0; i < this.channels.size(); i++) {
+            if (channel.getId() == this.channels.get(i).getId()) {
+                this.channels.set(i, channel);
+                return;
+            }
+        }
     }
 
     public void setCount(Integer count) {
