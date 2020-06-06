@@ -1,23 +1,56 @@
 package org.fiek.models;
 
-public class Channel {
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+
+public class Channel implements Comparable {
     final String tableName = "channels";
 
-    public int ID;
+    public int id;
     public int product_id;
     public int user_id;
     public String name;
+    public Date created_at;
+    public Date updated_at;
 
     public User user;
     public Product product;
+    public ArrayList<Message> messages = new ArrayList<>();
 
+    public Integer offset = 0;
 
-    public Channel(int ID,
+    public Integer getOffset() {
+        return offset;
+    }
+
+    public Date getCreatedAt() {
+        return created_at;
+    }
+
+    public void setCreatedAt(Date created_at) {
+        this.created_at = created_at;
+    }
+
+    public Date getUpdatedAt() {
+        return updated_at;
+    }
+
+    public void setUpdatedAt(Date updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public void setOffset() {
+        this.offset = messages.size();
+    }
+
+    public Channel(int id,
                    int product_id,
                    int user_id,
                    String name
     ) {
-        this.ID = ID;
+        this.id = id;
         this.product_id = product_id;
         this.user_id = user_id;
         this.name = name;
@@ -32,8 +65,8 @@ public class Channel {
         return tableName;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     public int getProductId() {
@@ -74,6 +107,29 @@ public class Channel {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public ArrayList<Message> getMessages() {
+        System.out.println("Knej: " + messages.size());
+        return messages;
+    }
+
+    public ArrayList<Message> getLeftMessages() {
+        return new ArrayList<>(messages.subList(this.offset, this.messages.size()));
+    }
+
+
+    public void addMessages(List<Message> messages){
+        this.messages.addAll(messages);
+    }
+
+    public void addMessage(Message messages){
+        this.messages.add(0, messages);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return Comparator.comparing(Channel::getCreatedAt).compare(this, (Channel) o);
     }
 }
 

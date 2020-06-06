@@ -133,6 +133,7 @@
     -fx-alignment: center;
     -fx-text-fill: white;
 }
+
 .jfx-spinner .arc {
     -fx-stroke: linear-gradient(to top right, white 35%, white 100%);
 }
@@ -142,6 +143,7 @@
     -fx-border-width: 1px;
 
 }
+
 .backdrop {
     -fx-background-color: #7b8d9390;
 }
@@ -171,14 +173,15 @@
     -fx-fill: white;
     -fx-stroke: none;
 }
+
 .text-area {
     -fx-background-insets: 0;
-    -fx-background-color: transparent, #129084, transparent,#129084;
+    -fx-background-color: transparent, #129084, transparent, #129084;
     -fx-text-fill: white;
     -fx-text-alignment: center;
 }
 
-.text-area{
+.text-area {
 
     -fx-font-size: 29px;
     -fx-text-fill: white;
@@ -186,8 +189,11 @@
 
 /*  .text-area .content {
     -fx-background-color: text-area-background ;
+.text-area .content {
+    -fx-background-color: text-area-background;
 
 }
+
 .text-area *.text {
     -fx-text-alignment: center;
 
@@ -326,6 +332,7 @@
     -fx-border-color: #696969;
     -fx-background-color: #E5E5E8;
 }
+
 .date-picker {
     -fx-border-color: white;
     -fx-border-width: 0 0 1px 0;
@@ -333,12 +340,14 @@
     -fx-background-insets: 0 0 0 0, 0 0 1 0;
 
 }
+
 .date-picker:hover {
     -fx-border-color: white;
     -fx-border-width: 0 0 1px 0;
     -fx-base: #1d9184;
 
 }
+
 .streetField, .postalField, .numberField, .expdateField, .csvField,
 .countryCombobox, .cityCombobox {
     -jfx-label-float: true;
@@ -998,13 +1007,10 @@
     -fx-text-fill: #129F84;
 }
 
-.message {
+.vboxChat Label {
     -fx-padding: 0 15px 0 15px;
     -fx-background-radius: 10px;
     -fx-font-size: 15px;
-}
-
-.labelChat {
     -fx-background-color: #129084;
     -fx-text-fill: white;
 }
@@ -1013,12 +1019,16 @@
     -fx-alignment: baseline-right;
 }
 
+/*.rightHBchat Label {*/
+/*    -fx-alignment: ;*/
+/*}*/
+
 .rightHBchat {
-    -fx-alignment: top-right;
+    -fx-alignment: center-right;
 }
 
 .leftHBchat {
-    -fx-alignment: top-left;
+    -fx-alignment: center-left;
 }
 
 .vboxChat {

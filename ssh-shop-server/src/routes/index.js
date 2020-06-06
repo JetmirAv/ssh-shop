@@ -10,7 +10,7 @@ let categoriesRouter = require("./categories");
 module.exports = (app) => {
   app.use("/users", usersRouter);
   app.use("/auth", authRouter);
-  app.use("/channel", channelRouter);
+  app.use("/channels", channelRouter);
   app.use("/products", productsRouter);
   app.use("/cities", citiesRouter);
   app.use("/countries", countriesRouter);

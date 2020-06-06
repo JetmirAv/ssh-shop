@@ -45,7 +45,6 @@ public class ProfileController {
     @FXML
     void navClick(ActionEvent event) throws IOException {
         String id = ((Node) event.getSource()).getId();
-        System.out.println(id);
         profileBox.getChildren().clear();
 
         removeActiveClass();
