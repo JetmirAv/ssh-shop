@@ -17,6 +17,7 @@ import org.fiek.store.home.HomeStore;
 import org.fiek.utils.Loading;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class HomeController {
@@ -55,7 +56,7 @@ public class HomeController {
     User user;
     Product product;
     Loading loading;
-
+    ArrayList<Product> products;
 
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -76,8 +77,8 @@ public class HomeController {
 
     @FXML
     private void categoryHandler(ActionEvent event) {
-        //user.setProducts(searchId.getText());
-       product.setCategory(categoryComboId.getValue());
+        user.setProducts(searchId.getText());
+        product.setCategory(categoryComboId.getValue());
 
 
 

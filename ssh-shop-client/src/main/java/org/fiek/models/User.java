@@ -210,7 +210,7 @@ public class User implements Cloneable {
         return products;
     }
 
-    public void setProducts(ArrayList<Product> products) {
+    public void setProducts(String products) {
         this.products = products;
     }
 
