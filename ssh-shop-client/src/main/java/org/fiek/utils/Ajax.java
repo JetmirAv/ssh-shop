@@ -19,7 +19,7 @@ public class Ajax {
 
     final BaseStore baseStore;
 
-    private final String host = "http://0.0.0.0:5000/";
+    private final String host = "http://localhost:5000/";
 
 
     public Ajax() {
@@ -111,6 +111,32 @@ public class Ajax {
         JsonObject object = JsonParser.parseString(result).getAsJsonObject();
         return object;
     }
+
+    public JsonObject getAsJson(String route) throws Exception {
+        String result = "";
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        try {
+            HttpGet request = new HttpGet(this.host + route);
+            addHeaders(request);
+
+            CloseableHttpResponse response = httpClient.execute(request);
+
+            try {
+                HttpEntity entity = getResponse(response);
+                if (entity != null)
+                    result = EntityUtils.toString(entity);
+
+            } finally {
+                response.close();
+            }
+        } finally {
+            httpClient.close();
+        }
+        JsonObject object = JsonParser.parseString(result).getAsJsonObject();
+        return object;
+
+    }
+
 
     private HttpEntity getResponse(CloseableHttpResponse response) throws Exception {
         switch (response.getStatusLine().getStatusCode()) {

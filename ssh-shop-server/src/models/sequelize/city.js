@@ -18,6 +18,9 @@ module.exports = class City extends Sequelize.Model {
         underscored: true,
         tableName: "cities",
         sequelize,
+        defaultScope: {
+          include: [{ association: "country" }],
+        },
       }
     );
   }

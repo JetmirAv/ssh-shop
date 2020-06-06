@@ -38,7 +38,6 @@ public class IndexController {
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert chatContainer != null : "fx:id=\"chatContainer\" was not injected: check your FXML file 'index.fxml'.";
-
         chatStore = baseStore.getChatStore();
 
         fetchChats();

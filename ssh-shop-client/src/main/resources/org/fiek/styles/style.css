@@ -357,7 +357,7 @@
 }
 
 .saveBttnPassword {
-    -fx-translate-x: 524.0;
+    -fx-translate-x: 730.0;
     -fx-translate-y: 370.0;
     -fx-pref-width: 150px;
     -fx-pref-height: 40px;
@@ -607,7 +607,7 @@
 }
 
 .address-switch-button, .cards-switch-button {
-    -fx-pref-width: 720.0;
+    -fx-pref-width: 30.0;
     -fx-pref-height: 40.0;
     -fx-background-color: #129084;
     -fx-font-family: "Roboto Regular";
@@ -861,7 +861,7 @@
 .horizontalB {
     -fx-prefHeight: 50.0;
     -fx-prefWidth: 250.0;
-    -fx-background-color: #129F84;
+    -fx-background-color: #129084;
     -fx-spacing: 8px;
     -fx-padding: 4px 0 0 4px;
 }

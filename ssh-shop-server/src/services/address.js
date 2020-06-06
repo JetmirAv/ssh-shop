@@ -59,6 +59,16 @@ const CreateAddress = async (data) => {
 //  * @returns Address
  */
 const UpdateAddress = async (address_id, user_id, data) => {
+  let street = data.street;
+  let postal = data.postal;
+  if (address_id == 0) throw new CustomError("Choose address first! ", {}, 401);
+  if (street === "" && postal === "")
+    throw new CustomError("Street and Postal can not be empty !", {}, 401);
+  if (street === "")
+    throw new CustomError("Street can not be empty !", {}, 401);
+  if (postal === "")
+    throw new CustomError("Postal can not be empty !", {}, 401);
+
   try {
     const address = await Address.findOne({
       where: {

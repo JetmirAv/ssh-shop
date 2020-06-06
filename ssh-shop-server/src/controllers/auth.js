@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const { User, Sequelize } = require("../models/sequelize");
 const CustomError = require("../errors/CustomError");
+const { check, validationResult } = require("express-validator");
 const { generateJWT } = require("../util/generateJWT");
 const {
   CreateUser,
@@ -73,14 +74,41 @@ const register = async (req, res, next) => {
 const changePassword = async (req, res, next) => {
   try {
     let user = req.user;
-    console.log({ user });
-    await user.update(
-      { password: req.body.password },
-      { fields: ["password"] }
-    );
+    var newPassword = req.body.newPassword;
+    var confirmPassword = req.body.confirmPassword;
+    var oldPassword = req.body.oldPassword;
 
-    return res.status(200).json(true);
+    if (confirmPassword === "" || newPassword === "" || oldPassword === "")
+      throw new CustomError("Please fill the fields !", {}, 401);
+
+    if (newPassword === oldPassword) {
+      throw new CustomError(
+        "New password is the same as old password !",
+        {},
+        401
+      );
+    }
+
+    if (newPassword !== confirmPassword)
+      throw new CustomError(
+        "New Password and Confirm Password does not match !",
+        {},
+        401
+      );
+
+    if (newPassword.length < 6)
+      throw new CustomError(
+        "Password must be at least six character !",
+        {},
+        401
+      );
+
+    await user.validatePassword(req.body.oldPassword);
+
+    user.update({ password: confirmPassword }, { fields: ["password"] });
+    return res.status(200).json({ password: newPassword });
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };
