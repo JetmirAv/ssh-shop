@@ -3,20 +3,22 @@ package org.fiek.store.chat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import eu.lestard.fluxfx.Store;
+import eu.lestard.fluxfx.View;
 import org.fiek.models.Channel;
 import org.fiek.models.Message;
+import org.fiek.services.chat.GetChannelMessagesService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ChatStore extends Store {
+public class ChatStore extends Store implements View {
 
-    Integer selectedChannel;
+    Channel selectedChannel;
     ArrayList<Channel> channels = null;
     Integer count = 0;
 
-    public Integer getSelectedChannel() {
+    public Channel getSelectedChannel() {
         return selectedChannel;
     }
 
@@ -41,8 +43,14 @@ public class ChatStore extends Store {
         return count;
     }
 
-    public void setSelectedChannel(Integer selectedChannel) {
+    public void setSelectedChannel(Channel selectedChannel) {
         this.selectedChannel = selectedChannel;
+
+        if (selectedChannel.getMessages().isEmpty()) {
+            GetChannelMessagesService service = new GetChannelMessagesService(selectedChannel.getId());
+            service.start();
+        }
+
     }
 
     public void setCount(Integer count) {
@@ -59,7 +67,9 @@ public class ChatStore extends Store {
 
     public void addChannelsAction(String channels, String count) {
         Gson gson = new Gson();
+        System.out.println("Kenj po");
         Channel[] channelsArray = gson.fromJson(channels, Channel[].class);
+        System.out.println("Kenj jo");
         List<Channel> channelList = Arrays.asList(channelsArray);
         addChannels(channelList);
         setCount(Integer.parseInt(count));
@@ -69,17 +79,11 @@ public class ChatStore extends Store {
         Gson gson = new Gson();
         Message[] messageArray = gson.fromJson(messages, Message[].class);
         List<Message> messageList = Arrays.asList(messageArray);
-        this.getActiveChannel().addMessages(messageList);
-//        this.getActiveChannel().setOffset(messageList.size());
+        this.getSelectedChannel().addMessages(messageList);
     }
 
     public Channel getActiveChannel() {
-        for (Channel channel : this.channels) {
-            if (channel.getId() == this.selectedChannel) {
-                return channel;
-            }
-        }
-        return null;
+        return selectedChannel;
     }
 
     public void newMessageAction(String message) {

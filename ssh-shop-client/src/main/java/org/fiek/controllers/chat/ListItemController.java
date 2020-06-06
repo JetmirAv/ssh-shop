@@ -61,6 +61,6 @@ public class ListItemController implements View {
 
     @FXML
     public void clickHandler(MouseEvent action){
-        publishAction(new SetActiveChannelAction(channel.getId()));
+        publishAction(new SetActiveChannelAction(channel));
     }
 }

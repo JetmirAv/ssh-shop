@@ -1,7 +1,9 @@
 package org.fiek.store;
 
 import eu.lestard.fluxfx.Store;
+import eu.lestard.fluxfx.View;
 import javafx.concurrent.Service;
+import org.fiek.models.Channel;
 import org.fiek.services.chat.GetChannelMessagesService;
 import org.fiek.store.auth.*;
 import org.fiek.store.auth.AddTokenAction;
@@ -87,10 +89,9 @@ public class BaseStore extends Store {
     }
 
     private void setActiveChannelAction(SetActiveChannelAction action) {
-        if (chatStore.getSelectedChannel() == null || !Integer.valueOf(chatStore.getActiveChannel().getId()).equals(action.getId())) {
-            chatStore.setSelectedChannel(action.getId());
-            service = new GetChannelMessagesService(action.getId());
-            service.start();
+        Channel oldSelectedChannel = chatStore.getSelectedChannel();
+        if (oldSelectedChannel == null || oldSelectedChannel.getId() != action.getChannel().getId()) {
+            chatStore.setSelectedChannel(action.getChannel());
             chatStoreEventSource.push(chatStore);
         }
     }
@@ -109,10 +110,12 @@ public class BaseStore extends Store {
         authStore.editUserAction(action.getUser());
         authStoreEventSource.push(authStore);
     }
+
     private void editAddressAction(EditAddressAction t) {
         authStore.editAddressAction(t.getAddress());
         authStoreEventSource.push(authStore);
     }
+
     private void addTokenAction(AddTokenAction action) {
         authStore.addTokenAction(action.getToken(), action.getUser());
         authStoreEventSource.push(authStore);

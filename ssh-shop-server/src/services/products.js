@@ -6,11 +6,9 @@ const Product = require("../models/mongo/products");
 //  * @param {Number} product_id
 //  * @returns Product
  */
-const FindAndCountProducts = async (user) => {
+const GetMyProducts = async (user) => {
   try {
-    let where = {};
-    if (user.role_id != 1) where.user_id = user.id;
-    let result = await Product.findAndCountAll({ where });
+    let result = await Product.find({ user_id: user.id });
     return result;
   } catch (err) {
     throw err;
@@ -162,5 +160,5 @@ module.exports = {
   UpdateProduct,
   DeleteProduct,
   GetAllProducts,
-  FindAndCountProducts,
+  GetMyProducts,
 };

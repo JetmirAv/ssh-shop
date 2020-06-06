@@ -13,7 +13,7 @@ public class Channel extends Store implements Comparable {
     final String tableName = "channels";
 
     public int id;
-    public int product_id;
+    public String product_id;
     public int user_id;
     public String name;
     public Date created_at;
@@ -56,7 +56,7 @@ public class Channel extends Store implements Comparable {
     }
 
     public Channel(int id,
-                   int product_id,
+                   String product_id,
                    int user_id,
                    String name
     ) {
@@ -67,7 +67,7 @@ public class Channel extends Store implements Comparable {
     }
 
     public Channel() {
-        this(-1, -1, -1, "");
+        this(-1, "-1", -1, "");
     }
 
 
@@ -79,7 +79,7 @@ public class Channel extends Store implements Comparable {
         return id;
     }
 
-    public int getProductId() {
+    public String getProductId() {
         return product_id;
     }
 
@@ -91,7 +91,7 @@ public class Channel extends Store implements Comparable {
         this.user_id = user_id;
     }
 
-    public void setProductId(int product_id) {
+    public void setProductId(String product_id) {
         this.product_id = product_id;
     }
 

@@ -1,16 +1,17 @@
 package org.fiek.store.chat;
 
 import eu.lestard.fluxfx.Action;
+import org.fiek.models.Channel;
 
 public class SetActiveChannelAction implements Action {
 
-    final Integer id;
+    final Channel channel;
 
-    public SetActiveChannelAction(Integer id) {
-        this.id = id;
+    public SetActiveChannelAction(Channel channel) {
+        this.channel = channel;
     }
 
-    public Integer getId() {
-        return id;
+    public Channel getChannel() {
+        return channel;
     }
 }
