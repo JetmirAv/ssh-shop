@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import org.fiek.models.Product;
 import org.fiek.models.User;
 import org.fiek.services.auth.InfoService;
+import org.fiek.services.home.HomeService;
 import org.fiek.store.BaseStore;
 import org.fiek.store.home.HomeStore;
 import org.fiek.utils.Loading;
@@ -79,6 +80,19 @@ public class HomeController {
     private void categoryHandler(ActionEvent event) {
         user.setProducts(searchId.getText());
         product.setCategory(categoryComboId.getValue());
+
+
+        HomeService homeService = new HomeService(user);
+        homeService.start();
+
+        homeService.setOnRunning(e -> {
+            loading = new Loading();
+            homeroot.getChildren().add(loading);
+        });
+
+        homeService.setOnSucceeded(e -> {
+            homeroot.getChildren().remove(loading);
+        });
 
 
 
