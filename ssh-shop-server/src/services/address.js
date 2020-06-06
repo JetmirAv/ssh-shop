@@ -10,6 +10,8 @@ const Op = Sequelize.Op;
 const GetAddress = async (address_id) => {
   try {
     const address = await Address.findByPk(address_id);
+    console.log({ address });
+
     if (!address) throw new CustomError("Not found!", {}, 401);
     return address;
   } catch (err) {
@@ -59,6 +61,8 @@ const CreateAddress = async (data) => {
 //  * @returns Address
  */
 const UpdateAddress = async (address_id, user_id, data) => {
+  console.log("Ne server tek update!");
+  console.log("te dhenat:" + data.street + ", " + data.postal);
   let street = data.street;
   let postal = data.postal;
   if (address_id == 0) throw new CustomError("Choose address first! ", {}, 401);
@@ -82,7 +86,7 @@ const UpdateAddress = async (address_id, user_id, data) => {
       await address.update({
         ...instance.dataValues,
       });
-      return address;
+      return await GetAddress(address.id);
     } else {
       throw new CustomError("No combination between user and address", {}, 404);
     }

@@ -50,6 +50,8 @@ public class ListItemAddressController implements View {
         assert addressName != null : "fx:id=\"addressName\" was not injected: check your FXML file 'list-Item-Address.fxml'.";
 
         addressName.setText(address.getStreet());
+        System.out.println("TE DHENAT: \n");
+        System.out.println("streetTest:" + address.getStreet() + "cityTest:" + address.getCity());
         Address selectedAddress = authStore.getSelectedAddress();
         if (selectedAddress != null && selectedAddress.getId() == address.getId())
             itemBox.getStyleClass().add("active");

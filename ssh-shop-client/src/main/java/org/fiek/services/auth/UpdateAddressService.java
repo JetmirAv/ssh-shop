@@ -16,24 +16,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class UpdateAddressService extends Service<Void> implements View {
-    private User user;
     private Address addressObj;
-    public UpdateAddressService(User user, Address addressObj) {
-        this.user = user;
+    public UpdateAddressService(Address addressObj) {
         this.addressObj = addressObj;
     }
 
     private void updateAddress() throws Exception {
         final String json1 = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.addressObj, Address.class);
         Ajax request = new Ajax();
-        JsonObject response = request.patch("users/" + user.getId() + "/address/" + addressObj.getId(), json1);
-        System.out.println("Response:" + response);
+        JsonObject response = request.patch("users/" + addressObj.getUserId() + "/address/" + addressObj.getId(), json1);
         String jsonAddress = response.get("address").toString();
-        System.out.println("Response in String:" + jsonAddress);
         String jsonAddr = jsonAddress.replaceAll("\\[", "").replaceAll("\\]", "");
         String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
         String[] addr = jsonAddr1.split("},");
         String address = addr[0];
+        System.out.println("responsi:" + address);
         publishAction(new EditAddressAction(address));
     }
 

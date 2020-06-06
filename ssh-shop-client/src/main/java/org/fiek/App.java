@@ -28,7 +28,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        SocketClient socketClient = new SocketClient("http://0.0.0.0:5000/");
+        SocketClient socketClient = new SocketClient("http://localhost:3000/");
         context.bindInstance(SocketClient.class, socketClient);
 
         BaseStore baseStore = new BaseStore();

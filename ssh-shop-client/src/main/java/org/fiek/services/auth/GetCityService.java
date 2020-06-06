@@ -34,6 +34,8 @@ public class GetCityService extends Service<Void> implements View {
     }
 
 
+
+
     @Override
     protected Task<Void> createTask() {
         return new Task<Void>() {

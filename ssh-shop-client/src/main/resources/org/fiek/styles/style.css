@@ -607,7 +607,7 @@
 }
 
 .address-switch-button, .cards-switch-button {
-    -fx-pref-width: 30.0;
+    -fx-pref-width: 50.0;
     -fx-pref-height: 40.0;
     -fx-background-color: #129084;
     -fx-font-family: "Roboto Regular";

@@ -11,7 +11,7 @@
         <Insets />
     </VBox.margin>
     <children>
-                <Text fx:id="addressName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Address 1" wrappingWidth="130.13671875" styleClass="address-switch-button">
+                <Text fx:id="addressName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Address 1"  styleClass="address-switch-button">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>

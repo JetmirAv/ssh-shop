@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
-<ScrollPane fx:id="container" prefHeight="351.0" prefWidth="240.0" styleClass="address-scrollpane" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="org.fiek.controllers.profile.ListAddressController" >
-    <HBox.margin>
-        <Insets />
-    </HBox.margin>
-    <content>
-        <VBox fx:id="addressList" prefHeight="465.0" prefWidth="225.0" spacing="2.0" stylesheets="@../../styles/style.css">
-            <children>
-            </children>
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-        </VBox>
-    </content>
+<ScrollPane fx:id="container" prefHeight="250.0" prefWidth="240.0" styleClass="address-scrollpane" xmlns:fx="	"  fx:controller="org.fiek.controllers.profile.ListAddressController" >
+   <HBox.margin>
+      <Insets />
+   </HBox.margin>
+   <content>
+      <VBox fx:id="addressList" prefHeight="300.0" prefWidth="225.0" spacing="2.0" stylesheets="@../../styles/style.css">
+         <children>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+   </content>
 </ScrollPane>
