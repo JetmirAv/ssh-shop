@@ -5,13 +5,8 @@ const {
   UpdateProduct,
   GetProduct,
   DeleteProduct,
-  GetAllProducts
+  GetAllProducts,
 } = require("../services/products");
-
-
-const func = async (req, res) => {
-  await res.send("create");
-};
 
 /**
  * @param {Request} req
@@ -88,7 +83,6 @@ const drop = async (req, res, next) => {
 module.exports = {
   get,
   create,
-  func,
   update,
   drop,
   getProducts

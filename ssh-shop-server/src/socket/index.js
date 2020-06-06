@@ -14,11 +14,11 @@ module.exports = (io) => {
       console.log("====================================");
     });
 
-    socket.on("sign-in", auth.onSignIn);
+    socket.on("sign_in", (data) => auth.onSignIn(data, socket));
 
-    // socket.on("disconnect", auth.onDisconnect);
+    socket.on("disconnect", () => auth.onDisconnect(socket));
 
-    socket.on("message", chat.onMessage);
+    socket.on("message", (data) => chat.onMessage(data, socket, io));
 
     socket.on("make-offer", async (data) => {
       console.log({ data });

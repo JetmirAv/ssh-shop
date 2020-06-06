@@ -1,18 +1,20 @@
-const { UserSocket } = require("../models/sequelize");
+const { UserSocket } = require("../models/mongo");
 
-const onSignIn = async (data) => {
+const onSignIn = async (data, socket) => {
   try {
-    await UserSocket.create({ user_id: data.id, socket_id: socket.id });
+    data = JSON.parse(data);
+    let userSocket = new UserSocket({
+      user_id: data.user_id,
+      socket_id: socket.id,
+    });
+    await userSocket.save();
   } catch (err) {
-    //force disconnect
     console.log({ err });
   }
 };
 
-const onDisconnect = async () => {
-  UserSocket.findOne({ where: { socket_id: socket.id } }).then((so) => {
-    if (so) so.destroy();
-  });
+const onDisconnect = async (socket) => {
+  UserSocket.deleteOne({ socket_id: socket.id }).exec();
 };
 
 module.exports = {

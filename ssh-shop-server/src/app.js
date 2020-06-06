@@ -10,6 +10,7 @@ const host = process.env.NODE_HOST || "localhost";
 const port = +process.env.NODE_PORT || 3000;
 
 require("./models/sequelize");
+require("./config/mongoose");
 
 const errorHandler = require("./errors");
 var mongodb = require("./config/mongodb");

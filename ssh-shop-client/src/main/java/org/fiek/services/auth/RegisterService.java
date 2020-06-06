@@ -24,7 +24,6 @@ public class RegisterService extends Service<Void> implements View {
     public void register() throws Exception {
 
         final String json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.user, User.class);
-
         Ajax request = new Ajax();
         JsonObject response = request.post("auth/register", json);
 

@@ -59,18 +59,13 @@ public class LayoutProfileController extends AbstractController {
 
 //        firstName.textProperty().bind(Bindings.createStringBinding(() -> {
 //
-//            System.out.println("Log user: " + authStore.getUser());
-//            System.out.println("Log token: " + authStore.getToken());
 //
 //            authStore.getTokenSource().supply(() -> {
-//                System.out.println("palidhje");
 //                return "Jetmir";
 //            });
 //
 //            if (authStore.getUser() != null) {
-//                System.out.println("Not null");
 //            } else {
-//                System.out.println("Null");
 //            }
 //
 //
@@ -83,11 +78,9 @@ public class LayoutProfileController extends AbstractController {
 
     private void profile(AuthStore authStore) {
         if (authStore.getUser() != null) {
-            System.out.println("Profile asfas: " + authStore.getUser());
             firstName.setText(authStore.getUser().getFirstName());
             lastName.setText(authStore.getUser().getLastName());
         } else {
-            System.out.println("KEq");
         }
     }
 

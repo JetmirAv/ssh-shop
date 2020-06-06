@@ -90,13 +90,7 @@ public class LayoutController extends AbstractController implements View {
 
         main.setContent(App.loadFXML("views/home/home"));
 
-        if (baseStore.getAuthStore() == null || baseStore.getAuthStore().getUser() == null) {
-            header.getChildren().add(App.loadFXML("views/layout/no-auth"));
-        } else {
-            header.getChildren().add(App.loadFXML("views/layout/profile"));
-        }
-
-
+        authorize(baseStore.getAuthStore());
         baseStore.getAuthStoreEventStream().subscribe(this::authorize);
 
     }
@@ -107,7 +101,9 @@ public class LayoutController extends AbstractController implements View {
             header.getChildren().clear();
             if (authStore.getUser() == null) {
                 header.getChildren().add(App.loadFXML("views/layout/no-auth"));
+                toogleDisable(true);
             } else {
+                toogleDisable(false);
                 header.getChildren().add(App.loadFXML("views/layout/profile"));
             }
         } catch (IOException exception) {
@@ -119,7 +115,6 @@ public class LayoutController extends AbstractController implements View {
     @FXML
     void navClick(Event event) throws IOException {
         String id = ((Node) event.getSource()).getId();
-        System.out.println(id);
 
         removeActiveClass();
 
@@ -145,7 +140,7 @@ public class LayoutController extends AbstractController implements View {
                 break;
 
             case "navChat":
-                setRoot("views/chat/chat");
+                setRoot("views/chat/index");
                 navChat.getStyleClass().add("active");
                 break;
         }
@@ -158,6 +153,13 @@ public class LayoutController extends AbstractController implements View {
         navMyProducts.getStyleClass().removeAll("active");
         navWishlist.getStyleClass().removeAll("active");
         navChat.getStyleClass().removeAll("active");
+    }
+
+    void toogleDisable(Boolean bool){
+        navCart.setDisable(bool);
+        navMyProducts.setDisable(bool);
+        navWishlist.setDisable(bool);
+        navChat.setDisable(bool);
     }
 
     public void setRoot(String fxml) throws IOException {
