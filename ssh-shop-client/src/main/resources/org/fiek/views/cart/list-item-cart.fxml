@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.*?>
-
 <?import java.lang.*?>
-
 <?import javafx.scene.control.*?>
-
 <?import javafx.scene.image.*?>
-
 <?import javafx.scene.layout.*?>
 
-<HBox fx:id="productHB" prefHeight="52.0" prefWidth="910.0" styleClass="cart-row" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<HBox  prefHeight="52.0" prefWidth="910.0" styleClass="cart-row" stylesheets="@../../styles/style.css"  xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
 
     <children>
 
@@ -84,7 +80,7 @@
 
             <children>
 
-                <JFXButton fx:id="exitbutton" prefHeight="37.0" prefWidth="125.0" text="X">
+                <JFXButton fx:id="exitbutton"  prefHeight="37.0" prefWidth="125.0" text="X">
 
                     <styleClass>
 
