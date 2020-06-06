@@ -48,12 +48,8 @@ public class ChatStore extends Store implements View {
 
         this.selectedChannel = selectedChannel;
 
-        if (selectedChannel.getMessages().isEmpty()) {
-            GetChannelMessagesService service = new GetChannelMessagesService(selectedChannel.getId());
-            service.start();
-        }
-
-        if (old != null) replaceChannel(old);
+        GetChannelMessagesService service = new GetChannelMessagesService(selectedChannel.getId());
+        service.start();
 
     }
 
@@ -102,8 +98,13 @@ public class ChatStore extends Store implements View {
     public void newMessageAction(String message) {
         Gson gson = new Gson();
         Message messageInstance = gson.fromJson(message, Message.class);
-        this.getActiveChannel().addMessage(messageInstance);
+
+        if (messageInstance.getChannelId() == this.getSelectedChannel().getId()) {
+            this.getActiveChannel().addMessage(messageInstance);
+        }
+
         Channel channel = messageInstance.getChannel();
+        if(channel != null) System.out.println("Not null");
         addChannel(channel);
 
 //        messageInstance.getChannelId();

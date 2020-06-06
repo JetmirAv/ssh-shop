@@ -18,7 +18,7 @@ module.exports = (io) => {
 
     socket.on("disconnect", () => auth.onDisconnect(socket));
 
-    socket.on("message", (data) => chat.onMessage(data, socket, io));
+    socket.on("message", (data) => chat.onMessage(data, io));
 
     socket.on("make-offer", async (data) => {
       console.log({ data });

@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -37,7 +38,6 @@ public class ChatController implements View {
     AuthStore authStore = baseStore.getAuthStore();
     ChatStore chatStore = baseStore.getChatStore();
     Channel channel = chatStore.getSelectedChannel();
-    Integer offset;
 
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -100,6 +100,64 @@ public class ChatController implements View {
         } else {
             contactName.setText(channel.getUser().getFirstName());
         }
+
+        productName.setOnMouseClicked(e -> {
+            messageHolder.getChildren().add(addMessage(new Message("112", 1, 1, "teast")));
+        });
+
+        baseStore.getChatStoreEventStream().subscribeForOne(this::getMessagesToogle);
+//        baseStore.getChatStoreEventStream().subscribe(this::getNewMessagesToogle);
+
+        messageHolder.backgroundProperty().addListener(e -> {
+            this.getMessages();
+        });
+
+//        messageHolder.widthProperty().addListener(e -> {
+//            this.getNewMessage();
+//        });
+
+    }
+
+    private void getNewMessage() {
+        System.out.println("mrena toggle");
+        int leftMessages = messageHolder.getChildren().size() - channel.getMessages().size();
+        leftMessages = Math.abs(leftMessages);
+        if (leftMessages > 0) {
+            for (int i = leftMessages; i > 0; i--) {
+                messageHolder.getChildren().add(addMessage(channel.messages.get(i - 1)));
+            }
+        }
+
+    }
+
+    private void getNewMessagesToogle(ChatStore chatStore) {
+        System.out.println("toggle");
+        messageHolder.setPrefWidth(messageHolder.getPrefWidth());
+    }
+
+
+    private void getMessagesToogle(ChatStore chatStore) {
+        messageHolder.setBackground(Background.EMPTY);
+    }
+
+    private void getMessages() {
+        System.out.println("get message po");
+
+        if (channel != null && !channel.getMessages().isEmpty()) {
+            messageHolder.setPrefHeight(200);
+            ArrayList<Message> messages = channel.getMessages();
+            ArrayList<HBox> messageHbox = new ArrayList<>();
+            for (Message message : messages) {
+                messageHbox.add(0, addMessage(message));
+            }
+            messageHolder.getChildren().addAll(messageHbox);
+            Platform.runLater(this::scrollToBottom);
+        }
+
+    }
+
+    public void scrollToBottom() {
+        chatView.setVvalue(messageHolder.getHeight());
     }
 
 

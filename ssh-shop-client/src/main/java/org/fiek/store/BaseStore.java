@@ -80,6 +80,7 @@ public class BaseStore extends Store {
 
     private void newMessageAction(NewMessageAction action) {
         chatStore.newMessageAction(action.getMessage());
+        System.out.println("Action");
         chatStoreEventSource.push(chatStore);
     }
 
