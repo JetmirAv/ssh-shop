@@ -3,15 +3,15 @@ package org.fiek.models;
 public class Cart {
     final String tableName = "carts";
 
-    public int ID;
+    public int id;
     public int user_id;
     public int variant_id;
     public int quantity;
 
     public User user;
 
-    public Cart(int ID, int user_id, int variant_id, int quantity) {
-        this.ID = ID;
+    public Cart(int id, int user_id, int variant_id, int quantity) {
+        this.id = id;
         this.user_id = user_id;
         this.variant_id = variant_id;
         this.quantity = quantity;
@@ -26,7 +26,7 @@ public class Cart {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
     public int getUserId() {
