@@ -2,7 +2,24 @@ const {
   CreateChannel,
   UpdateChannel,
   GetExistingChannel,
+  FindAndCountChannels,
 } = require("../services/channel");
+
+const { GetMessages, CreateMessage } = require("../services/messages");
+
+/**
+ *
+ * @param {Request} req
+ * @param {Response} res
+ */
+const findAll = async (req, res, next) => {
+  try {
+    const channels = await FindAndCountChannels(req.user);
+    return res.status(200).json({ channels });
+  } catch (err) {
+    next(err);
+  }
+};
 
 /**
  *
@@ -59,8 +76,35 @@ const get = async (req, res, next) => {
   }
 };
 
+const getMessages = async (req, res, next) => {
+  try {
+    return res.status(200).json({
+      messages: await GetMessages(req.params.channel_id),
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const createMessage = async (req, res, next) => {
+  try {
+    return res.status(200).json({
+      messages: await CreateMessage({
+        channel_id: req.params.channel_id,
+        author_id: req.user.id,
+        content: req.body.content,
+      }),
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
+  findAll,
   update,
   get,
+  getMessages,
+  createMessage,
 };

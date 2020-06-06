@@ -21,6 +21,15 @@ module.exports = class Channel extends Sequelize.Model {
         underscored: true,
         tableName: "channels",
         sequelize,
+        defaultScope: {
+          include: [
+            {
+              association: "user",
+              attributes: ["id", "first_name", "last_name", "email"],
+            },
+            { association: "product", attributes: ["id", "name"] },
+          ],
+        },
       }
     );
   }

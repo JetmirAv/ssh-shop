@@ -28,6 +28,15 @@ module.exports = class Product extends Sequelize.Model {
         underscored: true,
         tableName: "products",
         sequelize,
+        defaultScope: {
+          include: [
+            {
+              association: "user",
+              attributes: ["id", "first_name", "last_name", "email"],
+            },
+            { association: "category" },
+          ],
+        },
       }
     );
   }

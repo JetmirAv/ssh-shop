@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox onMouseClicked="#clickHandler" prefHeight="50.0" styleClass="horizontalB" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox.margin>
+        <Insets />
+    </VBox.margin>
+    <children>
+        <Circle fx:id="imageBox" radius="20.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #E5E5E8;" styleClass="circleHB">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+        </Circle>
+        <VBox prefHeight="50.0" styleClass="user-name">
+            <HBox.margin>
+                <Insets />
+            </HBox.margin>
+            <children>
+                <Text fx:id="productName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Product 1" wrappingWidth="130.13671875">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Text>
+                <Text fx:id="sellerName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Text>
+            </children>
+        </VBox>
+    </children>
+</HBox>
