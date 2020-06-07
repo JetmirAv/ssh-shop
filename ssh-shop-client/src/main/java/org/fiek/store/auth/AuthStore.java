@@ -85,9 +85,10 @@ public class AuthStore extends Store {
     }
 
     public void setSelectedAddress(Address selectedAddress) {
-        if(this.selectedAddress == null || this.selectedAddress.getId() != selectedAddress.getId()){
+        if (this.selectedAddress == null || this.selectedAddress.getId() != selectedAddress.getId()) {
+
             this.selectedAddress = selectedAddress;
-            if(selectedAddress.getId() > 0){
+            if (selectedAddress.getId() > 0) {
                 GetAddressService addressService = new GetAddressService(selectedAddress.getId(), user.getId());
                 addressService.start();
                 System.out.println("Mrenda");
@@ -95,7 +96,6 @@ public class AuthStore extends Store {
             System.out.println("Jasht");
         }
         System.out.println("Shum Jasht");
-
     }
 
     public void addTokenAction(String token, String user) {
@@ -121,6 +121,8 @@ public class AuthStore extends Store {
     }
 
     public void editAddressAction(String address) {
+        System.out.println("ne updatEE:" + address);
+
         final Address actionAddress = new GsonBuilder().create().fromJson(address, Address.class);
         System.out.println("objekti: " + actionAddress);
         for (Address addr : addresses) {
@@ -145,6 +147,16 @@ public class AuthStore extends Store {
         // }
         // this.addresses.push(addresses);
         this.addAddresses(Arrays.asList(addresses));
+    }
+
+    public void addNewAddress(String address){
+        String address2 = address.replaceAll("Address","");
+
+        final Address actionAddress = new GsonBuilder().create().fromJson(address2, Address.class);
+        System.out.println("Address1 Obj:" + actionAddress);
+        this.addresses.add(actionAddress);
+        setSelectedAddress(actionAddress);
+
     }
 
     public void addAddresses(List<Address> addresses) {

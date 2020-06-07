@@ -53,7 +53,9 @@ public class ListItemAddressController implements View {
         System.out.println("TE DHENAT: \n");
         System.out.println("streetTest:" + address.getStreet() + "cityTest:" + address.getCity());
         Address selectedAddress = authStore.getSelectedAddress();
+        System.out.println("selected Address:" + selectedAddress);
         if (selectedAddress != null && selectedAddress.getId() == address.getId())
+            System.out.println("u be aktive !");
             itemBox.getStyleClass().add("active");
     }
 

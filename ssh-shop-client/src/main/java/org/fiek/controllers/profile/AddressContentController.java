@@ -32,6 +32,7 @@ public class AddressContentController implements View {
     AuthStore authStore = baseStore.getAuthStore();
     Address address = authStore.getSelectedAddress();
 
+
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -74,39 +75,61 @@ public class AddressContentController implements View {
 
         if (address != null) {
 
-            CountryService countryService = new CountryService();
-            countryService.start();
-            countryService.setOnSucceeded(e -> {
-                countryComboId.getItems().clear();
-                ArrayList<Country> countryList = CountryService.countries;
-                for (int i = 0; i < countryList.size(); i++) {
-                    countryComboId.getItems().add(countryList.get(i).getName());
-                }
-                countryList.removeAll(countryList);
+            if (address.getId() == -1) {
 
-            });
+                streetId.setText("");
+                postalId.setText("");
+                showCitiesInCombo();
+                showCountriesInCombo();
+                countryComboId.setOnAction(e->{
+                    GetCities();
+                });
+            } else {
 
-            CityService cityService = new CityService();
-            cityService.start();
-            cityService.setOnSucceeded(e -> {
-                ArrayList<City> citiesList = cityService.cities;
-                for (int i = 0; i < citiesList.size(); i++) {
+                showCountriesInCombo();
+                showCitiesInCombo();
+                streetId.setText(address.getStreet());
+                postalId.setText(address.getPostal());
+                System.out.println("PAs update:" + address.getCity().getCountry().getName());
+                countryComboId.getSelectionModel().select(address.getCity().getCountry().getName());
+                cityComboId.getSelectionModel().select(address.getCity().getName());
 
-                    cityComboId.getItems().add(citiesList.get(i).getName());
-                }
-            });
-
-            streetId.setText(address.getStreet());
-            postalId.setText(address.getPostal());
-            System.out.println("PAs update:" + address.getCity().getCountry().getName());
-            countryComboId.getSelectionModel().select(address.getCity().getCountry().getName());
-            cityComboId.getSelectionModel().select(address.getCity().getName());
-            GetCities();
-            countryComboId.setOnAction(e2 -> {
                 GetCities();
-            });
+
+                countryComboId.setOnAction(e2 -> {
+                    GetCities();
+                });
+            }
         }
     }
+
+    private void showCitiesInCombo() {
+        CityService cityService = new CityService();
+        cityService.start();
+        cityService.setOnSucceeded(e -> {
+            ArrayList<City> citiesList = cityService.cities;
+            for (int i = 0; i < citiesList.size(); i++) {
+
+                cityComboId.getItems().add(citiesList.get(i).getName());
+            }
+            citiesList.removeAll(citiesList);
+        });
+    }
+
+    private void showCountriesInCombo() {
+        CountryService countryService = new CountryService();
+        countryService.start();
+        countryService.setOnSucceeded(e -> {
+            countryComboId.getItems().clear();
+            ArrayList<Country> countryList = CountryService.countries;
+            for (int i = 0; i < countryList.size(); i++) {
+                countryComboId.getItems().add(countryList.get(i).getName());
+            }
+            countryList.removeAll(countryList);
+
+        });
+    }
+
 
     private void GetCities(){
         String targetCountry1 = countryComboId.getSelectionModel().getSelectedItem().toString();
@@ -149,8 +172,6 @@ public class AddressContentController implements View {
         System.out.println("user id : " + userID);
         String street = "";
         String postal = "";
-
-
         try {
             street = streetId.getText();
             postal = postalId.getText();
@@ -163,8 +184,6 @@ public class AddressContentController implements View {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 
         GetCityFromComboService cityInstance = new GetCityFromComboService(valueOfCity, countryTargetId);
         cityInstance.start();
@@ -209,6 +228,7 @@ public class AddressContentController implements View {
 
         cityInstance.setOnFailed(e->{
             System.out.println("keq!");
+
         });
 
 

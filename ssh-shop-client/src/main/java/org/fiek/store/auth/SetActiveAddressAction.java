@@ -7,6 +7,7 @@ public class SetActiveAddressAction implements Action {
 
     Address address;
     public SetActiveAddressAction(Address address) {
+        System.out.println("SetActiveAddressAction" + address);
         this.address = address;
     }
 

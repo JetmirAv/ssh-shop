@@ -54,6 +54,7 @@ public class BaseStore extends Store {
         subscribe(EditAddressAction.class, this::editAddressAction);
         subscribe(SetActiveAddressAction.class, this::setActiveAddressAction);
         subscribe(GetAddressAction.class, this::GetAddressAction);
+        subscribe(AddNewAddressAction.class, this::addNewAddress);
 
         chatStoreEventSource.push(chatStore);
         subscribe(AddChannelsAction.class, this::addChannelsAction);
@@ -107,6 +108,12 @@ public class BaseStore extends Store {
 
     private void addAddressAction(AddAddressAction t) {
         authStore.addAddressAction(t.getAddress());
+        authStoreEventSource.push(authStore);
+    }
+
+    private void addNewAddress(AddNewAddressAction t) {
+        System.out.println("Add new Address:" + t.getAddress());
+        authStore.addNewAddress(t.getAddress());
         authStoreEventSource.push(authStore);
     }
 

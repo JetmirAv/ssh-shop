@@ -53,7 +53,6 @@ public class IndexController {
     }
 
     private void displayListAddress(AuthStore authStore) {
-        System.out.println("Jetmir");
         try {
             if (authStore.getSelectedAddress() == null) {
                 contentContainer.getChildren().add(App.loadFXML("views/profile/no-address-selected"));
