@@ -611,9 +611,9 @@
     -fx-pref-height: 40.0;
     -fx-background-color: #129084;
     -fx-font-family: "Roboto Regular";
-    -fx-font-size: 16px;
+    -fx-font-size: 20px;
     -fx-text-fill: white;
-    -fx-text-alignment: left;
+    -fx-text-alignment: center;
 }
 
 .hboxContainer {
@@ -864,6 +864,15 @@
     -fx-background-color: #129084;
     -fx-spacing: 8px;
     -fx-padding: 4px 0 0 4px;
+}
+
+.horizontalC {
+    -fx-prefHeight: 50.0;
+    -fx-prefWidth: 250.0;
+    -fx-background-color: #129084;
+    -fx-spacing: 8px;
+    -fx-font-size: 20px;
+    -fx-padding: 4px 0 0 21px;
 }
 
 .circleHB {

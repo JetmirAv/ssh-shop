@@ -49,7 +49,7 @@ public class ListItemCardController implements View {
         assert itemBox != null : "fx:id=\"itemBox\" was not injected: check your FXML file 'list-item-Cards.fxml'.";
         assert cardName != null : "fx:id=\"cardName\" was not injected: check your FXML file 'list-item-Cards.fxml'.";
 
-        String number = formatCard(card.getNumber());
+        String number = "Card";
         cardName.setText(number);
         Card selectedCard = authStore.getSelectedCard();
 
@@ -58,14 +58,10 @@ public class ListItemCardController implements View {
 
     }
 
-        public String formatCard(String cardNumber) {
-        if (cardNumber == null) return null;
-        char delimiter = ' ';
-        return cardNumber.replaceAll(".{4}(?!$)", "$0" + delimiter);
-    }
-
     @FXML
         void clickHandler(MouseEvent event) {
             publishAction(new SetActiveCardAction(card));
         }
     }
+
+

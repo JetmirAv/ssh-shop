@@ -154,8 +154,6 @@ public class AddressContentController implements View {
                 }
                 cityList.removeAll(cityList);
                 countryList.removeAll(countryList);
-                System.out.println("yes!!");
-                System.out.println("addressCityName;" + address.getCity().getName());
                 cityComboId.getSelectionModel().select(address.getCity().getName());
 
 
@@ -171,7 +169,6 @@ public class AddressContentController implements View {
     public void EditHandler(ActionEvent event) {
 
         int userID = address.getUserId();
-        System.out.println("user id : " + userID);
         String street = "";
         String postal = "";
         try {
@@ -226,15 +223,12 @@ public class AddressContentController implements View {
                 });
 
                 updateAddressService.setOnSucceeded(e3 -> {
-                    System.out.println("update mir o!");
                     root.getChildren().remove(loading);
                     Address address = authStore.getSelectedAddress();
-                    System.out.println("Selected:" + address);
                     cityComboId.getSelectionModel().select(address.getCity().getName());
                 });
 
                 updateAddressService.setOnFailed(e4 -> {
-                    System.out.println("update keq o!");
                     root.getChildren().remove(loading);
                 });
 

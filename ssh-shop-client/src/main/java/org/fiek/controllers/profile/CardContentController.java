@@ -74,34 +74,36 @@ public class CardContentController implements View {
 
         if (card != null) {
 
-            if(card.getId() == -1) {
-                String delimiter = expDateId.getText();
-                System.out.println("Delimiter:" + delimiter);
+            if (card.getId() == -1) {
                 numberId.setText("");
-                expDateId.setText(" ");
+                expDateId.setText("");
                 csvId.setText("");
+            } else {
+
+                numberId.setText(card.getNumber());
+                expDateId.setText(card.getExp_month() + "/" + card.getExp_year());
+                csvId.setText(card.getCode());
+
             }
-
-            numberId.setText(formatCard(card.getNumber()));
-            expDateId.setText(card.getExp_month() + "/" + card.getExp_year());
-            csvId.setText(card.getCode());
-
         }
     }
 
-    public String formatCard(String cardNumber) {
-        if (cardNumber == null) return null;
-        char delimiter = ' ';
-        return cardNumber.replaceAll(".{4}(?!$)", "$0" + delimiter);
-    }
 
     @FXML
     void EditCardHandler(ActionEvent event) {
         String number = numberId.getText();
         String expDate = expDateId.getText();
-        String[] parts = expDate.split("/");
-        String exp_month = parts[0];
-        String exp_year = parts[1];
+
+        String exp_month = "";
+        String exp_year = "";
+        try {
+            String[] parts = expDate.split("/");
+            exp_month = parts[0];
+            exp_year = parts[1];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         String code = csvId.getText();
 
         card.setNumber(number);
@@ -125,7 +127,7 @@ public class CardContentController implements View {
                 rootCard.getChildren().remove(loading);
             });
 
-            } else {
+        } else {
 
             UpdateCardService serviceUpdate = new UpdateCardService(card);
             serviceUpdate.start();
@@ -135,8 +137,13 @@ public class CardContentController implements View {
             });
 
             serviceUpdate.setOnSucceeded(e3 -> {
+
                 rootCard.getChildren().remove(loading);
                 Card card1 = authStore.getSelectedCard();
+                numberId.setText(card1.getNumber());
+                expDateId.setText(card1.getExp_month() + "/" + card1.getExp_year());
+                csvId.setText(card1.getCode());
+
             });
 
             serviceUpdate.setOnFailed(e4 -> {

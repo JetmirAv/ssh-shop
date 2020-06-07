@@ -18,7 +18,7 @@ import org.fiek.store.auth.AuthStore;
 import org.fiek.store.chat.ChatStore;
 import org.fiek.utils.Loading;
 
-public class IndexController {
+public class IndexAddressController {
 
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
 

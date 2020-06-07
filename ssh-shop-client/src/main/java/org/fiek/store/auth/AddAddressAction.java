@@ -7,7 +7,6 @@ public class AddAddressAction implements Action {
     private final String addresses;
 
     public AddAddressAction(String address) {
-        System.out.println("adresa ne action:" + address);
         this.addresses = address;
     }
 
