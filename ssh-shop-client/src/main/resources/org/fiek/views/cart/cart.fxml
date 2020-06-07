@@ -22,14 +22,13 @@
          <children>
 
             <fx:include source="list-cart.fxml"/>
-
-            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="cart-total-properties">
+            <HBox prefHeight="100.0" prefWidth="200.0" stylesheets="@../../styles/style.css" styleClass="cart-total-properties">
 
                <children>
 
-                  <Label fx:id="totalLb" styleClass="cart-total-font" text="Total: 60$" />
+                  <Label fx:id="totalLb" styleClass="cart-total-font" text="Total: 60$" stylesheets="@../../styles/style.css"/>
 
-                  <JFXButton fx:id="buybutton" styleClass="cart-total-button" text="Buy" />
+                  <JFXButton fx:id="buybutton" styleClass="cart-total-button" text="Buy" stylesheets="@../../styles/style.css"/>
 
                </children>
 

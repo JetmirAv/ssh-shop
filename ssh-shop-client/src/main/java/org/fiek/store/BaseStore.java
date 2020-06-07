@@ -6,6 +6,7 @@ import org.fiek.store.auth.AddTokenAction;
 import org.fiek.store.auth.AuthStore;
 import org.fiek.store.auth.EditUserAction;
 import org.fiek.store.chat.*;
+import org.fiek.store.cart.*;
 import org.reactfx.EventSource;
 import org.reactfx.EventStream;
 
@@ -26,9 +27,25 @@ public class BaseStore extends Store {
         return authStore;
     }
 
+    //CartStore
+    private final EventSource<CartStore> cartStoreEventSource = new EventSource<>();
+    private final CartStore cartStore = new CartStore();
+
+
+    public EventStream<CartStore> getCartStoreEventStream() {
+        return cartStoreEventSource;
+    }
+
+    public CartStore getCartStore() {
+        return cartStore;
+    }
+
+
     //ChatStore
     private final EventSource<ChatStore> chatStoreEventSource = new EventSource<>();
     private final ChatStore chatStore = new ChatStore();
+
+
 
     public EventStream<ChatStore> getChatStoreEventStream() {
         return chatStoreEventSource;
@@ -61,6 +78,10 @@ public class BaseStore extends Store {
         subscribe(GetMessagesAction.class, this::getMessageAction);
         subscribe(NewMessageAction.class, this::newMessageAction);
         subscribe(IncrementOffsetAction.class, this::incrementOffsetAction);
+
+        cartStoreEventSource.push(cartStore);
+        subscribe(AddCartsAction.class, this::addCartsAction);
+
     }
 
     private void incrementOffsetAction(IncrementOffsetAction action) {
@@ -90,6 +111,11 @@ public class BaseStore extends Store {
     private void addChannelsAction(AddChannelsAction action) {
         chatStore.addChannelsAction(action.getChannels(), action.getCount());
         chatStoreEventSource.push(chatStore);
+    }
+
+    private void addCartsAction(AddCartsAction action) {
+        cartStore.addCartsAction(action.getCarts(), action.getCount());
+        cartStoreEventSource.push(cartStore);
     }
 
     private void editUserAction(EditUserAction action) {
