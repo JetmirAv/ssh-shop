@@ -3,11 +3,7 @@
  */
 
 
-
-
 package org.fiek.controllers.Cart;
-
-
 
 import com.jfoenix.controls.JFXButton;
 
@@ -15,55 +11,65 @@ import com.jfoenix.controls.JFXComboBox;
 
 import com.jfoenix.controls.JFXTextField;
 
-import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 
 import java.net.URL;
 
-import java.util.ResourceBundle;
+import eu.lestard.fluxfx.View;
 
-import eu.lestard.fluxfx.Action;
+import javafx.collections.FXCollections;
+
+import javafx.collections.ObservableList;
 
 import javafx.event.ActionEvent;
 
-import javafx.fxml.FXML;
+import javafx.event.EventHandler;
+
+import javafx.fxml.FXMLLoader;
 
 import javafx.scene.control.Label;
 
 import javafx.scene.image.Image;
 
-import javafx.scene.image.ImageView;
-
-import javafx.scene.input.MouseEvent;
-
 import javafx.scene.layout.AnchorPane;
-
-import javafx.scene.layout.HBox;
 
 import javafx.scene.layout.VBox;
 
-import org.fiek.controllers.layout.NoAuthLayoutController;
+import org.fiek.models.Address;
+
+import org.fiek.models.City;
+
+import org.fiek.models.Country;
 
 import org.fiek.models.User;
 
-import org.fiek.services.auth.InfoService;
-
-import org.fiek.services.auth.LogInService;
+import org.fiek.services.auth.*;
 
 import org.fiek.store.BaseStore;
 
+import org.fiek.store.cart.CartStore;
+
+import java.util.ArrayList;
+
+import java.util.Arrays;
+
+import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
+
 import org.fiek.store.auth.AuthStore;
 
-import org.fiek.utils.ImageUploadHandler;
+import org.fiek.store.auth.GetCitiesByCountryAction;
 
 import org.fiek.utils.Loading;
 
 import org.fiek.utils.Tuple;
 
-import org.fiek.controllers.AbstractController;
+import org.fiek.App;
 
-import org.fiek.store.BaseStore;
 
-public class CartController {
+
+public class CartController implements View{
 
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
@@ -84,6 +90,8 @@ public class CartController {
 
     FXMLLoader fxmlLoader;
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
+    AuthStore authStore = baseStore.getAuthStore();
+    CartStore cartStore = baseStore.getCartStore();
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete

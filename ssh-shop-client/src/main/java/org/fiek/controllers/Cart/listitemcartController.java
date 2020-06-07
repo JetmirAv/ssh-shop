@@ -24,7 +24,20 @@ import javafx.scene.layout.HBox;
 
 import javafx.scene.text.Text;
 
+import org.fiek.models.Cart;
+
 import org.fiek.App;
+
+import org.fiek.store.*;
+
+import org.fiek.models.*;
+
+import org.fiek.store.auth.*;
+
+import org.fiek.store.auth.AuthStore;
+
+
+
 
 public class listitemcartController implements View {
 
@@ -58,32 +71,23 @@ public class listitemcartController implements View {
     private ImageView imageSelector;
 
 
-public listitemcartController(Cart cart) {
+    public listitemcartController(Cart cart) {
         this.cart = cart;
+        this.authStore = baseStore.getAuthStore();
     }
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-            assert prodLb != null : "fx:id=\"prodLb\" was not injected: check your FXML file 'cart.fxml'.";
-            assert imageSelector != null : "fx:id=\"imageSelector\" was not injected: check your FXML file 'cart.fxml'.";
-            assert quantityLb != null : "fx:id=\"quantityLb\" was not injected: check your FXML file 'cart.fxml'.";
-            assert priceLb != null : "fx:id=\"priceLb\" was not injected: check your FXML file 'cart.fxml'.";
-            assert exitbutton != null : "fx:id=\"exitbutton\" was not injected: check your FXML file 'cart.fxml'.";
-        prodLb.setText(cart.getProductname());
-        priceLb.setText(cart.getPrice());
-        quantityLb.setText(cart.getQuantity());
-        exitbutton.setOnAction(this::handleButtonAction);
-    };
-
-    @FXML
-    private void handleButtonAction(ActionEvent event){
-         if(event.getSource() == exitbutton)
-             System.out.println("Exitbutton pressed");
+        assert prodLb != null : "fx:id=\"prodLb\" was not injected: check your FXML file 'cart.fxml'.";
+        assert imageSelector != null : "fx:id=\"imageSelector\" was not injected: check your FXML file 'cart.fxml'.";
+        assert quantityLb != null : "fx:id=\"quantityLb\" was not injected: check your FXML file 'cart.fxml'.";
+        assert priceLb != null : "fx:id=\"priceLb\" was not injected: check your FXML file 'cart.fxml'.";
+        assert exitbutton != null : "fx:id=\"exitbutton\" was not injected: check your FXML file 'cart.fxml'.";
 
 
-
-
-
-
+        prodLb.setText("Produkti:" + cart.getVariantId());
+        quantityLb.setText("Quantity:" + cart.getQuantity());
+    }
 }
+
