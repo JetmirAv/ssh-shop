@@ -24,7 +24,12 @@ const GetCart = async (cart_id) => {
  */
 const GetAllCarts = async (user_id) => {
   try {
-    const cart = await Cart.findAll({ where: { user_id } });
+    const cart = await Cart.findAll({
+      where: {
+        user_id: user_id,
+      },
+    });
+    if (!cart) throw new CustomError("Not found!", {}, 401);
     return cart;
   } catch (err) {
     throw err;

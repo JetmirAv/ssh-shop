@@ -3,7 +3,7 @@ const {
   UpdateCart,
   DeleteCart,
   GetCart,
-  GetAllCarts
+  GetAllCarts,
 } = require("../services/cart");
 
 /**
@@ -80,7 +80,8 @@ const get = async (req, res, next) => {
  */
 const getAll = async (req, res, next) => {
   try {
-    return res.status(200).json({ carts: await GetAllCarts(auth.user.id) });
+    const cart = await GetAllCarts(req.params.user_id);
+    return res.status(200).json({ cart });
   } catch (err) {
     next(err);
   }
