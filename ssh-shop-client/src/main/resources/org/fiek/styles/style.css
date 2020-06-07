@@ -245,6 +245,16 @@
     -fx-border-color: #7b8d93;
 }
 
+.variant-button:hover {
+    -fx-text-fill: #129f84;
+    -fx-border-color: #129f84;
+}
+
+.variant-button-selected {
+    -fx-text-fill:  #129084;
+    -fx-border-color:  #129084;
+}
+
 .product-detail {
     -fx-padding: 50px 30px 0px 30px;
     -fx-font-size: 16px;
