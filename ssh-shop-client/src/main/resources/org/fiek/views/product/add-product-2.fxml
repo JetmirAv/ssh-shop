@@ -5,154 +5,79 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="secondPageAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane prefHeight="640.0" prefWidth="960.0">
-         <content>
-            <VBox prefWidth="900.0" spacing="20.0">
+      <VBox fx:id="secondPageVBox" prefWidth="900.0" spacing="20.0">
+         <children>
+            <FlowPane fx:id="optionsHBox" hgap="2.0" prefWidth="960.0" translateX="20.0" vgap="10.0" />
+            <HBox alignment="CENTER">
                <children>
-                  <HBox fx:id="optionsHBox" prefWidth="960.0" spacing="1.0" translateX="20.0">
-                     <children>
-                        <Button fx:id="optionN" mnemonicParsing="false" prefHeight="40.0" prefWidth="63.0" styleClass="add-product-options" text="Option 1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="63.0" styleClass="add-product-options" text="Option 2">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="63.0" styleClass="add-product-options" text="Option 3">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="63.0" styleClass="add-product-options" text="Option 4">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button focusTraversable="false" mnemonicParsing="false" prefHeight="40.0" prefWidth="63.0" styleClass="add-product-options" text="Option 5">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label fx:id="optionElements" prefHeight="26.0" text="Option:Black -XL" translateX="400.0" />
-                     </children>
-                  </HBox>
-                  <HBox cacheShape="false" prefWidth="200.0" scaleShape="false">
-                     <children>
-                        <VBox prefWidth="380.0" spacing="20.0" translateX="290.0">
-                           <children>
-                              <ImageView id="main-phot-create" fx:id="mainPhotoIV" fitHeight="330.0" fitWidth="380.0" pickOnBounds="true" styleClass="main-phot-create">
-                                 <image>
-                                    <Image url="@../../images/ImagePlaceHolder%20(copy).png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
-                              </ImageView>
-                              <HBox prefWidth="380.0" spacing="11.0">
-                                 <children>
-                                    <Button fx:id="backwardButton2" mnemonicParsing="false" styleClass="slide-button" translateY="5.0">
-                                       <graphic>
-                                          <Polygon fill="DODGERBLUE" points="10.0, 20.0, 40.0, 0.0, 40.0, 40.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" styleClass="triangle" />
-                                       </graphic>
-                                    </Button>
-                                    <ImageView id="first-photo" fx:id="smallPhoto1" fitHeight="50.0" fitWidth="50.0" layoutX="336.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../images/ImagePlaceHolder.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView id="second-photo" fx:id="smallPhoto2" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../images/ImagePlaceHolder.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView id="third-photo" fx:id="smallPhoto3" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../images/ImagePlaceHolder.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView id="fourth-photo" fx:id="smallPhoto4" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../images/ImagePlaceHolder.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <ImageView id="fifth-photo" fx:id="smallPhoto5" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../images/ImagePlaceHolder.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Button fx:id="forewardButton2" mnemonicParsing="false" styleClass="slide-button" translateY="5.0">
-                                       <graphic>
-                                          <Polygon fill="DODGERBLUE" points="10.0, 20.0, 40.0, 0.0, 40.0, 40.0" rotate="180.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" styleClass="triangle" />
-                                       </graphic>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="add-product-button" text="Add main photo" translateX="115.0" />
-                                 </children>
-                              </HBox>
-                              <HBox prefWidth="380.0">
-                                 <children>
-                                    <VBox prefWidth="360.0" translateX="10.0">
-                                       <children>
-                                          <Label prefHeight="30.0" prefWidth="150.0" styleClass="fx-labels" text="Price" />
-                                          <JFXTextField fx:id="priceJTF" focusColor="WHITE" prefHeight="40.0" prefWidth="360.0" styleClass="add-product-fields" text="14.99" unFocusColor="WHITE">
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </JFXTextField>
-                                          <Label prefHeight="30.0" prefWidth="150.0" styleClass="fx-labels" text="Quantity" />
-                                          <JFXTextField fx:id="quantityJTF" prefHeight="40.0" prefWidth="360.0" styleClass="add-product-fields" text="200" unFocusColor="WHITE" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox spacing="20.0">
-                     <children>
-                        <Button focusTraversable="false" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="add-product-button" text="Back">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button focusTraversable="false" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="add-product-button" text="Finish">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="660.0" />
-                     </VBox.margin>
-                  </HBox>
+                  <Label fx:id="optionElements" contentDisplay="RIGHT" prefHeight="26.0" />
                </children>
-            </VBox>
-         </content>
-      </ScrollPane>
+            </HBox>
+            <HBox cacheShape="false"  prefWidth="200.0" scaleShape="false">
+               <children>
+                  <VBox prefWidth="380.0" spacing="20.0" translateX="290.0">
+                     <children>
+                        <ImageView id="main-phot-create" fx:id="mainPhotoIV" fitHeight="330.0" fitWidth="380.0" pickOnBounds="true" styleClass="main-phot-create">
+                           <image>
+                              <Image url="@../../images/ImagePlaceHolder%20(copy).png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                        <HBox>
+                           <children>
+                              <Button fx:id="addPhotoButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="add-product-button" text="Add main photo" translateX="115.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefWidth="380.0">
+                           <children>
+                              <VBox prefWidth="360.0" translateX="10.0">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="150.0" styleClass="fx-labels" text="Price" />
+                                    <JFXTextField fx:id="priceJTF" focusColor="WHITE" prefHeight="40.0" prefWidth="360.0" styleClass="add-product-fields" text="14.99" unFocusColor="WHITE">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </JFXTextField>
+                                    <Label prefHeight="30.0" prefWidth="150.0" styleClass="fx-labels" text="Quantity" />
+                                    <JFXTextField fx:id="quantityJTF" prefHeight="40.0" prefWidth="360.0" styleClass="add-product-fields" text="200" unFocusColor="WHITE" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox spacing="20.0">
+               <children>
+                  <Button fx:id="backButton" focusTraversable="false" mnemonicParsing="false"  prefHeight="40.0" prefWidth="100.0" styleClass="add-product-button" text="Back">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="finishButton" focusTraversable="false" mnemonicParsing="false"  prefHeight="40.0" prefWidth="150.0" styleClass="add-product-button" text="Finish">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets left="660.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
