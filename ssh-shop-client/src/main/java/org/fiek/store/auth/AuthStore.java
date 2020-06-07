@@ -7,10 +7,13 @@ import org.fiek.models.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.fiek.models.User;
+
 import java.util.Arrays;
 
 import org.fiek.services.auth.GetAddressService;
+import org.fiek.services.auth.GetCardService;
 import org.fiek.socket.AuthSocket;
 
 public class AuthStore extends Store {
@@ -28,13 +31,13 @@ public class AuthStore extends Store {
     public ArrayList<Address> addresses;
     public ArrayList<City> cities = new ArrayList<>();
     public ArrayList<Country> countries = new ArrayList<>();
-    public ArrayList<Card> cards = new ArrayList<>();
+    public ArrayList<Card> cards;
     public City cityTarget;
     private City city;
     private Country countryTarget;
     private City cityFromCombo;
     Address selectedAddress;
-    Integer selectedCard = null;
+    Card selectedCard;
 
     public City getCityFromCombo() {
         return cityFromCombo;
@@ -80,9 +83,10 @@ public class AuthStore extends Store {
         return selectedAddress;
     }
 
-    public Integer getSelectedCard() {
+    public Card getSelectedCard() {
         return selectedCard;
     }
+
 
     public void setSelectedAddress(Address selectedAddress) {
         if (this.selectedAddress == null || this.selectedAddress.getId() != selectedAddress.getId()) {
@@ -97,6 +101,21 @@ public class AuthStore extends Store {
         }
         System.out.println("Shum Jasht");
     }
+
+    public void setSelectedCard(Card selectedCard) {
+        if (this.selectedCard == null || this.selectedCard.getId() != selectedCard.getId()) {
+
+            this.selectedCard = selectedCard;
+            if (selectedCard.getId() > 0) {
+                GetCardService cardService = new GetCardService(selectedCard.getId(), user.getId());
+                cardService.start();
+                System.out.println("Mrenda");
+            }
+            System.out.println("Jasht");
+        }
+        System.out.println("Shum Jasht");
+    }
+
 
     public void addTokenAction(String token, String user) {
         final User actionUser = new GsonBuilder().create().fromJson(user, User.class);
@@ -143,25 +162,55 @@ public class AuthStore extends Store {
         }
     }
 
+    public void editCardAction(String card) {
+        final Card actionCard = new GsonBuilder().create().fromJson(card, Card.class);
+        System.out.println("objekti: " + actionCard);
+        for (Card card1 : cards) {
+            if (actionCard.getId() == (card1.getId())) {
+                System.out.println("brenda if-it!");
+                card1.setNumber(actionCard.getNumber());
+                card1.setExp_month(actionCard.getExp_month());
+                card1.setExp_year(actionCard.getExp_year());
+                card1.setCode(actionCard.getCode());
+                this.selectedCard = card1;
+            } else {
+                Card newCard = getSelectedCard();
+                newCard.setId(actionCard.getId());
+                newCard.setNumber(actionCard.getNumber());
+                newCard.setExp_year(actionCard.getExp_year());
+                newCard.setExp_month(actionCard.getExp_month());
+                newCard.setCode(actionCard.getCode());
+            }
+
+        }
+    }
+
+
     public void addAddressAction(String addressList) {
         final Address[] addresses = new GsonBuilder().create().fromJson(addressList, Address[].class);
-        // for (String addr : addressList) {
-        // final Address actionAddress = new GsonBuilder().create().fromJson(addr,
-        // Address.class);
-        // this.address = actionAddress;
-        // addresses.add(this.address);
-        // }
-        // this.addresses.push(addresses);
         this.addAddresses(Arrays.asList(addresses));
     }
 
-    public void addNewAddress(String address){
-        String address2 = address.replaceAll("Address","");
+    public void addCardAction(String cardsList) {
+        final Card[] cards = new GsonBuilder().create().fromJson(cardsList, Card[].class);
+        this.addCards(Arrays.asList(cards));
+    }
+
+    public void addNewAddress(String address) {
+        String address2 = address.replaceAll("Address", "");
 
         final Address actionAddress = new GsonBuilder().create().fromJson(address2, Address.class);
-        System.out.println("Address1 Obj:" + actionAddress);
         this.addresses.add(actionAddress);
         setSelectedAddress(actionAddress);
+
+    }
+
+    public void addNewCard(String card) {
+        String card1 = card.replaceAll("Card", "");
+
+        final Card actionCard = new GsonBuilder().create().fromJson(card1, Card.class);
+        this.cards.add(actionCard);
+        setSelectedCard(actionCard);
 
     }
 
@@ -172,13 +221,13 @@ public class AuthStore extends Store {
         this.addresses.addAll(addresses);
     }
 
-    public void addCardAction(String[] cardsList) {
-        for (String cardStr : cardsList) {
-            final Card cardObj = new GsonBuilder().create().fromJson(cardStr, Card.class);
-            this.card = cardObj;
-            cards.add(this.card);
-        }
+    public void addCards(List<Card> cards) {
+        if (this.cards == null)
+            this.cards = new ArrayList<>();
+
+        this.cards.addAll(cards);
     }
+
 
     public void GetCityAction(String[] city) {
         System.out.println("brenda getCityAction!");

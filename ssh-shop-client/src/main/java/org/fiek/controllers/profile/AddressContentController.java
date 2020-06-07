@@ -96,7 +96,6 @@ public class AddressContentController implements View {
                 showCitiesInCombo();
                 streetId.setText(address.getStreet());
                 postalId.setText(address.getPostal());
-                System.out.println("PAs update:" + address.getCity().getCountry().getName());
                 countryComboId.getSelectionModel().select(address.getCity().getCountry().getName());
                 cityComboId.getSelectionModel().select(address.getCity().getName());
 

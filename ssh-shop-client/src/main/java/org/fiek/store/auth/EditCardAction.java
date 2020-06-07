@@ -1,12 +1,13 @@
 package org.fiek.store.auth;
 
 import eu.lestard.fluxfx.Action;
+import org.fiek.models.User;
 
-public class AddCardAction implements Action {
+public class EditCardAction implements Action {
 
-    private final String card;
+    private final String  card;
 
-    public AddCardAction(String card) {
+    public EditCardAction(String card) {
         this.card = card;
     }
 

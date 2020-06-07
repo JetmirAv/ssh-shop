@@ -55,6 +55,10 @@ public class BaseStore extends Store {
         subscribe(SetActiveAddressAction.class, this::setActiveAddressAction);
         subscribe(GetAddressAction.class, this::GetAddressAction);
         subscribe(AddNewAddressAction.class, this::addNewAddress);
+        subscribe(SetActiveCardAction.class, this::setActiveCardAction);
+        subscribe(AddNewCardAction.class, this::addNewCard);
+        subscribe(EditCardAction.class, this::editCardAction);
+
 
         chatStoreEventSource.push(chatStore);
         subscribe(AddChannelsAction.class, this::addChannelsAction);
@@ -88,6 +92,11 @@ public class BaseStore extends Store {
         authStoreEventSource.push(authStore);
     }
 
+    private void setActiveCardAction(SetActiveCardAction action) {
+        authStore.setSelectedCard(action.getCard());
+        authStoreEventSource.push(authStore);
+    }
+
     private void addChannelsAction(AddChannelsAction action) {
         chatStore.addChannelsAction(action.getChannels(), action.getCount());
         chatStoreEventSource.push(chatStore);
@@ -97,10 +106,17 @@ public class BaseStore extends Store {
         authStore.editUserAction(action.getUser());
         authStoreEventSource.push(authStore);
     }
+
     private void editAddressAction(EditAddressAction t) {
         authStore.editAddressAction(t.getAddress());
         authStoreEventSource.push(authStore);
     }
+
+    private void editCardAction(EditCardAction t) {
+        authStore.editCardAction(t.getCard());
+        authStoreEventSource.push(authStore);
+    }
+
     private void addTokenAction(AddTokenAction action) {
         authStore.addTokenAction(action.getToken(), action.getUser());
         authStoreEventSource.push(authStore);
@@ -117,8 +133,13 @@ public class BaseStore extends Store {
         authStoreEventSource.push(authStore);
     }
 
+    private void addNewCard(AddNewCardAction t) {
+        authStore.addNewCard(t.getCards());
+        authStoreEventSource.push(authStore);
+    }
+
     private void addCardAction(AddCardAction t) {
-        authStore.addCardAction(t.getCards());
+        authStore.addCardAction(t.getCard());
         authStoreEventSource.push(authStore);
     }
 

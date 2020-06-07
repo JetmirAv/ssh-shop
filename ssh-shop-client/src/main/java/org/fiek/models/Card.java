@@ -10,6 +10,11 @@ public class Card {
     public int user_id;
     @Expose
     public String number;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Expose
     public String exp_month;
     @Expose
@@ -37,7 +42,7 @@ public class Card {
         return tableName;
     }
 
-    public int getID() {
+    public int getId() {
         return id;
     }
 
@@ -87,5 +92,17 @@ public class Card {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", number='" + number + '\'' +
+                ", exp_month='" + exp_month + '\'' +
+                ", exp_year='" + exp_year + '\'' +
+                ", code='" + code + '\'' +
+                '}';
     }
 }

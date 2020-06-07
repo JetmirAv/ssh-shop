@@ -1,27 +1,21 @@
-package org.fiek.controllers.profile; /**
- * Sample Skeleton for 'address.fxml' Controller Class
+/**
+ * Sample Skeleton for 'cards.fxml' Controller Class
  */
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+package org.fiek.controllers.profile;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import org.fiek.App;
-import org.fiek.models.Address;
 import org.fiek.models.User;
-import org.fiek.services.auth.AddressService;
-import org.fiek.services.chat.FindAndCountChannelsService;
 import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
-import org.fiek.store.chat.ChatStore;
 import org.fiek.utils.Loading;
 
-public class IndexController {
-
+public class IndexCardController {
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
-
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -37,29 +31,27 @@ public class IndexController {
     Loading loading = new Loading();
     AuthStore authStore;
     User user;
-    ArrayList<Address> addresses = null;
 
-    @FXML
-        // This method is called by the FXMLLoader when initialization is complete
+
+    @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert container != null : "fx:id=\"container\" was not injected: check your FXML file 'address.fxml'.";
+        assert container != null : "fx:id=\"container\" was not injected: check your FXML file 'cards.fxml'.";
+        assert contentContainer != null : "fx:id=\"contentContainer\" was not injected: check your FXML file 'cards.fxml'.";
         authStore = baseStore.getAuthStore();
         user = authStore.getUser();
-        baseStore.getAuthStoreEventStream().subscribe(this::displayListAddress);
+        baseStore.getAuthStoreEventStream().subscribe(this::displayListCards);
     }
 
-    private void displayListAddress(AuthStore authStore) {
+    private void displayListCards(AuthStore authStore) {
         try {
-            if (authStore.getSelectedAddress() == null) {
+            if (authStore.getSelectedCard() == null) {
                 contentContainer.getChildren().add(App.loadFXML("views/profile/no-address-selected"));
             } else {
-                contentContainer.getChildren().add(App.loadFXML("views/profile/address-content"));
+                contentContainer.getChildren().add(App.loadFXML("views/profile/cards-content"));
             }
         } catch (Exception exception) {
             exception.printStackTrace();
         }
     }
 }
-
-
 
