@@ -10,6 +10,7 @@ import org.fiek.models.Address;
 import org.fiek.models.User;
 import org.fiek.store.auth.AddAddressAction;
 import org.fiek.store.auth.AddTokenAction;
+import org.fiek.store.auth.EditAddressAction;
 import org.fiek.utils.Ajax;
 import org.fiek.utils.Tuple;
 
@@ -24,10 +25,7 @@ public class CreateAddressService extends Service<Void> implements View {
         this.address = address;
     }
 
-
-
     public void createAddress() throws Exception {
-
         final String json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.address, Address.class);
         Ajax request = new Ajax();
         JsonObject response = request.post("users/" + userId + "/address", json);
@@ -35,7 +33,8 @@ public class CreateAddressService extends Service<Void> implements View {
         String jsonAddr = jsonAddress.replaceAll("\\[", "").replaceAll("\\]", "");
         String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
         String[] addr = jsonAddr1.split("},");
-        // publishAction(new AddAddressAction(addr));
+        String addr1 = addr[0];
+        publishAction(new EditAddressAction(addr1));
 
     }
 

@@ -22,6 +22,10 @@ public class Address {
     @Expose
     public City city;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Address(int id, int user_id, String street, String postal, String phone_number, int city_id) {
         this.id = id;
         this.user_id = user_id;

@@ -122,16 +122,22 @@ public class AuthStore extends Store {
 
     public void editAddressAction(String address) {
         System.out.println("ne updatEE:" + address);
-
         final Address actionAddress = new GsonBuilder().create().fromJson(address, Address.class);
         System.out.println("objekti: " + actionAddress);
         for (Address addr : addresses) {
             if (actionAddress.getId() == (addr.getId())) {
+                System.out.println("brenda if-it!");
                 addr.setStreet(actionAddress.getStreet());
                 addr.setPostal(actionAddress.getPostal());
                 addr.setCityId(actionAddress.getCityId());
                 addr.setCity(actionAddress.getCity());
                 this.selectedAddress = addr;
+            } else {
+                Address newAddress = getSelectedAddress();
+                newAddress.setId(actionAddress.getId());
+                newAddress.setStreet(actionAddress.getStreet());
+                newAddress.setPostal(actionAddress.getPostal());
+                newAddress.setCity(actionAddress.getCity());
             }
 
         }

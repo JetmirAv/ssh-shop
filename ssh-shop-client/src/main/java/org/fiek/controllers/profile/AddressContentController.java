@@ -2,6 +2,7 @@ package org.fiek.controllers.profile; /**
  * Sample Skeleton for 'address-content.fxml' Controller Class
  */
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
@@ -31,6 +32,7 @@ public class AddressContentController implements View {
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
     AuthStore authStore = baseStore.getAuthStore();
     Address address = authStore.getSelectedAddress();
+    User userAuth = authStore.getUser();
 
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -56,6 +58,9 @@ public class AddressContentController implements View {
     @FXML
     private GridPane gridRoot;
 
+    @FXML
+    private JFXButton editId;
+
 
     Integer addressId;
     User user;
@@ -63,6 +68,7 @@ public class AddressContentController implements View {
     City cityTarget;
     int countryTargetId;
     Loading loading = new Loading();
+
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -76,14 +82,14 @@ public class AddressContentController implements View {
         if (address != null) {
 
             if (address.getId() == -1) {
-
                 streetId.setText("");
                 postalId.setText("");
                 showCitiesInCombo();
                 showCountriesInCombo();
-                countryComboId.setOnAction(e->{
+                countryComboId.setOnAction(e -> {
                     GetCities();
                 });
+
             } else {
 
                 showCountriesInCombo();
@@ -131,17 +137,17 @@ public class AddressContentController implements View {
     }
 
 
-    private void GetCities(){
+    private void GetCities() {
         String targetCountry1 = countryComboId.getSelectionModel().getSelectedItem().toString();
         GetCountryByNameService countryServiceObj = new GetCountryByNameService(targetCountry1);
         countryServiceObj.start();
-        countryServiceObj.setOnSucceeded(e3->{
+        countryServiceObj.setOnSucceeded(e3 -> {
             ArrayList<Country> countryList = GetCountryByNameService.countryTarget;
             countryTargetId = countryList.get(0).getId();
             GetCitiesByCountryService getCitiesByCountryService =
                     new GetCitiesByCountryService(countryTargetId);
             getCitiesByCountryService.start();
-            getCitiesByCountryService.setOnSucceeded(e4->{
+            getCitiesByCountryService.setOnSucceeded(e4 -> {
                 cityComboId.getItems().clear();
                 ArrayList<City> cityList = GetCitiesByCountryService.cities;
                 for (int i = 0; i < cityList.size(); i++) {
@@ -151,22 +157,19 @@ public class AddressContentController implements View {
                 countryList.removeAll(countryList);
                 System.out.println("yes!!");
                 System.out.println("addressCityName;" + address.getCity().getName());
-                 cityComboId.getSelectionModel().select(address.getCity().getName());
+                cityComboId.getSelectionModel().select(address.getCity().getName());
 
 
             });
         });
 
-        countryServiceObj.setOnFailed(e3->{
+        countryServiceObj.setOnFailed(e3 -> {
             System.out.println("failed!");
         });
 
     }
 
     public void EditHandler(ActionEvent event) {
-
-        System.out.println("update!");
-        System.out.println("ADdress obj: " + address);
 
         int userID = address.getUserId();
         System.out.println("user id : " + userID);
@@ -191,47 +194,56 @@ public class AddressContentController implements View {
         String finalPostal = postal;
 
         String finalValueOfCity = valueOfCity;
-        cityInstance.setOnSucceeded(e->{
+        cityInstance.setOnSucceeded(e -> {
 
             ArrayList<City> cityList = GetCityFromComboService.cityTrg;
             address.setStreet(finalStreet);
             address.setPostal(finalPostal);
+            address.setPhoneNumber(userAuth.getPhoneNumber());
             address.setCityId(cityList.get(0).getId());
 
-            UpdateAddressService updateAddressService = new UpdateAddressService(address);
-            updateAddressService.start();
+            if (address.getId() == -1) {
+                CreateAddressService createAddressService = new CreateAddressService(userAuth.getId(), address);
+                createAddressService.start();
 
+                createAddressService.setOnRunning(e1 -> {
+                    root.getChildren().add(loading);
+                });
 
-            updateAddressService.setOnRunning(e4->{
-                root.getChildren().add(loading);
-            });
+                createAddressService.setOnSucceeded(e2 -> {
 
+                    root.getChildren().remove(loading);
+                });
+                createAddressService.setOnFailed(e3 -> {
+                    root.getChildren().remove(loading);
+                });
 
-            updateAddressService.setOnSucceeded(e3->{
-                System.out.println("update mir o!");
-                root.getChildren().remove(loading);
-                Address address = authStore.getSelectedAddress();
-                System.out.println("Selected:" + address);
-                cityComboId.getSelectionModel().select(address.getCity().getName());
-            });
+            } else {
+                UpdateAddressService updateAddressService = new UpdateAddressService(address);
+                updateAddressService.start();
 
-            updateAddressService.setOnFailed(e4->{
-                System.out.println("update keq o!");
-                root.getChildren().remove(loading);
-            });
+                updateAddressService.setOnRunning(e4 -> {
+                    root.getChildren().add(loading);
+                });
 
-            updateAddressService.setOnCancelled(e4->{
-                root.getChildren().remove(loading);
-            });
+                updateAddressService.setOnSucceeded(e3 -> {
+                    System.out.println("update mir o!");
+                    root.getChildren().remove(loading);
+                    Address address = authStore.getSelectedAddress();
+                    System.out.println("Selected:" + address);
+                    cityComboId.getSelectionModel().select(address.getCity().getName());
+                });
 
+                updateAddressService.setOnFailed(e4 -> {
+                    System.out.println("update keq o!");
+                    root.getChildren().remove(loading);
+                });
+
+                updateAddressService.setOnCancelled(e4 -> {
+                    root.getChildren().remove(loading);
+                });
+            }
         });
-
-        cityInstance.setOnFailed(e->{
-            System.out.println("keq!");
-
-        });
-
-
     }
 
 

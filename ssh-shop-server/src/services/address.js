@@ -48,7 +48,7 @@ const CreateAddress = async (data) => {
     const address = new Address({ ...data });
     await address.validate();
     await address.save();
-    return address;
+    return await GetAddress(address.id);
   } catch (err) {
     throw err;
   }

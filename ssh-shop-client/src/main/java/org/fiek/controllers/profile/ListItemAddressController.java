@@ -7,6 +7,7 @@ package org.fiek.controllers.profile;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
 import eu.lestard.fluxfx.View;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
@@ -39,7 +40,6 @@ public class ListItemAddressController implements View {
 
 
 
-
     public ListItemAddressController(Address address) {
         this.address = address;
     }
@@ -50,12 +50,8 @@ public class ListItemAddressController implements View {
         assert addressName != null : "fx:id=\"addressName\" was not injected: check your FXML file 'list-Item-Address.fxml'.";
 
         addressName.setText(address.getStreet());
-        System.out.println("TE DHENAT: \n");
-        System.out.println("streetTest:" + address.getStreet() + "cityTest:" + address.getCity());
         Address selectedAddress = authStore.getSelectedAddress();
-        System.out.println("selected Address:" + selectedAddress);
         if (selectedAddress != null && selectedAddress.getId() == address.getId())
-            System.out.println("u be aktive !");
             itemBox.getStyleClass().add("active");
     }
 

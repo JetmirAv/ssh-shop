@@ -31,6 +31,6 @@
             <ComboBox fx:id="cityComboId" prefHeight="35.0" prefWidth="272.0" GridPane.rowIndex="3" />
             </children>
         </GridPane>
-      <JFXButton fx:id="editId" layoutX="427.0" layoutY="330.0" onAction="#EditHandler" prefHeight="43.0" prefWidth="127.0" style="-fx-background-color: #129084;" text="Edit" textFill="WHITE" />
+      <JFXButton fx:id="editId" layoutX="308.0" layoutY="330.0" onAction="#EditHandler" prefHeight="43.0" prefWidth="127.0" style="-fx-background-color: #129084;" text="Save" textFill="WHITE" />
     </children>
 </AnchorPane>
