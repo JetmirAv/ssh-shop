@@ -7,34 +7,36 @@ import eu.lestard.fluxfx.View;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import org.fiek.models.Address;
+import org.fiek.models.Card;
 import org.fiek.models.User;
 import org.fiek.store.auth.AddAddressAction;
 import org.fiek.store.auth.AddTokenAction;
 import org.fiek.store.auth.EditAddressAction;
+import org.fiek.store.auth.EditCardAction;
 import org.fiek.utils.Ajax;
 import org.fiek.utils.Tuple;
 
 import java.io.IOException;
 
-public class CreateAddressService extends Service<Void> implements View {
+public class CreateCardService extends Service<Void> implements View {
     private int userId;
-    private Address address;
+    private Card card;
 
-    public CreateAddressService(int userId, Address address) {
+    public CreateCardService(int userId, Card card) {
         this.userId = userId;
-        this.address = address;
+        this.card = card;
     }
 
-    public void createAddress() throws Exception {
-        final String json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.address, Address.class);
+    public void createCard() throws Exception {
+        final String json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.card, Card.class);
         Ajax request = new Ajax();
-        JsonObject response = request.post("users/" + userId + "/address", json);
-        String jsonAddress = response.get("address").toString();
+        JsonObject response = request.post("users/" + userId + "/cards", json);
+        String jsonAddress = response.get("card").toString();
         String jsonAddr = jsonAddress.replaceAll("\\[", "").replaceAll("\\]", "");
         String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
         String[] addr = jsonAddr1.split("},");
-        String addr1 = addr[0];
-        publishAction(new EditAddressAction(addr1));
+        String card = addr[0];
+        publishAction(new EditCardAction(card));
 
     }
 
@@ -43,7 +45,7 @@ public class CreateAddressService extends Service<Void> implements View {
         return new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                createAddress();
+                createCard();
                 return null;
             }
         };

@@ -73,7 +73,7 @@ const drop = async (req, res, next) => {
  */
 const get = async (req, res, next) => {
   try {
-    return res.status(200).json({ user: await GetCard(req.params.card_id) });
+    return res.status(200).json({ card: await GetCard(req.params.card_id) });
   } catch (err) {
     next(err);
   }

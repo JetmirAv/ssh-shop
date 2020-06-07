@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 public class CardService extends Service<Void> implements View {
     private User user;
+
     public CardService(User user) {
         this.user = user;
     }
@@ -22,12 +23,9 @@ public class CardService extends Service<Void> implements View {
     private void getAllCards() throws Exception {
         Ajax request = new Ajax();
         JsonObject response = request.getAsJson("users/" + user.getId() + "/cards");
-        String jsonAddress = response.get("card").toString();
-        String jsonAddr = jsonAddress.replaceAll("\\[", "").replaceAll("\\]", "");
-        String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
-        String[] cards = jsonAddr1.split("},");
-        System.out.println("Cards:" + Arrays.toString(cards));
-        publishAction(new AddCardAction(cards));
+        String jsonCard = response.get("card").toString();
+        System.out.println("jsonAddress: " + jsonCard);
+        publishAction(new AddCardAction(jsonCard));
     }
 
     @Override

@@ -29,7 +29,7 @@ public class City {
         return tableName;
     }
 
-    public int getID() {
+    public int getId() {
         return id;
     }
 

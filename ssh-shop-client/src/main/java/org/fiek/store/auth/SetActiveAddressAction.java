@@ -10,6 +10,8 @@ public class SetActiveAddressAction implements Action {
         this.address = address;
     }
 
+
+
     public Address getAddress() {
         return address;
     }

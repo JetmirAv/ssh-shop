@@ -8,7 +8,6 @@ public class GetCountryByNameAction implements Action {
 
 
     public GetCountryByNameAction(String country) {
-        System.out.println("String country:" + country);
         this.country = country;
     }
 

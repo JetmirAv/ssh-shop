@@ -12,7 +12,7 @@
     <children>
         <StackPane layoutX="225.0" layoutY="158.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #E5E5E8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Text fill="#656464" strokeType="OUTSIDE" strokeWidth="0.0" text="No address selected">
+                <Text fill="#656464" strokeType="OUTSIDE" strokeWidth="0.0" text="No field selected">
                     <font>
                         <Font size="26.0" />
                     </font>

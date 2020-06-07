@@ -1,5 +1,6 @@
 package org.fiek.services.auth;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import eu.lestard.fluxfx.View;
 import javafx.concurrent.Service;
@@ -19,19 +20,21 @@ import java.util.Arrays;
 public class GetCitiesByCountryService extends Service<Void> implements View {
 
     private int countryId;
+    public static ArrayList<City> cities = new ArrayList<>();
 
     public GetCitiesByCountryService(int countryId) {
         this.countryId = countryId;
     }
 
     private void GetCitiesByCountryService() throws Exception {
+        if(!cities.isEmpty()) cities.removeAll(cities);
         Ajax request = new Ajax();
         JsonObject response = request.getAsJson("/countries/cities/" + countryId);
         String jsonCities = response.get("cities").toString();
-        String jsonAddr = jsonCities.replaceAll("\\[", "").replaceAll("\\]", "");
-        String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
-        String[] cities = jsonAddr1.split("},");
-        publishAction(new GetCitiesByCountryAction(cities));
+
+        City[] cities1 = new GsonBuilder().create().fromJson(jsonCities, City[].class);
+        cities.addAll(Arrays.asList(cities1));
+        System.out.println("popo1: " + cities.size());
     }
 
     @Override
