@@ -61,7 +61,7 @@ import org.fiek.App;
 public class CartStore extends Store {
 
 
-    ArrayList<Cart> carts = null;
+    public ArrayList<Cart> carts;
     Integer count = 0;
 
 
@@ -70,18 +70,6 @@ public class CartStore extends Store {
         return carts;
     }
 
-    public void addCart(Cart cart) {
-        if (this.carts == null) {
-            this.carts = new ArrayList<>();
-        }
-        for (int i = 0; i < this.carts.size(); i++) {
-            if (this.carts.get(i).getID() == cart.getID()) {
-                this.carts.remove(i);
-                break;
-            }
-        }
-        carts.add(0, cart);
-    }
 
     public Integer getCount() {
         return count;
@@ -100,15 +88,10 @@ public class CartStore extends Store {
     }
 
 
-    public void addCartsAction(String carts, String count) {
-        Gson gson = new Gson();
-        Cart[] cartsArray = gson.fromJson(carts, Cart[].class);
-        List<Cart> cartList = Arrays.asList(cartsArray);
-        addCarts(cartList);
-        setCount(Integer.parseInt(count));
+    public void addCartAction(String cartList) {
+        final Cart[] carts = new GsonBuilder().create().fromJson(cartList, Cart[].class);
+        this.addCarts(Arrays.asList(carts));
     }
 
 
-    }
-
-
+}

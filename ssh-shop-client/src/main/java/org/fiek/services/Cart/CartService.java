@@ -24,19 +24,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CartService extends Service<Void> implements View {
+
     private User user;
+
     public CartService(User user) {
         this.user = user;
     }
 
     private void getAllCarts() throws Exception {
         Ajax request = new Ajax();
-        JsonObject response = request.get("/users/2/cart/2");
-        response = response.get("carts").getAsJsonObject();
-        String rows = response.get("rows").toString();
-        String count = response.get("count").toString();
-
-        publishAction(new AddCartsAction(rows, count));
+        System.out.println("Get user id : " + user.getId());
+        JsonObject response = request.get("/users/" + user.getId() + "/cart");
+        String jsonCart = response.get("cart").toString();
+        System.out.println("Cart obj:" + jsonCart) ;
+        publishAction(new AddCartsAction(jsonCart));
 
     }
 
