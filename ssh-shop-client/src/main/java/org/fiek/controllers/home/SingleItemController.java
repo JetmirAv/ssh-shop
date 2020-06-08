@@ -3,6 +3,7 @@ package org.fiek.controllers.home;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -10,8 +11,11 @@ import org.fiek.models.Product;
 import org.fiek.models.User;
 import org.fiek.store.BaseStore;
 import org.fiek.store.home.HomeStore;
+import org.fiek.utils.ImageUploadHandler;
 import org.fiek.utils.Loading;
+import org.fiek.utils.Tuple;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -53,8 +57,9 @@ public class SingleItemController {
     HomeStore homeStore;
     User user;
     Product product;
-    //Category category;
+    String category;
     Loading loading;
+    Tuple<Image, String> customImage;
 
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -81,8 +86,15 @@ public class SingleItemController {
 
 
 
+    }
 
-
+    @FXML
+    void productImage(ActionEvent event) throws FileNotFoundException {
+        ImageUploadHandler imageUploadHandler = new ImageUploadHandler();
+        customImage = imageUploadHandler.uploadImage();
+        productImage1Id.setImage(customImage.getFirst());
+        productImage1Id.setPreserveRatio(false);
+        user.setAvatar(customImage.getSecond());
 
     }
 
