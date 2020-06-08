@@ -39,7 +39,7 @@ import org.fiek.store.auth.AuthStore;
 
 
 
-public class listitemcartController implements View {
+public class listItemCartController implements View {
 
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
 
@@ -71,9 +71,8 @@ public class listitemcartController implements View {
     private ImageView imageSelector;
 
 
-    public listitemcartController(Cart cart) {
+    public listItemCartController(Cart cart) {
         this.cart = cart;
-        this.authStore = baseStore.getAuthStore();
     }
 
     @FXML
@@ -84,10 +83,12 @@ public class listitemcartController implements View {
         assert quantityLb != null : "fx:id=\"quantityLb\" was not injected: check your FXML file 'cart.fxml'.";
         assert priceLb != null : "fx:id=\"priceLb\" was not injected: check your FXML file 'cart.fxml'.";
         assert exitbutton != null : "fx:id=\"exitbutton\" was not injected: check your FXML file 'cart.fxml'.";
+        System.out.println("List item on action!");
 
-
-        prodLb.setText("Produkti:" + cart.getVariantId());
-        quantityLb.setText("Quantity:" + cart.getQuantity());
+        if (cart != null) {
+            prodLb.setText("Produkti:" + cart.getVariantId());
+            quantityLb.setText("Quantity:" + cart.getQuantity());
+        }
     }
 }
 

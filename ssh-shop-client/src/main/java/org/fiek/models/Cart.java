@@ -1,13 +1,19 @@
 package org.fiek.models;
 
+import com.google.gson.annotations.Expose;
+
 public class Cart {
     final String tableName = "carts";
 
+    @Expose(serialize = false, deserialize = true)
     public int id;
+    @Expose
     public int user_id;
+    @Expose
     public int variant_id;
+    @Expose
     public int quantity;
-
+    @Expose
     public User user;
 
     public Cart(int id, int user_id, int variant_id, int quantity) {
@@ -25,7 +31,7 @@ public class Cart {
         return tableName;
     }
 
-    public int getID() {
+    public int getId() {
         return id;
     }
 
@@ -59,5 +65,16 @@ public class Cart {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", variant_id=" + variant_id +
+                ", quantity=" + quantity +
+                ", user=" + user +
+                '}';
     }
 }
