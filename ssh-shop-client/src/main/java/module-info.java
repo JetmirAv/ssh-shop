@@ -17,6 +17,7 @@ module org.fiek {
     opens org.fiek.controllers.profile to javafx.fxml, easy.di;
     opens org.fiek.controllers.home to javafx.fxml, easy.di;
     opens org.fiek.controllers.layout to easy.di, javafx.fxml;
+    opens org.fiek.controllers.product to easy.di, javafx.fxml;
     opens org.fiek.controllers.auth to javafx.fxml, easy.di;
     opens org.fiek.controllers.modal to javafx.fxml, easy.di;
     opens org.fiek.controllers.chat to javafx.fxml, easy.di;

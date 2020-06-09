@@ -6,6 +6,9 @@ const {
   GetAllCarts
 } = require("../services/cart");
 
+const {
+  GetVariant
+} = require("../services/variants")
 /**
  *
  * @param {Request} req
@@ -66,7 +69,9 @@ const drop = async (req, res, next) => {
  */
 const get = async (req, res, next) => {
   try {
-    return res.status(200).json({ cart: await GetCart(req.params.cart_id) });
+    var cart = await GetCart(req.params.cart_id);
+    var variant = await GetVariant(cart.product_id, cart.variant_id )
+    return res.status(200).json({cart, variant });
   } catch (err) {
     next(err);
   }
@@ -80,7 +85,7 @@ const get = async (req, res, next) => {
  */
 const getAll = async (req, res, next) => {
   try {
-    return res.status(200).json({ carts: await GetAllCarts(auth.user.id) });
+    return res.status(200).json({ carts: await GetAllCarts(auth.user.id)});
   } catch (err) {
     next(err);
   }
