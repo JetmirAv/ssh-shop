@@ -9,8 +9,6 @@ const {
 } = require("../services/products");
 
 
-  return res.status(200).json(result);
-};
 
 /**
  * @param {Request} req
