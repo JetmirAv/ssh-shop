@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
+
+import org.fiek.models.Combinations;
 import org.fiek.utils.ImageUploadHandler;
 import org.fiek.utils.Tuple;
 
@@ -71,7 +73,9 @@ import java.util.ArrayList;
         private ArrayList<Button> addPhotoButtonList = new ArrayList<Button>();  
 
         private ArrayList<String> variantNames;
-
+        private ArrayList<String> combinationsList;
+        private String productName;
+        private String productDesc;
         @FXML
             // This method is called by the FXMLLoader when initialization is complete
         void initialize() throws IOException {
@@ -89,10 +93,14 @@ import java.util.ArrayList;
     
             listOfCombinations = AddProductController.listToExport;
             variantNames = AddProductController.variantNamesToExport;
+            productName = AddProductController.productName;
+            productDesc = AddProductController.productDesc;
             getOptions(listOfCombinations);
             buttonEvents();
             buttonsList.get(0).fire();
+
         }
+        
 
         public void getOptions(ArrayList<ArrayList<String>> listOfCombinations) throws IOException {
         for (int i=0; i<listOfCombinations.size(); i++){
@@ -173,11 +181,29 @@ import java.util.ArrayList;
 
     @FXML
     void finishButtonAction(ActionEvent event) {
+//        Combinations combinations = new Combinations()
         System.out.println("Fillimi");
+        System.out.println(productName);
+        System.out.println(productDesc);
+        
         for(int i=0; i<priceTextFields.size(); i++){
         System.out.println(priceTextFields.get(i).getText());
+        System.out.println(quantityTextFields.get(i).getText());
+
+
         }
+        System.out.println(listOfCombinations);
+        System.out.println(variantNames);
         System.out.println("Mbarimi");
+
+//        for (int k=0; k<listOfCombinations.size(); k++){
+//        for (int j = 0; j < listOfCombinations.get(k).size(); j++) {
+//            combinationsList.add(listOfCombinations.get(k).get(j));
+//        }
+//        System.out.println(combinationsList);
+    }
+
+
     }
 
     public  boolean isNumeric(String str) { 

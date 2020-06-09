@@ -1,7 +1,7 @@
 package org.fiek.controllers.product;
 
 import com.jfoenix.controls.JFXComboBox;
-
+import com.jfoenix.controls.JFXTextArea;
 
 import java.io.IOException;
 import java.lang.String;
@@ -56,6 +56,14 @@ public class AddProductController {
     @FXML // fx:id="mainPaneAddProduct1"
     private Pane mainPaneAddProduct1;
 
+    @FXML // fx:id="productNameId"
+    private JFXTextField productNameId; // Value injected by FXMLLoader
+
+    @FXML // fx:id="productDescription"
+    private JFXTextArea productDescription; // Value injected by FXMLLoader
+
+    protected static String productName;
+    protected static String productDesc;
     private final Button removeVariantBtn = new Button("Remove variant");
     protected static Pane exportPane;
     protected static AnchorPane exportAnchorPane;
@@ -206,6 +214,8 @@ public class AddProductController {
         listOfCombinations.clear();
         exportPane = mainPaneAddProduct1;
         exportAnchorPane = addProduct1;
+        productName = productNameId.getText();
+        productDesc = productDescription.getText();
         addProduct1.getChildren().remove(mainPaneAddProduct1);
 
         AnchorPane anchorPane1;

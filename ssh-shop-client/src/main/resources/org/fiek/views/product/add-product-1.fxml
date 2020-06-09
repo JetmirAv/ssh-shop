@@ -28,9 +28,9 @@
                                     <VBox prefWidth="360.0" translateX="10.0" translateY="10.0">
                                        <children>
                                           <Label styleClass="fx-labels" text="Title" />
-                                          <JFXTextField styleClass="add-product-fields" unFocusColor="WHITE" />
+                                          <JFXTextField fx:id="productNameId" styleClass="add-product-fields" unFocusColor="WHITE" />
                                           <Label styleClass="fx-labels" text="Description" />
-                                          <JFXTextArea prefHeight="160.0" prefWidth="360.0" styleClass="add-product-fields" unFocusColor="#fcfcfc">
+                                          <JFXTextArea fx:id="productDescription" prefHeight="160.0" prefWidth="360.0" styleClass="add-product-fields" unFocusColor="#fcfcfc">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
