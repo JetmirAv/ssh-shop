@@ -6,14 +6,18 @@ import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 import java.lang.String;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 import com.jfoenix.controls.JFXTextField;
+import org.fiek.models.Category;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import org.fiek.App;
+import org.fiek.services.product.CategoryService;
 
 public class AddProductController {
     public ArrayList<JFXTextField> variantNameList = new ArrayList<JFXTextField>();
@@ -22,15 +26,14 @@ public class AddProductController {
     public static ArrayList<ArrayList<String>> listToExport = new ArrayList<ArrayList<String>>();
     public static ArrayList<String> variantNamesToExport = new ArrayList<String>();
 
-
-    public int t=0;
-    public int i=1;
+    public int t = 0;
+    public int i = 1;
 
     @FXML // fx:id="variantButtons"
     private HBox variantButtons; // Value injected by FXMLLoader
 
     @FXML // fx:id="category_id"
-    private JFXComboBox<?> category_id; // Value injected by FXMLLoader
+    private JFXComboBox<String> category_id; // Value injected by FXMLLoader
 
     @FXML // fx:id="variantsVBox"
     private VBox variantsVBox; // Value injected by FXMLLoader
@@ -54,7 +57,9 @@ public class AddProductController {
     private Pane mainPaneAddProduct1;
 
     private final Button removeVariantBtn = new Button("Remove variant");
-
+    protected static Pane exportPane;
+    protected static AnchorPane exportAnchorPane;
+    public HashMap<String,String> hashMap = new HashMap<>();
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -65,8 +70,22 @@ public class AddProductController {
         assert addVariant1 != null : "fx:id=\"addVariant1\" was not injected: check your FXML file 'add-product-1.fxml'.";
         assert cancelButton != null : "fx:id=\"cancelButton\" was not injected: check your FXML file 'add-product-1.fxml'.";
         assert nextButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'add-product-1.fxml'.";
-
+ 
+        CategoryService categoryService = new CategoryService();
+        categoryService.start();
+        category_id.getItems().clear();
+        categoryService.setOnSucceeded(e -> {
+            addToComboBox(categoryService);
+        });
     }
+
+    void addToComboBox(CategoryService categoryService){
+        ArrayList<Category> categoryList = categoryService.categories;
+        for (int i = 0; i < categoryList.size(); i++) {
+            category_id.getItems().add(categoryList.get(i).getName());
+        }
+    }
+    
     @FXML
     void addVariant(ActionEvent event) {
 
@@ -184,8 +203,9 @@ public class AddProductController {
             variantNamesToExport.add(variantNameList.get(k).getText());
         }
 
-
-
+        listOfCombinations.clear();
+        exportPane = mainPaneAddProduct1;
+        exportAnchorPane = addProduct1;
         addProduct1.getChildren().remove(mainPaneAddProduct1);
 
         AnchorPane anchorPane1;

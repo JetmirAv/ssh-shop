@@ -697,6 +697,20 @@
     -fx-background-color: transparent;
     -fx-accent: #129084;
     -jfx-focus-color: #129084;
+    -jfx-unfocus-color: #ffffff;
+
+}
+.add-product-fields-2 {
+    -fx-border-color: #129084;
+    -fx-font-size: 22px;
+    -fx-background-color: transparent;
+    -fx-accent: #129084;
+    -jfx-focus-color: #129084;
+    -jfx-unfocus-color: #ffffff;
+    -fx-max-width: 360px;
+    -fx-min-width: 360px;
+    -fx-max-height: 40px;
+    -fx-min-height: 40px;
 }
 
 .add-product-option-fields {
@@ -773,6 +787,22 @@
 .add-product-button:hover {
     -fx-background-color: #129f84;
 }
+
+.add-product-photo-button {
+    -fx-min-height: 40px;
+    -fx-min-width: 150px;
+    -fx-font-size: 12px;
+    -fx-background-color: #129084;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 0;
+    -fx-background-radius: 0;
+    -fx-focus-traversable: false;
+}
+
+.add-product-photo-button:hover {
+    -fx-background-color: #129f84;
+}
+
 
 .triangle:hover {
     -fx-fill: #b0b0b9;

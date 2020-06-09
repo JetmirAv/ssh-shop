@@ -5,6 +5,9 @@ import org.fiek.store.auth.AddTokenAction;
 import org.fiek.store.auth.AuthStore;
 import org.fiek.store.auth.EditUserAction;
 import org.fiek.store.chat.*;
+import org.fiek.store.product.AddProductAction;
+import org.fiek.store.product.GetCategoryAction;
+import org.fiek.store.product.ProductStore;
 import org.reactfx.EventSource;
 import org.reactfx.EventStream;
 
@@ -37,6 +40,18 @@ public class BaseStore extends Store {
         return chatStore;
     }
 
+    //ProductStore
+    private final EventSource<ProductStore> productStoreEventSource = new EventSource<>();
+    private final ProductStore productStore = new ProductStore();
+
+    public EventStream<ProductStore> getProductStoreEventStream() {
+        return productStoreEventSource;
+    }
+
+    public ProductStore getProductStore() {
+        return productStore;
+    }
+
     public BaseStore() {
         authStoreEventSource.push(authStore);
         subscribe(AddTokenAction.class, this::addTokenAction);
@@ -48,6 +63,10 @@ public class BaseStore extends Store {
         subscribe(GetMessagesAction.class, this::getMessageAction);
         subscribe(NewMessageAction.class, this::newMessageAction);
         subscribe(IncrementOffsetAction.class, this::incrementOffsetAction);
+
+        productStoreEventSource.push(productStore);
+        subscribe(AddProductAction.class, this::addProductAction);
+        subscribe(GetCategoryAction.class, this::getCategoryAction);
     }
 
     private void incrementOffsetAction(IncrementOffsetAction action) {
@@ -84,5 +103,13 @@ public class BaseStore extends Store {
         authStoreEventSource.push(authStore);
     }
 
+    private void addProductAction(AddProductAction action) {
+        productStore.addProductAction(action.getProduct());
+        productStoreEventSource.push(productStore);
+    }
 
+    private void getCategoryAction(GetCategoryAction action) {
+        productStore.GetCategoryAction(action.getCategories());
+        productStoreEventSource.push(productStore);
+    }
 }
