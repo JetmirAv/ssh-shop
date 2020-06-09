@@ -80,8 +80,13 @@ public class BaseStore extends Store {
         subscribe(GetMessagesAction.class, this::getMessageAction);
         subscribe(NewMessageAction.class, this::newMessageAction);
         subscribe(IncrementOffsetAction.class, this::incrementOffsetAction);
+        // cart
         cartStoreEventSource.push(cartStore);
         subscribe(AddCartsAction.class, this::addCartsAction);
+        subscribe(SetActiveCartAction.class, this::setActiveCartAction);
+        subscribe(GetCartAction.class, this::GetCartAction);
+        subscribe(DeleteCartAction.class, this::isDeleteAction);
+
 
     }
 
@@ -109,6 +114,17 @@ public class BaseStore extends Store {
         authStore.setSelectedAddress(action.getAddress());
         authStoreEventSource.push(authStore);
     }
+
+    private void setActiveCartAction(SetActiveCartAction action) {
+        cartStore.setSelectedCart(action.getCart());
+        cartStoreEventSource.push(cartStore);
+    }
+
+    private void isDeleteAction(DeleteCartAction action) {
+        cartStore.isDeleteCart(action.getId());
+        cartStoreEventSource.push(cartStore);
+    }
+
 
     private void addChannelsAction(AddChannelsAction action) {
         chatStore.addChannelsAction(action.getChannels(), action.getCount());
@@ -156,6 +172,11 @@ public class BaseStore extends Store {
     private void GetAddressAction(GetAddressAction t) {
         authStore.GetAddressAction(t.getAddress());
         authStoreEventSource.push(authStore);
+    }
+
+    private void GetCartAction(GetCartAction t) {
+        cartStore.GetCartAction(t.getCart());
+        cartStoreEventSource.push(cartStore);
     }
 
     private void GetCityByComboAction(GetCityFromComboAction t) {

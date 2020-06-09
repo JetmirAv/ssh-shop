@@ -42,6 +42,8 @@ import org.fiek.models.Address;
 import org.fiek.models.Cart;
 import org.fiek.models.Country;
 import org.fiek.models.User;
+import org.fiek.services.Cart.DeleteCartService;
+import org.fiek.services.Cart.GetCartService;
 import org.fiek.services.auth.*;
 import org.fiek.store.BaseStore;
 import org.fiek.store.cart.CartStore;
@@ -60,9 +62,11 @@ import org.fiek.App;
 
 public class CartStore extends Store {
 
-
+    public User user;
     public ArrayList<Cart> carts;
     Integer count = 0;
+    Cart selectedCart;
+    public String isDelete;
 
 
 
@@ -70,6 +74,23 @@ public class CartStore extends Store {
         return carts;
     }
 
+    public Cart getSelectedCart() {
+        return selectedCart;
+    }
+
+    public void setSelectedCart(Cart selectedCart) {
+        System.out.println("BRenda selected");
+        System.out.println("Selected:" + selectedCart);
+        if(this.selectedCart == null || this.selectedCart.getId() != selectedCart.getId()){
+            if(selectedCart.getId() > 0){
+                DeleteCartService cartService = new DeleteCartService(selectedCart.getUserId(),selectedCart);
+                cartService.start();
+            }
+            System.out.println("Jasht");
+        }
+        System.out.println("Shum Jasht");
+
+    }
 
     public Integer getCount() {
         return count;
@@ -93,5 +114,21 @@ public class CartStore extends Store {
         this.addCarts(Arrays.asList(carts));
     }
 
+    public void isDeleteCart (int deleteCart) {
+        ArrayList<Cart> carts1 = carts;
+
+        for (int i = 0; i < carts1.size() ; i++) {
+            if (deleteCart==carts1.get(i).getId()){
+                carts1.remove(i);
+                break;
+            }
+        }
+    }
+
+
+    public void GetCartAction(String cart) {
+        final Cart actionCart = new GsonBuilder().create().fromJson(cart, Cart.class);
+        this.selectedCart = actionCart;
+    }
 
 }
