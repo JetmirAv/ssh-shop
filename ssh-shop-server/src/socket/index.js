@@ -20,35 +20,8 @@ module.exports = (io) => {
 
     socket.on("message", (data) => chat.onMessage(data, io));
 
-    socket.on("make-offer", async (data) => {
-      console.log({ data });
-      let ids = await helpers.findChannelParticipants(data.channel);
-      let toSend = ids.filter((val) => val !== data.author);
+    socket.on("make-offer", chat.onMakeOffer);
 
-      console.log({ toSend });
-
-      let socketId = await UserSocket.findAll({
-        where: { user_id: toSend[0] },
-      });
-
-      socketId.map((soc) => {
-        socket.to(soc.socket_id).emit("offer-made", {
-          offer: data.offer,
-          socket: socket.id,
-          channel: data.channel,
-        });
-      });
-
-      // let channel = await
-    });
-
-    socket.on("make-answer", (data) => {
-      socket.to(data.to).emit("answer-made", {
-        socket: socket.id,
-        answer: data.answer,
-        channel: data.channel,
-        offer: data.offer,
-      });
-    });
+    socket.on("make-answer", chat.onMakeAnswer);
   });
 };

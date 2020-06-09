@@ -1,18 +1,13 @@
-const Messages = require("../../messages");
-const { Sequelize } = require("../models/sequelize");
-const { Message, UserSocket } = require("../models/mongo");
-
+const { UserSocket } = require("../models/mongo");
 const { CreateMessage } = require("../services/messages");
 
-const onMessage = async (data, io) => {
+exports.onMessage = async (data, io) => {
   let message = await CreateMessage(JSON.parse(data));
 
   let ids = [message.channel.user.id, message.channel.product.user_id];
   let sockets = await UserSocket.find({
     $or: [{ user_id: ids[0] }, { user_id: ids[1] }],
   });
-
-  console.log({ sockets });
 
   try {
     sockets.map((user) =>
@@ -37,6 +32,16 @@ const onMessage = async (data, io) => {
   // io.sockets.socket().emit("new_message", message);
 };
 
-module.exports = {
-  onMessage,
+exports.onMakeOffer = (data) => {
+  socket.to(data.to).emit("offer-made", {
+    offer: data.offer,
+    socket: socket.id,
+  });
+};
+
+exports.onMakeAnswer = (data) => {
+  socket.to(data.to).emit("answer-made", {
+    socket: socket.id,
+    answer: data.answer,
+  });
 };

@@ -35,6 +35,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("/views"));
+app.use(express.static("public"));
 
 // setting up routes
 routes(app);
@@ -58,6 +59,4 @@ const onListening = () => {
 };
 
 // httpServer.listen(port, host, onListening);
-https.listen(port + 1, host, () => {
-  console.log("Test");
-});
+https.listen(port, host, onListening);
