@@ -1,5 +1,7 @@
 require("dotenv").config();
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const fs = require("fs");
+const ejs = require("ejs");
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
@@ -30,6 +32,7 @@ const https = require("https").createServer({ key, cert }, app);
 const httpServer = require("http").createServer(app);
 const io = require("socket.io")(https);
 
+app.set("view engine", "ejs");
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());

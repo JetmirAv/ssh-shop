@@ -32,15 +32,27 @@ exports.onMessage = async (data, io) => {
   // io.sockets.socket().emit("new_message", message);
 };
 
-exports.onMakeOffer = (data) => {
-  socket.to(data.to).emit("offer-made", {
+exports.onMakeOffer = (data, socket) => {
+  let url = socket.handshake.headers.referer;
+  url = url.split("channels/");
+  url = url[1].split("/");
+
+  console.log({ onMakeOffer: "onMakeOffer" + socket.id });
+
+  socket.broadcast.to(url[0]).emit("offer-made", {
     offer: data.offer,
     socket: socket.id,
   });
 };
 
-exports.onMakeAnswer = (data) => {
-  socket.to(data.to).emit("answer-made", {
+exports.onMakeAnswer = (data, socket) => {
+  let url = socket.handshake.headers.referer;
+  url = url.split("channels/");
+  url = url[1].split("/");
+
+  console.log({ onMakeAnswer: "onMakeAnswer" + socket.id });
+
+  socket.broadcast.to(url[0]).emit("answer-made", {
     socket: socket.id,
     answer: data.answer,
   });

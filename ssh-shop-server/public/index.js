@@ -1,21 +1,26 @@
 // public/index.js
 
-var socket = io.connect("http://localhost:5000");
-
-socket.on("add-users", function (data) {
-  for (var i = 0; i < data.users.length; i++) {
-    var el = document.createElement("div"),
-      id = data.users[i];
-
-    el.setAttribute("id", id);
-    el.innerHTML = id;
-    el.addEventListener("click", function () {
-      // TODO: We will create this method
-      createOffer(id);
-    });
-    document.getElementById("users").appendChild(el);
-  }
+var socket = io.connect("https://192.168.0.11:5000", {
+  secure: true,
+  reconnect: true,
+  rejectUnauthorized: false,
 });
+
+socket.emit("create-room", window.location.pathname);
+
+// socket.on("add-users", function (data) {
+//   for (var i = 0; i < data.users.length; i++) {
+//     var el = document.createElement("div"),
+//       id = data.users[i];
+
+//     el.setAttribute("id", id);
+//     el.innerHTML = id;
+//     el.addEventListener("click", function () {
+//       // TODO: We will create this method
+//     });
+//     document.getElementById("users").appendChild(el);
+//   }
+// });
 
 socket.on("remove-user", function (id) {
   var div = document.getElementById(id);
@@ -50,15 +55,12 @@ var pc = new peerConnection({
   ],
 });
 
-function createOffer(id) {
+function createOffer() {
   pc.createOffer(function (offer) {
     pc.setLocalDescription(
       new sessionDescription(offer),
       function () {
-        socket.emit("make-offer", {
-          offer: offer,
-          to: id,
-        });
+        socket.emit("make-offer", { offer: offer });
       },
       error
     );
@@ -70,8 +72,9 @@ function error(err) {
 }
 
 socket.on("offer-made", function (data) {
-  offer = data.offer;
+  console.log({ "offer-made": data });
 
+  offer = data.offer;
   pc.setRemoteDescription(
     new sessionDescription(data.offer),
     function () {
@@ -79,7 +82,6 @@ socket.on("offer-made", function (data) {
         pc.setLocalDescription(
           new sessionDescription(answer),
           function () {
-            console.log("MAKE ANSWER");
             socket.emit("make-answer", {
               answer: answer,
               to: data.socket,
@@ -93,16 +95,16 @@ socket.on("offer-made", function (data) {
   );
 });
 
-var answersFrom = {},
-  offer;
+var answersFrom = {};
 
 socket.on("answer-made", function (data) {
+  console.log({ "answer-made": "answer-made" });
+
   pc.setRemoteDescription(
     new sessionDescription(data.answer),
     function () {
-      document.getElementById(data.socket).setAttribute("class", "active");
       if (!answersFrom[data.socket]) {
-        createOffer(data.socket);
+        createOffer();
         answersFrom[data.socket] = true;
       }
     },
@@ -125,6 +127,7 @@ navigator.getUserMedia(
     var video = document.querySelector("video");
     video.srcObject = stream;
     pc.addStream(stream);
+    createOffer();
   },
   error
 );
