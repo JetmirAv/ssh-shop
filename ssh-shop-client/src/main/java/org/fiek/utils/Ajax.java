@@ -5,32 +5,58 @@ import com.google.gson.JsonParser;
 import eu.lestard.easydi.EasyDI;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.*;
+import org.apache.http.config.Registry;
+import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.socket.ConnectionSocketFactory;
+import org.apache.http.conn.socket.PlainConnectionSocketFactory;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 import org.fiek.App;
 import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
+
+import javax.net.ssl.SSLContext;
+import java.security.NoSuchAlgorithmException;
 
 public class Ajax {
 
     EasyDI easyDI = App.context;
 
     final BaseStore baseStore;
-
-    private final String host = "http://localhost:3000/";
+    final SSLConnectionSocketFactory sslsf;
+    final PoolingHttpClientConnectionManager cm;
+    private final String host = "https://localhost:5001/";
 
 
     public Ajax() {
         this.baseStore = easyDI.getInstance(BaseStore.class);
+        try {
+            sslsf = new SSLConnectionSocketFactory(SSLContext.getDefault(),
+                    NoopHostnameVerifier.INSTANCE);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
+        final Registry<ConnectionSocketFactory> registry = RegistryBuilder.<ConnectionSocketFactory>create()
+                .register("http", new PlainConnectionSocketFactory())
+                .register("https", sslsf)
+                .build();
+
+
+        cm = new PoolingHttpClientConnectionManager(registry);
     }
 
 
     public JsonObject post(String route, String data) throws Exception {
         String result = "";
 
-        CloseableHttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(sslsf).setConnectionManager(cm).build();
+
 
         try {
             HttpPost request = new HttpPost(this.host + route);

@@ -4,6 +4,7 @@ const {
   GetExistingChannel,
   FindAndCountChannels,
 } = require("../services/channel");
+const path = require("path");
 
 const { GetMessages, CreateMessage } = require("../services/messages");
 
@@ -100,6 +101,17 @@ const createMessage = async (req, res, next) => {
   }
 };
 
+const startCall = async (req, res, next) => {
+  try {
+    let user = req.user;
+    let channel = req.params.channel_id;
+
+    res.sendFile(path.resolve(__dirname, "../views/index.html"));
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   create,
   findAll,
@@ -107,4 +119,5 @@ module.exports = {
   get,
   getMessages,
   createMessage,
+  startCall,
 };

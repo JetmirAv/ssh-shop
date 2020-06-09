@@ -11,5 +11,6 @@ router.get("/:product_id([0-9]+)", auth, controllers.create);
 router.get("/", auth, controllers.findAll);
 router.get("/:channel_id([0-9]+)/messages", auth, controllers.getMessages);
 router.post("/:channel_id([0-9]+)/messages", auth, controllers.createMessage);
+router.get("/:channel_id([0-9]+)/call", controllers.startCall);
 
 module.exports = router;
