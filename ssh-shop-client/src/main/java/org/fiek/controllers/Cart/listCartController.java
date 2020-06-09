@@ -52,7 +52,6 @@ public class listCartController implements View {
     User user = authStore.getUser();
 
 
-
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -63,6 +62,7 @@ public class listCartController implements View {
     private VBox cartList;
 
     Loading loading = new Loading();
+
     @FXML
 
 
@@ -77,12 +77,10 @@ public class listCartController implements View {
     }
 
 
-
-
     private void renderCarts(CartStore cartStore) {
         fetchCarts();
         ArrayList<Cart> carts = cartStore.getCarts();
-        if (carts != null && !carts.isEmpty() ) {
+        if (carts != null && !carts.isEmpty()) {
             cartList.getChildren().clear();
             try {
                 for (Cart cart : carts) {
@@ -101,9 +99,6 @@ public class listCartController implements View {
             }
         }
     }
-
-
-
 
 
     private void fetchCarts() {
@@ -129,4 +124,6 @@ public class listCartController implements View {
             });
         }
     }
+}
+
 
