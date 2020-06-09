@@ -121,7 +121,6 @@ public class CartController implements View {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
+
 }

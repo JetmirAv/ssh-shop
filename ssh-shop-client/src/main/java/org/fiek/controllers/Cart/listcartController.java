@@ -5,6 +5,7 @@
 package org.fiek.controllers.Cart;
 
 import java.io.IOException;
+
 import java.net.URL;
 
 import java.util.ResourceBundle;
@@ -43,8 +44,10 @@ import org.fiek.utils.Loading;
 
 public class listCartController implements View {
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
+
     FXMLLoader fxmlLoader;
     AuthStore authStore = baseStore.getAuthStore();
+
     CartStore cartStore = baseStore.getCartStore();
     User user = authStore.getUser();
 
@@ -61,7 +64,11 @@ public class listCartController implements View {
 
     Loading loading = new Loading();
     @FXML
+
+
 // This method is called by the FXMLLoader when initialization is complete
+
+
     void initialize() {
         assert cartList != null : "fx:id=\"cartList\" was not injected: check your FXML file 'list-cart.fxml'.";
 
@@ -69,10 +76,12 @@ public class listCartController implements View {
         baseStore.getCartStoreEventStream().subscribe(this::renderCarts);
     }
 
+
+
+
     private void renderCarts(CartStore cartStore) {
         fetchCarts();
         ArrayList<Cart> carts = cartStore.getCarts();
-        System.out.println("size:" + carts.size());
         if (carts != null && !carts.isEmpty() ) {
             cartList.getChildren().clear();
             try {
@@ -93,10 +102,14 @@ public class listCartController implements View {
         }
     }
 
+
+
+
+
     private void fetchCarts() {
         System.out.println("brenda fetch!");
         if (cartStore.getCarts() == null) {
-            CartService service = new CartService(user);
+            CartService service = new CartService(user.getId());
             service.start();
 
             service.setOnRunning(e -> {
@@ -117,5 +130,3 @@ public class listCartController implements View {
         }
     }
 
-
-}

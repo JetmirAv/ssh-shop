@@ -25,16 +25,17 @@ import java.util.Arrays;
 
 public class CartService extends Service<Void> implements View {
 
-    private User user;
+    private int userId;
 
-    public CartService(User user) {
-        this.user = user;
+    public CartService(int userId) {
+        this.userId = userId;
     }
+
 
     private void getAllCarts() throws Exception {
         Ajax request = new Ajax();
-        System.out.println("Get user id : " + user.getId());
-        JsonObject response = request.get("/users/" + user.getId() + "/cart");
+        System.out.println("Get user id : " + userId);
+        JsonObject response = request.get("/users/" + userId + "/cart");
         String jsonCart = response.get("cart").toString();
         System.out.println("Cart obj:" + jsonCart) ;
         publishAction(new AddCartsAction(jsonCart));
