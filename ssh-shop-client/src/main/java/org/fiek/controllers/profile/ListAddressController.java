@@ -10,9 +10,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
+import eu.lestard.fluxfx.View;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,11 +27,14 @@ import org.fiek.models.Channel;
 import org.fiek.models.User;
 import org.fiek.services.auth.AddressService;
 import org.fiek.store.BaseStore;
+import org.fiek.store.auth.AddAddressAction;
+import org.fiek.store.auth.AddNewAddressAction;
 import org.fiek.store.auth.AuthStore;
+import org.fiek.store.auth.SetActiveAddressAction;
 import org.fiek.store.chat.ChatStore;
 import org.fiek.utils.Loading;
 
-public class ListAddressController {
+public class ListAddressController implements View {
 
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
     AuthStore authStore = baseStore.getAuthStore();
@@ -44,6 +51,10 @@ public class ListAddressController {
 
     @FXML // fx:id="addressList"
     private ScrollPane container;
+
+
+    @FXML
+    private JFXButton createAddressId;
 
     FXMLLoader fxmlLoader;
 
@@ -62,6 +73,9 @@ public class ListAddressController {
         fetchAddress();
         ArrayList<Address> addresses = authStore.getAddresses();
         if (addresses != null && !addresses.isEmpty()) {
+
+            if (addresses.size() >= 5) toogleDisable(true);
+
             addressList.getChildren().clear();
             for (Address address : addresses) {
                 fxmlLoader = new FXMLLoader(App.class.getResource("views/profile/list-Item-Address.fxml"));
@@ -77,13 +91,17 @@ public class ListAddressController {
         }
     }
 
+    void toogleDisable(Boolean bool) {
+        createAddressId.setDisable(bool);
+
+    }
+
 
     private void fetchAddress() {
         if (authStore.getAddresses() == null) {
             AddressService addressService = new AddressService(user);
             addressService.start();
 
-//            AnchorPane parent = (AnchorPane) container.getParent().getParent();
 
             addressService.setOnRunning(e -> {
 //                parent.getChildren().add(loading);
@@ -102,5 +120,13 @@ public class ListAddressController {
 //                parent.getChildren().remove(loading);
             });
         }
+    }
+
+    @FXML
+    void clickHandler(MouseEvent event) {
+        Address newAddrObj = new Address();
+        String stringAddress = newAddrObj.toString();
+        publishAction(new AddNewAddressAction(stringAddress));
+
     }
 }

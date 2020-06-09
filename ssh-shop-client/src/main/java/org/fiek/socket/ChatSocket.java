@@ -10,6 +10,7 @@ import org.fiek.store.chat.NewMessageAction;
 public class ChatSocket implements View {
 
     public static String MESSAGE = "message";
+    public static String NEW_MESSAGE = "new-message";
 
     public static void emitMessage(Integer channel_id, Integer author_id, String message) {
         JsonObject jsonObject = new JsonObject();
@@ -21,7 +22,8 @@ public class ChatSocket implements View {
     }
 
     public void onMessage(Socket socket) {
-        socket.on(MESSAGE, e -> {
+        socket.on(NEW_MESSAGE, e -> {
+            System.out.println("Erdh messazhi");
             publishAction(new NewMessageAction(e[0].toString()));
         });
     }

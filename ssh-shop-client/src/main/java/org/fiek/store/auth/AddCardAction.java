@@ -4,15 +4,13 @@ import eu.lestard.fluxfx.Action;
 
 public class AddCardAction implements Action {
 
-    private final String []  cards;
+    private final String card;
 
-
-    public AddCardAction(String [] cards) {
-        this.cards = cards;
+    public AddCardAction(String card) {
+        this.card = card;
     }
 
-
-    public String[] getCards() {
-        return cards;
+    public String getCard() {
+        return card;
     }
 }

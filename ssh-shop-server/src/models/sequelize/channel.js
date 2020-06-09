@@ -27,7 +27,6 @@ module.exports = class Channel extends Sequelize.Model {
               association: "user",
               attributes: ["id", "first_name", "last_name", "email"],
             },
-            { association: "product", attributes: ["id", "name"] },
           ],
         },
       }

@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import eu.lestard.fluxfx.View;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import org.fiek.models.City;
 import org.fiek.models.Country;
 import org.fiek.store.auth.CountryAction;
 import org.fiek.store.auth.GetCountryByCityAction;
@@ -18,20 +19,20 @@ import java.util.List;
 
 public class CityService extends Service<Void> implements View {
 
-    public static ArrayList<Country> countries = new ArrayList<>();
+    public static ArrayList<City> cities = new ArrayList<>();
 
     private void getCities() throws Exception {
-        if(countries == null || countries.isEmpty()){
+        if(cities == null || cities.isEmpty()){
             Ajax request = new Ajax();
-            JsonObject response = request.getAsJson("/countries");
-            String jsonCities = response.get("countries").toString();
+            JsonObject response = request.getAsJson("/cities");
+            String jsonCities = response.get("cities").toString();
 
             System.out.println(jsonCities);
 
-            Country[] countries1 = new GsonBuilder().create().fromJson(jsonCities, Country[].class);
-            countries.addAll(Arrays.asList(countries1));
+            City[] cities1 = new GsonBuilder().create().fromJson(jsonCities, City[].class);
+            cities.addAll(Arrays.asList(cities1));
 
-            System.out.println("asfgasfasf: " + countries.size());
+            System.out.println("asfgasfasf: " + cities.size());
         }
     }
 

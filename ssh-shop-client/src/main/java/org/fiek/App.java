@@ -26,15 +26,19 @@ public class App extends Application {
     public static BorderPane main;
     public static EasyDI context = new EasyDI();
 
+    public static Stage primmaryStage;
+
     @Override
     public void start(Stage stage) throws IOException {
-        SocketClient socketClient = new SocketClient("http://0.0.0.0:5000/");
+        SocketClient socketClient = new SocketClient("http://localhost:3000/");
         context.bindInstance(SocketClient.class, socketClient);
 
         BaseStore baseStore = new BaseStore();
         context.bindInstance(BaseStore.class, baseStore);
 
         scene = new Scene(loadFXML("views/layout/index"));
+
+        primmaryStage = stage;
 
         stage.setOnCloseRequest(e -> {
             socketClient.getSocket().disconnect();

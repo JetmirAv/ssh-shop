@@ -8,8 +8,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import com.google.gson.JsonObject;
-import eu.lestard.easydi.EasyDI;
 import eu.lestard.fluxfx.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -19,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -35,12 +34,11 @@ import org.fiek.store.chat.IncrementOffsetAction;
 import org.fiek.utils.Loading;
 
 public class ChatController implements View {
-
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
     AuthStore authStore = baseStore.getAuthStore();
     ChatStore chatStore = baseStore.getChatStore();
-    Channel channel = chatStore.getActiveChannel();
-    Integer offset = channel.getOffset();
+    Channel channel = chatStore.getSelectedChannel();
+
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -95,64 +93,73 @@ public class ChatController implements View {
         assert messageHolder != null : "fx:id=\"messageHolder\" was not injected: check your FXML file 'chat.fxml'.";
         assert chatViewHolder != null : "fx:id=\"chatViewHolder\" was not injected: check your FXML file 'chat.fxml'.";
 
-        loadChat(chatStore);
-        loadMessages(chatStore);
+
         productName.setText(channel.getProduct().getName());
         if (authStore.getUser().getId() == channel.getUserId()) {
             contactName.setText(channel.getProduct().getUser().getFirstName());
         } else {
             contactName.setText(channel.getUser().getFirstName());
         }
-        baseStore.getChatStoreEventStream().subscribe(this::loadNewMessages);
-    }
 
-    private void loadMessages(ChatStore chatStore) {
-        if (channel.getOffset() == 0)
-            messageHolder.setPrefHeight(350);
-
-        ArrayList<Message> messages = channel.getLeftMessages();
-        for (Message message : messages) {
-            messageHolder.getChildren().add(0, addMessage(message));
-        }
-        if (channel.getOffset() == 0)
-            chatView.setVvalue(chatView.getVmax());
-
-        Platform.runLater(() -> {
-            publishAction(new IncrementOffsetAction());
+        productName.setOnMouseClicked(e -> {
+            messageHolder.getChildren().add(addMessage(new Message("112", 1, 1, "teast")));
         });
-        offset = 10;
+
+        baseStore.getChatStoreEventStream().subscribeForOne(this::getMessagesToogle);
+//        baseStore.getChatStoreEventStream().subscribe(this::getNewMessagesToogle);
+
+        messageHolder.backgroundProperty().addListener(e -> {
+            this.getMessages();
+        });
+
+//        messageHolder.widthProperty().addListener(e -> {
+//            this.getNewMessage();
+//        });
+
     }
 
-    private void loadNewMessages(ChatStore chatStore) {
-
-    }
-
-    private void loadChat(ChatStore chatStore) {
-        if (chatStore.getActiveChannel() != null && offset == 0) {
-            System.out.println("Ska pse vjen knej: " + channel.getMessages().size());
-
-            GetChannelMessagesService service = new GetChannelMessagesService(chatStore.getSelectedChannel());
-            service.start();
-
-            service.setOnRunning(e -> {
-                loading = new Loading();
-                chatViewHolder.getChildren().add(loading);
-            });
-
-            service.setOnCancelled(e -> {
-                chatViewHolder.getChildren().remove(loading);
-            });
-
-            service.setOnSucceeded(e -> {
-                chatViewHolder.getChildren().remove(loading);
-                messageHolder.getChildren().clear();
-            });
-
-            service.setOnFailed(e -> {
-                chatViewHolder.getChildren().remove(loading);
-            });
+    private void getNewMessage() {
+        System.out.println("mrena toggle");
+        int leftMessages = messageHolder.getChildren().size() - channel.getMessages().size();
+        leftMessages = Math.abs(leftMessages);
+        if (leftMessages > 0) {
+            for (int i = leftMessages; i > 0; i--) {
+                messageHolder.getChildren().add(addMessage(channel.messages.get(i - 1)));
+            }
         }
+
     }
+
+    private void getNewMessagesToogle(ChatStore chatStore) {
+        System.out.println("toggle");
+        messageHolder.setPrefWidth(messageHolder.getPrefWidth());
+    }
+
+
+    private void getMessagesToogle(ChatStore chatStore) {
+        messageHolder.setBackground(Background.EMPTY);
+    }
+
+    private void getMessages() {
+        System.out.println("get message po");
+
+        if (channel != null && !channel.getMessages().isEmpty()) {
+            messageHolder.setPrefHeight(200);
+            ArrayList<Message> messages = channel.getMessages();
+            ArrayList<HBox> messageHbox = new ArrayList<>();
+            for (Message message : messages) {
+                messageHbox.add(0, addMessage(message));
+            }
+            messageHolder.getChildren().addAll(messageHbox);
+            Platform.runLater(this::scrollToBottom);
+        }
+
+    }
+
+    public void scrollToBottom() {
+        chatView.setVvalue(messageHolder.getHeight());
+    }
+
 
     public HBox addMessage(Message message) {
         HBox hBox = new HBox();

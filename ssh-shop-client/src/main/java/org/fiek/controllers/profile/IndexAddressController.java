@@ -18,7 +18,7 @@ import org.fiek.store.auth.AuthStore;
 import org.fiek.store.chat.ChatStore;
 import org.fiek.utils.Loading;
 
-public class IndexController {
+public class IndexAddressController {
 
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
 
@@ -43,17 +43,12 @@ public class IndexController {
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert container != null : "fx:id=\"container\" was not injected: check your FXML file 'address.fxml'.";
-        System.out.println("brenda indexit!");
         authStore = baseStore.getAuthStore();
         user = authStore.getUser();
-        user.clearAddresses();
-//        fetchAddress();
-//        authStore.setSelectedAddress(null);
         baseStore.getAuthStoreEventStream().subscribe(this::displayListAddress);
     }
 
     private void displayListAddress(AuthStore authStore) {
-        System.out.println("Jetmir");
         try {
             if (authStore.getSelectedAddress() == null) {
                 contentContainer.getChildren().add(App.loadFXML("views/profile/no-address-selected"));

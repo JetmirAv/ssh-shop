@@ -19,11 +19,9 @@ public class FindAndCountChannelsService extends Service<Void> implements View {
                 try {
                     Ajax request = new Ajax();
                     JsonObject response = request.get("/channels");
-                    response = response.get("channels").getAsJsonObject();
-                    String rows = response.get("rows").toString();
-                    String count = response.get("count").toString();
+                    String rows = response.get("channels").toString();
 
-                    publishAction(new AddChannelsAction(rows, count));
+                    publishAction(new AddChannelsAction(rows, "20"));
 
                 } catch (Exception exception) {
                     this.cancel();

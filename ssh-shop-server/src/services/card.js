@@ -36,6 +36,13 @@ const GetAllCards = async (user_id) => {
  * @returns Card
  */
 const CreateCard = async (data) => {
+  let number = data.number;
+  let expMonth = data.expMonth;
+  let expYear = data.expYear;
+  let code = data.code;
+
+  if (number === "" || expMonth === "" || expYear === "" || code === "")
+    throw new CustomError("Fill all the fields !", {}, 401);
   try {
     const card = new Card({ ...data });
     await card.validate();
@@ -53,6 +60,14 @@ const CreateCard = async (data) => {
 //  * @returns Card
  */
 const UpdateCard = async (card_id, user_id, data) => {
+  let number = data.number;
+  let expMonth = data.expMonth;
+  let expYear = data.expYear;
+  let code = data.code;
+
+  if (number === "" || expMonth === "" || expYear === "" || code === "")
+    throw new CustomError("Fill all the fields !", {}, 401);
+
   try {
     const card = await Card.findOne({
       where: {

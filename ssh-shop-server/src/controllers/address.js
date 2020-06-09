@@ -46,6 +46,7 @@ const create = async (req, res, next) => {
  */
 
 const update = async (req, res, next) => {
+  console.log("para service ne update!");
   try {
     const address = await UpdateAddress(
       req.params.address_id,
@@ -79,7 +80,6 @@ const drop = async (req, res, next) => {
  * @param {*} next
  */
 const get = async (req, res, next) => {
-  console.log("brenda get-it");
   try {
     return res
       .status(200)

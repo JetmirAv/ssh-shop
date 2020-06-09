@@ -7,6 +7,7 @@ package org.fiek.controllers.profile;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
 import eu.lestard.fluxfx.View;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
@@ -36,7 +37,6 @@ public class ListItemAddressController implements View {
 
     @FXML // fx:id="itemBox"
     private HBox itemBox; // Value injected by FXMLLoader
-
 
 
 
