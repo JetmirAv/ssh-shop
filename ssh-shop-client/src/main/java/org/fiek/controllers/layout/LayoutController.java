@@ -120,7 +120,7 @@ public class LayoutController extends AbstractController implements View {
 
         switch (id) {
             case "navHome":
-                setRoot("views/home/home");
+                setRoot("views/product/product-details");
                 navHome.getStyleClass().add("active");
                 break;
 

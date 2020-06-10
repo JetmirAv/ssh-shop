@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.product.ProductDetailController">
    <children>
       <FlowPane layoutY="58.0" prefHeight="781.0" prefWidth="960.0" vgap="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -71,7 +71,7 @@
                            <children>
                               <Pane prefHeight="408.0" prefWidth="380.0">
                                  <children>
-                                    <ImageView fitHeight="339.0" fitWidth="342.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="productImageId" fitHeight="339.0" fitWidth="342.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../images/ImagePlaceHolder.png" />
                                        </image>
@@ -88,7 +88,7 @@
                <children>
                   <HBox prefHeight="42.0" prefWidth="200.0" styleClass="product-title">
                      <children>
-                        <Label prefHeight="45.0" prefWidth="97.0" text="Title">
+                        <Label fx:id="titleId" prefHeight="45.0" prefWidth="97.0" text="Title">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -109,12 +109,12 @@
                         <Insets />
                      </VBox.margin>
                      <children>
-                        <Label styleClass="product-info" text="By Jetmir Avdullahu" />
+                        <Label fx:id="userId" styleClass="product-info" text="By Jetmir Avdullahu" />
                      </children>
                   </HBox>
                   <HBox prefHeight="27.0" prefWidth="200.0" styleClass="product-variant">
                      <children>
-                        <Label styleClass="product-info" text="Variant 1" />
+                        <Label fx:id="variant1Id" styleClass="product-info" text="Variant 1" />
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -162,7 +162,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="69.0" prefHeight="27.0" prefWidth="200.0" styleClass="product-variant">
                      <children>
-                        <Label styleClass="product-info" text="Variant 2" />
+                        <Label fx:id="variant2Id" styleClass="product-info" text="Variant 2" />
                      </children>
                   </HBox>
                   <HBox layoutX="10.0" layoutY="98.0" prefHeight="17.0" prefWidth="200.0" styleClass="variant-buttons-parent">
@@ -199,7 +199,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="122.0" prefHeight="27.0" prefWidth="200.0" styleClass="product-variant">
                      <children>
-                        <Label styleClass="product-info" text="Variant 3" />
+                        <Label fx:id="variant3Id" styleClass="product-info" text="Variant 3" />
                      </children>
                   </HBox>
                   <HBox layoutX="10.0" layoutY="151.0" prefHeight="17.0" prefWidth="200.0" styleClass="variant-buttons-parent">
@@ -236,12 +236,12 @@
                   </HBox>
                   <HBox prefHeight="27.0" prefWidth="200.0" styleClass="product-variant">
                      <children>
-                        <Label styleClass="product-info" text="Stock: 2" />
+                        <Label fx:id="stockId" styleClass="product-info" text="Stock: 2" />
                      </children>
                   </HBox>
                   <HBox prefHeight="27.0" prefWidth="200.0" styleClass="product-variant">
                      <children>
-                        <Label styleClass="product-info" text="Price: 1 Kidney" />
+                        <Label fx:id="priceId" styleClass="product-info" text="Price: 1 Kidney" />
                      </children>
                   </HBox>
                   <HBox prefHeight="131.0" prefWidth="400.0" styleClass="product-order-parent">
@@ -272,7 +272,7 @@
                         </HBox>
                         <HBox layoutX="60.0" layoutY="10.0" prefHeight="347.0" prefWidth="910.0" styleClass="product-description-text">
                            <children>
-                              <Label prefHeight="308.0" prefWidth="910.0" styleClass="product-info" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna &#10;aliqua. Ac tortor dignissim convallis aenean et tortor at risus. Egestas erat imperdiet sed euismod. At volutpat diam &#10;ut venenatis tellus. Lobortis elementumn ibh tellus molestie nunc non blandit massa enim. Ut enim blandit volutpat &#10;maecenas volutpat. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque. Sit amet tellus cras  adipiscing &#10;enim eu turpis egestas. Egestas sed sed risus pretium quam. Quis vel eros donec ac odio tempor orci dapibus. Mauris &#10;rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar.&#10;&#10;Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Mi quis hendrerit dolor magna eget est lorem. Viverra nibh &#10;cras pulvinar mattis nunc sed blandit libero. Facilisis magna etiam tempor orci eu lobortis elementum nibh. Nunc mattis &#10;enim ut tellus elementum. Eget felis eget nunc lobortis mattis aliquam. Tortor at auctor urna nunc id cursus metus aliquam. &#10;Facilisis gravida neque convallis a cras semper auctor. Risus viverra adipiscing at in tellus integer. Eleifend donec pretium &#10;vulputate sapien nec." />
+                              <Label fx:id="descriptionId" prefHeight="308.0" prefWidth="910.0" styleClass="product-info" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna &#10;aliqua. Ac tortor dignissim convallis aenean et tortor at risus. Egestas erat imperdiet sed euismod. At volutpat diam &#10;ut venenatis tellus. Lobortis elementumn ibh tellus molestie nunc non blandit massa enim. Ut enim blandit volutpat &#10;maecenas volutpat. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque. Sit amet tellus cras  adipiscing &#10;enim eu turpis egestas. Egestas sed sed risus pretium quam. Quis vel eros donec ac odio tempor orci dapibus. Mauris &#10;rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar.&#10;&#10;Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Mi quis hendrerit dolor magna eget est lorem. Viverra nibh &#10;cras pulvinar mattis nunc sed blandit libero. Facilisis magna etiam tempor orci eu lobortis elementum nibh. Nunc mattis &#10;enim ut tellus elementum. Eget felis eget nunc lobortis mattis aliquam. Tortor at auctor urna nunc id cursus metus aliquam. &#10;Facilisis gravida neque convallis a cras semper auctor. Risus viverra adipiscing at in tellus integer. Eleifend donec pretium &#10;vulputate sapien nec." />
                            </children>
                         </HBox>
                      </children>
