@@ -17,9 +17,11 @@ public class Product {
     @Expose(serialize = false, deserialize = true)
     public ArrayList<Variant> variants;
 
-    @Expose(serialize = false, deserialize = true)
-    ArrayList<Combinations> combinations;
-
+//    @Expose(serialize = false, deserialize = true)
+//    ArrayList<Combinations> combination;
+//
+    @Expose
+    private ArrayList<Map<String, String>> combinations;
 
     @Expose
     public int user_id;
@@ -48,7 +50,7 @@ public class Product {
 
 
     public Product(String id, int user_id, String name, String description, int category_id, float discount_pt,
-                   ArrayList<Variant> variants, ArrayList<Combinations> combinations) {
+                   ArrayList<Variant> variants, ArrayList<Map<String, String>> combinations) {
         this._id = id;
         this.user_id = user_id;
         this.name = name;
@@ -148,7 +150,7 @@ public class Product {
         return "Product{" +
                 "_id='" + _id + '\'' +
                 ", variants=" + variants +
-                ", combination=" + combinations +
+                ", combinations=" + combinations +
                 ", user_id=" + user_id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
