@@ -173,7 +173,7 @@
     -fx-fill: white;
     -fx-stroke: none;
 }
-
+/*
 .text-area {
     -fx-background-insets: 0;
     -fx-background-color: transparent, #129084, transparent, #129084;
@@ -187,17 +187,20 @@
     -fx-text-fill: white;
 }
 
-/*  .text-area .content {
-    -fx-background-color: text-area-background ;
 .text-area .content {
+      -fx-background-color: text-area-background;
+  }
+
+.text-area .content {
+
     -fx-background-color: text-area-background;
 
 }
-
+*/
 .text-area *.text {
     -fx-text-alignment: center;
 
-}*/
+}
 
 .profile-info {
     -fx-text-fill: white;
@@ -710,6 +713,10 @@
     -jfx-unfocus-color: #ffffff;
 
 }
+.jfxtext-area {
+    -fx-text-fill: #000000;
+}
+
 .add-product-fields-2 {
     -fx-border-color: #129084;
     -fx-font-size: 22px;

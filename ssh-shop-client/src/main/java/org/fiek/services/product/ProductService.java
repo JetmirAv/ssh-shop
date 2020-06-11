@@ -18,19 +18,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProductService extends Service<Void> implements View{
-    private ArrayList<String> product;
+    private Product product;
+
+    public ProductService (Product product){
+        this.product = product;
+    }
 
 
     public void addProduct() throws Exception {
 
         final String json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.product, Product.class);
+        System.out.println(json);
 
         Ajax request = new Ajax();
-        JsonObject response = request.post("product", json);
+        JsonObject response = request.post("products", json);
 
-        String jsonProduct = response.get("product").toString();
-        publishAction(new AddProductAction(jsonProduct));
-
+//        String jsonProduct = response.get("products").toString();
+//        publishAction(new AddProductAction(jsonProduct));
     }
 
     @Override

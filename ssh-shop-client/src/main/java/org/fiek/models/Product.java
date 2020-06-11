@@ -2,33 +2,61 @@ package org.fiek.models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.annotations.Expose;
 
 public class Product {
 
+    @Expose(serialize = false, deserialize = true)
     final String tableName = "products";
 
-    public String id;
+    @Expose(serialize = false, deserialize = true)
+    public String _id;
+
+    @Expose
+    public ArrayList<Variant> variants;
+
+    //    @Expose(serialize = false, deserialize = true)
+//    ArrayList<Combinations> combination;
+    @Expose
     public int user_id;
+
+    @Expose
     public String name;
+
+    @Expose
     public String description;
+
+    @Expose
     public int category_id;
+
+    @Expose
     public float discount_pt;
 
+    @Expose
     public User user;
-    public Category category;
-    public Variant variant;
-    public Combinations combinations;
 
-    public Product(String id, int user_id, String name, String description, int category_id, float discount_pt, Variant variant, Combinations combinations) {
-        this.id = id;
+    @Expose
+    public Category category;
+
+
+    @Expose
+    private ArrayList<Map<String, String>> combinations;
+
+
+    public Product(String id, int user_id, String name, String description, int category_id, float discount_pt,
+                   ArrayList<Variant> variants, ArrayList<Map<String, String>> combinations) {
+        this._id = id;
         this.user_id = user_id;
         this.name = name;
         this.description = description;
         this.category_id = category_id;
         this.discount_pt = discount_pt;
-        this.variant = variant;
-        this.combinations = combinations;
+        this.variants = new ArrayList<Variant>();
+        this.combinations = new ArrayList<Map<String, String>>();;
     }
+
 
     public Product() {
         this("", -1, "", "", -1, -1, null, null);
@@ -39,7 +67,7 @@ public class Product {
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public int getUserId() {
@@ -96,5 +124,36 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public ArrayList<Variant> getVariant() {
+        return variants;
+    }
+
+    public void setVariant(ArrayList<Variant> variant) {
+        this.variants = variant;
+    }
+    public ArrayList<Map<String, String>> getCombination() {
+        return combinations;
+    }
+
+    public void setCombination(ArrayList<Map<String, String>> combinations) {
+        this.combinations = combinations;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "_id='" + _id + '\'' +
+                ", variants=" + variants +
+                ", combinations=" + combinations +
+                ", user_id=" + user_id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", category_id=" + category_id +
+                ", discount_pt=" + discount_pt +
+                ", user=" + user +
+                ", category=" + category +
+                '}';
     }
 }

@@ -51,7 +51,6 @@ const GetAllProducts = async (
     } else {
       sort_order = -1;
     }
-    let searchArr = search.split("-");
     if (isNaN(categoryId) && !search) {
       console.log("here");
       var product = await Product.find().sort({ [sort_column]: sort_order });
@@ -61,6 +60,8 @@ const GetAllProducts = async (
       });
     } else {
       console.log(search);
+      let searchArr = search.split("-");
+
       for (str in searchArr) {
         var product = await Product.find({
           name: { $regex: searchArr[str] },
