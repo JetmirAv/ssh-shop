@@ -44,9 +44,7 @@ public class RequestRoomService extends Service<Void> {
                         Desktop.getDesktop().browse(new URI("https://192.168.0.11:5000/channels/" + room_id + "/meet/?token=" + authStore.getToken()));
 
                         Thread.sleep(5000);
-
                         ChatSocket.callRequest(channel_id, authStore.getUser().getId(), room_id);
-
                     }
 
                 } catch (Exception exception) {

@@ -1,4 +1,4 @@
-var mongoose = require( '../config/mongoose' );
+var mongoose = require("../config/mongoose");
 
 const {
   CreateProduct,
@@ -47,14 +47,13 @@ const getProducts = async (req, res, next) => {
     let category_id = req.query.category_id;
     let sort_string = req.query.sort_string;
     let search = req.query.search;
-    return res
-      .status(200)
-      .json({ user: await GetAllProducts(sort_string, category_id, search)});
+    return res.status(200).json({
+      products: await GetAllProducts(sort_string, category_id, search),
+    });
   } catch (err) {
     next(err);
   }
 };
-
 
 const get = async (req, res, next) => {
   try {
@@ -85,5 +84,5 @@ module.exports = {
   create,
   update,
   drop,
-  getProducts
+  getProducts,
 };

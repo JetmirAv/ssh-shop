@@ -1,10 +1,13 @@
 package org.fiek.store.product;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.fiek.models.Category;
+import org.fiek.models.Message;
 import org.fiek.models.Product;
 
 import eu.lestard.fluxfx.Store;
@@ -14,10 +17,13 @@ public class ProductStore extends Store {
     public Product product;
     public ArrayList<Category> categories = new ArrayList<>();
 
+    public ArrayList<Product> productList = new ArrayList<>();
+
 
     public ArrayList<Category> getCategory() {
         return categories;
     }
+
     public void addProductAction(String product) {
         final Product actionProduct = new GsonBuilder().create().fromJson(product, Product.class);
 
@@ -29,5 +35,15 @@ public class ProductStore extends Store {
             this.category = actionCategory;
             categories.add(this.category);
         }
+    }
+
+    public void addProducts(String products) {
+        Gson gson = new Gson();
+        Product[] products1 = gson.fromJson(products, Product[].class);
+        this.productList.addAll(Arrays.asList(products1));
+    }
+
+    public ArrayList<Product> getProductList() {
+        return productList;
     }
 }

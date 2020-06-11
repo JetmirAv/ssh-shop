@@ -25,10 +25,6 @@
       </HBox>
       <FlowPane fx:id="homeAllPrdouct" layoutX="15.0" layoutY="137.0" styleClass="home-product-info" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="80.0">
          <children>
-            <fx:include source="../product/single-item.fxml" />
-            <fx:include source="../product/single-item.fxml" />
-            <fx:include source="../product/single-item.fxml" />
-            <fx:include source="../product/single-item.fxml" />
          </children>
       </FlowPane>
    </children>

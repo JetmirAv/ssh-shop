@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <VBox fx:id="homeProduct1" styleClass="home-product-image">
          <children>
@@ -25,14 +25,14 @@
                <children>
                   <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0" styleClass="home-first-info">
                      <children>
-                        <Label fx:id="homeProductTitle1" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-title" text="Title" />
-                        <Label fx:id="homeProductCategory1" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-category" text="Category" />
+                        <Label fx:id="title" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-title" text="Title" />
+                        <Label fx:id="category" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-category" text="Category" />
                      </children>
                      <padding>
                         <Insets left="10.0" top="10.0" />
                      </padding>
                   </HBox>
-                  <Label fx:id="homeProductDescription1" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text=" sasafasfasfkfhasfjkhasjkfhasjkfhjkashfkjhaskfjhaksjhkasfjhsfakjhasfkjfas" />
+                  <Label fx:id="description" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text=" sasafasfasfkfhasfjkhasjkfhasjkfhjkashfkjhaskfjhaksjhkasfjhsfakjhasfkjfas" />
                </children>
             </VBox>
          </children>

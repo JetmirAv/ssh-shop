@@ -1,5 +1,6 @@
 package org.fiek.store;
 
+import eu.lestard.fluxfx.Action;
 import eu.lestard.fluxfx.Store;
 import eu.lestard.fluxfx.View;
 import javafx.concurrent.Service;
@@ -11,6 +12,7 @@ import org.fiek.store.auth.AuthStore;
 import org.fiek.store.auth.EditUserAction;
 import org.fiek.store.chat.*;
 import org.fiek.store.product.AddProductAction;
+import org.fiek.store.product.FetchProductsAction;
 import org.fiek.store.product.GetCategoryAction;
 import org.fiek.store.product.ProductStore;
 import org.reactfx.EventSource;
@@ -96,6 +98,12 @@ public class BaseStore extends Store {
         productStoreEventSource.push(productStore);
         subscribe(AddProductAction.class, this::addProductAction);
         subscribe(GetCategoryAction.class, this::getCategoryAction);
+        subscribe(FetchProductsAction.class, this::fetchProductAction);
+    }
+
+    private void fetchProductAction(FetchProductsAction action) {
+        productStore.addProducts(action.getProducts());
+        productStoreEventSource.push(productStore);
     }
 
     private void incrementOffsetAction(IncrementOffsetAction action) {
