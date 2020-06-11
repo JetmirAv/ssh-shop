@@ -2,28 +2,24 @@ package org.fiek.controllers.product; /**
  * Sample Skeleton for 'product-details.fxml' Controller Class
  */
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import org.fiek.App;
-import org.fiek.models.Address;
 import org.fiek.models.Product;
 import org.fiek.models.User;
 import org.fiek.models.Variant;
 import org.fiek.services.product.GetProductDetailService;
 import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
-import org.reactfx.value.Var;
 
 public class ProductDetailController {
 
@@ -32,59 +28,31 @@ public class ProductDetailController {
     User userAuth = authStore.getUser();
 
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
-
-    @FXML // fx:id="productImageId"
-    private ImageView productImageId; // Value injected by FXMLLoader
-
-    @FXML // fx:id="titleId"
-    private Label titleId; // Value injected by FXMLLoader
+    @FXML
+    private ImageView productImageId;
 
     @FXML
-    private FlowPane flowPaneContainer;
-
-
-    @FXML // fx:id="userId"
-    private Label userId; // Value injected by FXMLLoader
-
-    @FXML // fx:id="variant1Id"
-    private Label variant1Id; // Value injected by FXMLLoader
-
-    @FXML // fx:id="variant2Id"
-    private Label variant2Id; // Value injected by FXMLLoader
-
-    @FXML // fx:id="variant3Id"
-    private Label variant3Id; // Value injected by FXMLLoader
-
-    @FXML // fx:id="stockId"
-    private Label stockId; // Value injected by FXMLLoader
-
-    @FXML // fx:id="priceId"
-    private Label priceId; // Value injected by FXMLLoader
-
-    @FXML // fx:id="descriptionId"
-    private Label descriptionId; // Value injected by FXMLLoader
+    private VBox dataVbox;
 
     @FXML
-    private HBox hboxId;
+    private VBox metaData;
 
-
-    JFXButton jfxButton;
+    @FXML
+    private Label descriptionId;
+    ArrayList<String> namesList = new ArrayList<>();
+    ArrayList<Variant> variants;
+    Product product;
+    ArrayList<FlowPane> flowPanesList = new ArrayList<>();
+    ArrayList<ArrayList<Button>> buttonsList = new ArrayList<>();
+    ArrayList<ArrayList<Button>> buttonsEventList = new ArrayList<>();
+    public String combinationID;
+    Label stock;
+    Label quantity;
+    Label price;
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert productImageId != null : "fx:id=\"productImageId\" was not injected: check your FXML file 'product-details.fxml'.";
-        assert titleId != null : "fx:id=\"titleId\" was not injected: check your FXML file 'product-details.fxml'.";
-        assert userId != null : "fx:id=\"userId\" was not injected: check your FXML file 'product-details.fxml'.";
-        assert variant1Id != null : "fx:id=\"variant1Id\" was not injected: check your FXML file 'product-details.fxml'.";
-        assert variant2Id != null : "fx:id=\"variant2Id\" was not injected: check your FXML file 'product-details.fxml'.";
-        assert variant3Id != null : "fx:id=\"variant3Id\" was not injected: check your FXML file 'product-details.fxml'.";
-        assert stockId != null : "fx:id=\"stockId\" was not injected: check your FXML file 'product-details.fxml'.";
-        assert priceId != null : "fx:id=\"priceId\" was not injected: check your FXML file 'product-details.fxml'.";
         assert descriptionId != null : "fx:id=\"descriptionId\" was not injected: check your FXML file 'product-details.fxml'.";
 
 
@@ -93,21 +61,107 @@ public class ProductDetailController {
         service.start();
 
         service.setOnSucceeded(e->{
-            System.out.println("mir o!");
-            Product product = GetProductDetailService.productStatic;
-            System.out.println("Produkti:" + product);
+            product = GetProductDetailService.productStatic;
+            variants = product.getVariant();
 
-            ArrayList<Variant> variants = product.getVariant();
-            System.out.println("Size:" + variants.size());
-            for(Variant variant : variants)  {
-                System.out.println("Variant name : " + variant.getName());
-
-            }
-
-
-
+            getListsForData();
+            onActionEvents();
         });
 
+    }
+    void getListsForData(){
+
+        HBox nameHBox = new HBox();
+        Label namelabel = new Label(product.getName());
+        nameHBox.getChildren().add(namelabel);
+        metaData.getChildren().add(nameHBox);
+        for (int i=0; i<variants.size();i++) {
+            FlowPane variantsFlowPane = new FlowPane();
+            VBox vBox = new VBox();
+            flowPanesList.add(variantsFlowPane);
+            variantsFlowPane.setVgap(10);
+            variantsFlowPane.setHgap(10);
+            buttonsEventList.add(new ArrayList<>());
+
+            buttonsList.add(new ArrayList<Button>());
+            for (int k = 0; k < variants.get(i).options.size(); k++) {
+                JFXButton button = new JFXButton(variants.get(i).getOptions().get(k));
+                button.getStyleClass().add("detailViewButtons");
+                flowPanesList.get(i).getChildren().add(button);
+                buttonsList.get(i).add(button);
+            }
+            HBox namesHBox = new HBox();
+            namesHBox.getChildren().add(new Label(variants.get(i).getName()));
+            vBox.getChildren().addAll(namesHBox, flowPanesList.get(i));
+            dataVbox.getChildren().add(vBox);
+        }
+        HBox hBox = new HBox();
+        stock= new Label("Stock:");
+        hBox.getChildren().add(stock);
+        hBox.setAlignment(Pos.CENTER_LEFT);
+
+        HBox hBox1 = new HBox();
+        price= new Label("Price:");
+        hBox1.getChildren().add(price);
+        hBox1.setAlignment(Pos.CENTER_LEFT);
+
+        HBox hBox2 = new HBox();
+        quantity= new Label("Qty:");
+        JFXButton btn = new JFXButton("Add to Cart");
+        btn.getStyleClass().add("product-button");
+        hBox2.getChildren().addAll(quantity,btn);
+        hBox2.setAlignment(Pos.CENTER_RIGHT);
+        hBox2.setSpacing(50);
+
+        dataVbox.getChildren().addAll(hBox,hBox1,hBox2);
+
+        descriptionId.setText(product.getDescription());
 
     }
+
+    void onActionEvents(){
+        var ref = new Object() {
+            AtomicInteger finalN = new AtomicInteger();
+        };
+        //int n;
+        for (int i=0; i<buttonsList.size(); i++){
+            for(int j=0 ; j<buttonsList.get(i).size(); j++){
+                int finalI = i;
+                int finalJ = j;
+                buttonsList.get(i).get(j).setOnAction(e->{
+                    int m =0;
+                    buttonsEventList.get(finalI).clear();
+                    buttonsEventList.get(finalI).add(buttonsList.get(finalI).get(finalJ));
+                    setDataToLabels();
+                });
+            }
+        }
+    }
+    void setDataToLabels() {
+        int k=0;
+        for (int u=0;u<buttonsEventList.size(); u++){
+            if(buttonsEventList.get(u).size() == 1){
+                namesList.add(buttonsEventList.get(u).get(0).getText());
+                k=k+1;
+            }
+        }
+
+        if (k == variants.size()) {
+            for (Map<String, String> combinations : product.getCombination()) {
+                int counter = 0;
+                for (int i = 0; i < product.getCombination().size(); i++) {
+                    if (combinations.containsValue(namesList.get(i))) {
+                        counter = counter + 1;
+                    }
+                    if (counter == product.getCombination().size()) {
+                        combinationID = combinations.get("_id");
+                        price.setText("Price:" + combinations.get("price"));
+                        stock.setText("Stock:" + combinations.get("stock"));
+                    }
+                }
+            }
+        }
+
+    }
+
 }

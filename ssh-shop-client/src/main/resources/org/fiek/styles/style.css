@@ -167,6 +167,8 @@
     -fx-background-color: #129084;
     -fx-text-fill: white;
     -fx-background-radius: 5px;
+    -fx-min-width: 114px;
+    -fx-min-height: 35px;
 }
 
 .profile-image {
@@ -1115,3 +1117,23 @@
     -fx-pref-width: 960;
     -fx-pref-height: 70;
 }
+
+.detailViewButtons{
+    -fx-min-width: 88px;
+    -fx-max-width: 88px;
+    -fx-min-height: 17px;
+    -fx-max-height: 30px;
+    -fx-font-size: 13px;
+    -fx-border-color: #b0b0b9;
+}
+
+
+
+
+
+
+
+
+
+
+

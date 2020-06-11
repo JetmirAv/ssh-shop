@@ -138,7 +138,7 @@ public class Product {
         this.variants = variant;
     }
     public ArrayList<Map<String, String>> getCombination() {
-        return combination;
+        return combinations;
     }
 
     public void setCombination(ArrayList<Map<String, String>> combinations) {
