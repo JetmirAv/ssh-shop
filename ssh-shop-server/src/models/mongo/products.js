@@ -12,7 +12,9 @@ const ProductSchema = Schema({
   })],
   combinations:[new Schema({
     stock: {type: Number, required: true},
-    price: {type: Number, required: true}
+    price: {type: Number, required: true},
+    photo: {type: String, required: false}
+
   }, {strict: false})],
   lowestPrice:{ type: Number, required: true}
 },

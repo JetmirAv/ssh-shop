@@ -27,6 +27,7 @@ public class InfoService extends Service<Void> implements View {
         Ajax request = new Ajax();
         JsonObject response = request.patch("users/" + user.getId(), json);
         String jsonUser = response.get("user").toString();
+        System.out.println("useri : " + jsonUser);
         publishAction(new EditUserAction(jsonUser));
 
     }

@@ -7,7 +7,7 @@ const auth = require("../middleware/auth");
 /* GET address listing. */
 router.get("/", controllers.getAddresses);
 /* GET address by id. */
-router.get("/:address_id([0-9]+)", auth, controllers.get);
+router.get("/:address_id", auth, controllers.get);
 /* Create address. */
 router.post("/", auth, controllers.create);
 /* Update address. */

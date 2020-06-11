@@ -5,6 +5,10 @@ module.exports = class Cart extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
+        product_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
         user_id: {
           type: Sequelize.INTEGER,
           allowNull: false,

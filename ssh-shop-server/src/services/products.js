@@ -6,11 +6,9 @@ const Product = require("../models/mongo/products");
 //  * @param {Number} product_id
 //  * @returns Product
  */
-const FindAndCountProducts = async (user) => {
+const GetMyProducts = async (user) => {
   try {
-    let where = {};
-    if (user.role_id != 1) where.user_id = user.id;
-    let result = await Product.findAndCountAll({ where });
+    let result = await Product.find({ user_id: user.id });
     return result;
   } catch (err) {
     throw err;
@@ -53,7 +51,6 @@ const GetAllProducts = async (
     } else {
       sort_order = -1;
     }
-    let searchArr = search.split("-");
     if (isNaN(categoryId) && !search) {
       console.log("here");
       var product = await Product.find().sort({ [sort_column]: sort_order });
@@ -63,6 +60,8 @@ const GetAllProducts = async (
       });
     } else {
       console.log(search);
+      let searchArr = search.split("-");
+
       for (str in searchArr) {
         var product = await Product.find({
           name: { $regex: searchArr[str] },
@@ -162,5 +161,5 @@ module.exports = {
   UpdateProduct,
   DeleteProduct,
   GetAllProducts,
-  FindAndCountProducts,
+  GetMyProducts,
 };

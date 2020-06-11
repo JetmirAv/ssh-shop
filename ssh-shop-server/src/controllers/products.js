@@ -5,11 +5,14 @@ const {
   UpdateProduct,
   GetProduct,
   DeleteProduct,
-  GetAllProducts
+  GetAllProducts,
 } = require("../services/products");
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
 /**
  * @param {Request} req
  * @param {Response} res

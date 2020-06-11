@@ -1,75 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane styleClass="windowSize" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.profile.AddressController">
-   <children>
-      <HBox prefHeight="401.0" prefWidth="928.0" spacing="15.0" styleClass="hboxContainer">
-         <children>
-            <ScrollPane prefHeight="351.0" prefWidth="240.0" styleClass="address-scrollpane">
-               <content>
-                  <VBox prefHeight="368.0" prefWidth="253.0" styleClass="firstVbox">
-                     <children>
-                        <JFXButton fx:id="firstCardId" styleClass="address-switch-button" text="123456789">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </JFXButton>
-                        <JFXButton fx:id="secondCardId" styleClass="address-switch-button" text="123456789">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </JFXButton>
-                        <JFXButton fx:id="thirdCardId" styleClass="address-switch-button" text="123456789">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </JFXButton>
-                        <JFXButton fx:id="fourthCardId" styleClass="address-switch-button" text="123456789">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </JFXButton>
-                     </children>
-                  </VBox>
-               </content>
-            </ScrollPane>
-            <AnchorPane prefHeight="310.0" prefWidth="615.0" styleClass="secondAncharPane">
-               <children>
-                  <GridPane layoutX="15.0" layoutY="15.0" prefHeight="304.0" prefWidth="262.0" styleClass="gridPane">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <JFXTextField fx:id="numberId" promptText="Number" styleClass="streetField">
-                           <GridPane.margin>
-                              <Insets top="15.0" />
-                           </GridPane.margin></JFXTextField>
-                        <JFXTextField fx:id="expDateId" promptText="Exp Date" styleClass="postalField" GridPane.rowIndex="1" />
-                        <JFXTextField fx:id="csvId" layoutX="10.0" layoutY="152.0" promptText="CSV" styleClass="postalField" GridPane.rowIndex="2" />
-                     </children>
-                  </GridPane>
-                  <JFXButton fx:id="saveBttnId" layoutX="-4.0" layoutY="-24.0" styleClass="saveBttnAddressCards" text="Save" />
-                  <JFXButton fx:id="deleteBttnId" styleClass="deleteBttnAddressCards" text="Delete" />
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </AnchorPane>
-         </children></HBox>
-   </children>
+<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="490.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="org.fiek.controllers.profile.IndexCardController">
+    <children>
+        <HBox prefHeight="450.0" prefWidth="959.0" styleClass="hboxKryesor" stylesheets="@../../styles/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <fx:include source="listCards.fxml" />
+                <AnchorPane fx:id="contentContainer" prefHeight="465.0" prefWidth="650.0" styleClass="anchorPane2" stylesheets="@../../styles/style.css">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                    <children>
+                        <fx:include source="cards-content.fxml" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+    </children>
 </AnchorPane>

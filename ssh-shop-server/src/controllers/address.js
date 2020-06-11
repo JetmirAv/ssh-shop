@@ -46,6 +46,7 @@ const create = async (req, res, next) => {
  */
 
 const update = async (req, res, next) => {
+  console.log("para service ne update!");
   try {
     const address = await UpdateAddress(
       req.params.address_id,

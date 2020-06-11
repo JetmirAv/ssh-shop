@@ -1,6 +1,7 @@
 const CustomError = require("../errors/CustomError");
 const { Channel, Product, Sequelize } = require("../models/sequelize");
-const { FindAndCountProducts } = require("../services/products");
+const { GetMyProducts, GetProduct } = require("../services/products");
+const { GetUser } = require("../services/users");
 
 //  * @param {Number} product_id
 //  * @param {Channel} data
@@ -15,7 +16,6 @@ const CreateChannel = async (data) => {
     const product = await Product.findByPk(data.product_id);
     if (!product) throw Error("Not found");
     const channel = new Channel({ ...data, name: product.name });
-    console.log("pas krijimit te objektit:", channel);
     await channel.validate();
     await channel.save();
     return channel;
@@ -67,20 +67,52 @@ const UpdateChannel = async (user_id, product_id, data) => {
 //  * @returns Channel
 const FindAndCountChannels = async (user) => {
   try {
-    let products = await FindAndCountProducts(user);
-    let porductIds = products.rows.map((p) => p.id);
+    let products = await GetMyProducts(user);
 
-    let channels = await Channel.findAndCountAll({
+    let productIds = products.map((p) => p.id);
+    console.log({ productIds });
+
+    let channels = await Channel.findAll({
       where: {
         [Sequelize.Op.or]: [
           { user_id: user.id },
-          { product_id: { [Sequelize.Op.in]: porductIds } },
+          { product_id: { [Sequelize.Op.in]: productIds } },
         ],
       },
       order: [["updated_at", "desc"]],
     });
 
-    return channels;
+    let mongoProducts = [];
+
+    channels.map(async (channel) =>
+      mongoProducts.push(GetProduct(channel.product_id))
+    );
+
+    mongoProducts = await Promise.all(mongoProducts);
+
+    console.log({ mongoProducts });
+
+    let productUsers = [];
+    mongoProducts.map((product) => productUsers.push(GetUser(product.user_id)));
+
+    productUsers = await Promise.all(productUsers);
+    console.log({ productUsers });
+
+    let mongoProductsJson = mongoProducts.map((product, index) => {
+      return { ...product._doc, user: productUsers[index] };
+    });
+
+    let channelsJson = channels.map((channel, index) => {
+      return {
+        ...channel.dataValues,
+        user: channel.user,
+        product: mongoProductsJson[index],
+      };
+    });
+
+    console.log({ channelsJson });
+
+    return channelsJson;
   } catch (err) {
     throw err;
   }

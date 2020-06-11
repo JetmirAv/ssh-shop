@@ -29,6 +29,8 @@ public class LogInService extends Service<Void> implements View {
 //                json.addProperty("email", email);
 //                json.addProperty("password", password);
                 json.addProperty("email",  email.equals("1") ? "jetmir99@hotmail.com" : "agon@hotmail.com");
+               // json.addProperty("password", "password");
+//                json.addProperty("email",  email.equals("1") ? "rijonpireva2@gmail.com" : "granit2@gmail.com");
                 json.addProperty("password", "password");
                 try {
                     Ajax request = new Ajax();

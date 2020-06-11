@@ -2,11 +2,22 @@ package org.fiek.models;
 
 import java.util.ArrayList;
 
+import com.google.gson.annotations.Expose;
+
 public class Category {
     final String tableName = "categories";
 
+<<<<<<< HEAD
     public int id;
+=======
+    @Expose(serialize = false, deserialize = true)
+    public int id;
+    
+    @Expose
+>>>>>>> master
     public String name;
+    
+    @Expose
     public String description;
 
     public ArrayList<Product> products;
@@ -25,7 +36,11 @@ public class Category {
         return tableName;
     }
 
+<<<<<<< HEAD
     public int getID() {
+=======
+    public int getId() {
+>>>>>>> master
         return id;
     }
 

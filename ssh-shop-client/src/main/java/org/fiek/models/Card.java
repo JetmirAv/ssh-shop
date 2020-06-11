@@ -1,19 +1,32 @@
 package org.fiek.models;
 
+import com.google.gson.annotations.Expose;
+
 public class Card {
     final String tableName = "cards";
-
-    public int ID;
+    @Expose(serialize = false, deserialize = true)
+    public int id;
+    @Expose
     public int user_id;
+    @Expose
     public String number;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Expose
     public String exp_month;
+    @Expose
     public String exp_year;
+    @Expose
     public String code;
 
+    @Expose(serialize = false, deserialize = true)
     public User user;
 
-    public Card(int ID, int user_id, String number, String exp_month, String exp_year, String code) {
-        this.ID = ID;
+    public Card(int id, int user_id, String number, String exp_month, String exp_year, String code) {
+        this.id = id;
         this.user_id = user_id;
         this.number = number;
         this.exp_month = exp_month;
@@ -29,8 +42,8 @@ public class Card {
         return tableName;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     public int getUserId() {
@@ -79,5 +92,17 @@ public class Card {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", number='" + number + '\'' +
+                ", exp_month='" + exp_month + '\'' +
+                ", exp_year='" + exp_year + '\'' +
+                ", code='" + code + '\'' +
+                '}';
     }
 }

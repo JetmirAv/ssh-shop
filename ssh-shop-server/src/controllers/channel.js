@@ -4,8 +4,10 @@ const {
   GetExistingChannel,
   FindAndCountChannels,
 } = require("../services/channel");
+const path = require("path");
 
 const { GetMessages, CreateMessage } = require("../services/messages");
+const CallRooms = require("../models/mongo/call-room");
 
 /**
  *
@@ -100,11 +102,48 @@ const createMessage = async (req, res, next) => {
   }
 };
 
+const startCall = async (req, res, next) => {
+  try {
+    console.log("Niec");
+
+    let channel_id = req.params.channel_id;
+    let room = await CallRooms.findOne({ where: { channel_id } });
+
+    if (!room) {
+      console.log("Nie2c");
+      room = new CallRooms({ channel_id });
+      room = await room.save();
+    }
+
+    return res.status(200).json({ room });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const joinRoom = async (req, res, next) => {
+  try {
+    let room_id = req.params.room_id;
+    console.log("Knej");
+    
+    let room = await CallRooms.find({ where: { id: room_id } });
+    if (!room) throw new Error("Not found");
+
+    res.render(path.resolve(__dirname, "../views/index"), {
+      user: req.user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
+  joinRoom,
   findAll,
   update,
   get,
   getMessages,
   createMessage,
+  startCall,
 };

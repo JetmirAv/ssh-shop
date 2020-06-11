@@ -1,5 +1,7 @@
 require("dotenv").config();
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const fs = require("fs");
+const ejs = require("ejs");
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
@@ -26,20 +28,25 @@ const key = fs.readFileSync(path.resolve(__dirname, "../key.pem"));
 const cert = fs.readFileSync(path.resolve(__dirname, "../cert.pem"));
 
 const app = express();
-// const https = require("https").createServer({ key, cert }, app);
+const https = require("https").createServer({ key, cert }, app);
 const httpServer = require("http").createServer(app);
 const io = require("socket.io")(httpServer);
+const io2 = require("socket.io")(https);
 
+app.set("view engine", "ejs");
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static("/views"));
+app.use(express.static("public"));
 
 // setting up routes
 routes(app);
 
 // setting up socket routes
 socketRoutes(io);
+socketRoutes(io2);
 // io.on("connection", (socket) => {
 //   console.log({ socket });
 // });
@@ -56,4 +63,5 @@ const onListening = () => {
   console.info("Server started on: http://" + host + ":" + port);
 };
 
-httpServer.listen(port, host, onListening);
+httpServer.listen(port + 1, host, onListening);
+https.listen(port, host, onListening);

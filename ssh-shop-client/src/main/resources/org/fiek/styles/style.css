@@ -173,7 +173,7 @@
     -fx-fill: white;
     -fx-stroke: none;
 }
-
+/*
 .text-area {
     -fx-background-insets: 0;
     -fx-background-color: transparent, #129084, transparent, #129084;
@@ -188,10 +188,15 @@
 }
 
 .text-area .content {
+      -fx-background-color: text-area-background;
+  }
+
+.text-area .content {
+
     -fx-background-color: text-area-background;
 
 }
-
+*/
 .text-area *.text {
     -fx-text-alignment: center;
 
@@ -243,6 +248,16 @@
 .variant-button {
     -fx-text-fill: #7b8d93;
     -fx-border-color: #7b8d93;
+}
+
+.variant-button:hover {
+    -fx-text-fill: #129f84;
+    -fx-border-color: #129f84;
+}
+
+.variant-button-selected {
+    -fx-text-fill:  #129084;
+    -fx-border-color:  #129084;
 }
 
 .product-detail {
@@ -357,7 +372,7 @@
 }
 
 .saveBttnPassword {
-    -fx-translate-x: 524.0;
+    -fx-translate-x: 730.0;
     -fx-translate-y: 370.0;
     -fx-pref-width: 150px;
     -fx-pref-height: 40px;
@@ -607,13 +622,13 @@
 }
 
 .address-switch-button, .cards-switch-button {
-    -fx-pref-width: 720.0;
+    -fx-pref-width: 50.0;
     -fx-pref-height: 40.0;
     -fx-background-color: #129084;
     -fx-font-family: "Roboto Regular";
-    -fx-font-size: 16px;
+    -fx-font-size: 20px;
     -fx-text-fill: white;
-    -fx-text-alignment: left;
+    -fx-text-alignment: center;
 }
 
 .hboxContainer {
@@ -680,21 +695,79 @@
 .add-circle-button {
     -fx-background-radius: 50;
     -fx-background-color: #129084;
-    -fx-font-size: 16px;
+    -fx-font-size: 14px;
     -fx-focus-traversable: false;
+    -fx-text-fill:white ;
+    -fx-max-width: 32px;
+    -fx-min-width: 32px;
+    -fx-max-height: 32px;
+    -fx-min-height: 32px;
 }
 
 .add-product-fields {
     -fx-border-color: #129084;
     -fx-font-size: 22px;
+    -fx-background-color: transparent;
+    -fx-accent: #129084;
     -jfx-focus-color: #129084;
-    -fx-unfocus-color: white;
+    -jfx-unfocus-color: #ffffff;
+
+}
+.jfxtext-area {
+    -fx-text-fill: #000000;
+}
+
+.add-product-fields-2 {
+    -fx-border-color: #129084;
+    -fx-font-size: 22px;
+    -fx-background-color: transparent;
+    -fx-accent: #129084;
+    -jfx-focus-color: #129084;
+    -jfx-unfocus-color: #ffffff;
+    -fx-max-width: 360px;
+    -fx-min-width: 360px;
+    -fx-max-height: 40px;
+    -fx-min-height: 40px;
+}
+
+.add-product-option-fields {
+    -fx-background-color: transparent;
+    -fx-border-color: #129084;
+    -jfx-focus-color: #129084;
+    -jfx-unfocus-color: white;
+    -fx-font-size: 22px;
+    -fx-accent: #129084;
+    -fx-max-width: 170px;
+    -fx-min-width: 170px;
+    -fx-max-height: 44px;
+    -fx-min-height: 44px;
+}
+
+.variant-name{
+    -fx-background-color: transparent;
+    -fx-border-color: #129084;
+    -fx-font-size: 22px;
+    -jfx-focus-color: #129084;
+    -jfx-unfocus-color: white;
+    -fx-accent: #129084;
+    -fx-max-width: 360px;
+    -fx-min-width: 360px;
+    -fx-max-height: 44px;
+    -fx-min-height: 44px;
+    -fx-translate-x: 100px;
 }
 
 .fx-labels {
     -fx-font-size: 20px;
     -fx-padding: 0;
     -fx-focus-traversable: false;
+}
+
+.flow-pane-properties {
+    -fx-translate-x: 120px;
+    -fx-max-width: 720px;
+    -fx-min-width: 720px;
+
 }
 
 .backward-button {
@@ -732,12 +805,61 @@
     -fx-background-color: #129f84;
 }
 
+.add-product-photo-button {
+    -fx-min-height: 40px;
+    -fx-min-width: 150px;
+    -fx-font-size: 12px;
+    -fx-background-color: #129084;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 0;
+    -fx-background-radius: 0;
+    -fx-focus-traversable: false;
+}
+
+.add-product-photo-button:hover {
+    -fx-background-color: #129f84;
+}
+
+
 .triangle:hover {
     -fx-fill: #b0b0b9;
     -fx-stroke: #b0b0b9;
 }
 
 .add-circle-button:hover {
+    -fx-background-color: #129f84;
+}
+
+.remove-circle-button{
+    -fx-background-radius: 50;
+    -fx-background-color: #ff475c;
+    -fx-font-size: 25px;
+    -fx-padding: 0;
+    -fx-focus-traversable: false;
+    -fx-text-fill:white ;
+    -fx-max-width: 32px;
+    -fx-min-width: 32px;
+    -fx-max-height: 32px;
+    -fx-min-height: 32px;
+    -fx-alignment: center;
+}
+
+.remove-circle-button:hover {
+    -fx-background-color: #ff565c;
+}
+
+.combinationOptions{
+    -fx-min-height: 40px;
+    -fx-min-width: 63px;
+    -fx-font-size: 12px;
+    -fx-background-color: #129084;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 0;
+    -fx-background-radius: 0;
+    -fx-focus-traversable: false;
+}
+
+.combinationOptions:hover {
     -fx-background-color: #129f84;
 }
 
@@ -754,6 +876,25 @@
     -fx-spacing: 50;
 
 }
+.varinatButonsProperties{
+    -fx-background-color: #129084;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-focus-traversable: false;
+    -fx-background-radius: 0;
+    -fx-min-height: 40px;
+}
+.varinatButonsProperties:hover{
+    -fx-background-color: #129f84;
+}
+.removeVarinatProperties{
+    -fx-background-color: #ff475c;
+}
+
+.removeVarinatProperties:hover{
+    -fx-background-color: #ff565c;
+}
+
 
 .search-product {
     -fx-pref-width: 200px;
@@ -861,9 +1002,18 @@
 .horizontalB {
     -fx-prefHeight: 50.0;
     -fx-prefWidth: 250.0;
-    -fx-background-color: #129F84;
+    -fx-background-color: #129084;
     -fx-spacing: 8px;
     -fx-padding: 4px 0 0 4px;
+}
+
+.horizontalC {
+    -fx-prefHeight: 50.0;
+    -fx-prefWidth: 250.0;
+    -fx-background-color: #129084;
+    -fx-spacing: 8px;
+    -fx-font-size: 20px;
+    -fx-padding: 4px 0 0 21px;
 }
 
 .circleHB {

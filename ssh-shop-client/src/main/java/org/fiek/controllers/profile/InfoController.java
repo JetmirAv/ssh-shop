@@ -121,6 +121,15 @@ public class InfoController {
         infoService.setOnSucceeded(e -> {
             root.getChildren().remove(loading);
         });
+
+        infoService.setOnFailed(e -> {
+            System.out.println("setOnFailed");
+            root.getChildren().remove(loading);
+        });
+
+        infoService.setOnCancelled(e -> {
+            root.getChildren().remove(loading);
+        });
     }
 
     @FXML

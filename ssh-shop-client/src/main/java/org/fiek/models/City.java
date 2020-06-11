@@ -1,16 +1,22 @@
 package org.fiek.models;
 
+import com.google.gson.annotations.Expose;
+
 public class City {
     final String tableName = "cities";
+    @Expose(serialize = false, deserialize = true)
+    public int id;
 
-    public int ID;
+    @Expose
     public String name;
+    @Expose
     public int country_id;
 
+    @Expose
     public Country country;
 
-    public City(int ID, String name, int country_id) {
-        this.ID = ID;
+    public City(int id, String name, int country_id) {
+        this.id = id;
         this.name = name;
         this.country_id = country_id;
     }
@@ -23,8 +29,8 @@ public class City {
         return tableName;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -49,5 +55,15 @@ public class City {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", country_id=" + country_id +
+                ", country=" + country +
+                '}';
     }
 }
