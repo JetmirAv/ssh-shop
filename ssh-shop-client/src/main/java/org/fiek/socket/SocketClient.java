@@ -19,6 +19,7 @@ public class SocketClient {
             socket = IO.socket(this.hostname);
 
             chatSocket.onMessage(socket);
+            chatSocket.onIncomingCall(socket);
 
             socket.connect();
 
