@@ -39,6 +39,7 @@ public class Combinations {
     public float getPrice(){
         return this.price;
     }
+
     public void setPrice(Float price){
         this.price = price;
     }
@@ -46,6 +47,7 @@ public class Combinations {
     public int getStock(){
         return this.stock;
     }
+
     public void setStock(int stock){
         this.stock = stock;
     }
@@ -53,6 +55,7 @@ public class Combinations {
     public String getPhoto(){
         return this.photo;
     }
+
     public void setPhoto(String photo){
         this.photo = photo;
     }
@@ -60,7 +63,9 @@ public class Combinations {
     @Override
     public String toString() {
         return "Combinations{" +
-                "attributes=" + attributes +
+                "price=" + price +
+                ", stock=" + stock +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 }

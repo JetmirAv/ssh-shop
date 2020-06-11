@@ -20,63 +20,19 @@ import java.util.stream.Collectors;
 
 public class GetProductDetailService extends Service<Void> implements View {
 
-    // KOMBINIMET
-    public static Map<String, Object> attributes = new HashMap<String, Object>();;
-    // VARIANTET
-    public static Variant[] variants2 ;
-    // EMRI I PRODUKTIT
-    public static String productName;
+    public static Product productStatic;
 
     private void getProductDetails() throws Exception {
-        Ajax request = new Ajax();
-        JsonObject response = request.getAsJson("products/5edfbfab9876ea4bd8af6efb");
-        JsonElement variantElement = response.getAsJsonObject("user").getAsJsonArray("variants");
-        String str = variantElement.toString();
-
-        final Variant[] variants = new GsonBuilder().create().fromJson(variantElement, Variant[].class);
-        for (Variant vObj : variants) {
-            System.out.println("Variant objekti:" + vObj);
-        }
-
-        variants2 = variants;
-        // Ky i merr kejt kombinimet
-        JsonArray entryKryesor = response.getAsJsonObject("user").getAsJsonArray("combinations");
-
-        // Ky e merr vetem objektin e par te kombinimev
-        JsonObject entry1 = response.getAsJsonObject("user").getAsJsonArray("combinations").get(1).getAsJsonObject();
-
-        productName = response.getAsJsonObject("user").get("name").toString();
-
-        Set<Map.Entry<String, JsonElement>> entrySet = entry1.entrySet();
-
-        for (Map.Entry<String,JsonElement> entry2 : entrySet){
-            attributes.put(entry2.getKey(), entry1.get(entry2.getKey()));
+        if (productStatic == null) {
+            Ajax request = new Ajax();
+            JsonObject response = request.getAsJson("products/5ee10676e0861910187ac3ee");
+            String jsonAddress = response.get("user").toString();
+            final Product actionAddress = new GsonBuilder().create().fromJson(jsonAddress, Product.class);
+            productStatic = actionAddress;
 
         }
 
-
-        Set<String> keys = attributes.keySet();
-
-        // Iterate through Map
-        for(String key : keys ) {
-            System.out.println(key + ": " + attributes.get(key));
-        }
-        // Iterate through map
-        for (Map.Entry<String, Object> iterate : attributes.entrySet()) {
-            System.out.println("1 ::" + iterate.getKey() + "/" + iterate.getValue());
-        }
-
-        // Get Specific Value
-        Object value = attributes.get("photo");
-        System.out.println("Value : " + value.toString());
-
-        Combinations combinations = new Combinations(attributes);
-        System.out.println(combinations);
-
-
-        }
-
-
+    }
 
     @Override
     protected Task<Void> createTask() {

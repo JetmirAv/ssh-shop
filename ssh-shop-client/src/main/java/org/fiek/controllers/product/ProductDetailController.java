@@ -17,11 +17,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.fiek.App;
 import org.fiek.models.Address;
+import org.fiek.models.Product;
 import org.fiek.models.User;
 import org.fiek.models.Variant;
 import org.fiek.services.product.GetProductDetailService;
 import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
+import org.reactfx.value.Var;
 
 public class ProductDetailController {
 
@@ -91,20 +93,21 @@ public class ProductDetailController {
         service.start();
 
         service.setOnSucceeded(e->{
+            System.out.println("mir o!");
+            Product product = GetProductDetailService.productStatic;
+            System.out.println("Produkti:" + product);
 
-            // Combinations for finding price and quantity
-            Map<String, Object> details = GetProductDetailService.attributes;
-            System.out.println("Details size:" + details.size());
+            ArrayList<Variant> variants = product.getVariant();
+            System.out.println("Size:" + variants.size());
+            for(Variant variant : variants)  {
+                System.out.println("Variant name : " + variant.getName());
 
-            // Variantet
-            Variant[] variants = GetProductDetailService.variants2;
-            System.out.println("Length of variant:" + variants.length);
+            }
 
-            // Emri i produktit
-            String productName = GetProductDetailService.productName.replaceAll("\"", "");;
-            titleId.setText(productName);
 
 
         });
+
+
     }
 }
