@@ -1,5 +1,7 @@
 const { UserSocket } = require("../models/mongo");
+const { Channel } = require("../models/sequelize");
 const { CreateMessage } = require("../services/messages");
+const { GetProduct } = require("../services/products");
 
 exports.onMessage = async (data, io) => {
   let message = await CreateMessage(JSON.parse(data));
@@ -16,20 +18,32 @@ exports.onMessage = async (data, io) => {
   } catch (err) {
     console.log({ err });
   }
+};
 
-  // let ids = await helpers.findChannelParticipants(message.channel_id);
-  // console.log({ ids });
-  // let sockets = await UserSocket.findAll({
-  //   where: { user_id: { [Sequelize.Op.in]: ids } },
-  // });
-  // console.log({ sockets });
-  // sockets.map((user) => {
-  //   io.to(user.socket_id).emit("message", message);
-  // });
-  // let product =
-  // let id = await UserSocket.findAll({where: {userId: message.}})
-  // socket.emit("new_message", message);
-  // io.sockets.socket().emit("new_message", message);
+exports.onCallRequest = async (data, io) => {
+  let { author_id, channel_id, room_id } = JSON.parse(data);
+
+  console.log({ testiknej: data });
+
+  let channel = await Channel.findByPk(channel_id);
+  if (!channel) throw new Error("Not found");
+  if (author_id === channel.user_id) {
+    let product = await GetProduct(channel.product_id);
+    if (!product) throw new Error("Not found");
+    author_id = product.user_id;
+  }
+
+  console.log({ author_id });
+
+  const sockets = await UserSocket.find({
+    $or: [{ user_id: author_id }],
+  });
+
+  console.log({ sockets });
+
+  sockets.map((soc) =>
+    io.to(soc.socket_id).emit("incoming-call", JSON.stringify({ room_id }))
+  );
 };
 
 exports.onMakeOffer = (data, socket) => {

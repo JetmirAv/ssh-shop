@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
@@ -26,6 +27,7 @@ import org.fiek.App;
 import org.fiek.models.Channel;
 import org.fiek.models.Message;
 import org.fiek.services.chat.GetChannelMessagesService;
+import org.fiek.services.chat.RequestRoomService;
 import org.fiek.socket.ChatSocket;
 import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
@@ -77,6 +79,15 @@ public class ChatController implements View {
             messageBox.setText("");
         }
 
+    }
+
+
+    @FXML
+    void callHandler(MouseEvent event) {
+        RequestRoomService requestRoomService = new RequestRoomService(channel.getId(), authStore.getUser().getId());
+        requestRoomService.start();
+
+//        System.out.println("test");
     }
 
     Loading loading;
@@ -168,5 +179,6 @@ public class ChatController implements View {
         hBox.getChildren().add(label);
         return hBox;
     }
+
 
 }

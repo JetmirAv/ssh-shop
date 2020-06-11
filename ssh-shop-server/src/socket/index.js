@@ -30,6 +30,8 @@ module.exports = (io) => {
 
     socket.on("message", (data) => chat.onMessage(data, io));
 
+    socket.on("call-request", (data) => chat.onCallRequest(data, io));
+
     socket.on("make-offer", (data) => chat.onMakeOffer(data, socket, io));
 
     socket.on("make-answer", (data) => chat.onMakeAnswer(data, socket));

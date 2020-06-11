@@ -74,25 +74,27 @@ function error(err) {
 socket.on("offer-made", function (data) {
   console.log({ "offer-made": data });
 
-  offer = data.offer;
-  pc.setRemoteDescription(
-    new sessionDescription(data.offer),
-    function () {
-      pc.createAnswer(function (answer) {
-        pc.setLocalDescription(
-          new sessionDescription(answer),
-          function () {
-            socket.emit("make-answer", {
-              answer: answer,
-              to: data.socket,
-            });
-          },
-          error
-        );
-      }, error);
-    },
-    error
-  );
+  if (data.socket != socket.id) {
+    offer = data.offer;
+    pc.setRemoteDescription(
+      new sessionDescription(data.offer),
+      function () {
+        pc.createAnswer(function (answer) {
+          pc.setLocalDescription(
+            new sessionDescription(answer),
+            function () {
+              socket.emit("make-answer", {
+                answer: answer,
+                to: data.socket,
+              });
+            },
+            error
+          );
+        }, error);
+      },
+      error
+    );
+  }
 });
 
 var answersFrom = {};
@@ -100,16 +102,18 @@ var answersFrom = {};
 socket.on("answer-made", function (data) {
   console.log({ "answer-made": "answer-made" });
 
-  pc.setRemoteDescription(
-    new sessionDescription(data.answer),
-    function () {
-      if (!answersFrom[data.socket]) {
-        createOffer();
-        answersFrom[data.socket] = true;
-      }
-    },
-    error
-  );
+  if (data.socket !== socket.id) {
+    pc.setRemoteDescription(
+      new sessionDescription(data.answer),
+      function () {
+        if (!answersFrom[data.socket]) {
+          createOffer();
+          answersFrom[data.socket] = true;
+        }
+      },
+      error
+    );
+  }
 });
 
 pc.onaddstream = function (obj) {

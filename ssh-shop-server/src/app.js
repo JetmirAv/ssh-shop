@@ -30,7 +30,8 @@ const cert = fs.readFileSync(path.resolve(__dirname, "../cert.pem"));
 const app = express();
 const https = require("https").createServer({ key, cert }, app);
 const httpServer = require("http").createServer(app);
-const io = require("socket.io")(https);
+const io = require("socket.io")(httpServer);
+const io2 = require("socket.io")(https);
 
 app.set("view engine", "ejs");
 app.use(cors());
@@ -45,6 +46,7 @@ routes(app);
 
 // setting up socket routes
 socketRoutes(io);
+socketRoutes(io2);
 // io.on("connection", (socket) => {
 //   console.log({ socket });
 // });
@@ -61,5 +63,5 @@ const onListening = () => {
   console.info("Server started on: http://" + host + ":" + port);
 };
 
-// httpServer.listen(port, host, onListening);
+httpServer.listen(port + 1, host, onListening);
 https.listen(port, host, onListening);

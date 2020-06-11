@@ -30,7 +30,8 @@ public class Ajax {
     final BaseStore baseStore;
     final SSLConnectionSocketFactory sslsf;
     final PoolingHttpClientConnectionManager cm;
-    private final String host = "https://localhost:5001/";
+    final CloseableHttpClient httpClient;
+    private final String host = "https://localhost:5000/";
 
 
     public Ajax() {
@@ -47,16 +48,14 @@ public class Ajax {
                 .register("https", sslsf)
                 .build();
 
-
         cm = new PoolingHttpClientConnectionManager(registry);
+
+        httpClient = HttpClients.custom().setSSLSocketFactory(sslsf).setConnectionManager(cm).build();
     }
 
 
     public JsonObject post(String route, String data) throws Exception {
         String result = "";
-
-        CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(sslsf).setConnectionManager(cm).build();
-
 
         try {
             HttpPost request = new HttpPost(this.host + route);
@@ -87,7 +86,6 @@ public class Ajax {
 
     public JsonObject patch(String route, String data) throws Exception {
         String result = "";
-        CloseableHttpClient httpClient = HttpClients.createDefault();
 
         try {
             HttpPatch request = new HttpPatch(this.host + route);
@@ -116,7 +114,6 @@ public class Ajax {
 
     public JsonObject get(String route) throws Exception {
         String result = "";
-        CloseableHttpClient httpClient = HttpClients.createDefault();
         try {
             HttpGet request = new HttpGet(this.host + route);
             addHeaders(request);
@@ -140,7 +137,6 @@ public class Ajax {
 
     public JsonObject getAsJson(String route) throws Exception {
         String result = "";
-        CloseableHttpClient httpClient = HttpClients.createDefault();
         try {
             HttpGet request = new HttpGet(this.host + route);
             addHeaders(request);
