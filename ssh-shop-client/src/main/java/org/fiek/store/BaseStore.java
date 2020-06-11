@@ -154,7 +154,7 @@ public class BaseStore extends Store {
     }
 
     private void setActiveCartAction(SetActiveCartAction action) {
-        cartStore.setSelectedCart(action.getCart());
+        cartStore.setSelectedCart(action.getCart(),action.getUser());
         cartStoreEventSource.push(cartStore);
     }
 

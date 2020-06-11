@@ -66,9 +66,17 @@ public class CartStore extends Store {
     public ArrayList<Cart> carts;
     Integer count = 0;
     Cart selectedCart;
-    public String isDelete;
+    ArrayList<Float> price;
+    private Double totaliCart;
 
+    public Double getTotaliCart() {
+        return totaliCart;
+    }
 
+    public void setTotaliCart(Double totaliCart) {
+        System.out.println("Totali cart set:" + totaliCart);
+        this.totaliCart = totaliCart;
+    }
 
     public ArrayList<Cart> getCarts() {
         return carts;
@@ -78,12 +86,13 @@ public class CartStore extends Store {
         return selectedCart;
     }
 
-    public void setSelectedCart(Cart selectedCart) {
+    public void setSelectedCart(Cart selectedCart, User user) {
         System.out.println("BRenda selected");
         System.out.println("Selected:" + selectedCart);
         if(this.selectedCart == null || this.selectedCart.getId() != selectedCart.getId()){
             if(selectedCart.getId() > 0){
-                DeleteCartService cartService = new DeleteCartService(selectedCart.getUserId(),selectedCart);
+                System.out.println("Brenda delete!");
+                DeleteCartService cartService = new DeleteCartService(user.getId(),selectedCart);
                 cartService.start();
             }
             System.out.println("Jasht");
@@ -110,15 +119,33 @@ public class CartStore extends Store {
 
 
     public void addCartAction(String cartList) {
+        System.out.println("String cartList:" + cartList);
         final Cart[] carts = new GsonBuilder().create().fromJson(cartList, Cart[].class);
         this.addCarts(Arrays.asList(carts));
+
+        System.out.println("test-carts" + carts);
+
+        ArrayList<Float> priceArray = new ArrayList<>();
+
+        int length = carts.length;
+        double totali = 0.0;
+        for (int i = 0; i < length ; i++) {
+
+            double price1 = carts[i].getCombination().getPrice();
+            totali = totali + price1;
+        }
+        totaliCart = totali;
+        System.out.println("Totali:" + totali);
+
+
     }
 
     public void isDeleteCart (int deleteCart) {
         ArrayList<Cart> carts1 = carts;
-
         for (int i = 0; i < carts1.size() ; i++) {
             if (deleteCart==carts1.get(i).getId()){
+                totaliCart = getTotaliCart() - carts1.get(i).getCombination().getPrice();
+                setTotaliCart(totaliCart);
                 carts1.remove(i);
                 break;
             }

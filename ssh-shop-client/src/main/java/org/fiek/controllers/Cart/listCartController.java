@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import java.net.URL;
 
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 import eu.lestard.fluxfx.View;
@@ -38,8 +39,7 @@ import org.fiek.store.cart.CartStore;
 
 import org.fiek.utils.Loading;
 
-
-
+import static org.fiek.controllers.Cart.CartController.totalLb1;
 
 
 public class listCartController implements View {
@@ -120,6 +120,10 @@ public class listCartController implements View {
             });
 
             service.setOnSucceeded(e -> {
+                DecimalFormat f = new DecimalFormat("##.00");
+                Double totali = cartStore.getTotaliCart();
+                System.out.println("TotaliTest: " + totali);
+                totalLb1.setText("Total: " + f.format(totali) + "$");
                 cartList.getChildren().remove(loading);
             });
         }

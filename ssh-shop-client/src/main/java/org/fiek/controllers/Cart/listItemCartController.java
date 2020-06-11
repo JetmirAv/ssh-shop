@@ -6,6 +6,8 @@ package org.fiek.controllers.Cart;
 
 import java.net.URL;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -14,7 +16,6 @@ import eu.lestard.fluxfx.View;
 
 import javafx.fxml.FXML;
 
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 
 import javafx.scene.image.ImageView;
@@ -23,30 +24,21 @@ import javafx.scene.input.MouseEvent;
 
 import javafx.scene.layout.HBox;
 
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-
 import org.fiek.models.Cart;
 
 import org.fiek.App;
-
-import org.fiek.services.Cart.DeleteCartService;
 
 import org.fiek.store.*;
 
 import org.fiek.models.*;
 
-import org.fiek.store.auth.*;
-
 import org.fiek.store.auth.AuthStore;
 
 import org.fiek.store.cart.CartStore;
 
-import org.fiek.store.cart.DeleteCartAction;
-
 import org.fiek.store.cart.SetActiveCartAction;
 
-import org.fiek.store.chat.SetActiveChannelAction;
+import static org.fiek.controllers.Cart.CartController.totalLb1;
 
 
 public class listItemCartController implements View {
@@ -86,7 +78,6 @@ public class listItemCartController implements View {
     @FXML
     private ImageView imageSelector;
 
-
     public listItemCartController(Cart cart) {
         this.cart = cart;
     }
@@ -106,17 +97,24 @@ public class listItemCartController implements View {
 
 
         if (cart != null) {
-            prodLb.setText("Produkti:" + cart.getVariantId());
+            System.out.println("Cart objekti:" + cart);
             quantityLb.setText("Quantity:" + cart.getQuantity());
-
-
+            prodLb.setText(cart.getName());
+            priceLb.setText("Price: " + cart.getCombination().getPrice() + " $");
+            DecimalFormat f = new DecimalFormat("##.00");
+            Double totali = cartStore.getTotaliCart();
+            System.out.println("Totali22:" + totali);
+            totalLb1.setText("Total: " + f.format(totali) + "$");
         }
-
     }
 
     @FXML
     public void clickHandler(MouseEvent action) {
-        publishAction(new SetActiveCartAction(cart));
+        publishAction(new SetActiveCartAction(cart,user));
+
+
 
     }
+
+
 }

@@ -96,6 +96,8 @@ public class CartController implements View {
     @FXML
     private VBox vboxId;
 
+
+    public static Label totalLb1;
     FXMLLoader fxmlLoader;
     AuthStore authStore = baseStore.getAuthStore();
     CartStore cartStore = baseStore.getCartStore();
@@ -107,7 +109,7 @@ public class CartController implements View {
     void initialize() {
         assert totalLb != null : "fx:id=\"totalLb\" was not injected: check your FXML file 'cart.fxml'.";
         assert buybutton != null : "fx:id=\"buybutton\" was not injected: check your FXML file 'cart.fxml'.";
-        System.out.println("shpendi!");
+        totalLb1 = totalLb;
         cartStore = baseStore.getCartStore();
         baseStore.getCartStoreEventStream().subscribe(this::displayChat);
 
@@ -122,5 +124,7 @@ public class CartController implements View {
             e.printStackTrace();
         }
     }
+
+
 
 }

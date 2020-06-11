@@ -1,6 +1,8 @@
 package org.fiek.services.Cart;
 
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import eu.lestard.fluxfx.View;
@@ -22,22 +24,21 @@ import org.fiek.utils.Ajax;
 import java.util.ArrayList;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CartService extends Service<Void> implements View {
 
     private int userId;
-
     public CartService(int userId) {
         this.userId = userId;
     }
-
 
     private void getAllCarts() throws Exception {
         Ajax request = new Ajax();
         System.out.println("Get user id : " + userId);
         JsonObject response = request.get("/users/" + userId + "/cart");
-        String jsonCart = response.get("cart").toString();
-        System.out.println("Cart obj:" + jsonCart) ;
+        String jsonCart = response.get("carts").toString();
         publishAction(new AddCartsAction(jsonCart));
 
     }
