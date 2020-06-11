@@ -97,7 +97,6 @@ public class AddProductController1 {
     Product product = new Product();
     Loading loading = new Loading();
 
-
     @FXML
     // This method is called by the FXMLLoader when initialization is complete
     void initialize() throws IOException {
@@ -225,7 +224,7 @@ public class AddProductController1 {
     }
 
     void addDataToObject() {
-        ArrayList<Map<String, String>> combinations = new ArrayList<Map<String, String>>();  
+        ArrayList<Map<String, String>> combinations = new ArrayList<Map<String, String>>();
 
         for (int k = 0; k < listOfCombinations.size(); k++) {
             combinationsList.add(new ArrayList<String>());
@@ -235,35 +234,29 @@ public class AddProductController1 {
 
         for (int k = 0; k < listOfCombinations.size(); k++) {
             for (int j = 0; j < listOfCombinations.get(k).size(); j++) {
-            combinations.get(k).put(variantNames.get(j),listOfCombinations.get(k).get(j));
-            
-        }
+                combinations.get(k).put(variantNames.get(j), listOfCombinations.get(k).get(j));
+
+            }
             combinations.get(k).put("stock", quantityTextFields.get(k).getText());
             combinations.get(k).put("price", priceTextFields.get(k).getText());
             combinations.get(k).put("photo", photoPathList.get(k));
 
         }
         float discount_pt = 0;
-         product.setName(productName);
-         product.setDescription(productDesc);
-         product.setCategoryId(AddProductController.categoryId);
-         product.setUserId(user.getId());
+        product.setName(productName);
+        product.setDescription(productDesc);
+        product.setCategoryId(AddProductController.categoryId);
+        product.setUserId(user.getId());
 
-        for (int i= 0; i<variantNames.size(); i++){
+        for (int i = 0; i < variantNames.size(); i++) {
             Variant variants = new Variant();
             variants.setData(variantNames.get(i), oprionsList.get(i));
             System.out.println(variants);
             product.variants.add(variants);
         }
 
-
         product.setDiscount_pt(discount_pt);
         product.setCombination(combinations);
- 
-
     }
 
-
-
 }
-

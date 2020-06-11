@@ -5,10 +5,8 @@ import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
 
 public class Variant {
-
     @Expose(serialize = false, deserialize = true)
-    public  String _id;
-    
+    public String _id;
     @Expose
     public String name;
     @Expose

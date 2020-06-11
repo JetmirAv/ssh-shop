@@ -169,6 +169,7 @@ public class AuthStore extends Store {
 
 
     public void addAddressAction(String addressList) {
+        System.out.println("Adrsss LIST:" + addressList);
         final Address[] addresses = new GsonBuilder().create().fromJson(addressList, Address[].class);
         this.addAddresses(Arrays.asList(addresses));
     }
