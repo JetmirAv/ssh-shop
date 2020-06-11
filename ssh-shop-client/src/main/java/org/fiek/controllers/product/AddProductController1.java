@@ -253,7 +253,7 @@ public class AddProductController1 {
             Variant variants = new Variant();
             variants.setData(variantNames.get(i), oprionsList.get(i));
             System.out.println(variants);
-            product.variant.add(variants);
+            product.variants.add(variants);
         }
 
 

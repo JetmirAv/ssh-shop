@@ -7,25 +7,30 @@ import java.util.Map;
 import com.google.gson.annotations.Expose;
 
 public class Product {
-    
+
     @Expose(serialize = false, deserialize = true)
     final String tableName = "products";
 
     @Expose(serialize = false, deserialize = true)
-    public String id;
+    public String _id;
 
     @Expose
+    public ArrayList<Variant> variants;
+
+    //    @Expose(serialize = false, deserialize = true)
+//    ArrayList<Combinations> combination;
+    @Expose
     public int user_id;
-    
+
     @Expose
     public String name;
-    
+
     @Expose
     public String description;
-    
+
     @Expose
     public int category_id;
-    
+
     @Expose
     public float discount_pt;
 
@@ -35,23 +40,23 @@ public class Product {
     @Expose
     public Category category;
 
-    @Expose
-    public ArrayList<Variant> variant;
 
     @Expose
     private ArrayList<Map<String, String>> combinations;
 
 
-    public Product(String id, int user_id, String name, String description, int category_id, float discount_pt, ArrayList<Variant> variant, ArrayList<Map<String, String>> combinations) {
-        this.id = id;
+    public Product(String id, int user_id, String name, String description, int category_id, float discount_pt,
+                   ArrayList<Variant> variants, ArrayList<Map<String, String>> combinations) {
+        this._id = id;
         this.user_id = user_id;
         this.name = name;
         this.description = description;
         this.category_id = category_id;
         this.discount_pt = discount_pt;
-        this.variant = new ArrayList<Variant>();
-        this.combinations = new ArrayList<Map<String, String>>();
+        this.variants = new ArrayList<Variant>();
+        this.combinations = new ArrayList<Map<String, String>>();;
     }
+
 
     public Product() {
         this("", -1, "", "", -1, -1, null, null);
@@ -62,7 +67,7 @@ public class Product {
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public int getUserId() {
@@ -122,11 +127,11 @@ public class Product {
     }
 
     public ArrayList<Variant> getVariant() {
-        return variant;
+        return variants;
     }
 
     public void setVariant(ArrayList<Variant> variant) {
-        this.variant = variant;
+        this.variants = variant;
     }
     public ArrayList<Map<String, String>> getCombination() {
         return combinations;
@@ -136,5 +141,19 @@ public class Product {
         this.combinations = combinations;
     }
 
-
+    @Override
+    public String toString() {
+        return "Product{" +
+                "_id='" + _id + '\'' +
+                ", variants=" + variants +
+                ", combinations=" + combinations +
+                ", user_id=" + user_id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", category_id=" + category_id +
+                ", discount_pt=" + discount_pt +
+                ", user=" + user +
+                ", category=" + category +
+                '}';
+    }
 }

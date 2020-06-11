@@ -30,7 +30,7 @@
                                           <Label styleClass="fx-labels" text="Title" />
                                           <JFXTextField fx:id="productNameId" styleClass="add-product-fields" unFocusColor="WHITE" />
                                           <Label styleClass="fx-labels" text="Description" />
-                                          <JFXTextArea fx:id="productDescription" prefHeight="160.0" prefWidth="360.0" styleClass="add-product-fields" unFocusColor="#fcfcfc">
+                                          <JFXTextArea fx:id="productDescription" focusColor="#129084" prefHeight="160.0" prefWidth="360.0" styleClass="add-product-fields" unFocusColor="#fcfcfc">
                                              <VBox.margin>
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
