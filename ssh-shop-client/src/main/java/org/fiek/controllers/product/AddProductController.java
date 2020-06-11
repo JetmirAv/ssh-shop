@@ -68,6 +68,11 @@ public class AddProductController {
     protected static Pane exportPane;
     protected static AnchorPane exportAnchorPane;
     public HashMap<String,String> hashMap = new HashMap<>();
+    ArrayList<Category> categoryList;
+    public static int categoryId;
+    public static String selectedCategory;
+    public static ArrayList<ArrayList<String>> variantOptions =new ArrayList<ArrayList<String>>();
+
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -88,7 +93,7 @@ public class AddProductController {
     }
 
     void addToComboBox(CategoryService categoryService){
-        ArrayList<Category> categoryList = categoryService.categories;
+        categoryList = categoryService.categories;
         for (int i = 0; i < categoryList.size(); i++) {
             category_id.getItems().add(categoryList.get(i).getName());
         }
@@ -206,10 +211,22 @@ public class AddProductController {
         for (int i=0; i<listOfCombinations.size(); i++){
             listToExport.add(listOfCombinations.get(i));
         }
-
+        variantNamesToExport.clear();
         for (int k=0; k<variantNameList.size();k++){
             variantNamesToExport.add(variantNameList.get(k).getText());
         }
+        variantOptions.clear();
+        for(int n=0; n<lists.size(); n++){
+            variantOptions.add(new ArrayList<String>());
+        }
+
+        for (int k=0; k<lists.size();k++){
+            for (int p=0; p<lists.get(k).size();p++){
+            variantOptions.get(k).add(lists.get(k).get(p).getText());
+            }
+        }
+        //lists.clear();
+
 
         listOfCombinations.clear();
         exportPane = mainPaneAddProduct1;
@@ -217,6 +234,13 @@ public class AddProductController {
         productName = productNameId.getText();
         productDesc = productDescription.getText();
         addProduct1.getChildren().remove(mainPaneAddProduct1);
+        selectedCategory = category_id.getSelectionModel().getSelectedItem().toString();
+        
+        for (int i = 0; i < categoryList.size(); i++) {
+            if (categoryList.get(i).getName() == selectedCategory){
+                categoryId = categoryList.get(i).getId();
+            }
+        }
 
         AnchorPane anchorPane1;
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("views/product/add-product-2.fxml"));
