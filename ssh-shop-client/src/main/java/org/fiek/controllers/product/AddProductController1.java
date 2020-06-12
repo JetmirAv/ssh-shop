@@ -150,7 +150,7 @@ public class AddProductController1 {
 
         }
     }
-
+    
     void buttonEvents() {
         for (int i = 0; i < buttonsList.size(); i++) {
             int finalI = i;
@@ -187,6 +187,9 @@ public class AddProductController1 {
                     }
 
                 });
+                if (photoPathList.size() >= finalI ){
+                    photoPathList.add("org/fiek/images/ImagePlaceHolder.png");
+                }
                 optionElements.setText(options.toString().replaceFirst("-", "Option:"));
             });
         }

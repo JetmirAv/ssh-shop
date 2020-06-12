@@ -18,7 +18,7 @@
 
             <children>
 
-                <JFXButton fx:id="createId" prefHeight="42.0" prefWidth="114.0" styleClass="varinatButonsProperties" stylesheets="@../../styles/style.css" text="Create Product" translateX="770.0" translateY="5.0" />
+                <JFXButton fx:id="createId" prefHeight="42.0" prefWidth="130.0" styleClass="varinatButonsProperties" stylesheets="@../../styles/style.css" text="Create Product" translateX="750.0" translateY="5.0" />
 
             </children>
 

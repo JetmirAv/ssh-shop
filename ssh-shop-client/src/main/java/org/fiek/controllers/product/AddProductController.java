@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import com.jfoenix.controls.JFXTextField;
+import org.fiek.controllers.layout.LayoutController;
 import org.fiek.models.Category;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -248,6 +249,15 @@ public class AddProductController {
         anchorPane1 = fxmlLoader.load();
         addProduct1.getChildren().add(anchorPane1);
     }
+    @FXML
+    void cancelButtonAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane1;
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("views/product/my-product.fxml"));
+        anchorPane1 = fxmlLoader.load();
+        LayoutController.exportMain.setContent(null);
+        LayoutController.exportMain.setContent(anchorPane1);
+
+    }
 
         int combinationIndex(ArrayList<ArrayList<JFXTextField>> arrayList, int i){
         int k=1;
@@ -288,5 +298,7 @@ public class AddProductController {
                 return 0;
             }
     }
+
+
 
 }
