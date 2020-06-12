@@ -23,6 +23,20 @@ const create = async (req, res, next) => {
   }
 };
 
+const getProducts = async (req, res, next) => {
+  try {
+    let user_id = req.query.user_id;
+    let category_id = req.query.category_id;
+    let sort_string = req.query.sort_string;
+    let search = req.query.search;
+    return res.status(200).json({
+      products: await GetAllProducts(sort_string, category_id, search, user_id),
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 /**
  *
  * @param {Request} req
@@ -37,19 +51,6 @@ const update = async (req, res, next) => {
       req.body
     );
     return res.status(200).json({ product });
-  } catch (err) {
-    next(err);
-  }
-};
-
-const getProducts = async (req, res, next) => {
-  try {
-    let category_id = req.query.category_id;
-    let sort_string = req.query.sort_string;
-    let search = req.query.search;
-    return res.status(200).json({
-      products: await GetAllProducts(sort_string, category_id, search),
-    });
   } catch (err) {
     next(err);
   }
