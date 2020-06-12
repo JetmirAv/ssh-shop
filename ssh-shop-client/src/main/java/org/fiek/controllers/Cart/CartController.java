@@ -93,16 +93,11 @@ public class CartController implements View {
     @FXML // fx:id="totalLb"
     private Label totalLb; // Value injected by FXMLLoader
 
-    @FXML
-    private VBox vboxId;
 
 
     public static Label totalLb1;
-    FXMLLoader fxmlLoader;
     AuthStore authStore = baseStore.getAuthStore();
     CartStore cartStore = baseStore.getCartStore();
-    User user = authStore.getUser();
-    Loading loading = new Loading();
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
@@ -111,19 +106,10 @@ public class CartController implements View {
         assert buybutton != null : "fx:id=\"buybutton\" was not injected: check your FXML file 'cart.fxml'.";
         totalLb1 = totalLb;
         cartStore = baseStore.getCartStore();
-        baseStore.getCartStoreEventStream().subscribe(this::displayChat);
 
 
     }
 
-
-    private void displayChat(CartStore cartStore) {
-        try {
-            vboxId.getChildren().add(App.loadFXML("views/cart/list-cart"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
 

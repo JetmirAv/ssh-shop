@@ -122,7 +122,6 @@ public class listCartController implements View {
             service.setOnSucceeded(e -> {
                 DecimalFormat f = new DecimalFormat("##.00");
                 Double totali = cartStore.getTotaliCart();
-                System.out.println("TotaliTest: " + totali);
                 totalLb1.setText("Total: " + f.format(totali) + "$");
                 cartList.getChildren().remove(loading);
             });

@@ -3,6 +3,7 @@ package org.fiek.models;
 import com.google.gson.annotations.Expose;
 
 public class Cart {
+    @Expose(serialize = true, deserialize = true)
     final String tableName = "carts";
 
     @Expose(serialize = false, deserialize = true)
@@ -28,10 +29,10 @@ public class Cart {
     @Expose(serialize = false, deserialize = true)
     public Combinations combination;
 
-    @Expose(serialize = false, deserialize = true)
+    @Expose(serialize = true, deserialize = true)
     String  product_id;
 
-    @Expose(serialize = false, deserialize = true)
+    @Expose(serialize = true, deserialize = true)
     String  variant_id;
 
     public String getProductId() {

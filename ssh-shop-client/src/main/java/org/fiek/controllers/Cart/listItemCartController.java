@@ -97,13 +97,11 @@ public class listItemCartController implements View {
 
 
         if (cart != null) {
-            System.out.println("Cart objekti:" + cart);
             quantityLb.setText("Quantity:" + cart.getQuantity());
             prodLb.setText(cart.getName());
             priceLb.setText("Price: " + cart.getCombination().getPrice() + " $");
             DecimalFormat f = new DecimalFormat("##.00");
             Double totali = cartStore.getTotaliCart();
-            System.out.println("Totali22:" + totali);
             totalLb1.setText("Total: " + f.format(totali) + "$");
         }
     }
