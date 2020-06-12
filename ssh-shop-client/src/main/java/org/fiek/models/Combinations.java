@@ -30,32 +30,6 @@ public class Combinations {
         return combination;
     }
 
-    public void setCombinations(ArrayList<Map<String, String>> combination) {
-        this.combination = combination;
-    }
-
-    public float getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public int getStock() {
-        return this.stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public String getPhoto() {
-        return this.photo;
-    }
-
-    public void setPhoto(String photo){
-        this.photo = photo;
 
     public void setCombinations(ArrayList<Map<String, String>> combinations) {
         this.combination = combinations;

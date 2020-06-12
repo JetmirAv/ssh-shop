@@ -30,7 +30,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        SocketClient socketClient = new SocketClient("http://192.168.0.8:5001/");
+        SocketClient socketClient = new SocketClient("http://0.0.0.0:3001/");
         context.bindInstance(SocketClient.class, socketClient);
 
         BaseStore baseStore = new BaseStore();
