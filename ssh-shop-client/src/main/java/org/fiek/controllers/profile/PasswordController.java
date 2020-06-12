@@ -58,12 +58,10 @@ public class PasswordController extends AbstractController {
             root.getChildren().add(loading);
         });
         passwordService.setOnSucceeded(e -> {
-            System.out.println("Eshte bere update!");
             root.getChildren().remove(loading);
         });
 
         passwordService.setOnFailed(e -> {
-            System.out.println("setOnFailed");
             root.getChildren().remove(loading);
         });
 

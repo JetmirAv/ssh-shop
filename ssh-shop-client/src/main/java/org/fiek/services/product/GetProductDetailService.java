@@ -29,7 +29,6 @@ public class GetProductDetailService extends Service<Void> implements View {
 
     private void getProductDetails() throws Exception {
             Ajax request = new Ajax();
-            System.out.println("Brenda Servisit:" + product_id);
             JsonObject response = request.getAsJson("products/"+ product_id);
             String jsonAddress = response.get("user").toString();
             // Product actionAddress = new GsonBuilder().create().fromJson(jsonAddress, Product.class);

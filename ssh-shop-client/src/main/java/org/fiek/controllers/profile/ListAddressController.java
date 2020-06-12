@@ -102,23 +102,6 @@ public class ListAddressController implements View {
             AddressService addressService = new AddressService(user);
             addressService.start();
 
-
-            addressService.setOnRunning(e -> {
-//                parent.getChildren().add(loading);
-            });
-
-            addressService.setOnFailed(e -> {
-                System.out.println("Failed!");
-//                parent.getChildren().remove(loading);
-            });
-
-            addressService.setOnCancelled(e -> {
-//                parent.getChildren().remove(loading);
-            });
-
-            addressService.setOnSucceeded(e -> {
-//                parent.getChildren().remove(loading);
-            });
         }
     }
 

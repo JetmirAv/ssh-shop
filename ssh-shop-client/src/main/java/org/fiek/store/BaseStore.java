@@ -125,6 +125,7 @@ public class BaseStore extends Store {
         subscribe(GetCategoryAction.class, this::getCategoryAction);
         subscribe(FetchProductsAction.class, this::fetchProductAction);
         subscribe(GetSelectedProductAction.class, this::getSelectedProductAction);
+        subscribe(FetchProductUserAction.class, this::fetchProductUserAction);
     }
 
     private void fetchProductAction(FetchProductsAction action) {
@@ -144,7 +145,6 @@ public class BaseStore extends Store {
 
     private void newMessageAction(NewMessageAction action) {
         chatStore.newMessageAction(action.getMessage());
-        System.out.println("Action");
         chatStoreEventSource.push(chatStore);
     }
 
@@ -218,7 +218,6 @@ public class BaseStore extends Store {
     }
 
     private void addNewAddress(AddNewAddressAction t) {
-        System.out.println("Add new Address:" + t.getAddress());
         authStore.addNewAddress(t.getAddress());
         authStoreEventSource.push(authStore);
     }

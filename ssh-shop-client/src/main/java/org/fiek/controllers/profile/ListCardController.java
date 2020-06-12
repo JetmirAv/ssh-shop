@@ -56,8 +56,8 @@ public class ListCardController implements View {
     Loading loading = new Loading();
 
 
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert createCardId != null : "fx:id=\"createCardId\" was not injected: check your FXML file 'listCards.fxml'.";
         assert container != null : "fx:id=\"container\" was not injected: check your FXML file 'listCards.fxml'.";
@@ -74,7 +74,7 @@ public class ListCardController implements View {
             if (cards.size() >= 5) toogleDisable(true);
 
             cardList.getChildren().clear();
-            for (Card card  : cards) {
+            for (Card card : cards) {
                 fxmlLoader = new FXMLLoader(App.class.getResource("views/profile/list-Item-Cards.fxml"));
                 fxmlLoader.setController(new ListItemCardController(card));
                 HBox hbox = null;
@@ -100,22 +100,6 @@ public class ListCardController implements View {
             cardService.start();
 
 
-            cardService.setOnRunning(e -> {
-//                parent.getChildren().add(loading);
-            });
-
-            cardService.setOnFailed(e -> {
-                System.out.println("Failed!");
-//                parent.getChildren().remove(loading);
-            });
-
-            cardService.setOnCancelled(e -> {
-//                parent.getChildren().remove(loading);
-            });
-
-            cardService.setOnSucceeded(e -> {
-//                parent.getChildren().remove(loading);
-            });
         }
     }
 

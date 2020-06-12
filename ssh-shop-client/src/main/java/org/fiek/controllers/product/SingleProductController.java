@@ -56,16 +56,13 @@ public class SingleProductController implements View {
         assert description != null : "fx:id=\"description\" was not injected: check your FXML file 'single-item.fxml'.";
 
         if(product != null){
-            System.out.println(product.getName());
             title.setText(product.getName());
             category.setText(product.getCategoryId() + "");
             description.setText(product.getDescription());
 
             homeProduct1.setOnMouseClicked(a->{
-                System.out.println(product.getId());
                 product_id = product.getId();
                 AnchorPane anchorPane1;
-                System.out.println("Product" + product.getName());
                 fxmlLoader = new FXMLLoader(App.class.getResource("views/product/product-details.fxml"));
                 fxmlLoader.setController(new ProductDetailController(product.getId()));
 

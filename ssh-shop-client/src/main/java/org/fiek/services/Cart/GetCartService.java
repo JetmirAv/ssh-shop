@@ -30,7 +30,6 @@ public class GetCartService extends Service<Void> implements View {
 
 
     public GetCartService(int id, int userId) {
-        System.out.println("ne konstruktor");
         this.id = id;
         this.userId = userId;
     }
@@ -40,7 +39,6 @@ public class GetCartService extends Service<Void> implements View {
         Ajax request = new Ajax();
         JsonObject response = request.getAsJson("/users/" + userId + "/cart/" + id);
         String jsonCart = response.get("cart").toString();
-        System.out.println("jsonCart:" + jsonCart);
         publishAction(new GetCartAction(jsonCart));
     }
 

@@ -10,7 +10,6 @@ public class CityAction implements Action {
 
 
     public CityAction(String [] cities) {
-        System.out.println("Cities:" + Arrays.toString(cities));
         this.cities = cities;
     }
 

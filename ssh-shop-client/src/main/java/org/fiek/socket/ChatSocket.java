@@ -35,21 +35,18 @@ public class ChatSocket implements View {
 
     public void onMessage(Socket socket) {
         socket.on(NEW_MESSAGE, e -> {
-            System.out.println("Erdh messazhi");
             publishAction(new NewMessageAction(e[0].toString()));
         });
     }
 
     public void onIncomingCall(Socket socket) {
         socket.on(INCOMING_CALL, e -> {
-            System.out.println("Erdh call: " + e[0].toString());
 //            {"room_id":"5ee1247ba19f0334d4f835b6"}
 
             JsonObject json = (JsonObject)  JsonParser.parseString(e[0].toString());
 
             String room_id = json.get("room_id").toString();
 
-            System.out.println("Test rooom id baboooo: " + room_id);
             room_id = room_id.substring(1, room_id.length() - 1);
 
 
@@ -70,8 +67,6 @@ public class ChatSocket implements View {
         jsonObject.addProperty("channel_id", channel_id);
         jsonObject.addProperty("author_id", author_id);
         jsonObject.addProperty("room_id", room_id);
-
-        System.out.println("Testing reqw calll");
 
         SocketClient.socket.emit(CALL_REQUEST, jsonObject);
     }

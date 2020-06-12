@@ -26,7 +26,6 @@ public class UpdateCardService extends Service<Void> implements View {
         String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
         String[] addr = jsonAddr1.split("},");
         String card = addr[0];
-        System.out.println("responsi i CARD::" + card);
         publishAction(new EditCardAction(card));
     }
 

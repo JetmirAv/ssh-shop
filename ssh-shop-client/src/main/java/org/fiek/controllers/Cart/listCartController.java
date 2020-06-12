@@ -102,7 +102,6 @@ public class listCartController implements View {
 
 
     private void fetchCarts() {
-        System.out.println("brenda fetch!");
         if (cartStore.getCarts() == null) {
             CartService service = new CartService(user.getId());
             service.start();

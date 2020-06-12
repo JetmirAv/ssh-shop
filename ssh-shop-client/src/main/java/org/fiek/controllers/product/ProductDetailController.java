@@ -2,13 +2,16 @@ package org.fiek.controllers.product; /**
  * Sample Skeleton for 'product-details.fxml' Controller Class
  */
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -16,10 +19,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import org.fiek.App;
+import org.fiek.controllers.layout.LayoutController;
 import org.fiek.models.Product;
 import org.fiek.models.Cart;
 import org.fiek.models.User;
 import org.fiek.models.Variant;
+import org.fiek.services.chat.CreateChannelService;
 import org.fiek.services.product.AddCartService;
 import org.fiek.services.product.GetProductDetailService;
 import org.fiek.store.BaseStore;
@@ -48,7 +53,11 @@ public class ProductDetailController {
     private VBox metaData;
 
     @FXML
+    private JFXButton messageBtn;
+
+    @FXML
     private Label descriptionId;
+
     ArrayList<String> namesList = new ArrayList<>();
     ArrayList<Variant> variants;
     ArrayList<FlowPane> flowPanesList = new ArrayList<>();
@@ -75,20 +84,16 @@ public class ProductDetailController {
 
 
 
-        System.out.println("idja" + id);
         GetProductDetailService service = new GetProductDetailService(id);
         service.start();
 
         service.setOnSucceeded(e->{
             root.getChildren().remove(loading);
             product = productStore.getSelectedProduct();
-            System.out.println("Produkt name : " + product.getName());
-            System.out.println("Komplet : " + product);
             variants = product.getVariant();
 
             getListsForData();
             onActionEvents();
-            System.out.println(combinationID);
 //            addToCartAction();
 
         });
@@ -97,6 +102,23 @@ public class ProductDetailController {
         });
 
     }
+
+    @FXML
+    void createChannelHandler(ActionEvent event){
+        CreateChannelService service = new CreateChannelService(product.getId());
+        service.start();
+
+        service.setOnSucceeded(e -> {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("views/chat/index.fxml"));
+            try {
+                LayoutController.mainScreen.setContent(loader.load());
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+
     void getListsForData(){
 
         HBox nameHBox = new HBox();
@@ -159,9 +181,7 @@ public class ProductDetailController {
                 buttonsList.get(i).get(j).setOnAction(e->{
                     int m =0;
                     buttonsEventList.get(finalI).clear();
-                    System.out.println("lista:" + finalI + "element" + finalJ);
                     buttonsEventList.get(finalI).add(buttonsList.get(finalI).get(finalJ));
-                    System.out.println(buttonsEventList);
                     setDataToLabels();
                 });
             }
@@ -190,9 +210,7 @@ public class ProductDetailController {
                 }
 
                 if (counter == namesList.size()) {
-                    System.out.println("u ekzekutu");
                     combinationID = product.getCombination().get(n).get("_id");
-                    System.out.println("combinationID:" + combinationID);
                     price.setText("Price:" + product.getCombination().get(n).get("price"));
                     stock.setText("Stock:" + product.getCombination().get(n).get("stock"));
                     counter = 0;
@@ -217,7 +235,6 @@ public class ProductDetailController {
                 cart.setProductId(product.getId());
 
 //                String json = new Gson().toJson(cart);
-//                System.out.println(json);
                 AddCartService addCartService = new AddCartService(userAuth.getId(), cart);
                 try {
                     addCartService.addCart();

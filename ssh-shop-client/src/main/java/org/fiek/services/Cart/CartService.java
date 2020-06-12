@@ -36,7 +36,6 @@ public class CartService extends Service<Void> implements View {
 
     private void getAllCarts() throws Exception {
         Ajax request = new Ajax();
-        System.out.println("Get user id : " + userId);
         JsonObject response = request.get("/users/" + userId + "/cart");
         String jsonCart = response.get("carts").toString();
         publishAction(new AddCartsAction(jsonCart));

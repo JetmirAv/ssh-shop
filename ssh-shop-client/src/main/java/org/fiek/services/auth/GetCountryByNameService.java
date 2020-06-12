@@ -30,11 +30,9 @@ public class GetCountryByNameService extends Service<Void> implements View {
 
     private void getCountryByName() throws Exception {
             if(!countryTarget.isEmpty()) countryTarget.removeAll(countryTarget);
-            System.out.println("name is :" + name);
             Ajax request = new Ajax();
             JsonObject response = request.getAsJson("countries/" + name);
             String jsonCities = response.get("country").toString();
-            System.out.println("jsonCity1:" + jsonCities);
             final Country actionAddress = new GsonBuilder().create().fromJson(jsonCities, Country.class);
             countryTarget.add(actionAddress);
         }

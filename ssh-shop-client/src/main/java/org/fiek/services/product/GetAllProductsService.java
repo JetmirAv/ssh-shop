@@ -20,8 +20,6 @@ public class GetAllProductsService extends Service<Void> implements View {
                     JsonObject response = request.get("/products");
                     String rows = response.get("products").toString();
 
-                    System.out.println("Call: " + rows);
-
                     publishAction(new FetchProductsAction(rows));
 
                 } catch (Exception exception) {
