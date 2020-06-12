@@ -16,9 +16,13 @@ public class ProductStore extends Store {
     private Category category;
     public Product product;
     public ArrayList<Category> categories = new ArrayList<>();
+    public Product selectedProduct;
 
     public ArrayList<Product> productList = new ArrayList<>();
 
+    public Product getSelectedProduct() {
+        return selectedProduct;
+    }
 
     public ArrayList<Category> getCategory() {
         return categories;
@@ -28,6 +32,13 @@ public class ProductStore extends Store {
         final Product actionProduct = new GsonBuilder().create().fromJson(product, Product.class);
 
     }
+
+    public void setSelectedProduct(String product) {
+        final Product actionProduct = new GsonBuilder().create().fromJson(product, Product.class);
+        this.selectedProduct = actionProduct;
+
+    }
+
 
     public void GetCategoryAction(String[] category) {
         for (String strCategory : category) {

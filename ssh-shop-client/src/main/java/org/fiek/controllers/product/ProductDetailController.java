@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -23,11 +24,14 @@ import org.fiek.services.product.AddCartService;
 import org.fiek.services.product.GetProductDetailService;
 import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
+import org.fiek.store.product.ProductStore;
+import org.fiek.utils.Loading;
 
 public class ProductDetailController {
 
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
     AuthStore authStore = baseStore.getAuthStore();
+    ProductStore productStore = baseStore.getProductStore();
     User userAuth = authStore.getUser();
 
 
@@ -38,22 +42,26 @@ public class ProductDetailController {
     private VBox dataVbox;
 
     @FXML
+    private AnchorPane root;
+
+    @FXML
     private VBox metaData;
 
     @FXML
     private Label descriptionId;
     ArrayList<String> namesList = new ArrayList<>();
     ArrayList<Variant> variants;
-    Product product;
     ArrayList<FlowPane> flowPanesList = new ArrayList<>();
     ArrayList<ArrayList<Button>> buttonsList = new ArrayList<>();
     ArrayList<ArrayList<Button>> buttonsEventList = new ArrayList<>();
     public String combinationID;
     Label stock;
+    Product product;
     Label quantity;
     Label price;
     JFXButton btn;
     String id;
+    Loading loading = new Loading();
 
     public ProductDetailController(String id) {
         this.id = id;
@@ -65,12 +73,17 @@ public class ProductDetailController {
         assert descriptionId != null : "fx:id=\"descriptionId\" was not injected: check your FXML file 'product-details.fxml'.";
 
 
+
+
         System.out.println("idja" + id);
         GetProductDetailService service = new GetProductDetailService(id);
         service.start();
 
         service.setOnSucceeded(e->{
-            product = GetProductDetailService.productStatic;
+            root.getChildren().remove(loading);
+            product = productStore.getSelectedProduct();
+            System.out.println("Produkt name : " + product.getName());
+            System.out.println("Komplet : " + product);
             variants = product.getVariant();
 
             getListsForData();
@@ -79,6 +92,10 @@ public class ProductDetailController {
 //            addToCartAction();
 
         });
+        service.setOnRunning(e2->{
+            root.getChildren().add(loading);
+        });
+
     }
     void getListsForData(){
 
@@ -183,8 +200,16 @@ public class ProductDetailController {
             }
         }
     }
-    void addToCartAction(){
-        btn.setOnAction(e-> {
+    void addToCartAction() {
+
+        if (userAuth == null) {
+
+            btn.setDisable(true);
+
+        } else {
+
+            btn.setDisable(false);
+            btn.setOnAction(e -> {
                 Cart cart = new Cart();
                 cart.setUserId(userAuth.getId());
                 cart.setVariantId(combinationID);
@@ -193,14 +218,15 @@ public class ProductDetailController {
 
 //                String json = new Gson().toJson(cart);
 //                System.out.println(json);
-            AddCartService addCartService = new AddCartService(userAuth.getId(), cart);
-            try {
-                addCartService.addCart();
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-        });
+                AddCartService addCartService = new AddCartService(userAuth.getId(), cart);
+                try {
+                    addCartService.addCart();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            });
 
+        }
+    }
     }
 
-}

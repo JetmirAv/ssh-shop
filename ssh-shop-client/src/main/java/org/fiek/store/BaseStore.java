@@ -11,10 +11,7 @@ import org.fiek.store.auth.AddTokenAction;
 import org.fiek.store.auth.AuthStore;
 import org.fiek.store.auth.EditUserAction;
 import org.fiek.store.chat.*;
-import org.fiek.store.product.AddProductAction;
-import org.fiek.store.product.FetchProductsAction;
-import org.fiek.store.product.GetCategoryAction;
-import org.fiek.store.product.ProductStore;
+import org.fiek.store.product.*;
 import org.reactfx.EventSource;
 import org.reactfx.EventStream;
 
@@ -99,6 +96,7 @@ public class BaseStore extends Store {
         subscribe(AddProductAction.class, this::addProductAction);
         subscribe(GetCategoryAction.class, this::getCategoryAction);
         subscribe(FetchProductsAction.class, this::fetchProductAction);
+        subscribe(GetSelectedProductAction.class, this::getSelectedProductAction);
     }
 
     private void fetchProductAction(FetchProductsAction action) {
@@ -228,6 +226,11 @@ public class BaseStore extends Store {
 
     private void addProductAction(AddProductAction action) {
         productStore.addProductAction(action.getProduct());
+        productStoreEventSource.push(productStore);
+    }
+
+    private void getSelectedProductAction(GetSelectedProductAction action) {
+        productStore.setSelectedProduct(action.getProduct());
         productStoreEventSource.push(productStore);
     }
 
