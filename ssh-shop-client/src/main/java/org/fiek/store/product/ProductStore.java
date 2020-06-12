@@ -55,7 +55,9 @@ public class ProductStore extends Store {
     public void addProductsUser(String products) {
         Gson gson = new Gson();
         Product[] productsUser = gson.fromJson(products, Product[].class);
-        System.out.println("ProduktetTest" + productsUser);
+        if (productsUser.length == productUserList.size()) {
+            return;
+        }
         this.productUserList.addAll(Arrays.asList(productsUser));
     }
 
