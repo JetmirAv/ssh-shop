@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -15,8 +16,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import org.fiek.App;
 import org.fiek.models.Product;
+import org.fiek.models.Cart;
 import org.fiek.models.User;
 import org.fiek.models.Variant;
+import org.fiek.services.product.AddCartService;
 import org.fiek.services.product.GetProductDetailService;
 import org.fiek.store.BaseStore;
 import org.fiek.store.auth.AuthStore;
@@ -49,6 +52,7 @@ public class ProductDetailController {
     Label stock;
     Label quantity;
     Label price;
+    JFXButton btn;
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -66,8 +70,10 @@ public class ProductDetailController {
 
             getListsForData();
             onActionEvents();
-        });
+            System.out.println(combinationID);
+//            addToCartAction();
 
+        });
     }
     void getListsForData(){
 
@@ -106,8 +112,8 @@ public class ProductDetailController {
         hBox1.setAlignment(Pos.CENTER_LEFT);
 
         HBox hBox2 = new HBox();
-        quantity= new Label("Qty:");
-        JFXButton btn = new JFXButton("Add to Cart");
+        quantity= new Label("Qty:1");
+        btn = new JFXButton("Add to Cart");
         btn.getStyleClass().add("product-button");
         hBox2.getChildren().addAll(quantity,btn);
         hBox2.setAlignment(Pos.CENTER_RIGHT);
@@ -131,14 +137,18 @@ public class ProductDetailController {
                 buttonsList.get(i).get(j).setOnAction(e->{
                     int m =0;
                     buttonsEventList.get(finalI).clear();
+                    System.out.println("lista:" + finalI + "element" + finalJ);
                     buttonsEventList.get(finalI).add(buttonsList.get(finalI).get(finalJ));
+                    System.out.println(buttonsEventList);
                     setDataToLabels();
                 });
             }
         }
+        addToCartAction();
     }
     void setDataToLabels() {
         int k=0;
+        namesList.clear();
         for (int u=0;u<buttonsEventList.size(); u++){
             if(buttonsEventList.get(u).size() == 1){
                 namesList.add(buttonsEventList.get(u).get(0).getText());
@@ -147,20 +157,44 @@ public class ProductDetailController {
         }
 
         if (k == variants.size()) {
-            for (Map<String, String> combinations : product.getCombination()) {
-                int counter = 0;
-                for (int i = 0; i < product.getCombination().size(); i++) {
-                    if (combinations.containsValue(namesList.get(i))) {
-                        counter = counter + 1;
-                    }
-                    if (counter == product.getCombination().size()) {
-                        combinationID = combinations.get("_id");
-                        price.setText("Price:" + combinations.get("price"));
-                        stock.setText("Stock:" + combinations.get("stock"));
-                    }
+            for (int n=0; n<product.getCombination().size(); n++) {
+                int counter =0;
+
+                for (int j=0 ; j<namesList.size();j++){
+
+                        if (product.getCombination().get(n).containsValue(namesList.get(j))) {
+                            counter = counter + 1;
+                        }
+                }
+
+                if (counter == namesList.size()) {
+                    System.out.println("u ekzekutu");
+                    combinationID = product.getCombination().get(n).get("_id");
+                    System.out.println("combinationID:" + combinationID);
+                    price.setText("Price:" + product.getCombination().get(n).get("price"));
+                    stock.setText("Stock:" + product.getCombination().get(n).get("stock"));
+                    counter = 0;
                 }
             }
         }
+    }
+    void addToCartAction(){
+        btn.setOnAction(e-> {
+                Cart cart = new Cart();
+                cart.setUserId(userAuth.getId());
+                cart.setVariantId(combinationID);
+                cart.setQuantity(1);
+                cart.setProductId(product.getId());
+
+//                String json = new Gson().toJson(cart);
+//                System.out.println(json);
+            AddCartService addCartService = new AddCartService(userAuth.getId(), cart);
+            try {
+                addCartService.addCart();
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
 
     }
 

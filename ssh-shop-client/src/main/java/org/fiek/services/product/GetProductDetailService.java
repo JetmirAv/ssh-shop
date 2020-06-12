@@ -25,7 +25,7 @@ public class GetProductDetailService extends Service<Void> implements View {
     private void getProductDetails() throws Exception {
         if (productStatic == null) {
             Ajax request = new Ajax();
-            JsonObject response = request.getAsJson("products/5ee10676e0861910187ac3ee");
+            JsonObject response = request.getAsJson("products/5ee2a99b2e1e4b135b47108d");
             String jsonAddress = response.get("user").toString();
             final Product actionAddress = new GsonBuilder().create().fromJson(jsonAddress, Product.class);
             productStatic = actionAddress;
