@@ -32,7 +32,7 @@ const create = async (req, res, next) => {
   try {
     const channel = await CreateChannel({
       user_id: req.user.id,
-      product_id: parseInt(req.params.product_id),
+      product_id: req.params.product_id,
     });
     return res.status(200).json({ channel });
   } catch (err) {
@@ -125,7 +125,7 @@ const joinRoom = async (req, res, next) => {
   try {
     let room_id = req.params.room_id;
     console.log("Knej");
-    
+
     let room = await CallRooms.find({ where: { id: room_id } });
     if (!room) throw new Error("Not found");
 

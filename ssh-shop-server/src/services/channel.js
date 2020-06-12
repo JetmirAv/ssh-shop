@@ -1,5 +1,6 @@
 const CustomError = require("../errors/CustomError");
-const { Channel, Product, Sequelize } = require("../models/sequelize");
+const { Channel, Sequelize } = require("../models/sequelize");
+const Product = require("../models/mongo/products");
 const { GetMyProducts, GetProduct } = require("../services/products");
 const { GetUser } = require("../services/users");
 
@@ -13,7 +14,7 @@ const CreateChannel = async (data) => {
       data.product_id
     );
     if (existChannel) return existChannel;
-    const product = await Product.findByPk(data.product_id);
+    const product = await Product.findOne({ _id: data.product_id });
     if (!product) throw Error("Not found");
     const channel = new Channel({ ...data, name: product.name });
     await channel.validate();
