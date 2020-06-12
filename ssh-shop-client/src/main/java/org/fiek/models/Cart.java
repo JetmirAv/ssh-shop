@@ -18,8 +18,7 @@ public class Cart {
 
     @Expose(serialize = false, deserialize = true)
     public int id;
-    @Expose
-    public int user_id;
+
     @Expose
     public int quantity;
     @Expose
@@ -39,19 +38,6 @@ public class Cart {
     @Expose(serialize = false, deserialize = true)
     public Combinations combination;
 
-    @Expose(serialize = true, deserialize = true)
-    String  product_id;
-
-    @Expose(serialize = true, deserialize = true)
-    String  variant_id;
-
-    public String getProductId() {
-        return product_id;
-    }
-
-    public void setProductId(String productId) {
-        this.product_id = productId;
-    }
 
     public Combinations getCombination() {
         return combination;
