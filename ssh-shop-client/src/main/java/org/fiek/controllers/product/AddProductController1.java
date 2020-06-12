@@ -248,11 +248,12 @@ public class AddProductController1 {
         product.setCategoryId(AddProductController.categoryId);
         product.setUserId(user.getId());
 
+        System.out.println(photoPathList);
         for (int i = 0; i < variantNames.size(); i++) {
             Variant variants = new Variant();
             variants.setData(variantNames.get(i), oprionsList.get(i));
             System.out.println(variants);
-            product.variants.add(variants);
+            product.getVariant().add(variants);
         }
 
         product.setDiscount_pt(discount_pt);

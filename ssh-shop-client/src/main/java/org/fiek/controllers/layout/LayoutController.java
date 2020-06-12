@@ -68,6 +68,8 @@ public class LayoutController extends AbstractController implements View {
     @FXML // fx:id="main"
     private ScrollPane main; // Value injected by FXMLLoader
 
+    public static ScrollPane exportMain;
+
     public LayoutController(BaseStore store) {
         this.baseStore = store;
     }
@@ -92,7 +94,7 @@ public class LayoutController extends AbstractController implements View {
 
         authorize(baseStore.getAuthStore());
         baseStore.getAuthStoreEventStream().subscribe(this::authorize);
-
+        exportMain = main;
     }
 
 
@@ -120,7 +122,7 @@ public class LayoutController extends AbstractController implements View {
 
         switch (id) {
             case "navHome":
-                setRoot("views/product/product-details");
+                setRoot("views/home/home");
                 navHome.getStyleClass().add("active");
                 break;
 

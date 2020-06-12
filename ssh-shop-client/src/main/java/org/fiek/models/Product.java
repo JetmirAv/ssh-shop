@@ -14,7 +14,7 @@ public class Product {
     @Expose(serialize = false, deserialize = true)
     public String _id;
 
-    @Expose(serialize = false, deserialize = true)
+    @Expose(serialize = true, deserialize = true)
     public ArrayList<Variant> variants;
 
 //    @Expose(serialize = false, deserialize = true)
@@ -57,8 +57,8 @@ public class Product {
         this.description = description;
         this.category_id = category_id;
         this.discount_pt = discount_pt;
-        this.variants = variants;
-        this.combinations = combinations;
+        this.variants = new ArrayList<Variant>();
+        this.combinations = new ArrayList<Map<String, String>>();;
     }
 
 
@@ -134,15 +134,15 @@ public class Product {
         return variants;
     }
 
-    public void setVariant(ArrayList<Variant> variant) {
-        this.variants = variant;
+    public void setVariant(ArrayList<Variant> variants) {
+        this.variants = variants;
     }
     public ArrayList<Map<String, String>> getCombination() {
         return combinations;
     }
 
     public void setCombination(ArrayList<Map<String, String>> combinations) {
-        this.combination = combinations;
+        this.combinations = combinations;
     }
 
     @Override

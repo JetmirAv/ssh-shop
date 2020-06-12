@@ -19,13 +19,19 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class GetProductDetailService extends Service<Void> implements View {
-
+    private  String product_id;
     public static Product productStatic;
+
+    public GetProductDetailService(String id) {
+        this.product_id = id;
+    }
+
 
     private void getProductDetails() throws Exception {
         if (productStatic == null) {
             Ajax request = new Ajax();
-            JsonObject response = request.getAsJson("products/5ee2a99b2e1e4b135b47108d");
+            System.out.println("Brenda Servisit:" + product_id);
+            JsonObject response = request.getAsJson("products/"+ product_id);
             String jsonAddress = response.get("user").toString();
             final Product actionAddress = new GsonBuilder().create().fromJson(jsonAddress, Product.class);
             productStatic = actionAddress;

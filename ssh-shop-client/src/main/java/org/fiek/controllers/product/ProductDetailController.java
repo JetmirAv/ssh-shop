@@ -53,6 +53,11 @@ public class ProductDetailController {
     Label quantity;
     Label price;
     JFXButton btn;
+    String id;
+
+    public ProductDetailController(String id) {
+        this.id = id;
+    }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -60,8 +65,8 @@ public class ProductDetailController {
         assert descriptionId != null : "fx:id=\"descriptionId\" was not injected: check your FXML file 'product-details.fxml'.";
 
 
-
-        GetProductDetailService service = new GetProductDetailService();
+        System.out.println("idja" + id);
+        GetProductDetailService service = new GetProductDetailService(id);
         service.start();
 
         service.setOnSucceeded(e->{
