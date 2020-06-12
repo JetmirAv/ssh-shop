@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -48,7 +49,11 @@ public class ProductDetailController {
     private VBox metaData;
 
     @FXML
+    private JFXButton messageBtn;
+
+    @FXML
     private Label descriptionId;
+
     ArrayList<String> namesList = new ArrayList<>();
     ArrayList<Variant> variants;
     ArrayList<FlowPane> flowPanesList = new ArrayList<>();
@@ -97,6 +102,13 @@ public class ProductDetailController {
         });
 
     }
+
+    @FXML
+    void createChannelHandler(ActionEvent event){
+
+    }
+
+
     void getListsForData(){
 
         HBox nameHBox = new HBox();
