@@ -8,33 +8,44 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="homeProduct1" styleClass="home-product-image">
          <children>
             <AnchorPane maxHeight="155.0" prefHeight="200.0" prefWidth="200.0">
+
                <children>
+
                   <ImageView fx:id="productImage1" fitHeight="155.0" fitWidth="207.0" pickOnBounds="true" styleClass="home-product-imageView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
                         <Image url="@../../images/ImagePlaceHolder.png" />
                      </image>
+
                   </ImageView>
+
                </children>
+
             </AnchorPane>
+
             <VBox styleClass="home-product-detail">
                <children>
                   <HBox prefHeight="42.0" prefWidth="208.0" spacing="5.0" styleClass="home-first-info">
+
                      <children>
                         <Label fx:id="title" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-title" text="Title" />
                         <Label fx:id="category" prefHeight="24.0" prefWidth="95.0" styleClass="home-product-category" text="Category" />
                      </children>
+
                      <padding>
                         <Insets left="10.0" top="10.0" />
                      </padding>
+
                   </HBox>
-                  <Label fx:id="description" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text=" sasafasfasfkfhasfjkhasjkfhasjkfhjkashfkjhaskfjhaksjhkasfjhsfakjhasfkjfas" />
+                  <Label fx:id="description" prefHeight="47.0" prefWidth="187.0" styleClass="home-product-description" text=" sasafasfasfkfhasfjkhasjkfhasjkfhjkashfkjhaskfjhaksjhkasfjhsfakjhasfkjfas" translateX="5.0" />
+
                </children>
             </VBox>
+
          </children>
       </VBox>
    </children>

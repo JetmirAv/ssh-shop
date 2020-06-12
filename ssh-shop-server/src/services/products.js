@@ -34,10 +34,15 @@ const GetProduct = async (product_id) => {
  *
 //  * @returns product
  */
+/**
+ *
+//  * @returns product
+ */
 const GetAllProducts = async (
   sort_string = "price-asc",
   categoryId,
-  search
+  search,
+  user_id
 ) => {
   try {
     let sort_arr = sort_string.split("-");
@@ -51,7 +56,11 @@ const GetAllProducts = async (
     } else {
       sort_order = -1;
     }
-    if (isNaN(categoryId) && !search) {
+    if (!isNaN(user_id)) {
+      var product = await Product.find({ user_id: [user_id] }).sort({
+        [sort_column]: sort_order,
+      });
+    } else if (isNaN(categoryId) && !search) {
       console.log("here");
       var product = await Product.find().sort({ [sort_column]: sort_order });
     } else if (!search) {
@@ -75,7 +84,6 @@ const GetAllProducts = async (
     throw err;
   }
 };
-
 /**
  *
  * @param {Product} data

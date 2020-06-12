@@ -104,6 +104,11 @@ public class BaseStore extends Store {
         productStoreEventSource.push(productStore);
     }
 
+    private void fetchProductUserAction(FetchProductUserAction action) {
+        productStore.addProductsUser(action.getProducts());
+        productStoreEventSource.push(productStore);
+    }
+
     private void incrementOffsetAction(IncrementOffsetAction action) {
         chatStore.getActiveChannel().setOffset();
     }

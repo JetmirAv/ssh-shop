@@ -15,6 +15,8 @@ import eu.lestard.fluxfx.Store;
 public class ProductStore extends Store {
     private Category category;
     public Product product;
+
+
     public ArrayList<Category> categories = new ArrayList<>();
     public Product selectedProduct;
 
@@ -23,6 +25,12 @@ public class ProductStore extends Store {
     public Product getSelectedProduct() {
         return selectedProduct;
     }
+    public ArrayList<Product> getProductUserList() {
+        return productUserList;
+    }
+
+    public ArrayList<Product> productUserList = new ArrayList<>();
+
 
     public ArrayList<Category> getCategory() {
         return categories;
@@ -52,6 +60,16 @@ public class ProductStore extends Store {
         Gson gson = new Gson();
         Product[] products1 = gson.fromJson(products, Product[].class);
         this.productList.addAll(Arrays.asList(products1));
+    }
+
+
+    public void addProductsUser(String products) {
+        Gson gson = new Gson();
+        Product[] productsUser = gson.fromJson(products, Product[].class);
+        if (productsUser.length == productUserList.size()) {
+            return;
+        }
+        this.productUserList.addAll(Arrays.asList(productsUser));
     }
 
     public ArrayList<Product> getProductList() {

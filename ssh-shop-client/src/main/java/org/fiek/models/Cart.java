@@ -6,9 +6,6 @@ public class Cart {
     @Expose(serialize = false, deserialize = true)
     final String tableName = "carts";
 
-    @Expose(serialize = false, deserialize = true)
-    public int ID;
-
     @Expose
     public int user_id;
 
@@ -18,29 +15,67 @@ public class Cart {
     @Expose
     public String product_id;
 
+
+    @Expose(serialize = false, deserialize = true)
+    public int id;
+    @Expose
+    public int user_id;
     @Expose
     public int quantity;
-
+    @Expose
     public User user;
 
-    public Cart(int ID, int user_id, String variant_id,String product_id, int quantity) {
-        this.ID = ID;
+    @Expose
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Expose(serialize = false, deserialize = true)
+    public Combinations combination;
+
+    @Expose(serialize = true, deserialize = true)
+    String  product_id;
+
+    @Expose(serialize = true, deserialize = true)
+    String  variant_id;
+
+    public String getProductId() {
+        return product_id;
+    }
+
+    public void setProductId(String productId) {
+        this.product_id = productId;
+    }
+
+    public Combinations getCombination() {
+        return combination;
+    }
+
+    public Cart(int id, int user_id, String variant_id, int quantity, String product_id) {
+        this.id = id;
         this.user_id = user_id;
         this.variant_id = variant_id;
         this.product_id = product_id;
         this.quantity = quantity;
+        this.product_id = product_id;
     }
 
     public Cart() {
-        this(-1, -1, "","", -1);
+        this(-1, -1, "", -1,"");
     }
 
     public String getTableName() {
         return tableName;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     public int getUserId() {
@@ -51,11 +86,11 @@ public class Cart {
         this.user_id = user_id;
     }
 
-    public String getVariantId() {
+    public String  getVariantId() {
         return variant_id;
     }
 
-    public void setVariantId(String variant_id) {
+    public void setVariantId(String  variant_id) {
         this.variant_id = variant_id;
     }
 
@@ -82,5 +117,18 @@ public class Cart {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", variant_id=" + variant_id +
+                ", quantity=" + quantity +
+                ", product_id=" + product_id +
+                ", name:" + name +
+                ", Combinations=" + combination.getPrice() +
+                '}';
     }
 }
