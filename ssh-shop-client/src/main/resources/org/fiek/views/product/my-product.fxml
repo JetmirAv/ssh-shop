@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="500.0" prefWidth="940.0" stylesheets="/org/fiek/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.product.MyProductController">
+
+    <children>
+
+        <HBox fx:id="homeFirstHbox" layoutX="14.0" layoutY="23.0" prefHeight="500.0" spacing="50.0" styleClass="search-category-order" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+
+            <children>
+
+                <JFXButton fx:id="createId" prefHeight="42.0" prefWidth="114.0" styleClass="varinatButonsProperties" stylesheets="@../../styles/style.css" text="Create Product" translateX="770.0" translateY="5.0" />
+
+            </children>
+
+        </HBox>
+
+        <FlowPane fx:id="homeAllPrdouct" layoutX="15.0" layoutY="137.0" styleClass="home-product-info" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="80.0">
+            <children>
+            </children>
+        </FlowPane>
+
+    </children>
+</AnchorPane>
