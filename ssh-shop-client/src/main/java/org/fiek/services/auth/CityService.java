@@ -27,12 +27,9 @@ public class CityService extends Service<Void> implements View {
             JsonObject response = request.getAsJson("/cities");
             String jsonCities = response.get("cities").toString();
 
-            System.out.println(jsonCities);
-
             City[] cities1 = new GsonBuilder().create().fromJson(jsonCities, City[].class);
             cities.addAll(Arrays.asList(cities1));
 
-            System.out.println("asfgasfasf: " + cities.size());
         }
     }
 

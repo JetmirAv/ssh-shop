@@ -26,8 +26,6 @@ public class AddressService extends Service<Void> implements View {
         // String jsonAddr = jsonAddress.replaceAll("\\[", "").replaceAll("\\]", "");
         // String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
         // String[] addr = jsonAddr1.split("},");
-        // System.out.println("ne service:" + Arrays.toString(addr));
-        System.out.println("jsonAddress: " + jsonAddress);
         publishAction(new AddAddressAction(jsonAddress));
     }
 

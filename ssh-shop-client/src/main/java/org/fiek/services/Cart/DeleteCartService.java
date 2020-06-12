@@ -45,11 +45,8 @@ public class DeleteCartService extends Service<Void> implements View {
 
 
     private void deleteCart() throws Exception {
-        System.out.println("Brenda delete!");
-        System.out.println("Cart:" + cart.getId() + ", user:" + userId);
         Ajax request = new Ajax();
         String  response = request.delete("users/" + userId + "/cart/" + cart.getId());
-        System.out.println("Response:" + response);
         publishAction(new DeleteCartAction(cart.getId()));
 
     }

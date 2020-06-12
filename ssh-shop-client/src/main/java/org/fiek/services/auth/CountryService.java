@@ -26,12 +26,9 @@ public class CountryService extends Service<Void> implements View {
             JsonObject response = request.getAsJson("/countries");
             String jsonCities = response.get("countries").toString();
 
-            System.out.println(jsonCities);
-
             Country[] countries1 = new GsonBuilder().create().fromJson(jsonCities, Country[].class);
             countries.addAll(Arrays.asList(countries1));
 
-            System.out.println("asfgasfasf: " + countries.size());
         }
     }
 

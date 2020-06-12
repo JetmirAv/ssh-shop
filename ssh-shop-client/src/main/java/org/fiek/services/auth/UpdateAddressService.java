@@ -30,7 +30,6 @@ public class UpdateAddressService extends Service<Void> implements View {
         String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
         String[] addr = jsonAddr1.split("},");
         String address = addr[0];
-        System.out.println("responsi:" + address);
         publishAction(new EditAddressAction(address));
     }
 

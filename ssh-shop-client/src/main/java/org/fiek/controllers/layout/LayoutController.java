@@ -30,6 +30,8 @@ import org.fiek.store.auth.AuthStore;
 
 public class LayoutController extends AbstractController implements View {
 
+    public static ScrollPane mainScreen;
+
     private final BaseStore baseStore;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -88,7 +90,7 @@ public class LayoutController extends AbstractController implements View {
         assert navChat != null : "fx:id=\"navChat\" was not injected: check your FXML file 'index.fxml'.";
         assert content != null : "fx:id=\"content\" was not injected: check your FXML file 'index.fxml'.";
         assert main != null : "fx:id=\"main\" was not injected: check your FXML file 'index.fxml'.";
-
+        mainScreen = main;
 
         main.setContent(App.loadFXML("views/home/home"));
 

@@ -120,7 +120,6 @@ public class CardContentController implements View {
             });
 
             serviceCreate.setOnSucceeded(e2 -> {
-                System.out.println("Create mir o!");
                 rootCard.getChildren().remove(loading);
             });
             serviceCreate.setOnFailed(e3 -> {

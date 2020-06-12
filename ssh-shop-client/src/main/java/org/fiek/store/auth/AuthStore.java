@@ -83,9 +83,7 @@ public class AuthStore extends Store {
                 GetAddressService addressService = new GetAddressService(selectedAddress.getId(), user.getId());
                 addressService.start();
             }
-            System.out.println("Jasht");
         }
-        System.out.println("Shum Jasht");
     }
 
     public void setSelectedCard(Card selectedCard) {
@@ -95,11 +93,8 @@ public class AuthStore extends Store {
             if (selectedCard.getId() > 0) {
                 GetCardService cardService = new GetCardService(selectedCard.getId(), user.getId());
                 cardService.start();
-                System.out.println("Mrenda");
             }
-            System.out.println("Jasht");
         }
-        System.out.println("Shum Jasht");
     }
 
 
@@ -127,7 +122,6 @@ public class AuthStore extends Store {
         for (Address addr : addresses) {
 
             if (actionAddress.getId() == (addr.getId())) {
-                System.out.println("brenda if-it!");
                 addr.setStreet(actionAddress.getStreet());
                 addr.setPostal(actionAddress.getPostal());
                 addr.setCityId(actionAddress.getCityId());
@@ -169,7 +163,6 @@ public class AuthStore extends Store {
 
 
     public void addAddressAction(String addressList) {
-        System.out.println("Adrsss LIST:" + addressList);
         final Address[] addresses = new GsonBuilder().create().fromJson(addressList, Address[].class);
         this.addAddresses(Arrays.asList(addresses));
     }

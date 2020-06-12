@@ -21,15 +21,12 @@ public class GetCityService extends Service<Void> implements View {
 
     private void getCity() throws Exception {
         Ajax request = new Ajax();
-        System.out.println("Deri qitu po");
         JsonObject response = request.getAsJson("cities/getCity/" + cityID);
         String jsonCities = response.get("cities").toString();
         String jsonAddr = jsonCities.replaceAll("\\[", "").replaceAll("\\]", "");
         String jsonAddr1 = jsonAddr.replaceAll("},", "}},");
         String[] country = jsonAddr1.split("},");
-        System.out.println("edhe dej qitu:" + Arrays.toString(country));
         String countryValue = country[0];
-        System.out.println("Value22:" + countryValue);
         publishAction(new GetCityAction(countryValue));
     }
 

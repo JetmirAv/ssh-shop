@@ -76,9 +76,7 @@ public class ChatStore extends Store implements View {
 
     public void addChannelsAction(String channels, String count) {
         Gson gson = new Gson();
-        System.out.println("Kenj po");
         Channel[] channelsArray = gson.fromJson(channels, Channel[].class);
-        System.out.println("Kenj jo");
         List<Channel> channelList = Arrays.asList(channelsArray);
         addChannels(channelList);
         setCount(Integer.parseInt(count));
@@ -104,7 +102,6 @@ public class ChatStore extends Store implements View {
         }
 
         Channel channel = messageInstance.getChannel();
-        if(channel != null) System.out.println("Not null");
         addChannel(channel);
 
 //        messageInstance.getChannelId();

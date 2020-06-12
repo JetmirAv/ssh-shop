@@ -18,7 +18,6 @@ public class GetAddressService extends Service<Void> implements View {
 
 
     public GetAddressService(int id, int userId) {
-        System.out.println("ne konstruktor");
         this.id = id;
         this.userId = userId;
     }

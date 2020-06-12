@@ -123,7 +123,6 @@ public class InfoController {
         });
 
         infoService.setOnFailed(e -> {
-            System.out.println("setOnFailed");
             root.getChildren().remove(loading);
         });
 

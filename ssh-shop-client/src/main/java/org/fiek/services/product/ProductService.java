@@ -28,7 +28,6 @@ public class ProductService extends Service<Void> implements View{
     public void addProduct() throws Exception {
 
         final String json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.product, Product.class);
-        System.out.println(json);
 
         Ajax request = new Ajax();
         JsonObject response = request.post("products", json);

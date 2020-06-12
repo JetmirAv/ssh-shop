@@ -202,11 +202,6 @@ public class AddProductController1 {
     @FXML
     void finishButtonAction(ActionEvent event) {
 
-        for (int i = 0; i < priceTextFields.size(); i++) {
-            System.out.println(priceTextFields.get(i).getText());
-            System.out.println(quantityTextFields.get(i).getText());
-
-        }
         addDataToObject();
         ProductService productService = new ProductService(product);
         productService.start();
@@ -248,11 +243,9 @@ public class AddProductController1 {
         product.setCategoryId(AddProductController.categoryId);
         product.setUserId(user.getId());
 
-        System.out.println(photoPathList);
         for (int i = 0; i < variantNames.size(); i++) {
             Variant variants = new Variant();
             variants.setData(variantNames.get(i), oprionsList.get(i));
-            System.out.println(variants);
             product.getVariant().add(variants);
         }
 

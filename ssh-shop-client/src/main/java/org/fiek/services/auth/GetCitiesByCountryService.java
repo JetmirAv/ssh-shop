@@ -34,7 +34,6 @@ public class GetCitiesByCountryService extends Service<Void> implements View {
 
         City[] cities1 = new GsonBuilder().create().fromJson(jsonCities, City[].class);
         cities.addAll(Arrays.asList(cities1));
-        System.out.println("popo1: " + cities.size());
     }
 
     @Override

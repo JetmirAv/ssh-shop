@@ -24,7 +24,6 @@ public class CardService extends Service<Void> implements View {
         Ajax request = new Ajax();
         JsonObject response = request.getAsJson("users/" + user.getId() + "/cards");
         String jsonCard = response.get("card").toString();
-        System.out.println("jsonAddress: " + jsonCard);
         publishAction(new AddCardAction(jsonCard));
     }
 

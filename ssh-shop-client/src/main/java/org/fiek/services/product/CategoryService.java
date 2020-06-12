@@ -25,12 +25,10 @@ public class CategoryService extends Service<Void> implements View {
             JsonObject response = request.getAsJson("/categories");
             String jsonCategories = response.get("categories").toString();
             
-   //         System.out.println(jsonCategories);
 
             Category[] categories1 = new GsonBuilder().create().fromJson(jsonCategories, Category[].class);
             categories.addAll(Arrays.asList(categories1));
 
-            System.out.println("Categories: " + categories);
         }
     }
 

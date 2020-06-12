@@ -42,7 +42,6 @@ import org.fiek.store.auth.AuthStore;
 import org.fiek.store.product.ProductStore;
 
 
-
 public class MyProductController {
 
     BaseStore baseStore = App.context.getInstance(BaseStore.class);
@@ -68,7 +67,8 @@ public class MyProductController {
     @FXML // fx:id="createId"
     private JFXButton createId; // Value injected by FXMLLoader
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert homeFirstHbox != null : "fx:id=\"homeFirstHbox\" was not injected: check your FXML file 'my-product.fxml'.";
         assert homeAllPrdouct != null : "fx:id=\"homeAllPrdouct\" was not injected: check your FXML file 'my-product.fxml'.";
@@ -78,7 +78,7 @@ public class MyProductController {
 
         service.start();
 
-        service.setOnSucceeded(e->{
+        service.setOnSucceeded(e -> {
 
             ArrayList<Product> productsUser = productStore.getProductUserList();
 
@@ -102,7 +102,7 @@ public class MyProductController {
             }
 
 
-            createId.setOnAction(e2->{
+            createId.setOnAction(e2 -> {
 
                 AnchorPane anchorPane1;
 

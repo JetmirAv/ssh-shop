@@ -92,7 +92,6 @@ public class listItemCartController implements View {
         assert priceLb != null : "fx:id=\"priceLb\" was not injected: check your FXML file 'cart.fxml'.";
         assert exitButton != null : "fx:id=\"exitbutton\" was not injected: check your FXML file 'cart.fxml'.";
 
-        System.out.println("List item on action!");
 
 
 

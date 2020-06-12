@@ -160,10 +160,6 @@ public class AddressContentController implements View {
             });
         });
 
-        countryServiceObj.setOnFailed(e3 -> {
-            System.out.println("failed!");
-        });
-
     }
 
     public void EditHandler(ActionEvent event) {

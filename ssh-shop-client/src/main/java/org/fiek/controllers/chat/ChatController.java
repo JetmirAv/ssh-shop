@@ -87,7 +87,6 @@ public class ChatController implements View {
         RequestRoomService requestRoomService = new RequestRoomService(channel.getId(), authStore.getUser().getId());
         requestRoomService.start();
 
-//        System.out.println("test");
     }
 
     Loading loading;
@@ -130,7 +129,6 @@ public class ChatController implements View {
     }
 
     private void getNewMessage() {
-        System.out.println("mrena toggle");
         int leftMessages = messageHolder.getChildren().size() - channel.getMessages().size();
         leftMessages = Math.abs(leftMessages);
         if (leftMessages > 0) {
@@ -142,7 +140,6 @@ public class ChatController implements View {
     }
 
     private void getNewMessagesToogle(ChatStore chatStore) {
-        System.out.println("toggle");
         messageHolder.setPrefWidth(messageHolder.getPrefWidth());
     }
 
@@ -152,7 +149,6 @@ public class ChatController implements View {
     }
 
     private void getMessages() {
-        System.out.println("get message po");
 
         if (channel != null && !channel.getMessages().isEmpty()) {
             messageHolder.setPrefHeight(200);
