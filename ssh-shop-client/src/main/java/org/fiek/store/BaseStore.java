@@ -12,6 +12,10 @@ import org.fiek.store.auth.AuthStore;
 import org.fiek.store.auth.EditUserAction;
 import org.fiek.store.chat.*;
 import org.fiek.store.product.*;
+import org.fiek.store.cart.*;
+import org.fiek.store.product.AddProductAction;
+import org.fiek.store.product.GetCategoryAction;
+import org.fiek.store.product.ProductStore;
 import org.reactfx.EventSource;
 import org.reactfx.EventStream;
 
@@ -39,9 +43,25 @@ public class BaseStore extends Store {
         return authStore;
     }
 
+    //CartStore
+    private final EventSource<CartStore> cartStoreEventSource = new EventSource<>();
+    private final CartStore cartStore = new CartStore();
+
+
+    public EventStream<CartStore> getCartStoreEventStream() {
+        return cartStoreEventSource;
+    }
+
+    public CartStore getCartStore() {
+        return cartStore;
+    }
+
+
     //ChatStore
     private final EventSource<ChatStore> chatStoreEventSource = new EventSource<>();
     private final ChatStore chatStore = new ChatStore();
+
+
 
     public EventStream<ChatStore> getChatStoreEventStream() {
         return chatStoreEventSource;
@@ -91,6 +111,14 @@ public class BaseStore extends Store {
         subscribe(GetMessagesAction.class, this::getMessageAction);
         subscribe(NewMessageAction.class, this::newMessageAction);
         subscribe(IncrementOffsetAction.class, this::incrementOffsetAction);
+        // cart
+        cartStoreEventSource.push(cartStore);
+        subscribe(AddCartsAction.class, this::addCartsAction);
+        subscribe(SetActiveCartAction.class, this::setActiveCartAction);
+        subscribe(GetCartAction.class, this::GetCartAction);
+        subscribe(DeleteCartAction.class, this::isDeleteAction);
+
+
 
         productStoreEventSource.push(productStore);
         subscribe(AddProductAction.class, this::addProductAction);
@@ -108,6 +136,7 @@ public class BaseStore extends Store {
         productStore.addProductsUser(action.getProducts());
         productStoreEventSource.push(productStore);
     }
+
 
     private void incrementOffsetAction(IncrementOffsetAction action) {
         chatStore.getActiveChannel().setOffset();
@@ -137,6 +166,17 @@ public class BaseStore extends Store {
         authStoreEventSource.push(authStore);
     }
 
+    private void setActiveCartAction(SetActiveCartAction action) {
+        cartStore.setSelectedCart(action.getCart(),action.getUser());
+        cartStoreEventSource.push(cartStore);
+    }
+
+    private void isDeleteAction(DeleteCartAction action) {
+        cartStore.isDeleteCart(action.getId());
+        cartStoreEventSource.push(cartStore);
+    }
+
+
     private void setActiveCardAction(SetActiveCardAction action) {
         authStore.setSelectedCard(action.getCard());
         authStoreEventSource.push(authStore);
@@ -145,6 +185,11 @@ public class BaseStore extends Store {
     private void addChannelsAction(AddChannelsAction action) {
         chatStore.addChannelsAction(action.getChannels(), action.getCount());
         chatStoreEventSource.push(chatStore);
+    }
+
+    private void addCartsAction(AddCartsAction action) {
+        cartStore.addCartAction(action.getCarts());
+        cartStoreEventSource.push(cartStore);
     }
 
     private void editUserAction(EditUserAction action) {
@@ -201,6 +246,11 @@ public class BaseStore extends Store {
     private void GetAddressAction(GetAddressAction t) {
         authStore.GetAddressAction(t.getAddress());
         authStoreEventSource.push(authStore);
+    }
+
+    private void GetCartAction(GetCartAction t) {
+        cartStore.GetCartAction(t.getCart());
+        cartStoreEventSource.push(cartStore);
     }
 
     private void GetCityByComboAction(GetCityFromComboAction t) {

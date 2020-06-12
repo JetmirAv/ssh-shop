@@ -1,76 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="940.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="940.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.fiek.controllers.Cart.CartController">
+
    <children>
-      <VBox styleClass="cart-frame">
+
+      <VBox styleClass="cart-frame" stylesheets="@../../styles/style.css">
+
          <children>
-            <VBox styleClass="cart-properties">
+
+            <fx:include source="list-cart.fxml" />
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="cart-total-properties" stylesheets="@../../styles/style.css">
+
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" styleClass="cart-row">
-                     <children>
-                        <HBox prefHeight="38.0" prefWidth="834.0" styleClass="cart-info">
-                           <children>
-                              <HBox styleClass="cart-align-left">
-                                 <children>
-                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../images/ImagePlaceHolder.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label styleClass="cart-font" text="Product Name" />
-                                 </children>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <HBox styleClass="qty-box">
-                                       <children>
-                                          <Label text="Qty:1">
-                                             <styleClass>
-                                                <String fx:value="cart-font" />
-                                                <String fx:value="qty-box" />
-                                             </styleClass>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <Label prefHeight="23.0" prefWidth="91.0" styleClass="cart-font" text="Price: 20$" />
-                                 </children>
-                                 <styleClass>
-                                    <String fx:value="cart-align-right" />
-                                    <String fx:value="cart-row-properties" />
-                                 </styleClass>
-                              </HBox>
-                           </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <JFXButton prefHeight="37.0" prefWidth="125.0" text="X">
-                                 <styleClass>
-                                    <String fx:value="cart-button" />
-                                    <String fx:value="cart-font" />
-                                 </styleClass>
-                              </JFXButton>
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
+
+                  <Label fx:id="totalLb" styleClass="cart-total-font" stylesheets="@../../styles/style.css" text="Total: 0.00$">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Label>
+
+                  <JFXButton  fx:id="buybutton" styleClass="cart-total-button" stylesheets="@../../styles/style.css" text="Buy" />
+
                </children>
-            </VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="cart-total-properties">
-               <children>
-                  <Label styleClass="cart-total-font" text="Total: 60$" />
-                  <JFXButton styleClass="cart-total-button" text="Buy" />
-               </children>
+
             </HBox>
+
          </children>
+
       </VBox>
+
    </children>
+
 </AnchorPane>

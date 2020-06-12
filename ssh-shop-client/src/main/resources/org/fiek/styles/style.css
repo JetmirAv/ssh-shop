@@ -528,6 +528,7 @@
 }
 
 .cart-total-font {
+    -fx-padding: 0 0 0 25px;
     -fx-text-fill: #129084;
     -fx-font-size: 18px;
 }

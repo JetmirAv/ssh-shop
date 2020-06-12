@@ -1,5 +1,6 @@
 const CustomError = require("../errors/CustomError");
 const { Cart, Sequelize } = require("../models/sequelize");
+const Product = require("../models/mongo/products");
 const Op = Sequelize.Op;
 
 /**
@@ -24,8 +25,47 @@ const GetCart = async (cart_id) => {
  */
 const GetAllCarts = async (user_id) => {
   try {
-    const cart = await Cart.findAll({ where: { user_id } });
-    return cart;
+    const cart = await Cart.findAll({
+      where: {
+        user_id: user_id,
+      },
+    });
+
+    let productIds = cart.map((rec) => rec.product_id);
+    let variantIds = cart.map((rec) => rec.variant_id);
+
+    const products = await Product.find({ _id: { $in: productIds } });
+
+    let response = [];
+
+    for (let product of products) {
+      for (let combination of product.combinations) {
+        if (variantIds.includes(combination.id)) {
+          response.push({
+            name: product.name,
+            product_id: product.id,
+            combination,
+          });
+          break;
+        }
+      }
+    }
+
+    for (let resp in response) {
+      for (let c of cart) {
+        if (c.product_id === response[resp].product_id) {
+          response[resp] = {
+            ...response[resp],
+            quantity: c.quantity,
+            id: c.id,
+          };
+          break;
+        }
+      }
+    }
+
+    if (!response) throw new CustomError("Not found!", {}, 401);
+    return response;
   } catch (err) {
     throw err;
   }

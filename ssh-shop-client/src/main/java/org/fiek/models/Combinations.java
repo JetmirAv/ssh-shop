@@ -64,3 +64,8 @@ public class Combinations {
         return "Combinations{" + "price=" + price + ", stock=" + stock + ", photo='" + photo + '\'' + '}';
     }
 }
+
+
+
+
+

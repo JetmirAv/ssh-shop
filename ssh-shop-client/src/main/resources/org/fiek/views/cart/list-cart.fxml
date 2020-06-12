@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.layout.*?>
+
+<ScrollPane   hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="930.0" vbarPolicy="ALWAYS" vmax="1.5" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+              fx:controller="org.fiek.controllers.Cart.listCartController">
+
+   <content>
+
+      <VBox fx:id="cartList" styleClass="cart-properties" stylesheets="@../../styles/style.css" />
+
+   </content>
+
+</ScrollPane>

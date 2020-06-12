@@ -111,7 +111,28 @@ public class Ajax {
         return object;
     }
 
+    public String  delete(String route) throws Exception {
+        String result = "";
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        try {
+            HttpDelete request = new HttpDelete(this.host + route);
+            addHeaders(request);
 
+            CloseableHttpResponse response = httpClient.execute(request);
+
+            try {
+                HttpEntity entity = getResponse(response);
+                if (entity != null)
+                    result = EntityUtils.toString(entity);
+
+            } finally {
+                response.close();
+            }
+        } finally {
+            httpClient.close();
+        }
+        return result;
+    }
     public JsonObject get(String route) throws Exception {
         String result = "";
         try {
