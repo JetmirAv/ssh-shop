@@ -16,11 +16,16 @@ public class ProductStore extends Store {
     private Category category;
     public Product product;
 
+    public ArrayList<Product> getWishList() {
+        return wishList;
+    }
 
     public ArrayList<Category> categories = new ArrayList<>();
     public Product selectedProduct;
 
     public ArrayList<Product> productList = new ArrayList<>();
+
+    public ArrayList<Product> wishList = new ArrayList<>();
 
     public Product getSelectedProduct() {
         return selectedProduct;
@@ -60,6 +65,12 @@ public class ProductStore extends Store {
         Gson gson = new Gson();
         Product[] products1 = gson.fromJson(products, Product[].class);
         this.productList.addAll(Arrays.asList(products1));
+    }
+
+    public void addWishList(String products) {
+        Gson gson = new Gson();
+        Product[] products1 = gson.fromJson(products, Product[].class);
+        this.wishList.addAll(Arrays.asList(products1));
     }
 
 

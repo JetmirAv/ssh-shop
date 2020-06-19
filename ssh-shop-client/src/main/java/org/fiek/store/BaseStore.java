@@ -125,10 +125,16 @@ public class BaseStore extends Store {
         subscribe(GetCategoryAction.class, this::getCategoryAction);
         subscribe(FetchProductsAction.class, this::fetchProductAction);
         subscribe(GetSelectedProductAction.class, this::getSelectedProductAction);
+        subscribe(FetchWishListAction.class, this::fetchWishListAction);
     }
 
     private void fetchProductAction(FetchProductsAction action) {
         productStore.addProducts(action.getProducts());
+        productStoreEventSource.push(productStore);
+    }
+
+    private void fetchWishListAction(FetchWishListAction action) {
+        productStore.addWishList(action.getProducts());
         productStoreEventSource.push(productStore);
     }
 
