@@ -140,7 +140,7 @@ public class LayoutController extends AbstractController implements View {
                 break;
 
             case "navWishlist":
-                setRoot("views/home/home");
+                setRoot("views/product/wishList");
                 navWishlist.getStyleClass().add("active");
                 break;
 
