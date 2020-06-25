@@ -9,14 +9,21 @@ module.exports = {
           name: "Electronics",
           description: "Electronics",
           created_at: new Date(),
-          updated_at: new Date(),
+          updated_at: new Date()
         },
         {
           name: "Home",
           description: "Home",
           created_at: new Date(),
-          updated_at: new Date(),
+          updated_at: new Date()
         },
+        {
+          name: "Clothing",
+          description: "Clothing",
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+
       ],
       {}
     );

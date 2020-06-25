@@ -61,14 +61,12 @@ const GetAllProducts = async (
         [sort_column]: sort_order,
       });
     } else if (isNaN(categoryId) && !search) {
-      console.log("here");
       var product = await Product.find().sort({ [sort_column]: sort_order });
     } else if (!search) {
       var product = await Product.find({ category_id: categoryId }).sort({
         [sort_column]: sort_order,
       });
     } else {
-      console.log(search);
       let searchArr = search.split("-");
 
       for (str in searchArr) {
@@ -101,7 +99,6 @@ const CreateProduct = async (data) => {
       combinations: data.combinations,
       lowestPrice: findCheapestPrice(data.combinations),
     });
-    console.log(data.combinations);
     await product.save();
     return product;
   } catch (err) {
