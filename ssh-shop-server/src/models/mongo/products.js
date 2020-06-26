@@ -4,9 +4,9 @@ const ProductSchema = Schema(
   {
     user_id: { type: Number, required: true },
     name: { type: String, required: true },
-    description: { type: String, required: true },
+    description: { type: String, required: false },
     category_id: { type: Number, required: true },
-    discount_pt: { type: Number, required: true },
+    discount_pt: { type: Number, required: false },
     variants: [
       new Schema({
         name: { type: String, required: true },
