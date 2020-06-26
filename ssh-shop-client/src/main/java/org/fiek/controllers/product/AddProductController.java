@@ -208,7 +208,7 @@ public class AddProductController {
                 t=0;
             }
         }
-
+        listToExport.clear();
         for (int i=0; i<listOfCombinations.size(); i++){
             listToExport.add(listOfCombinations.get(i));
         }
