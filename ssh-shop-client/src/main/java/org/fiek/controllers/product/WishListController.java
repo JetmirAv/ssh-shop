@@ -103,6 +103,7 @@ public class WishListController {
                 }
 
             }
+            productsUser.clear();
 
 
             createId.setOnAction(e2->{

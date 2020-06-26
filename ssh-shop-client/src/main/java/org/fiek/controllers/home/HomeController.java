@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +48,6 @@ public class HomeController {
             ArrayList<Product> products = productStore.getProductList();
 
             for (Product product : products) {
-
                 FXMLLoader loader = new FXMLLoader(App.class.getResource("views/product/single-item.fxml"));
                 SingleProductController controller = new SingleProductController(product);
                 loader.setController(controller);
@@ -60,6 +60,7 @@ public class HomeController {
                 }
 
             }
+            products.clear();
         });
 
     }
