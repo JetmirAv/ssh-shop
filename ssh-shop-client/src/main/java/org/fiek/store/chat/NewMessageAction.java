@@ -7,6 +7,7 @@ public class NewMessageAction implements Action {
     final String message;
 
     public NewMessageAction(String message) {
+        System.out.println("NewMessageAction: " + message);
         this.message = message;
     }
 

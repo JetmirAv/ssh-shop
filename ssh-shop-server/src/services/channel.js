@@ -9,17 +9,18 @@ const { GetUser } = require("../services/users");
 //  * @returns Channel
 const CreateChannel = async (data) => {
   try {
+    const product = await Product.findOne({ _id: data.product_id });
+    if (!product) throw Error("Not found");
     const existChannel = await GetExistingChannel(
       data.user_id,
       data.product_id
     );
-    if (existChannel) return existChannel;
-    const product = await Product.findOne({ _id: data.product_id });
-    if (!product) throw Error("Not found");
+    if (existChannel)
+      return { ...existChannel.dataValues, product: { ...product._doc } };
     const channel = new Channel({ ...data, name: product.name });
     await channel.validate();
     await channel.save();
-    return channel;
+    return { ...channel.dataValues, product: product._doc };
   } catch (err) {
     console.log({ err });
 

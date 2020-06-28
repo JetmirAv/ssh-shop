@@ -98,7 +98,10 @@ public class ChatStore extends Store implements View {
         Message messageInstance = gson.fromJson(message, Message.class);
 
         if (messageInstance.getChannelId() == this.getSelectedChannel().getId()) {
-            this.getActiveChannel().addMessage(messageInstance);
+            Message message1 = this.getActiveChannel().getMessages().get(this.getActiveChannel().getMessages().size() - 1);
+
+            if (!message1.getId().equals(messageInstance.getId()))
+                this.getActiveChannel().addMessage(messageInstance);
         }
 
         Channel channel = messageInstance.getChannel();

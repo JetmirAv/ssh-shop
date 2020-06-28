@@ -11,6 +11,8 @@ exports.onMessage = async (data, io) => {
     $or: [{ user_id: ids[0] }, { user_id: ids[1] }],
   });
 
+  console.log({ message });
+
   try {
     sockets.map((user) =>
       io.to(user.socket_id).emit("new-message", JSON.stringify(message))

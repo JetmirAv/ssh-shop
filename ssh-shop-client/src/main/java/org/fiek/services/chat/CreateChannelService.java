@@ -25,7 +25,7 @@ public class CreateChannelService extends Service<Void> implements View {
                 try {
                     Ajax request = new Ajax();
                     JsonObject response = request.get("/channels/" + product_id);
-                    String rows = response.toString();
+                    String rows = response.get("channel").toString();
                     Gson gson = new Gson();
                     Channel channel = gson.fromJson(rows, Channel.class);
                     publishAction(new SetActiveChannelAction(channel));

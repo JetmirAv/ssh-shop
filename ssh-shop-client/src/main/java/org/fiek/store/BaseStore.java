@@ -62,7 +62,6 @@ public class BaseStore extends Store {
     private final ChatStore chatStore = new ChatStore();
 
 
-
     public EventStream<ChatStore> getChatStoreEventStream() {
         return chatStoreEventSource;
     }
@@ -119,7 +118,6 @@ public class BaseStore extends Store {
         subscribe(DeleteCartAction.class, this::isDeleteAction);
 
 
-
         productStoreEventSource.push(productStore);
         subscribe(AddProductAction.class, this::addProductAction);
         subscribe(GetCategoryAction.class, this::getCategoryAction);
@@ -173,7 +171,7 @@ public class BaseStore extends Store {
     }
 
     private void setActiveCartAction(SetActiveCartAction action) {
-        cartStore.setSelectedCart(action.getCart(),action.getUser());
+        cartStore.setSelectedCart(action.getCart(), action.getUser());
         cartStoreEventSource.push(cartStore);
     }
 
