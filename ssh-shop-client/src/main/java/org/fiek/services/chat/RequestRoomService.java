@@ -41,7 +41,7 @@ public class RequestRoomService extends Service<Void> {
                     room_id = room_id.substring(1, room_id.length() - 1);
 
                     if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-                        Desktop.getDesktop().browse(new URI("https://192.168.0.11:5000/channels/" + room_id + "/meet/?token=" + authStore.getToken()));
+                        Desktop.getDesktop().browse(new URI("https://192.168.43.67:5000/channels/" + room_id + "/meet/?token=" + authStore.getToken()));
 
                         Thread.sleep(5000);
                         ChatSocket.callRequest(channel_id, authStore.getUser().getId(), room_id);

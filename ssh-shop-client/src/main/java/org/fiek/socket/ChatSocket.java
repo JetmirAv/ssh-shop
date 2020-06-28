@@ -52,7 +52,7 @@ public class ChatSocket implements View {
 
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
                 try {
-                    Desktop.getDesktop().browse(new URI("https://192.168.0.11:5000/channels/" + room_id + "/meet/?token=" + authStore.getToken()));
+                    Desktop.getDesktop().browse(new URI("https://192.168.43.67:5000/channels/" + room_id + "/meet/?token=" + authStore.getToken()));
                 } catch (IOException | URISyntaxException exception) {
                     exception.printStackTrace();
                 }

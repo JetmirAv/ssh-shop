@@ -31,7 +31,7 @@ public class Ajax {
     final SSLConnectionSocketFactory sslsf;
     final PoolingHttpClientConnectionManager cm;
     final CloseableHttpClient httpClient;
-    private final String host = "http://192.168.0.3:5001/";
+    private final String host = "http://192.168.43.67:5001/";
 
 
     public Ajax() {
